@@ -17,6 +17,10 @@
   background: #F5F5F5;
   border-color: #424242;
 }
+.vis-item[data-type="point"] {
+  background: transparent !important;
+  border: none;
+}
 
 
 /*****************************************************************
