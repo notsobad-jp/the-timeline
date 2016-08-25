@@ -1,0 +1,60 @@
+/*****************************************************************
+* Vis.js
+*****************************************************************/
+.vis-item {
+  cursor: pointer;
+}
+.vis-item .vis-item-overflow { overflow: visible; }
+
+.vis-panel.vis-left { display: none; }
+
+.vis-foreground .vis-group {
+  border-bottom: 1px dotted #ddd;
+}
+.vis-item {
+  opacity: 0.9;
+  color: #424242;
+  background: #F5F5F5;
+  border-color: #424242;
+}
+
+
+/*****************************************************************
+* Color Palatte
+*****************************************************************/
+.red.vis-group .vis-item {
+  color: #b71c1c;
+  background: #ffcdd2;
+  border-color: #ef9a9a;
+}
+.blue.vis-group .vis-item {
+  color: #0D47A1;
+  background: #BBDEFB;
+  border-color: #90CAF9;
+}
+.green.vis-group .vis-item {
+  color: #1B5E20;
+  background: #C8E6C9;
+  border-color: #A5D6A7;
+}
+.teal.vis-group .vis-item {
+  color: #1B5E20;
+  background: #C8E6C9;
+  border-color: #A5D6A7;
+}
+
+
+/*****************************************************************
+* Custom
+*****************************************************************/
+#visualization {
+  position: relative;
+  margin-top: 30px;
+}
+#controller {
+  position: fixed;
+  top: 85px;
+  right: 10px;
+  margin: 10px;
+  z-index: 9999;
+}

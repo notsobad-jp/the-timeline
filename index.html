@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>THE TIMELINE</title>
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.3/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/application.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.3/semantic.min.js"></script>
+  <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
+  <script src="./js/application.js"></script>
+</head>
+<body>
+  <div class="ui fluid container">
+    <div class="ui fixed inverted menu">
+      <div class="header item">
+        <h4>THE TIMELINE</h4>
+      </div>
+    </div>
+
+    <div id="visualization"></div>
+
+    <div id="controller" class="ui vertical black icon buttons">
+      <button id="zoomIn" class="ui button"><i class="icon zoom"></i></button>
+      <button id="zoomOut" class="ui button"><i class="icon zoom out"></i></button>
+      <button id="moveLeft" class="ui button"><i class="icon chevron left"></i></button>
+      <button id="moveRight" class="ui button"><i class="icon chevron right"></i></button>
+    </div>
+  </div>
+</body>
+</html>
