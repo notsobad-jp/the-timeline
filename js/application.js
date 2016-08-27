@@ -1,9 +1,4 @@
 $(function(){
-  /*
-  var path = window.location.pathname.split("/");
-  window.key = path[path.length-1];
-  */
-
   var getQueryString = function ( field, url ) {
     var href = url ? url : window.location.href;
     var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
