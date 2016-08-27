@@ -1,4 +1,9 @@
 $(function(){
+  /*
+  var path = window.location.pathname.split("/");
+  window.key = path[path.length-1];
+  */
+
   var getQueryString = function ( field, url ) {
     var href = url ? url : window.location.href;
     var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
@@ -9,7 +14,7 @@ $(function(){
 
   Tabletop.init({
     key: key,
-    callback: function(data, tabletop) { createTimeline(data); },
+    callback: function(data, tabletop) { createTimeline(data, tabletop); },
     simpleSheet: true
   });
 
@@ -17,7 +22,15 @@ $(function(){
   /*****************************************************************
   * Create Timeline
   *****************************************************************/
-  function createTimeline(data) {
+  function createTimeline(data, tabletop) {
+    // Set Metatags
+    var title = tabletop['googleSheetName'];
+    $('title').text(title + ' | THE TIMELINE');
+    $('meta[property="og:title"]').attr("content", title+' | THE TIMELINE');
+    $('meta[property="keywords"]').attr("content", title + ',年表,作成,無料,タイムライン,THE TIMELINE,アプリ,ツール,フリー,ソフト');
+    $('meta[property="og:url"]').attr("content", window.location.href);
+
+
     var colors = [];
     $.each(data, function(){
       // Display Date
