@@ -19,6 +19,11 @@
   <link rel="stylesheet" type="text/css" href="./css/application.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.3/semantic.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      $(".ui.embed").embed();
+    });
+  </script>
 </head>
 <body>
   <!-- Google Tag Manager -->
@@ -32,13 +37,266 @@
   <!-- End Google Tag Manager -->
 
 
-  <div class="ui fluid container">
-    <div class="ui fixed inverted menu">
-      <div class="header item">
-        <h4>THE TIMELINE</h4>
+  <div class="ui fluid container" style="margin-left:0!important;margin-right:0!important;">
+    <div class="ui grid">
+      <div class="computer only column">
+        <div class="ui fixed inverted borderless menu">
+          <a href="#top" class="header item">
+            <h4>
+              <i class="align left pink icon"></i>
+              THE TIMELINE
+            </h4>
+          </a>
+          <a class="item" href="#howto">使い方</a>
+          <a class="item" href="#examples">サンプル</a>
+          <a class="item" href="#faq">FAQ</a>
+          <a class="item" href="#contact">お問い合わせ</a>
+        </div>
       </div>
     </div>
 
+    <div class="ui inverted attached center aligned very padded basic segment" style="padding:100px 0 50px 0;">
+      <h1 class="ui icon header">
+        <i class="align left pink icon"></i>
+        <div class="content">
+          THE TIMELINE
+          <div class="ui left pointing tiny yellow label">BETA</div>
+        </div>
+      </h1>
+      <div class="sub header">
+        簡単・便利な無料の年表作成サービス
+      </div>
+
+      <div class="ui hidden divider"></div>
+      <div>
+        <a href="#howto">
+          <button class="ui right labeled icon inverted button">
+            <i class="chevron down icon"></i>
+            さっそく使ってみる
+          </button>
+        </a>
+      </div>
+    </div>
+
+
+    <div id="feature" class="ui very padded basic segment">
+      <!--<iframe src="http://the-timeline.jp/timelines/?key=1CKIA8qxBBdlSa6d8kvfoXAcKgVuhUkqB2Zs5Owgcaio" width="100%" height="500px" seamless frameborder='0' style='border-bottom:1px solid #ddd'></iframe>-->
+      <div class="ui embed" data-url="http://the-timeline.jp/timelines/?key=1CKIA8qxBBdlSa6d8kvfoXAcKgVuhUkqB2Zs5Owgcaio" data-placeholder="img/sample.png" data-icon="refresh"></div>
+    </div>
+
+    <div id="howto" class="ui basic very padded segment">
+      <h3 class="ui horizontal divider header">
+        <i class="setting icon"></i>
+        使い方
+      </h3>
+
+      <div class="ui ordered stackable three steps">
+        <div class="step">
+          <div class="content">
+            <div class="title">年表データを登録</div>
+            <div class="description">
+              THE TIMELINEは、年表のデータ登録にGoogleスプレッドシートを利用します。
+              テンプレートのフォーマットに沿って年表データを登録してください。
+              <a href="#" target="_blank" class="ui small primary button">テンプレートを入手する</a>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="content">
+            <div class="title">シートを公開</div>
+            <div class="description">
+              データの登録が完了したら、シートの設定を「公開」にしてください。
+              シートを公開する方法は、<a href="https://support.google.com/docs/answer/37579?hl=ja" target="_blank">Googleの公式ドキュメント</a>をご参考ください。
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="content">
+            <div class="title">URLを取得</div>
+            <div class="description">
+              シートを公開したら、共有URL末尾の英数字40桁程度のIDをコピーしてください。
+              コピーしたIDを以下に入力すると、作成された年表を見ることができます。
+              <div class="ui fluid action input">
+                <input type="text" placeholder="スプレッドシートのID">
+                <a class="ui red button" href="http://the-timeline.jp/timelines/?key=">表示</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui icon info message">
+        <i class="info circle icon"></i>
+        <div class="content">
+          チュートリアル動画(作成予定)・FAQにさらに詳しい情報があります。
+          もし操作でお困りのことがあれば、お気軽にお問い合わせください。
+        </div>
+      </div>
+    </div>
+
+
+    <div id="examples" class="ui basic very padded segment">
+      <h3 class="ui horizontal divider header">
+        <i class="lab icon"></i>
+        サンプル
+      </h3>
+      <div class="ui hidden divider"></div>
+
+      <div class="ui three column stackable grid">
+        <div class="column">
+          <div class="ui fluid card">
+            <a class="image" href="#" target="_blank">
+              <img src="./img/examples/1.jpg"></a>
+            </a>
+            <div class="content">
+              <a href="#" target="_blank" class="header">
+                電気の発見
+              </a>
+              <div class="meta">
+                <span class="ui small label category">科学</span>
+                <span class="ui small label category">歴史</span>
+              </div>
+              <div class="description">
+                <p>人類が電気の概念を発見し、活用するまでの歴史</p>
+                <a href="#" class="ui basic button">
+                  <i class="search icon"></i>
+                  年表を見る
+                </a>
+                <a href="" class="ui basic button" target="_blank">
+                  <i class="file text outline icon"></i>
+                  元データ
+                </a>
+              </div>
+            </div>
+            <div class="extra content">
+              <div class="right floated author">
+                inspired by <a href="#">図解雑学電気</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="ui fluid card">
+            <a class="image" href="#" target="_blank">
+              <img src="./img/examples/2.png"></a>
+            </a>
+            <div class="content">
+              <a href="#" target="_blank" class="header">
+                火星年代記
+              </a>
+              <div class="meta">
+                <span class="ui small label category">小説</span>
+                <span class="ui small label category">歴史</span>
+              </div>
+              <div class="description">
+                <p>レイ・ブラッドベリの名作SF「火星年代記」の出来事を年表で整理。実在の歴史だけでなく、小説や映画のストーリーを年表にして楽しむこともできます。</p>
+                <a href="#" class="ui basic button">
+                  <i class="search icon"></i>
+                  年表を見る
+                </a>
+                <a href="" class="ui basic button" target="_blank">
+                  <i class="file text outline icon"></i>
+                  元データ
+                </a>
+              </div>
+            </div>
+            <div class="extra content">
+              <div class="right floated author">
+                inspired by <a href="#">火星年代記</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="ui fluid card">
+            <a class="image" href="http://the-timeline.jp/timelines/?key=1IEkgjj_r9xP91_cXzv_FSVzhB5zdkM9NeIoRgc6qsus" target="_blank">
+              <img src="./img/examples/3.png"></a>
+            </a>
+            <div class="content">
+              <a href="http://the-timeline.jp/timelines/?key=1IEkgjj_r9xP91_cXzv_FSVzhB5zdkM9NeIoRgc6qsus" target="_blank" class="header">
+                クエンティン・タランティーノ
+              </a>
+              <div class="meta">
+                <span class="ui small label category">映画</span>
+                <span class="ui small label category">人物史</span>
+              </div>
+              <div class="description">
+                <p>映画監督タランティーノの半生を、作品リスト・受賞歴とともに紹介。年表には画像を表示することもできます。自分史作成にも活用してください。</p>
+                <a href="http://the-timeline.jp/timelines/?key=1IEkgjj_r9xP91_cXzv_FSVzhB5zdkM9NeIoRgc6qsus" class="ui basic button" target="_blank">
+                  <i class="search icon"></i>
+                  年表を見る
+                </a>
+                <a href="" class="ui basic button" target="_blank">
+                  <i class="file text outline icon"></i>
+                  元データ
+                </a>
+              </div>
+            </div>
+            <div class="extra content">
+              <div class="right floated author">
+                inspired by <a target="_blank" href="https://ja.wikipedia.org/wiki/%E3%82%AF%E3%82%A8%E3%83%B3%E3%83%86%E3%82%A3%E3%83%B3%E3%83%BB%E3%82%BF%E3%83%A9%E3%83%B3%E3%83%86%E3%82%A3%E3%83%BC%E3%83%8E">wikipedia</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="faq" class="ui basic very padded segment">
+      <h3 class="ui horizontal divider header">
+        <i class="comments icon"></i>
+        FAQ
+      </h3>
+
+      <div class="ui relaxed items">
+        <div class="item">
+          <div class="content">
+            <div class="header">サービスの利用にお金は必要ですか？</div>
+            <div class="description">
+              <p>いいえ、現在THE TIMELINEはすべての機能を無料で利用いただけます。今後機能追加を行い、一部機能を有料化する可能性はありますが、BETA期間中に利用いただいていたデータが使えなくなることなどはありません。安心してご利用ください。</p>
+            </div>
+          </div>
+        </div>
+        <div class="ui hidden divider"></div>
+        <div class="item">
+          <div class="content">
+            <div class="header">Googleスプレッドシートを使わずに年表を作成したいのですが</div>
+            <div class="description">
+              <p>申し訳ありませんが、現在THE TIMELINEはGoogleスプレッドシートの利用が必須となっております。将来的にスプレッドシート以外からのデータ取り込みにも対応する予定です。ご要望があれば優先して対応することもできますので、お気軽にお問い合わせください。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="contact" class="ui basic very padded center aligned segment">
+      <h3 class="ui horizontal divider header">
+        <i class="mail outline icon"></i>
+        お問い合わせ
+      </h3>
+      <br>
+      <div>
+        ご意見・ご要望などあれば、info[at]notsobad.jp までお気軽にご連絡ください。
+      </div>
+      <br>
+    </div>
+  </div>
+
+  <div class="ui inverted attached footer center aligned very padded segment">
+    <div>
+      <i class="left align pink icon"></i>
+      THE TIMELINE
+    </div>
+    <div class="ui horizontal inverted small divided link list">
+      <a class="item" href="#top">サイトトップ</a>
+      <a class="item" href="http://notosbad.jp" target="_blank">運営</a>
+      <a class="item" href="#">利用規約</a>
+      <a class="item" href="#">プライバシーポリシー</a>
+      <a class="item" href="#">お問い合わせ</a>
+    </div>
   </div>
 </body>
 </html>
