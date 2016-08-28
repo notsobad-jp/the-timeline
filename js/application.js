@@ -21,6 +21,8 @@ $(function(){
     // Set Metatags
     var title = tabletop['googleSheetName'];
     $('title').text(title + ' | THE TIMELINE');
+    $('#menu-title').text(title);
+    $('#menu-source').attr("href", 'https://docs.google.com/spreadsheets/d/'+key);
     $('meta[property="og:title"]').attr("content", title+' | THE TIMELINE');
     $('meta[property="keywords"]').attr("content", title + ',年表,作成,無料,タイムライン,THE TIMELINE,アプリ,ツール,フリー,ソフト');
     $('meta[property="og:url"]').attr("content", window.location.href);
@@ -123,6 +125,7 @@ $(function(){
     }
 
     // attach events to the navigation buttons
+    $(document).on('click', '#maximize', function(){ timeline.fit(); });
     $(document).on('click', '#zoomIn', function(){ zoom(-0.2); });
     $(document).on('click', '#zoomOut', function(){ zoom(0.2); });
     $(document).on('click', '#moveLeft', function(){ move(0.2); });

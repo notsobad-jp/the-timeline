@@ -79,9 +79,38 @@
     </div>
 
 
-    <div id="feature" class="ui very padded basic segment">
-      <!--<iframe src="http://the-timeline.jp/timelines/?key=1CKIA8qxBBdlSa6d8kvfoXAcKgVuhUkqB2Zs5Owgcaio" width="100%" height="500px" seamless frameborder='0' style='border-bottom:1px solid #ddd'></iframe>-->
-      <div class="ui embed" data-url="http://the-timeline.jp/timelines/?key=1CKIA8qxBBdlSa6d8kvfoXAcKgVuhUkqB2Zs5Owgcaio" data-placeholder="img/sample.png" data-icon="refresh"></div>
+    <div id="feature" class="ui basic padded segment">
+      <div class="ui basic very padded center aligned segment">
+        THE TIMELINEは、Googleスプレッドシートに入力したデータをもとに年表を作成するサービスです。
+        <br>
+        テンプレートに沿ってデータを登録するだけで、THE TIMELINEが自動でデータを読み取り、きれいな年表を作成してくれます。
+      </div>
+      <div class="ui stackable two steps">
+        <div class="step">
+          <div class="content">
+            <div class="title ui header">
+              <i class="table icon"></i>
+              Googleスプレッドシートにデータを登録
+            </div>
+            <div class="description">
+              <img class="ui image" src="./img/howto.png">
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="content">
+            <div class="title ui header">
+              <i class="left align icon"></i>
+              THE TIMELINEでデータを読み取って年表表示
+            </div>
+            <div class="description">
+              <img class="ui image" src="./img/sample.png">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
 
     <div id="howto" class="ui basic very padded segment">
@@ -90,46 +119,72 @@
         使い方
       </h3>
 
+
       <div class="ui ordered stackable three steps">
         <div class="step">
           <div class="content">
-            <div class="title">年表データを登録</div>
+            <div class="title ui header">
+              テンプレートからシートを新規作成
+            </div>
             <div class="description">
-              THE TIMELINEは、年表のデータ登録にGoogleスプレッドシートを利用します。
-              テンプレートのフォーマットに沿って年表データを登録してください。
-              <a href="#" target="_blank" class="ui small primary button">テンプレートを入手する</a>
+              <p>
+                以下のテンプレートをコピーして、自分用のシートを作成します。
+                下記のリンク先で、メニューの「ファイル」→「コピーを作成」を選択してください。
+                （Googleアカウントにログインしている必要があります）
+              </p>
+              <a class="ui basic button" href="https://docs.google.com/spreadsheets/d/1CKIA8qxBBdlSa6d8kvfoXAcKgVuhUkqB2Zs5Owgcaio" target="_blank">
+                <i class="icon external"></i>
+                テンプレートを取得する
+              </a>
             </div>
           </div>
         </div>
         <div class="step">
           <div class="content">
-            <div class="title">シートを公開</div>
+            <div class="title ui header">
+              シートにデータを登録
+            </div>
             <div class="description">
-              データの登録が完了したら、シートの設定を「公開」にしてください。
-              シートを公開する方法は、<a href="https://support.google.com/docs/answer/37579?hl=ja" target="_blank">Googleの公式ドキュメント</a>をご参考ください。
+              <p>
+                作成したシートで、テンプレートの形式に沿ってデータを登録します。
+                データ登録方法のオプションについては、サンプルの元データを参考にしてください。
+              </p>
+              <a class="ui basic button" href="#examples">
+                サンプルを見る&nbsp;
+                <i class="icon chevron down"></i>
+              </a>
             </div>
           </div>
         </div>
         <div class="step">
           <div class="content">
-            <div class="title">URLを取得</div>
+            <div class="title ui header">
+              シートを公開する
+            </div>
             <div class="description">
-              シートを公開したら、共有URL末尾の英数字40桁程度のIDをコピーしてください。
-              コピーしたIDを以下に入力すると、作成された年表を見ることができます。
-              <div class="ui fluid action input">
-                <input type="text" placeholder="スプレッドシートのID">
-                <a class="ui red button" href="http://the-timeline.jp/timelines/?key=">表示</a>
-              </div>
+              <p>
+                登録が完了したら、シートを公開します。
+                メニューの「ファイル」→「ウェブに公開」を選択してください。
+                操作がわからない場合は、以下のGoogle公式ドキュメントも参考にしてください。
+              </p>
+              <a class="ui basic button" href="https://support.google.com/docs/answer/37579?hl=ja" target="_blank">
+                <i class="icon external"></i>
+                シートの公開手順
+              </a>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="ui icon info message">
-        <i class="info circle icon"></i>
-        <div class="content">
-          チュートリアル動画(作成予定)・FAQにさらに詳しい情報があります。
-          もし操作でお困りのことがあれば、お気軽にお問い合わせください。
+
+      <div class="ui very padded secondary center aligned segment">
+        <p>公開設定が完了したら、シートのURLをコピーして以下のフォームに貼り付け、表示ボタンを押してください。</p>
+        <div class="ui fluid action input">
+          <input type="text" placeholder="スプレッドシートのURL">
+          <a class="ui red right labeled icon button" href="http://the-timeline.jp/timelines/?key=" target="_blank">
+            年表を表示する
+            <i class="icon right chevron"></i>
+          </a>
         </div>
       </div>
     </div>
@@ -145,11 +200,11 @@
       <div class="ui three column stackable grid">
         <div class="column">
           <div class="ui fluid card">
-            <a class="image" href="#" target="_blank">
+            <a class="image" href="http://the-timeline.jp/timelines/?key=1CKIA8qxBBdlSa6d8kvfoXAcKgVuhUkqB2Zs5Owgcaio" target="_blank">
               <img src="./img/examples/1.jpg"></a>
             </a>
             <div class="content">
-              <a href="#" target="_blank" class="header">
+              <a href="http://the-timeline.jp/timelines/?key=1CKIA8qxBBdlSa6d8kvfoXAcKgVuhUkqB2Zs5Owgcaio" target="_blank" class="header">
                 電気の発見
               </a>
               <div class="meta">
@@ -158,12 +213,12 @@
               </div>
               <div class="description">
                 <p>人類が電気の概念を発見し、活用するまでの歴史</p>
-                <a href="#" class="ui basic button">
+                <a href="http://the-timeline.jp/timelines/?key=1CKIA8qxBBdlSa6d8kvfoXAcKgVuhUkqB2Zs5Owgcaio" class="ui basic button">
                   <i class="search icon"></i>
                   年表を見る
                 </a>
-                <a href="" class="ui basic button" target="_blank">
-                  <i class="file text outline icon"></i>
+                <a href="https://docs.google.com/spreadsheets/d/1CKIA8qxBBdlSa6d8kvfoXAcKgVuhUkqB2Zs5Owgcaio/edit?usp=sharing" class="ui basic button" target="_blank">
+                  <i class="table icon"></i>
                   元データ
                 </a>
               </div>
@@ -196,14 +251,14 @@
                   年表を見る
                 </a>
                 <a href="" class="ui basic button" target="_blank">
-                  <i class="file text outline icon"></i>
+                  <i class="table icon"></i>
                   元データ
                 </a>
               </div>
             </div>
             <div class="extra content">
               <div class="right floated author">
-                inspired by <a href="#">火星年代記</a>
+                inspired by <a href="https://www.amazon.co.jp/SF/dp/4150117640/" target="_blank">火星年代記</a>
               </div>
             </div>
           </div>
@@ -228,8 +283,8 @@
                   <i class="search icon"></i>
                   年表を見る
                 </a>
-                <a href="" class="ui basic button" target="_blank">
-                  <i class="file text outline icon"></i>
+                <a href="https://docs.google.com/spreadsheets/d/1IEkgjj_r9xP91_cXzv_FSVzhB5zdkM9NeIoRgc6qsus/edit?usp=sharing" class="ui basic button" target="_blank">
+                  <i class="table icon"></i>
                   元データ
                 </a>
               </div>
@@ -286,12 +341,13 @@
   </div>
 
   <div class="ui inverted attached footer center aligned very padded segment">
-    <div>
-      <i class="left align pink icon"></i>
-      THE TIMELINE
-    </div>
+    <a href="#top" class="ui inverted header">
+      <h4>
+        <i class="left align pink icon"></i>
+        THE TIMELINE
+      </h4>
+    </a>
     <div class="ui horizontal inverted small divided link list">
-      <a class="item" href="#top">サイトトップ</a>
       <a class="item" href="http://notosbad.jp" target="_blank">運営</a>
       <a class="item" href="#">利用規約</a>
       <a class="item" href="#">プライバシーポリシー</a>
