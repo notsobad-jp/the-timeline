@@ -142,5 +142,12 @@ $(function(){
       lastResort: true,
       variation: 'inverted',
     });
+
+    /*****************************************************************
+    * Share Modal
+    *****************************************************************/
+    $(document).on('click', '#menu-share', function(){
+      $('.ui.modal').modal('show');
+    });
   }
 });
