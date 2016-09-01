@@ -22,6 +22,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.3/semantic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.4.3/tabletop.min.js"></script>
   <script src="../js/application.js"></script>
 </head>
@@ -44,10 +45,10 @@
 
     <!-- Header Menu -->
     <div class="ui fixed inverted borderless menu">
-      <a href="#top" class="header item">
+      <a href="/" class="header item">
         <h4>
           <i class="align left pink icon"></i>
-          THE TIMELINE
+          <!--THE TIMELINE-->
         </h4>
       </a>
       <div id="menu-title" class="item"></div>
@@ -71,50 +72,68 @@
     </div>
 
     <!-- Share Modal -->
-    <div class="ui modal">
+    <div class="ui basic modal">
       <i class="close icon"></i>
-      <div class="header">
-        この年表を共有する
-      </div>
+      <div class="header"></div>
       <div class="image content">
         <div class="description">
-          <div class="ui header">共有URL</div>
+          <div class="ui inverted header">共有URL</div>
           <div class="ui form">
             <input type="text" readonly="" value="http://the-timeline.jp/timelines/?key=xxx">
           </div>
 
-          <div class="ui header">SNSシェア</div>
+          <div class="ui inverted header">SNSシェア</div>
           <div class="ui one column grid">
             <div class="computer only column">
-              <button class="ui facebook medium button">
-                <i class="facebook icon"></i>
-                Facebook
-              </button>
-              <button class="ui twitter medium button">
-                <i class="twitter icon"></i>
-                Twitter&nbsp;
-              </button>
+              <a class="fb-share" href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank">
+	              <button class="ui facebook medium button">
+	                <i class="facebook icon"></i>
+	                Facebook
+	              </button>
+	          </a>
+	          <a class="tw-share" href="https://twitter.com/share?url=&text=" target="_blank">
+	              <button class="ui twitter medium button">
+	                <i class="twitter icon"></i>
+	                Twitter&nbsp;
+	              </button>
+	          </a>
             </div>
-            <div class="mobile only column">
-              <button class="ui icon facebook button circular">
-                <i class="facebook f icon"></i>
-              </button>
-              <button class="ui twitter icon button circular">
-                <i class="twitter icon"></i>
-              </button>
-              <button class="ui green icon button circular">
-                <i class="comment icon"></i>
-              </button>
+            <div class="mobile tablet only column">
+              <a class="fb-share" href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank">
+	              <button class="ui icon facebook button circular">
+	                <i class="facebook f icon"></i>
+	              </button>
+	          </a>
+	          <a class="tw-share" href="https://twitter.com/share?url=&text=" target="_blank">
+	              <button class="ui twitter icon button circular">
+	                <i class="twitter icon"></i>
+	              </button>
+	          </a>
+	          <a class="line-share" href="http://line.me/R/msg/text/?" target="_blank">
+	              <button class="ui green icon button circular">
+	                <i class="comment icon"></i>
+	              </button>
+	          </a>
             </div>
           </div>
 
-          <div class="ui header">埋め込み用タグ</div>
+          <div class="ui inverted header">埋め込み用タグ</div>
           <div class="ui form">
-            <textarea readonly=""><iframe width="100%" height="500px" seamless frameborder='0' src=""></iframe></textarea>
+            <textarea readonly="" style="resize:none;"><iframe width="100%" height="500px" seamless frameborder='0' src=""></iframe></textarea>
           </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="ui footer center aligned basic segment">
+    <a href="/" class="ui header">
+      <h4>
+        <small>powered by</small>&nbsp;&nbsp;
+        <i class="left align pink icon"></i>
+        THE TIMELINE
+      </h4>
+    </a>
   </div>
 </body>
 </html>
