@@ -8,7 +8,6 @@ $(function(){
   window.key = getQueryString('key');
   window.start = getQueryString('start');
   window.end = getQueryString('end');
-
   window.group_names = [];
 
   function tabletopInit(gid) {
@@ -82,11 +81,17 @@ $(function(){
     }
   }
 
-  $.when(
-    tabletopInit(key)
-  )
-  .done(function(res){
-    createTimeline(res.data, res.tabletop);
+  var gids = key.split("+");
+  var requests = [];
+  for(i=0;i<gids.length;i++){
+    requests.push(tabletopInit(gids[i]));
+  }
+  $.when.apply($, requests).done(function(){
+    var data = [];
+    for(i=0;i<arguments.length;i++){
+      data = data.concat(arguments[i].data);
+    }
+    createTimeline(data, arguments[0].tabletop);
   });
 
 
