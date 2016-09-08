@@ -6,6 +6,10 @@
 }
 .vis-item .vis-item-overflow { overflow: visible; }
 
+@media screen and (max-width: 768px)  {
+  .vis-labelset { display:none; }
+}
+
 .vis-foreground .vis-group, .vis-labelset .vis-label {
   border-bottom: 1px dotted #ddd;
 }

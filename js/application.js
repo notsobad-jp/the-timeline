@@ -5,7 +5,9 @@ $(function(){
     var string = reg.exec(href);
     return string ? string[1] : null;
   };
-  window.key = getQueryString('key')
+  window.key = getQueryString('key');
+  window.start = getQueryString('start');
+  window.end = getQueryString('end');
 
   window.group_names = [];
 
@@ -16,8 +18,8 @@ $(function(){
     callback: function(data, tabletop) { createTimeline(data, tabletop); },
     postProcess: function(element) {
       // Start
-      var month = element['month'] || "01";
-      var day = element['day'] || "01";
+      var month = (element['month']) ? ("0"+element['month']).slice(-2) : "01";
+      var day = (element['day']) ? ("0"+element['day']).slice(-2) : "01";
       element['start'] = moment( element['year'] +'-'+ month +'-'+ day + ' ' + element['time'] );
 
       // End
@@ -26,21 +28,27 @@ $(function(){
         if(element['endyear']=='now') {
 	        element['end'] = moment();
         }else {
-	        var end_month = element['endmonth'] || "01";
-	        var end_day = element['endday'] || "01";
-	        element['end'] = moment( element['endyear'] +'-'+ end_month +'-'+ end_day + ' ' + element['endtime'] );
+	      var endmonth = (element['endmonth']) ? ("0"+element['endmonth']).slice(-2) : "01";
+	      var endday = (element['endday']) ? ("0"+element['endday']).slice(-2) : "01";
+	      element['end'] = moment( element['endyear'] +'-'+ endmonth +'-'+ endday + ' ' + element['endtime'] );
 	    }
       }
 
       // Display date
       if(!element['displaydate']) {
-        if(!element['end']){
-          element['displaydate'] = element['start'].format("YYYY年M月D日");
-        }else if(element['endyear']=='now') {
-          element['displaydate'] = element['start'].format("YYYY年M月D日")+"～";
-        }else {
-          element['displaydate'] = element['start'].format("YYYY年M月D日")+"～"+element['end'].format("YYYY年M月D日");
-        }
+      	//Start
+      	element['displaydate'] += element['year'] + '年';
+      	if(element['month']) { element['displaydate'] += element['month'] + '月'; }
+      	if(element['day']) { element['displaydate'] += element['day'] + '日'; }
+
+        if(element['end']){
+          element['displaydate'] += "～";
+      	  if(element['endyear']!='now') { 
+      	    element['displaydate'] += element['endyear'] + '年';
+      	    if(element['endmonth']) { element['displaydate'] += element['endmonth'] + '月'; }
+      	    if(element['endday']) { element['displaydate'] += element['endday'] + '日'; }
+      	  }
+		}
       }
 
       // Content
@@ -97,6 +105,8 @@ $(function(){
       dataAttributes: 'all',
       orientation: {axis: 'both'},
     };
+    if(start) { options['start'] = start; }
+    if(end) { options['end'] = end; }
 
     // Create a Timeline
     try {
@@ -118,7 +128,31 @@ $(function(){
       lastResort: true,
       variation: 'inverted',
     });
+
+    /*****************************************************************
+    * URL Range Parameter
+    *****************************************************************/
+	timeline.on('rangechanged', function (properties) {
+	  var visible_url = setParameter({
+	    'key': key,
+	    'start': moment(properties.start).format("YYYYMMDDHHmmSS"),
+	    'end': moment(properties.end).format("YYYYMMDDHHmmSS"),
+	  });
+	  //history.replaceState('', '', visible_url);
+	  console.log(visible_url);
+	});
   }
+
+  //パラメータを設定したURLを返す
+  function setParameter( paramsArray ) {
+    var resurl = location.href.replace(/\?.*$/,"");
+    for ( field in paramsArray ) {
+      resurl += (resurl.indexOf('?') == -1) ? '?':'&';
+      resurl += field + '=' + paramsArray[field];
+    }
+    return resurl;
+  }
+
 
   /*****************************************************************
   * controller
