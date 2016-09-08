@@ -1,15 +1,36 @@
 $(function(){
-  var getQueryString = function ( field, url ) {
-    var href = url ? url : window.location.href;
-    var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
-    var string = reg.exec(href);
-    return string ? string[1] : null;
-  };
-  window.key = getQueryString('key');
-  window.start = getQueryString('start');
-  window.end = getQueryString('end');
+  /*****************************************************************
+  * Main Controller
+  *****************************************************************/
+  window.timeline = '';
   window.group_names = [];
 
+
+  var gids = getQueryString('key').split("+");
+  var requests = [];
+  for(i=0;i<gids.length;i++){
+    requests.push(tabletopInit(gids[i]));
+  }
+
+  $.when.apply($, requests).done(function(){
+    var data = [];
+    for(i=0;i<arguments.length;i++){
+      data = data.concat(arguments[i].data);
+    }
+    createTimeline(data).done(function(){
+      setPopup();
+      setRangechangedEvent();
+    });
+
+    var title = arguments[0].tabletop['googleSheetName'];
+    setMetatags(title, gids[0]);
+  });
+
+
+
+  /*****************************************************************
+  * Core Functions
+  *****************************************************************/
   function tabletopInit(gid) {
     var d = $.Deferred();
     Tabletop.init({
@@ -23,6 +44,7 @@ $(function(){
     });
     return d.promise();
   }
+
 
   function formatElement(element) {
     // Start
@@ -81,32 +103,9 @@ $(function(){
     }
   }
 
-  var gids = key.split("+");
-  var requests = [];
-  for(i=0;i<gids.length;i++){
-    requests.push(tabletopInit(gids[i]));
-  }
-  $.when.apply($, requests).done(function(){
-    var data = [];
-    for(i=0;i<arguments.length;i++){
-      data = data.concat(arguments[i].data);
-    }
-    createTimeline(data, arguments[0].tabletop);
-  });
 
-
-  /*****************************************************************
-  * Create Timeline
-  *****************************************************************/
-  function createTimeline(data, tabletop) {
-    // Set Metatags
-    var title = tabletop['googleSheetName'];
-    $('title').text(title + ' | THE TIMELINE');
-    $('#menu-title').text(title);
-    $('#menu-source').attr("href", 'https://docs.google.com/spreadsheets/d/'+key);
-    $('meta[property="og:title"]').attr("content", title+' | THE TIMELINE');
-    $('meta[property="keywords"]').attr("content", title + ',年表,作成,無料,タイムライン,THE TIMELINE,アプリ,ツール,フリー,ソフト');
-    $('meta[property="og:url"]').attr("content", window.location.href);
+  function createTimeline(data) {
+    var d = $.Deferred();
 
     // DOM element where the Timeline will be attached
     var container = document.getElementById('visualization');
@@ -125,22 +124,52 @@ $(function(){
       dataAttributes: 'all',
       orientation: {axis: 'both'},
     };
-    if(start) { options['start'] = start; }
-    if(end) { options['end'] = end; }
+    if(getQueryString('start')) { options['start'] = getQueryString('start'); }
+    if(getQueryString('end')) { options['end'] = getQueryString('end'); }
 
     // Create a Timeline
     try {
-      window.timeline = new vis.Timeline(container, data, groups, options);
+      timeline = new vis.Timeline(container, data, groups, options);
+      d.resolve();
     }catch(e) {
       console.error(e);
       alert("エラーが発生しました。データが正しく登録されていることを確認してください。");
+      d.reject();
+    }finally {
+      $('.dimmer').removeClass('active');
     }
-    $('.dimmer').removeClass('active');
+    return d.promise();
+  }
 
 
-    /*****************************************************************
-    * Popup
-    *****************************************************************/
+  function setMetatags(title, gid) {
+    var url = window.location.href;
+    //Meta Tags
+    $('title').text(title + ' | THE TIMELINE');
+    $('#menu-title').text(title);
+    $('#menu-source').attr("href", 'https://docs.google.com/spreadsheets/d/'+gid);
+    $('meta[property="og:title"]').attr("content", title+' | THE TIMELINE');
+    $('meta[property="keywords"]').attr("content", title + ',年表,作成,無料,タイムライン,THE TIMELINE,アプリ,ツール,フリー,ソフト');
+    $('meta[property="og:url"]').attr("content", url);
+
+    //Share Modal
+    $(".ui.basic.modal .ui.form input").val(url);
+    var textarea = '<iframe width="100%" height="500px" seamless frameborder="0" src="'+ url +'"></iframe>';
+    $(".ui.basic.modal .ui.form textarea").text(textarea);
+
+    var encoded_url = encodeURIComponent(url);
+    $('.fb-share').attr('href', 'https://www.facebook.com/sharer/sharer.php?u='+encoded_url);
+    $('.tw-share').attr('href', 'https://twitter.com/share?url='+ encoded_url);
+    $('.line-share').attr('href', 'http://line.me/R/msg/text/?'+ encoded_url);
+  }
+
+
+
+  /*****************************************************************
+  * Timeline Controller
+  *****************************************************************/
+  //ポップアップ設定
+  function setPopup() {
     $(".vis-item").popup({
       on: 'click',
       exclusive: true,
@@ -148,39 +177,25 @@ $(function(){
       lastResort: true,
       variation: 'inverted',
     });
+  }
 
-    /*****************************************************************
-    * URL Range Parameter
-    *****************************************************************/
+  //表示範囲変更時にURLパラメータ追加
+  function setRangechangedEvent() {
     timeline.on('rangechanged', function (properties) {
-      var visible_url = setParameter({
-        'key': key,
+      var visible_url = setParameterToURL({
+        'key': getQueryString('key'),
         'start': moment(properties.start).format("YYYYMMDDHHmmSS"),
         'end': moment(properties.end).format("YYYYMMDDHHmmSS"),
       });
-      //history.replaceState('', '', visible_url);
+
+      if(window.location.protocol.match(/https?:/)) {
+        history.replaceState('', '', visible_url);
+      }
       console.log(visible_url);
     });
   }
 
-  //パラメータを設定したURLを返す
-  function setParameter( paramsArray ) {
-    var resurl = location.href.replace(/\?.*$/,"");
-    for ( field in paramsArray ) {
-      resurl += (resurl.indexOf('?') == -1) ? '?':'&';
-      resurl += field + '=' + paramsArray[field];
-    }
-    return resurl;
-  }
-
-
-  /*****************************************************************
-  * controller
-  *****************************************************************/
-  /**
-  * Move the timeline a given percentage to left or right
-  * @param {Number} percentage   For example 0.1 (left) or -0.1 (right)
-  */
+  //表示範囲の移動
   function move (percentage) {
     var range = timeline.getWindow();
     var interval = range.end - range.start;
@@ -191,10 +206,7 @@ $(function(){
     });
   }
 
-  /**
-  * Zoom the timeline a given percentage in or out
-  * @param {Number} percentage   For example 0.1 (zoom out) or -0.1 (zoom in)
-  */
+  //表示範囲のズーム
   function zoom (percentage) {
     var range = timeline.getWindow();
     var interval = range.end - range.start;
@@ -205,42 +217,42 @@ $(function(){
     });
   }
 
-  // attach events to the navigation buttons
   $(document).on('click', '#maximize', function(){ timeline.fit(); });
   $(document).on('click', '#zoomIn', function(){ zoom(-0.2); });
   $(document).on('click', '#zoomOut', function(){ zoom(0.2); });
   $(document).on('click', '#moveLeft', function(){ move(0.2); });
   $(document).on('click', '#moveRight', function(){ move(-0.2); });
 
-
-  /*****************************************************************
-  * Keypress Control
-  *****************************************************************/
+  $(document).on('click', '#menu-share', function(){ $('.ui.modal').modal('show'); });
+  // Keypress Control
   $( document ).on( "keydown", function( event ) {
     if(event.key == 'ArrowLeft') {
       move(0.3);
-      return false;
     }else if(event.key == 'ArrowRight') {
       move(-0.3);
-      return false;
     }
   });
 
 
+
   /*****************************************************************
-  * Share Modal
+  * Utility
   *****************************************************************/
-  var url = window.location.href;
-  $(".ui.basic.modal .ui.form input").val(url);
-  var textarea = '<iframe width="100%" height="500px" seamless frameborder="0" src="'+ url +'"></iframe>';
-  $(".ui.basic.modal .ui.form textarea").text(textarea);
+  //指定したキーのURLパラメータを取得する
+  function getQueryString(field, url) {
+    var href = url ? url : window.location.href;
+    var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+    var string = reg.exec(href);
+    return string ? string[1] : null;
+  }
 
-  var encoded_url = encodeURIComponent(url);
-  $('.fb-share').attr('href', 'https://www.facebook.com/sharer/sharer.php?u='+encoded_url);
-  $('.tw-share').attr('href', 'https://twitter.com/share?url='+ encoded_url);
-  $('.line-share').attr('href', 'http://line.me/R/msg/text/?'+ encoded_url);
-
-  $(document).on('click', '#menu-share', function(){
-    $('.ui.modal').modal('show');
-  });
+  //パラメータを設定したURLを返す
+  function setParameterToURL( paramsArray ) {
+    var resurl = location.href.replace(/\?.*$/,"");
+    for ( field in paramsArray ) {
+      resurl += (resurl.indexOf('?') == -1) ? '?':'&';
+      resurl += field + '=' + paramsArray[field];
+    }
+    return resurl;
+  }
 });
