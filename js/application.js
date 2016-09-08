@@ -189,9 +189,8 @@ $(function(){
       });
 
       if(window.location.protocol.match(/https?:/)) {
-        history.replaceState('', '', visible_url);
+        history.replaceState(null, null, visible_url);
       }
-      console.log(visible_url);
     });
   }
 
