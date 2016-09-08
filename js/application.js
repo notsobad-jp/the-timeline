@@ -11,67 +11,82 @@ $(function(){
 
   window.group_names = [];
 
-  Tabletop.init({
-    key: key,
-    prettyColumnNames: false,
-    simpleSheet: true,
-    callback: function(data, tabletop) { createTimeline(data, tabletop); },
-    postProcess: function(element) {
-      // Start
-      var month = (element['month']) ? ("0"+element['month']).slice(-2) : "01";
-      var day = (element['day']) ? ("0"+element['day']).slice(-2) : "01";
-      element['start'] = moment( element['year'] +'-'+ month +'-'+ day + ' ' + element['time'] );
+  function tabletopInit(gid) {
+    var d = $.Deferred();
+    Tabletop.init({
+      key: gid,
+      prettyColumnNames: false,
+      simpleSheet: true,
+      postProcess: function(element) { formatElement(element); },
+      callback: function(data, tabletop) {
+        d.resolve({data: data, tabletop: tabletop});
+      },
+    });
+    return d.promise();
+  }
 
-      // End
-      element['end'] = null;
-      if(element['endyear']){
-        if(element['endyear']=='now') {
-	        element['end'] = moment();
-        }else {
-	      var endmonth = (element['endmonth']) ? ("0"+element['endmonth']).slice(-2) : "01";
-	      var endday = (element['endday']) ? ("0"+element['endday']).slice(-2) : "01";
-	      element['end'] = moment( element['endyear'] +'-'+ endmonth +'-'+ endday + ' ' + element['endtime'] );
-	    }
-      }
+  function formatElement(element) {
+    // Start
+    var month = (element['month']) ? ("0"+element['month']).slice(-2) : "01";
+    var day = (element['day']) ? ("0"+element['day']).slice(-2) : "01";
+    element['start'] = moment( element['year'] +'-'+ month +'-'+ day + ' ' + element['time'] );
 
-      // Display date
-      if(!element['displaydate']) {
-      	//Start
-      	element['displaydate'] += element['year'] + '年';
-      	if(element['month']) { element['displaydate'] += element['month'] + '月'; }
-      	if(element['day']) { element['displaydate'] += element['day'] + '日'; }
-
-        if(element['end']){
-          element['displaydate'] += "～";
-      	  if(element['endyear']!='now') { 
-      	    element['displaydate'] += element['endyear'] + '年';
-      	    if(element['endmonth']) { element['displaydate'] += element['endmonth'] + '月'; }
-      	    if(element['endday']) { element['displaydate'] += element['endday'] + '日'; }
-      	  }
-		}
-      }
-
-      // Content
-      var content = element['title'] + '&nbsp;<small>(' + element['displaydate'] + ')</small>';
-
-      // Image
-      if(element['imageurl']) {
-        content += '<br><div style="margin:auto;width:80px;height:80px;background-size:cover;background-position:center;background-image:url(\''+element['imageurl']+'\');"></div>';
-      }
-      element['content'] = content;
-
-      // HTML
-      var html = '<h3 class="ui medium header">' + element['title'] + '<div class="ui small grey sub header">' + element['displaydate'] + '</div></h3>';
-      if(element['imageurl']) { html += '<div><img class="ui medium image" src="' + element['imageurl'] + '"></div>'; }
-      if(element['detail']) { html += '<div class="ui divider"></div>' + element['detail']; }
-      if(element['url']) { html += '<div class="ui divider"></div><div style="text-align:center;"><a class="ui right labeled icon inverted basic small button" href="'+ element['url'] +'" target="_blank">詳細を見る<i class="chevron right icon"></i></a></div>' }
-      element['html'] = html;
-
-      // Group
-      if(group_names.indexOf(element['group']) < 0) {
-        group_names.push(element['group']);
+    // End
+    element['end'] = null;
+    if(element['endyear']){
+      if(element['endyear']=='now') {
+        element['end'] = moment();
+      }else {
+        var endmonth = (element['endmonth']) ? ("0"+element['endmonth']).slice(-2) : "01";
+        var endday = (element['endday']) ? ("0"+element['endday']).slice(-2) : "01";
+        element['end'] = moment( element['endyear'] +'-'+ endmonth +'-'+ endday + ' ' + element['endtime'] );
       }
     }
+
+    // Display date
+    if(!element['displaydate']) {
+      //Start
+      element['displaydate'] += element['year'] + '年';
+      if(element['month']) { element['displaydate'] += element['month'] + '月'; }
+      if(element['day']) { element['displaydate'] += element['day'] + '日'; }
+
+      if(element['end']){
+        element['displaydate'] += "～";
+        if(element['endyear']!='now') {
+          element['displaydate'] += element['endyear'] + '年';
+          if(element['endmonth']) { element['displaydate'] += element['endmonth'] + '月'; }
+          if(element['endday']) { element['displaydate'] += element['endday'] + '日'; }
+        }
+      }
+    }
+
+    // Content
+    var content = element['title'] + '&nbsp;<small>(' + element['displaydate'] + ')</small>';
+
+    // Image
+    if(element['imageurl']) {
+      content += '<br><div style="margin:auto;width:80px;height:80px;background-size:cover;background-position:center;background-image:url(\''+element['imageurl']+'\');"></div>';
+    }
+    element['content'] = content;
+
+    // HTML
+    var html = '<h3 class="ui medium header">' + element['title'] + '<div class="ui small grey sub header">' + element['displaydate'] + '</div></h3>';
+    if(element['imageurl']) { html += '<div><img class="ui medium image" src="' + element['imageurl'] + '"></div>'; }
+    if(element['detail']) { html += '<div class="ui divider"></div>' + element['detail']; }
+    if(element['url']) { html += '<div class="ui divider"></div><div style="text-align:center;"><a class="ui right labeled icon inverted basic small button" href="'+ element['url'] +'" target="_blank">詳細を見る<i class="chevron right icon"></i></a></div>' }
+    element['html'] = html;
+
+    // Group
+    if(group_names.indexOf(element['group']) < 0) {
+      group_names.push(element['group']);
+    }
+  }
+
+  $.when(
+    tabletopInit(key)
+  )
+  .done(function(res){
+    createTimeline(res.data, res.tabletop);
   });
 
 
@@ -132,15 +147,15 @@ $(function(){
     /*****************************************************************
     * URL Range Parameter
     *****************************************************************/
-	timeline.on('rangechanged', function (properties) {
-	  var visible_url = setParameter({
-	    'key': key,
-	    'start': moment(properties.start).format("YYYYMMDDHHmmSS"),
-	    'end': moment(properties.end).format("YYYYMMDDHHmmSS"),
-	  });
-	  //history.replaceState('', '', visible_url);
-	  console.log(visible_url);
-	});
+    timeline.on('rangechanged', function (properties) {
+      var visible_url = setParameter({
+        'key': key,
+        'start': moment(properties.start).format("YYYYMMDDHHmmSS"),
+        'end': moment(properties.end).format("YYYYMMDDHHmmSS"),
+      });
+      //history.replaceState('', '', visible_url);
+      console.log(visible_url);
+    });
   }
 
   //パラメータを設定したURLを返す
@@ -158,31 +173,31 @@ $(function(){
   * controller
   *****************************************************************/
   /**
-   * Move the timeline a given percentage to left or right
-   * @param {Number} percentage   For example 0.1 (left) or -0.1 (right)
-   */
+  * Move the timeline a given percentage to left or right
+  * @param {Number} percentage   For example 0.1 (left) or -0.1 (right)
+  */
   function move (percentage) {
-      var range = timeline.getWindow();
-      var interval = range.end - range.start;
+    var range = timeline.getWindow();
+    var interval = range.end - range.start;
 
-      timeline.setWindow({
-          start: range.start.valueOf() - interval * percentage,
-          end:   range.end.valueOf()   - interval * percentage
-      });
+    timeline.setWindow({
+      start: range.start.valueOf() - interval * percentage,
+      end:   range.end.valueOf()   - interval * percentage
+    });
   }
 
   /**
-   * Zoom the timeline a given percentage in or out
-   * @param {Number} percentage   For example 0.1 (zoom out) or -0.1 (zoom in)
-   */
+  * Zoom the timeline a given percentage in or out
+  * @param {Number} percentage   For example 0.1 (zoom out) or -0.1 (zoom in)
+  */
   function zoom (percentage) {
-      var range = timeline.getWindow();
-      var interval = range.end - range.start;
+    var range = timeline.getWindow();
+    var interval = range.end - range.start;
 
-      timeline.setWindow({
-          start: range.start.valueOf() - interval * percentage,
-          end:   range.end.valueOf()   + interval * percentage
-      });
+    timeline.setWindow({
+      start: range.start.valueOf() - interval * percentage,
+      end:   range.end.valueOf()   + interval * percentage
+    });
   }
 
   // attach events to the navigation buttons
