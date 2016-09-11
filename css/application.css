@@ -1,9 +1,8 @@
 /*****************************************************************
 * Vis.js
 *****************************************************************/
-.vis-item {
-  cursor: pointer;
-}
+.vis-panel.vis-center { cursor: move; }
+.vis-item { cursor: pointer; }
 .vis-item .vis-item-overflow { overflow: visible; }
 
 @media screen and (max-width: 768px)  {

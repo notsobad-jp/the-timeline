@@ -8,6 +8,7 @@ $(function(){
   //Set Canonical URL
   var canonical_url = setParameterToURL({ 'key': getQueryString('key') });
   $('link[rel="canonical"]').attr('href', canonical_url);
+  $('.menu-maximize').attr('href', canonical_url);
 
   var gids = getQueryString('key').split("+");
   var requests = [];
@@ -121,7 +122,7 @@ $(function(){
 
     // Configuration for the Timeline
     var options = {
-      minHeight: '300px',
+      minHeight: 300,
       order: function(a,b){ return a.start - b.start; },
       zoomable: false,
       dataAttributes: 'all',
@@ -129,6 +130,8 @@ $(function(){
     };
     if(getQueryString('start')) { options['start'] = getQueryString('start'); }
     if(getQueryString('end')) { options['end'] = getQueryString('end'); }
+    var height = getQueryString('height');
+    if(height && height > 300) { options['height'] = getQueryString('height'); }
 
     // Create a Timeline
     try {
