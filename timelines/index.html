@@ -14,6 +14,7 @@
   <meta property="og:site_name" content="THE TIMELINE(ザ・タイムライン)"/>
   <meta property="og:description" content="THE TIMELINE(ザ・タイムライン)は、簡単・便利な無料の年表作成サービスです"/>
   <meta property="og:locale" content="ja_JP"/>
+  <link rel="canonical" href="">
 
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.3/semantic.min.css">
@@ -44,24 +45,53 @@
     </div>
 
     <!-- Header Menu -->
-    <div class="ui fixed inverted borderless menu">
-      <a href="/" class="header item">
-        <h4>
-          <i class="align left pink icon"></i>
-          <!--THE TIMELINE-->
-        </h4>
-      </a>
-      <div id="menu-title" class="item"></div>
-      <div class="right menu">
-        <a href="#" id="menu-source" class="item" target="_blank">
-          <i class="table icon"></i>
-          Source
-        </a>
-        <a id="menu-share" class="item">
-          <i class="share alternate icon"></i>
-          Share
-        </a>
-      </div>
+    <div class="ui grid">
+	    <div class="computer only row">
+		    <div class="ui fixed inverted borderless menu">
+		      <a href="/" class="header item">
+		        <h4>
+		          <i class="align left pink icon"></i>
+		          THE TIMELINE
+		        </h4>
+		      </a>
+		      <div class="item menu-title"></div>
+		      <div class="right menu">
+		        <a href="#" class="item menu-source" target="_blank">
+		          <i class="table icon"></i>
+		          Source
+		        </a>
+		        <a class="item menu-share">
+		          <i class="share alternate icon"></i>
+		          Share
+		        </a>
+		      </div>
+		    </div>
+	    </div>
+	    <div class="mobile tablet only row">
+		    <div class="ui fixed inverted borderless menu">
+		      <a href="/" class="header item">
+		        <h4>
+		          <i class="align left pink icon"></i>
+		        </h4>
+		      </a>
+		      <div class="item menu-title"></div>
+		      <div class="right menu">
+			    <div class="ui simple dropdown item">
+			      <i class="content icon"></i>
+			      <div class="menu">
+		          <a href="#" class="item menu-source" target="_blank">
+			          <i class="table icon"></i>
+			          Source
+			        </a>
+		          <a class="item menu-share">
+			          <i class="share alternate icon"></i>
+			          Share
+			        </a>
+			      </div>
+			    </div>
+		      </div>
+		    </div>
+	    </div>
     </div>
 
     <!-- Timeline Contents -->

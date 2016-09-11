@@ -5,6 +5,9 @@ $(function(){
   window.timeline = '';
   window.group_names = [];
 
+  //Set Canonical URL
+  var canonical_url = setParameterToURL({ 'key': getQueryString('key') });
+  $('link[rel="canonical"]').attr('href', canonical_url);
 
   var gids = getQueryString('key').split("+");
   var requests = [];
@@ -146,8 +149,8 @@ $(function(){
     var url = window.location.href;
     //Meta Tags
     $('title').text(title + ' | THE TIMELINE');
-    $('#menu-title').text(title);
-    $('#menu-source').attr("href", 'https://docs.google.com/spreadsheets/d/'+gid);
+    $('.menu-title').text(title);
+    $('.menu-source').attr("href", 'https://docs.google.com/spreadsheets/d/'+gid);
     $('meta[property="og:title"]').attr("content", title+' | THE TIMELINE');
     $('meta[property="keywords"]').attr("content", title + ',年表,作成,無料,タイムライン,THE TIMELINE,アプリ,ツール,フリー,ソフト');
     $('meta[property="og:url"]').attr("content", url);
@@ -222,7 +225,7 @@ $(function(){
   $(document).on('click', '#moveLeft', function(){ move(0.2); });
   $(document).on('click', '#moveRight', function(){ move(-0.2); });
 
-  $(document).on('click', '#menu-share', function(){ $('.ui.modal').modal('show'); });
+  $(document).on('click', '.menu-share', function(){ $('.ui.modal').modal('show'); });
   // Keypress Control
   $( document ).on( "keydown", function( event ) {
     if(event.key == 'ArrowLeft') {
