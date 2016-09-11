@@ -7,7 +7,7 @@ $(function(){
 
   //Set Canonical URL
   var canonical_url = setParameterToURL({ 'key': getQueryString('key') });
-  //$('link[rel="canonical"]').attr('href', canonical_url);
+  $('link[rel="canonical"]').attr('href', canonical_url);
   $('.menu-maximize').attr('href', canonical_url);
 
   var gids = getQueryString('key').split("+");
@@ -112,7 +112,7 @@ $(function(){
     var d = $.Deferred();
 
     // DOM element where the Timeline will be attached
-    var container = document.getElementById('visualization');
+    var container = document.getElementById('timeline-container');
 
     var colors = ['red', 'blue', 'green', 'orange', 'yellow', 'olive', 'teal', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'];
     var groups = [];
@@ -151,21 +151,13 @@ $(function(){
   function setMetatags(title, gid) {
     var url = window.location.href;
     //Meta Tags
-    var link = '<title>'+ title +' | THE TIMELINE</title>';
-    $('meta:last').after(link);
-    var link = '<meta name="description" content="'+title+'の年表(タイムライン)です。"/>';
-    $('meta:last').after(link);
-    var link = '<meta name="keywords" content="'+title+'年表,作成,無料,タイムライン,THE TIMELINE,アプリ,ツール,フリー,ソフト"/>';
-
-
-    //$('title').text(title + ' | THE TIMELINE');
+    $('title').text(title + ' | THE TIMELINE');
     $('.menu-title').text(title);
     $('.menu-source').attr("href", 'https://docs.google.com/spreadsheets/d/'+gid);
-    /*
     $('meta[property="og:title"]').attr("content", title+' | THE TIMELINE');
+    $('meta[property="description"]').attr("content", title+'の年表(タイムライン)です。"/>';
     $('meta[property="keywords"]').attr("content", title + ',年表,作成,無料,タイムライン,THE TIMELINE,アプリ,ツール,フリー,ソフト');
     $('meta[property="og:url"]').attr("content", url);
-    */
 
     //Share Modal
     $(".ui.basic.modal .ui.form input").val(url);
