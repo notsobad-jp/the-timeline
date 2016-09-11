@@ -155,7 +155,7 @@ $(function(){
     $('.menu-title').text(title);
     $('.menu-source').attr("href", 'https://docs.google.com/spreadsheets/d/'+gid);
     $('meta[property="og:title"]').attr("content", title+' | THE TIMELINE');
-    $('meta[property="description"]').attr("content", title+'の年表(タイムライン)です。"/>';
+    $('meta[property="description"]').attr("content", title+'の年表(タイムライン)です。');
     $('meta[property="keywords"]').attr("content", title + ',年表,作成,無料,タイムライン,THE TIMELINE,アプリ,ツール,フリー,ソフト');
     $('meta[property="og:url"]').attr("content", url);
 
