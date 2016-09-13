@@ -102,9 +102,9 @@
 /*****************************************************************
 * Custom
 *****************************************************************/
-#visualization {
+#timeline-container {
   position: relative;
-  margin-top: 30px;
+  margin-top: 40px;
 }
 #controller {
   position: fixed;
