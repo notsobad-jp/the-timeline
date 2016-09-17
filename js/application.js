@@ -101,6 +101,10 @@ $(function(){
     if(element['url']) { html += '<div class="ui divider"></div><div style="text-align:center;"><a class="ui right labeled icon inverted basic small button" href="'+ element['url'] +'" target="_blank">詳細を見る<i class="chevron right icon"></i></a></div>' }
     element['html'] = html;
 
+    // Colors
+    if(element['color']) { element['className'] = element['color']; }
+
+
     // Group
     if(group_names.indexOf(element['group']) < 0) {
       group_names.push(element['group']);
@@ -117,13 +121,16 @@ $(function(){
     var colors = ['red', 'blue', 'green', 'orange', 'yellow', 'olive', 'teal', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'];
     var groups = [];
     $.each(window.group_names, function(index, group){
-      groups.push({id: group, content: group, className: colors[index]});
+      groups.push({id: group, content: group, order: index, className: colors[index]});
     });
 
     // Configuration for the Timeline
     var options = {
       minHeight: 300,
-      order: function(a,b){ return a.start - b.start; },
+      order: function(a,b){ return b.start - a.start; },
+      groupOrder: function (a, b) {
+        return a.order - b.order;
+      },
       zoomable: false,
       dataAttributes: 'all',
       orientation: {axis: 'both'},
