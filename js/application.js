@@ -160,7 +160,7 @@ $(function(){
     //Meta Tags
     $('title').text(title + ' | THE TIMELINE');
     $('.menu-title').text(title);
-    $('.menu-source').attr("href", 'https://docs.google.com/spreadsheets/d/'+gid);
+    $('.menu-source').attr("href", 'https://docs.google.com/spreadsheets/d/'+gid+'/pubhtml');
     $('meta[property="og:title"]').attr("content", title+' | THE TIMELINE');
     $('meta[property="description"]').attr("content", title+'の年表(タイムライン)です。');
     $('meta[property="keywords"]').attr("content", title + ',年表,作成,無料,タイムライン,THE TIMELINE,アプリ,ツール,フリー,ソフト');
