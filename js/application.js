@@ -69,7 +69,13 @@ $(function(){
       }else {
         var endmonth = (element['endmonth']) ? ("0"+element['endmonth']).slice(-2) : "01";
         var endday = (element['endday']) ? ("0"+element['endday']).slice(-2) : "01";
-        element['end'] = moment( element['endyear'] +'-'+ endmonth +'-'+ endday + ' ' + element['endtime'] );
+
+        var endyear = element['endyear'];
+        if(element['endyear'] < 0){
+          var endyear_num = element['endyear'].replace('-', '');
+          endyear = '-'+('000000' + endyear_num).slice(-6);
+        }
+        element['end'] = moment( endyear +'-'+ endmonth +'-'+ endday + ' ' + element['endtime'] );
       }
     }
 
