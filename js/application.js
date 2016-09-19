@@ -54,7 +54,12 @@ $(function(){
     // Start
     var month = (element['month']) ? ("0"+element['month']).slice(-2) : "01";
     var day = (element['day']) ? ("0"+element['day']).slice(-2) : "01";
-    element['start'] = moment( element['year'] +'-'+ month +'-'+ day + ' ' + element['time'] );
+    var year = element['year'];
+    if(element['year'] < 0){
+      var year_num = element['year'].replace('-', '');
+      year = '-'+('000000' + year_num).slice(-6);
+    }
+    element['start'] = moment( year +'-'+ month +'-'+ day + ' ' + element['time'] );
 
     // End
     element['end'] = null;
@@ -85,11 +90,14 @@ $(function(){
       }
     }
 
+    // Type
+    if(!element['type'] && !element['end']) { element['type'] = 'point'; }
+
     // Content
     var content = element['title'] + '&nbsp;<small>(' + element['displaydate'] + ')</small>';
 
     // Image
-    if(element['imageurl']) {
+    if(element['imageurl'] && element['type']=='box') {
       content += '<br><div style="margin:auto;width:80px;height:80px;background-size:cover;background-position:center;background-image:url(\''+element['imageurl']+'\');"></div>';
     }
     element['content'] = content;
@@ -103,9 +111,6 @@ $(function(){
 
     // Colors
     if(element['color']) { element['className'] = element['color']; }
-
-    // Type
-    if(!element['type'] && !element['end']) { element['type'] = 'point'; }
 
     // Group
     if(group_names.indexOf(element['group']) < 0) {
