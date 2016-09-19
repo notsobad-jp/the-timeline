@@ -104,6 +104,8 @@ $(function(){
     // Colors
     if(element['color']) { element['className'] = element['color']; }
 
+    // Type
+    if(!element['type'] && !element['end']) { element['type'] = 'point'; }
 
     // Group
     if(group_names.indexOf(element['group']) < 0) {
