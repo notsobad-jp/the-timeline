@@ -176,7 +176,6 @@
 *****************************************************************/
 #timeline-container {
   position: relative;
-  margin-top: 40px;
 }
 #controller {
   position: fixed;
