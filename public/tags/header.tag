@@ -12,7 +12,7 @@
           { user.email }
       </div>
 			<div class="item" if={!user}>
-				<a class="ui orange button" href="/signup">ユーザー登録</a>
+				<a class="ui pink button" href="/signup">ユーザー登録</a>
 			</div>
       <div class="item">
           <a if={user} href="" onclick={signout}>ログアウト</a>

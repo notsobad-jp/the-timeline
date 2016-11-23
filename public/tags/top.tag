@@ -1,38 +1,44 @@
 <top>
-  <div class="ui inverted attached center aligned very padded basic segment" style="padding:100px 0 50px 0;">
-    <h1 class="ui icon header">
-      <i class="align left teal icon"></i>
-      <div class="content">
-        THE TIMELINE
-        <div class="ui left pointing tiny yellow label">BETA</div>
-      </div>
+  <div class="ui inverted attached center aligned very padded basic segment" style="padding-top:70px;background:url('/img/bg.png');">
+    <h1 class="ui huge header" style="font-size:3rem;">
+      年表でないと、伝えられないことがある。
     </h1>
-    <div class="sub header">
+    <div class="ui subheader">
       簡単・便利な無料の年表作成サービス
     </div>
-
-    <div class="ui hidden divider"></div>
+    <br>
     <div>
-      <button class="ui right labeled icon inverted button" onclick={ createTimeline }>
+      <button class="ui right labeled icon pink button" onclick={ createTimeline }>
         <i class="chevron right icon"></i>
         さっそく使ってみる
       </button>
+    </div>
+
+    <div class="ui hidden divider"></div>
+
+    <div class="ui stackable centered grid">
+      <div class="ten wide column">
+        <iframe src="https://the-timeline.jp/timelines/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg" width="100%" height="500px" frameBorder="0"></iframe>
+        <!-- <div class="ui centered fluid card">
+          <div class="image">
+            <img class="ui huge image" src="img/sample.png" />
+          </div>
+        </div> -->
+      </div>
     </div>
   </div>
 
 
   <div id="feature" class="ui basic padded segment">
     <div class="ui basic very padded center aligned segment">
-      THE TIMELINEは、Googleスプレッドシートに入力したデータをもとに年表を作成するサービスです。
-      <br />
-      テンプレートに沿ってデータを登録するだけで、THE TIMELINEが自動でデータを読み取り、きれいな年表を作成してくれます。
+      THE TIMELINEは、テンプレートに沿ってデータを登録するだけで、きれいな年表を作成してくれるサービスです。
     </div>
     <div class="ui stackable two steps">
       <div class="step">
         <div class="content">
           <div class="title ui header">
             <i class="table icon"></i>
-            Googleスプレッドシートにデータを登録
+            シートにデータを登録
           </div>
           <div class="description">
             <img class="ui image" src="img/howto.png" />
@@ -43,7 +49,7 @@
         <div class="content">
           <div class="title ui header">
             <i class="left align icon"></i>
-            THE TIMELINEでデータを読み取って年表表示
+            データを読み取って年表表示
           </div>
           <div class="description">
             <img class="ui image" src="img/sample.png" />
@@ -52,104 +58,6 @@
       </div>
     </div>
   </div>
-
-  <div id="howto" class="ui basic very padded segment">
-    <h3 class="ui horizontal divider header">
-      <i class="setting icon"></i>
-      使い方
-    </h3>
-
-    <div class="ui ordered stackable three steps">
-      <div class="step">
-        <div class="content">
-          <div class="title ui header">
-            テンプレートからシートを新規作成
-          </div>
-          <div class="description">
-            <p>
-              以下のテンプレートをコピーして、自分用のシートを作成します。
-              下記のリンク先で、メニューの「ファイル」→「コピーを作成」を選択してください。
-              （Googleアカウントにログインしている必要があります）
-            </p>
-            <a class="ui basic button" href="https://docs.google.com/spreadsheets/d/1ZzL0aWBK7F9TtKOuapX5PceJ2CUT_x2MCh7xmJ_C_nI" target="_blank">
-              <i class="icon external"></i>
-              テンプレートを取得する
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="content">
-          <div class="title ui header">
-            シートにデータを登録
-          </div>
-          <div class="description">
-            <p>
-              作成したシートで、テンプレートの形式に沿ってデータを登録します。
-              データ登録方法のオプションについては、サンプルの元データを参考にしてください。
-            </p>
-            <a class="ui basic button" href="#examples">
-              サンプルを見る&nbsp;
-              <i class="icon chevron down"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="content">
-          <div class="title ui header">
-            シートを公開する
-          </div>
-          <div class="description">
-            <p>
-              登録が完了したら、シートを公開します。
-              メニューの「ファイル」→「ウェブに公開」を選択してください。
-              操作がわからない場合は、以下のGoogle公式ドキュメントも参考にしてください。
-            </p>
-            <a class="ui basic button" href="https://support.google.com/docs/answer/37579?hl=ja" target="_blank">
-              <i class="icon external"></i>
-              シートの公開手順
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div id="form" class="ui one column grid">
-      <div class="column">
-        <div class="ui basic center aligned segment">
-          <div class="ui header"><i class="icon down chevron"></i></div>
-        </div>
-      </div>
-
-      <div class="computer only column">
-        <div class="ui very padded secondary center aligned segment">
-          <p>公開設定が完了したら、シートのURLをコピーして以下のフォームに貼り付け、表示ボタンを押してください。</p>
-          <div class="ui fluid action input">
-            <input type="text" placeholder="スプレッドシートのURL" />
-            <a class="ui red right labeled icon button" href="#" target="_blank">
-              年表を表示する
-              <i class="icon right chevron"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="mobile tablet only column">
-        <div class="ui basic secondary center aligned segment">
-          <div class="ui small header">作成した年表を表示する</div>
-          <div class="ui fluid action input">
-            <input type="text" placeholder="スプレッドシートのURL" />
-            <a class="ui red icon button" href="#" target="_blank">
-              <i class="icon right chevron"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
 
   <div id="examples" class="ui basic very padded segment">
     <h3 class="ui horizontal divider header">

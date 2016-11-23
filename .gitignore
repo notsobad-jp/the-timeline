@@ -3,6 +3,7 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+firebase-debug.log
 
 # Icon must ends with two \r.
 Icon
@@ -89,4 +90,3 @@ config/secrets.yml
 Session.vim
 .netrwhist
 *~
-
