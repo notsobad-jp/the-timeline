@@ -1,5 +1,5 @@
 <top>
-  <div class="ui inverted attached center aligned very padded basic segment" style="padding-top:70px;background:url('/img/bg.png');">
+  <div class="ui inverted attached center aligned basic segment" style="padding:70px 0;background:url('/img/bg.png');">
     <h1 class="ui huge header" style="font-size:3rem;">
       年表でないと、伝えられないことがある。
     </h1>
@@ -19,11 +19,6 @@
     <div class="ui stackable centered grid">
       <div class="ten wide column">
         <iframe src="https://the-timeline.jp/timelines/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg" width="100%" height="500px" frameBorder="0"></iframe>
-        <!-- <div class="ui centered fluid card">
-          <div class="image">
-            <img class="ui huge image" src="img/sample.png" />
-          </div>
-        </div> -->
       </div>
     </div>
   </div>

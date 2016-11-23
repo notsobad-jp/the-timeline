@@ -34,6 +34,7 @@
   <script src="/tags/footer.tag" type="riot/tag"></script>
   <script src="/tags/top.tag" type="riot/tag"></script>
   <script src="/tags/auth.tag" type="riot/tag"></script>
+  <script src="/tags/mypage.tag" type="riot/tag"></script>
   <script src="/tags/timelines/edit.tag" type="riot/tag"></script>
   <script src="/tags/timelines/show.tag" type="riot/tag"></script>
 
@@ -76,6 +77,9 @@
     route('/timelines/*', function(id){
       riot.mount('content', 'timeline-show', {id: id})
     })
+    route('/users/*', function(uid){
+      riot.mount('content', 'mypage', {uid: uid})
+    });
     route.start(true)
 
     var log = function(text) { console.log(text) }

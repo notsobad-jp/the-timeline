@@ -7,10 +7,10 @@
 	    </h4>
 	  </a>
 	  <div class="right menu">
-      <div class="header item" if={user}>
+      <a class="header item" if={user} href="/users/{user.uid}">
           <i class="icon user"></i>
           { user.email }
-      </div>
+      </a>
 			<div class="item" if={!user}>
 				<a class="ui pink button" href="/signup">ユーザー登録</a>
 			</div>
