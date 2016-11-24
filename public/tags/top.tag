@@ -1,24 +1,27 @@
 <top>
-  <div class="ui inverted attached center aligned basic segment" style="padding:70px 0;background:url('/img/bg.png');">
-    <h1 class="ui huge header" style="font-size:3rem;">
-      年表でないと、伝えられないことがある。
-    </h1>
-    <div class="ui subheader">
-      簡単・便利な無料の年表作成サービス
-    </div>
-    <br>
-    <div>
-      <button class="ui right labeled icon pink button" onclick={ createTimeline }>
-        <i class="chevron right icon"></i>
-        さっそく使ってみる
-      </button>
-    </div>
+  <div id="top" class="ui inverted attached center aligned basic segment" style="width:100%;background:#16a085;height:850px;position:relative;padding:0;">
+    <div class="" style="position:absolute;width:100%;top:80px;">
+      <h1 class="ui huge inverted header" style="font-size:3.5rem;">
+        年表でないと、伝えられないことがある。
+      </h1>
+      <br>
+      <div class="ui subheader" style="font-size:1.5rem;">
+        簡単・便利な無料の年表作成サービス
+      </div>
+      <br><br>
+      <div>
+        <button class="ui right labeled icon pink large button" onclick={ createTimeline }>
+          <i class="chevron right icon"></i>
+          さっそく使ってみる
+        </button>
+      </div>
 
-    <div class="ui hidden divider"></div>
+      <div class="ui hidden divider"></div>
 
-    <div class="ui stackable centered grid">
-      <div class="ten wide column">
-        <iframe src="https://the-timeline.jp/timelines/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg" width="100%" height="500px" frameBorder="0"></iframe>
+      <div class="ui stackable centered grid">
+        <div class="ten wide column">
+          <iframe src="https://the-timeline.jp/timelines/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg" width="100%" height="500px" frameBorder="0"></iframe>
+        </div>
       </div>
     </div>
   </div>
@@ -253,5 +256,12 @@
       var newPostKey = firebase.database().ref().child('timelines').push().key
       route('/timelines/'+newPostKey+'/edit')
     }
+
+    $(function(){
+      particleground(document.getElementById('top'), {
+        dotColor: '#5cbdaa',
+        lineColor: '#5cbdaa'
+      });
+    })
   </script>
 </top>
