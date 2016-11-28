@@ -1,6 +1,5 @@
 <timeline>
-	<div class="ui padded basic segment">
-		<div class="ui secondary mini menu">
+		<div class="ui secondary menu">
 			<div class="item">
 				<div class="ui pink button {saveState}" onclick={ save }>
 					Save
@@ -14,6 +13,7 @@
 			</div>
 		</div>
 
+	<div class="ui padded basic segment">
 		<form class="ui large form">
 			<div class="required field {titleState}">
 				<label>Title</label>
@@ -28,6 +28,16 @@
 		<div ref="table" id="table"></div>
 	</div>
   <div class="ui page dimmer {dimmerState}"><div class="ui indeterminate huge text loader">Loading</div></div>
+
+
+	<style>
+		#table {
+			width: 100%;
+			height: 100vh;
+			overflow: hidden;
+		}
+		.ht_clone_top { z-index: 0; } /*見出しがメニューの上に来ないように*/
+	</style>
 
 
 	<script>
@@ -60,24 +70,24 @@
 					startRows: 5,
 					startCols: 17,
 					stretchH: 'all',	//fluid width
-					colHeaders: ['Group', 'Year', 'Month', 'Day', 'Time', 'End Year', 'End Month', 'End Day', 'End Time', 'Display Date', 'Title', 'Detail', 'URL', 'Image URL', 'Type', 'Color'],
+					colHeaders: true,
 					columns: [
-						{data: 'group'},
-						{data: 'startYear'},
-						{data: 'startMonth'},
-						{data: 'startDay'},
-						{data: 'startTime'},
-						{data: 'endYear'},
-						{data: 'endMonth'},
-						{data: 'endDay'},
-						{data: 'endTime'},
-						{data: 'displayDate'},
-						{data: 'title'},
-						{data: 'detail'},
-						{data: 'url'},
-						{data: 'imageUrl'},
-						{data: 'type'},
-						{data: 'color'}
+						{title: 'Group', data: 'group'},
+						{title: 'Year', data: 'startYear', type: 'numeric', allowEmpty: false},
+						{title: 'Month', data: 'startMonth', type: 'dropdown', source: [1,2,3,4,5,6,7,8,9,10,11,12]},
+						{title: 'Day', data: 'startDay', type: 'dropdown', source: Array.from({length:31},(v,k)=>k+1)},
+						{title: 'Time', data: 'startTime'},
+						{title: 'End Year', data: 'endYear', type: 'numeric'},
+						{title: 'End Month', data: 'endMonth', type: 'dropdown', source: [1,2,3,4,5,6,7,8,9,10,11,12]},
+						{title: 'End Day', data: 'endDay', type: 'dropdown', source: Array.from({length:31},(v,k)=>k+1)},
+						{title: 'End Time', data: 'endTime'},
+						{title: 'Display Date', data: 'displayDate'},
+						{title: 'Title', data: 'title', type: 'text', allowEmpty: false},
+						{title: 'Detail', data: 'detail'},
+						{title: 'URL', data: 'url'},
+						{title: 'Image URL', data: 'imageUrl'},
+						{title: 'Type', data: 'type'},
+						{title: 'Color', data: 'color'}
 					],
 			    minSpareRows: 1
 			  })
