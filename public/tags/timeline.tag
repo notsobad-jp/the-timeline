@@ -2,7 +2,7 @@
 	<div class="ui padded basic segment">
 		<div class="ui secondary mini menu">
 			<div class="item">
-				<div class="ui pink button" onclick={ save }>
+				<div class="ui pink button {saveState}" onclick={ save }>
 					Save
 				</div>
 			</div>
@@ -14,52 +14,49 @@
 			</div>
 		</div>
 
-		<h1 class="ui medium header">
-			<div class="ui fluid input">
-			  <input ref="title" type="text" placeholder="Title.." value={ (timeline) ? timeline.title : null }>
+		<form class="ui large form">
+			<div class="required field {titleState}">
+				<label>Title</label>
+				<div class="ui fluid input">
+					<input ref="title" type="text" placeholder="例）サッカー日本代表の歴史" value={ (timeline) ? timeline.title : null }>
+				</div>
 			</div>
-		</h1>
+		</form>
+
+		<br>
 
 		<div ref="table" id="table"></div>
 	</div>
+  <div class="ui page dimmer {dimmerState}"><div class="ui indeterminate huge text loader">Loading</div></div>
+
 
 	<script>
 		var that = this
+		that.dimmerState = 'active'
+
+		var jsonUrl = 'https://firebasestorage.googleapis.com/v0/b/timeline-9747a.appspot.com/o/json%2F'+ opts.id +'.json?alt=media';
 		var
-	    initData = [
-				{
-				  group : "日本の年号",
-				  startYear : "1989",
-				  startMonth : "",
-				  startDay : "",
-				  startTime : "",
-				  endYear : "now",
-				  endMonth : "",
-				  endDay : "",
-				  endTime : "",
-				  displayDate : "1989年～",
-				  title : "平成",
-				  detail : "",
-				  url : "",
-					imageUrl : '',
-				  type : "",
-				  color : ""
-				}
-	    ],
-	    hot,
+			hot,
 			timeline
 
 		$(function(){
-	    $('.dimmer').addClass('active')
-			firebase.database().ref('/timelines/' + opts.id).once('value').then(function(snapshot) {
-				that.timeline = snapshot.val()
-				that.update()
-
-				var data = (that.timeline) ? that.timeline.data : initData
-
+      $.getJSON(jsonUrl, function(json) {
+				that.timeline = json
+      }).fail(function(event, jqxhr, exception) {
+				that.timeline = {
+					title: '',
+					data: {
+					  group : "日本の年号",
+					  startYear : "1989",
+					  endYear : "now",
+					  displayDate : "1989年～",
+					  title : "平成"
+					}
+				}
+			}).always(function(){
 		    var container = document.getElementById('table')
 			  hot = new Handsontable(container, {
-			    data: data,
+			    data: that.timeline.data,
 					startRows: 5,
 					startCols: 17,
 					stretchH: 'all',	//fluid width
@@ -84,12 +81,23 @@
 					],
 			    minSpareRows: 1
 			  })
-	    	$('.dimmer').removeClass('active')
+				that.dimmerState = ''
+				that.update()
 			})
-
 		})
 
 		save(e) {
+			// validate title
+			that.titleState = ''
+			that.saveState = 'loading'
+
+			var title = that.refs.title.value
+			if(!title || title==='') {
+				that.titleState = 'error'
+				that.saveState = ''
+				return
+			}
+
 			var postData = {}
 			postData.data = JSON.parse(JSON.stringify(hot.getSourceData()));	//to avoid calling by reference
 			postData.data.pop()
@@ -98,13 +106,13 @@
 
 			var uploadTask = firebase.storage().ref('json/'+ opts.id +'.json').put(blob);
 			uploadTask.on('state_changed', function(snapshot){
-				e.target.classList.add("loading")
 			}, function(error) {
 				alert('error!')
-				e.target.classList.remove("loading")
+				that.saveState = ''
+				that.update()
 			}, function() {
-				log("upload success")
-				e.target.classList.remove("loading")
+				that.saveState = ''
+				that.update()
 			});
 		}
 	</script>

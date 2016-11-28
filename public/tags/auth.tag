@@ -35,6 +35,7 @@
     </div>
     <br><br>
   </div>
+  <div class="ui page dimmer {dimmerState}"><div class="ui indeterminate huge text loader">Loading</div></div>
 
 
   <script>
@@ -45,32 +46,31 @@
     });
 
     signup() {
-      $('.dimmer').addClass('active')
       firebase.auth().createUserWithEmailAndPassword(this.refs.email.value, this.refs.password.value).then(
         function() {
-          console.log("signup success!")
+          // console.log("signup success!")
         },
         function(error) {
           that.error_message = error.message
-          that.update()
         }
       ).then(function(){
-        $('.dimmer').removeClass('active')
+		    that.dimmerState = ''
+        that.update()
       })
     }
 
     signin() {
-      $('.dimmer').addClass('active')
+		  that.dimmerState = 'active'
       firebase.auth().signInWithEmailAndPassword(this.refs.email.value, this.refs.password.value).then(
         function() {
-          console.log("signin success!")
+          // console.log("signin success!")
         },
         function(error) {
           that.error_message = error.message
-          that.update()
         }
       ).then(function(){
-        $('.dimmer').removeClass('active')
+		    that.dimmerState = ''
+        that.update()
       })
     }
   </script>

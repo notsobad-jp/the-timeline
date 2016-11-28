@@ -25,7 +25,6 @@
     <content></content>
   </div>
   <footer></footer>
-  <div class="ui dimmer"><div class="ui indeterminate huge text loader">Loading</div></div>
 
 
   <script src="/tags/header.tag" type="riot/tag"></script>
@@ -75,6 +74,7 @@
     });
     route.start(true)
 
+    var obs = riot.observable();
     var log = function(text) { console.log(text) }
   </script>
 </body>

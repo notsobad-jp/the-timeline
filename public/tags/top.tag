@@ -279,15 +279,15 @@
 
 
   <script>
-    var sW = window.innerWidth;
-
     var that = this
+    var sW = window.innerWidth;
 
     createTimeline() {
       var newPostKey = firebase.database().ref().child('timelines').push().key
       route('/timelines/'+newPostKey)
     }
 
+    //Show particleGround for PC
     $(function(){
       if(sW > 991) {
         $("#top").css('height', '870px')
