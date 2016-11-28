@@ -1,11 +1,11 @@
 <top>
-  <div id="top" class="ui inverted attached center aligned basic segment" style="width:100%;background:#16a085;height:850px;position:relative;padding:0;">
-    <div class="" style="position:absolute;width:100%;top:80px;">
-      <h1 class="ui huge inverted header" style="font-size:3.5rem;">
+  <div id="top" class="ui inverted attached center aligned basic segment">
+    <div>
+      <h1 class="ui huge inverted header">
         年表でないと、伝えられないことがある。
       </h1>
       <br>
-      <div class="ui subheader" style="font-size:1.5rem;">
+      <div class="ui subheader">
         簡単・便利な無料の年表作成サービス
       </div>
       <br><br>
@@ -18,9 +18,9 @@
 
       <div class="ui hidden divider"></div>
 
-      <div class="ui stackable centered grid">
+      <div class="ui stackable centered grid basic padded segment">
         <div class="ten wide column">
-          <iframe src="https://the-timeline.jp/timelines/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg" width="100%" height="500px" frameBorder="0"></iframe>
+          <iframe seamless frameBorder="0" src="https://the-timeline.jp/timelines/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg"></iframe>
         </div>
       </div>
     </div>
@@ -249,7 +249,38 @@
   </div>
 
 
+  <style>
+    #top {
+      position:relative;
+      width:100%;
+      background:#16a085;
+      padding:0;
+      border: none;
+    }
+    #top > div {
+      width:100%;
+      padding-top: 80px;
+      top:0;
+    }
+    #top .huge.header { font-size:3.5rem; }
+    #top .subheader { font-size:1.5rem; }
+    #top .ten.wide.column{
+      height:500px;
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
+      background:#ddd;
+      padding:0 !important;
+    }
+    #top .ten.wide.column iframe {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+
   <script>
+    var sW = window.innerWidth;
+
     var that = this
 
     createTimeline() {
@@ -258,10 +289,14 @@
     }
 
     $(function(){
-      particleground(document.getElementById('top'), {
-        dotColor: '#5cbdaa',
-        lineColor: '#5cbdaa'
-      });
+      if(sW > 991) {
+        $("#top").css('height', '870px')
+        $("#top > div").css('position', 'absolute')
+        particleground(document.getElementById('top'), {
+          dotColor: '#5cbdaa',
+          lineColor: '#5cbdaa'
+        });
+      }
     })
   </script>
 </top>
