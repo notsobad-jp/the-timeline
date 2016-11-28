@@ -1,32 +1,29 @@
 <timeline>
-		<div class="ui secondary menu">
-			<div class="item">
-				<div class="ui pink button {saveState}" onclick={ save }>
-					Save
-				</div>
-			</div>
-			<div class="item">
-				<a class="ui button" href="/timelines/{opts.id}" target="_blank">
-					<i class="icon external"></i>
-					View Timeline
-				</a>
-			</div>
-		</div>
-
 	<div class="ui padded basic segment">
-		<form class="ui large form">
-			<div class="required field {titleState}">
-				<label>Title</label>
-				<div class="ui fluid input">
-					<input ref="title" type="text" placeholder="例）サッカー日本代表の歴史" value={ (timeline) ? timeline.title : null }>
-				</div>
+		<h3 class="ui dividing header">
+			<div class="ui transparent fluid input">
+				<input ref="title" type="text" placeholder="例）サッカー日本代表の歴史" value={ (timeline) ? timeline.title : null }>
 			</div>
-		</form>
-
+		</h3>
 		<br>
-
 		<div ref="table" id="table"></div>
 	</div>
+
+	<div class="ui bottom fixed borderless menu">
+		<div class="item">
+			<div class="ui pink button {saveState}" onclick={ save }>
+				<i class="icon upload"></i>
+				Save
+			</div>
+		</div>
+		<div class="item">
+			<a class="ui inverted basic button" href="/timelines/{opts.id}" target="_blank">
+				<i class="icon external"></i>
+				View Timeline
+			</a>
+		</div>
+	</div>
+
   <div class="ui page dimmer {dimmerState}"><div class="ui indeterminate huge text loader">Loading</div></div>
 
 

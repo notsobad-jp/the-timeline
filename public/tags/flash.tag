@@ -10,7 +10,7 @@
   <style>
     #flasher {
       width: 100%;
-      position: absolute;
+      position: fixed;
       z-index: 100;
     }
     .ui.message .header {

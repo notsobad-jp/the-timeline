@@ -1,4 +1,4 @@
-<footer>
+<footer if={!noFooter}>
   <div class="ui inverted attached footer center aligned very padded segment">
     <a href="#top" class="ui inverted header">
       <h4>
