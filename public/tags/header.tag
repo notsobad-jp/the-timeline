@@ -11,6 +11,10 @@
           <i class="icon user"></i>
           { user.email }
       </a>
+
+			<!-- <virtual if={user}>
+			</virtual> -->
+
 			<div class="item" if={!user}>
 				<a class="ui pink button" href="/signup">ユーザー登録</a>
 			</div>
@@ -31,7 +35,6 @@
 
 		signout() {
 			firebase.auth().signOut()
-			log("log out")
 			obs.trigger("flashChanged", {type:'success',text:'ログアウトしました'})
 			route('/')
 		}
