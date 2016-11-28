@@ -1,7 +1,7 @@
 <flash>
   <div id="flasher" if={flash}>
     <div class="ui attached message {flash.type}">
-      <i class="close icon" onclick={ closeFlash }></i>
+      <i class="close icon" onclick={ close }></i>
       <div class="header">{flash.text}</div>
     </div>
   </div>
@@ -23,7 +23,7 @@
   <script>
     var that = this
 
-    closeFlash(ms=0) {
+    close(ms=0) {
       setTimeout(function(){
         $('#flasher').transition('fade')
         that.flash = null
@@ -34,7 +34,7 @@
     obs.on("flashChanged", function(obj) {
       that.flash = obj
       that.update()
-      that.closeFlash(3000)
+      that.close(3000)
     })
   </script>
 </flash>

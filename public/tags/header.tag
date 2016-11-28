@@ -6,34 +6,49 @@
 	      THE TIMELINE
 	    </h4>
 	  </a>
-	  <div class="right menu">
-      <a class="header item" if={user} href="/users/{user.uid}">
-          <i class="icon user"></i>
-          { user.email }
-      </a>
 
-			<!-- <virtual if={user}>
-			</virtual> -->
+	  <div class="right icon menu" if={user}>
+			<div class="item">
+				<div class="ui pink left labeled icon button" onclick={ createTimeline }>
+					<i class="icon plus"></i>
+					年表を作る
+				</div>
+			</div>
+			<div class="ui simple dropdown item">
+				<i class="icon content"></i>
+				<div class="menu">
+		      <a class="header item" href="/users/{user.uid}">
+						<i class="icon user"></i>
+		        マイページ
+		      </a>
+		      <div class="item" onclick={signOut}>
+						<i class="icon sign out"></i>
+						ログアウト
+					</div>
+				</div>
+			</div>
+		</div>
 
-			<div class="item" if={!user}>
+	  <div class="right menu" if={!user}>
+			<div class="item">
 				<a class="ui pink button" href="/signup">ユーザー登録</a>
 			</div>
       <div class="item">
-          <a if={user} href="" onclick={signout}>ログアウト</a>
-          <a if={!user} href='/signin'>ログイン</a>
+          <a href='/signin'>ログイン</a>
       </div>
 	  </div>
 	</div>
 
 	<script>
 		var that = this
+		that.mixin('Utility')
 
 		firebase.auth().onAuthStateChanged(function(user) {
 			that.user = user
 			that.update()
 		})
 
-		signout() {
+		signOut() {
 			firebase.auth().signOut()
 			obs.trigger("flashChanged", {type:'success',text:'ログアウトしました'})
 			route('/')

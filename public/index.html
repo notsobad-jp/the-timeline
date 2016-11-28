@@ -79,6 +79,13 @@
 
     var obs = riot.observable();
     var log = function(text) { console.log(text) }
+
+    riot.mixin('Utility', {
+      createTimeline: function() {
+        var newPostKey = firebase.database().ref().child('timelines').push().key
+        route('/timelines/'+newPostKey)
+      }
+    });
   </script>
 </body>
 </html>

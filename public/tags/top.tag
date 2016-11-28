@@ -281,11 +281,7 @@
   <script>
     var that = this
     var sW = window.innerWidth;
-
-    createTimeline() {
-      var newPostKey = firebase.database().ref().child('timelines').push().key
-      route('/timelines/'+newPostKey)
-    }
+		that.mixin('Utility')
 
     //Show particleGround for PC
     $(function(){
