@@ -1,0 +1,6 @@
+[{
+  "origin": ["https://timeline-9747a.firebaseapp.com", "http://localhost:5000", "http://127.0.0.1:8887"],
+  "responseHeader": ["*"],
+  "method": ["GET"],
+  "maxAgeSeconds": 86400
+}]

@@ -1,4 +1,4 @@
-<timeline-edit>
+<timeline>
 	<div class="ui padded basic segment">
 		<div class="ui secondary mini menu">
 			<div class="item">
@@ -90,27 +90,22 @@
 		})
 
 		save(e) {
-			e.target.classList.add("loading")
-
 			var postData = {}
-			postData.data = hot.getSourceData()
+			postData.data = JSON.parse(JSON.stringify(hot.getSourceData()));	//to avoid calling by reference
 			postData.data.pop()
 			postData.title = that.refs.title.value
+			var blob = new Blob([JSON.stringify(postData)], { type: 'application\/json' });
 
-			var updates = {};
-			updates['/timelines/' + opts.id] = postData;
-
-			firebase.database().ref().update(updates).then(
-        function() {
-          console.log("saving successed!")
-        },
-        function(error) {
-          that.error_message = error.message
-          that.update()
-        }
-			).then(function(){
+			var uploadTask = firebase.storage().ref('json/'+ opts.id +'.json').put(blob);
+			uploadTask.on('state_changed', function(snapshot){
+				e.target.classList.add("loading")
+			}, function(error) {
+				alert('error!')
 				e.target.classList.remove("loading")
-			})
+			}, function() {
+				log("upload success")
+				e.target.classList.remove("loading")
+			});
 		}
 	</script>
-</timeline-edit>
+</timeline>

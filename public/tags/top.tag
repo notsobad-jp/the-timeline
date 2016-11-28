@@ -285,7 +285,7 @@
 
     createTimeline() {
       var newPostKey = firebase.database().ref().child('timelines').push().key
-      route('/timelines/'+newPostKey+'/edit')
+      route('/timelines/'+newPostKey)
     }
 
     $(function(){
