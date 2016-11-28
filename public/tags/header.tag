@@ -31,6 +31,8 @@
 
 		signout() {
 			firebase.auth().signOut()
+			log("log out")
+			obs.trigger("flashChanged", {type:'success',text:'ログアウトしました'})
 			route('/')
 		}
 	</script>

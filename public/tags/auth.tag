@@ -63,10 +63,11 @@
 		  that.dimmerState = 'active'
       firebase.auth().signInWithEmailAndPassword(this.refs.email.value, this.refs.password.value).then(
         function() {
-          // console.log("signin success!")
+					obs.trigger("flashChanged", {type:'success',text:'ログインしました'})
         },
         function(error) {
           that.error_message = error.message
+					obs.trigger("flashChanged", {type:'error',text: 'ログインに失敗しました'})
         }
       ).then(function(){
 		    that.dimmerState = ''

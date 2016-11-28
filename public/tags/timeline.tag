@@ -95,6 +95,7 @@
 			if(!title || title==='') {
 				that.titleState = 'error'
 				that.saveState = ''
+				obs.trigger("flashChanged", {type:'error',text:'タイトルを入力してください'});
 				return
 			}
 
@@ -104,16 +105,17 @@
 			postData.title = that.refs.title.value
 			var blob = new Blob([JSON.stringify(postData)], { type: 'application\/json' });
 
-			var uploadTask = firebase.storage().ref('json/'+ opts.id +'.json').put(blob);
-			uploadTask.on('state_changed', function(snapshot){
-			}, function(error) {
-				alert('error!')
+			var uploadTask = firebase.storage().ref('json/'+ opts.id +'.json').put(blob).then(
+				function(){
+					obs.trigger("flashChanged", {type:'success',text:'データが保存されました'});
+				},
+				function(error) {
+					obs.trigger("flashChanged", {type:'error',text:'データの保存に失敗しました'});
+				}
+			).then(function(){
 				that.saveState = ''
 				that.update()
-			}, function() {
-				that.saveState = ''
-				that.update()
-			});
+			})
 		}
 	</script>
 </timeline>
