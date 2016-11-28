@@ -35,7 +35,6 @@
     </div>
     <br><br>
   </div>
-  <div class="ui page dimmer {dimmerState}"><div class="ui indeterminate huge text loader">Loading</div></div>
 
 
   <script>
@@ -46,32 +45,32 @@
     });
 
     signup() {
+			obs.trigger("dimmerChanged", 'active')
       firebase.auth().createUserWithEmailAndPassword(this.refs.email.value, this.refs.password.value).then(
         function() {
-          // console.log("signup success!")
+					obs.trigger("flashChanged", {type:'success',text:'アカウントを登録しました'})
         },
         function(error) {
           that.error_message = error.message
+          that.update()
         }
       ).then(function(){
-		    that.dimmerState = ''
-        that.update()
+			  obs.trigger("dimmerChanged", '')
       })
     }
 
     signin() {
-		  that.dimmerState = 'active'
+			obs.trigger("dimmerChanged", 'active')
       firebase.auth().signInWithEmailAndPassword(this.refs.email.value, this.refs.password.value).then(
         function() {
 					obs.trigger("flashChanged", {type:'success',text:'ログインしました'})
         },
         function(error) {
           that.error_message = error.message
-					obs.trigger("flashChanged", {type:'error',text: 'ログインに失敗しました'})
+          that.update()
         }
       ).then(function(){
-		    that.dimmerState = ''
-        that.update()
+			  obs.trigger("dimmerChanged", '')
       })
     }
   </script>

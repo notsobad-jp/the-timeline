@@ -24,6 +24,7 @@
   <div class="ui fluid container" style="margin-top:42px!important;margin-left:0!important;margin-right:0!important;position:relative;">
     <flash></flash>
     <content></content>
+    <dimmer></dimmer>
   </div>
   <footer></footer>
 
@@ -31,6 +32,7 @@
   <script src="/tags/header.tag" type="riot/tag"></script>
   <script src="/tags/footer.tag" type="riot/tag"></script>
   <script src="/tags/flash.tag" type="riot/tag"></script>
+  <script src="/tags/dimmer.tag" type="riot/tag"></script>
   <script src="/tags/top.tag" type="riot/tag"></script>
   <script src="/tags/auth.tag" type="riot/tag"></script>
   <script src="/tags/mypage.tag" type="riot/tag"></script>
@@ -59,6 +61,7 @@
     riot.mount('header')
     riot.mount('footer')
     riot.mount('flash')
+    riot.mount('dimmer')
 
     route('/', function() {
       riot.mount('content', 'top')

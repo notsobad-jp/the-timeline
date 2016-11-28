@@ -24,8 +24,6 @@
 		</div>
 	</div>
 
-  <div class="ui page dimmer {dimmerState}"><div class="ui indeterminate huge text loader">Loading</div></div>
-
 
 	<style>
 		#table {
@@ -39,7 +37,7 @@
 
 	<script>
 		var that = this
-		that.dimmerState = 'active'
+		obs.trigger("dimmerChanged", 'active')
 
 		var jsonUrl = 'https://firebasestorage.googleapis.com/v0/b/timeline-9747a.appspot.com/o/json%2F'+ opts.id +'.json?alt=media';
 		var
@@ -88,8 +86,7 @@
 					],
 			    minSpareRows: 1
 			  })
-				that.dimmerState = ''
-				that.update()
+				obs.trigger("dimmerChanged", '')
 			})
 		})
 
