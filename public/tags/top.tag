@@ -383,7 +383,6 @@
   <script>
     var that = this
     var sW = window.innerWidth;
-		that.mixin('Utility')
 
     firebase.auth().onAuthStateChanged(function(user) {
       that.user = user
@@ -417,6 +416,19 @@
         }
         return firebase.database().ref().update(updates);
       })
+    }
+
+    tabletopInit(gid) {
+      var d = $.Deferred();
+      Tabletop.init({
+        key: gid,
+        prettyColumnNames: false,
+        simpleSheet: true,
+        callback: function(data, tabletop) {
+          d.resolve({data: data, tabletop: tabletop});
+        },
+      });
+      return d.promise();
     }
   </script>
 </top>

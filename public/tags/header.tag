@@ -30,7 +30,6 @@
 
 	<script>
 		var that = this
-		that.mixin('Utility')
 
 		firebase.auth().onAuthStateChanged(function(user) {
 			that.user = user
