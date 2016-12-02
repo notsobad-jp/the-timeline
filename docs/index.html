@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>THE TIMELINE | 無料年表作成サービス</title>
-  <meta name="description" content="THE TIMELINE(ザ・タイムライン)は、簡単・便利な無料の年表作成サービスです"/>
+  <title>THE TIMELINE</title>
+  <meta name="description" content=""/>
   <meta name="keywords" content="年表,作成,無料,タイムライン,THE TIMELINE,アプリ,ツール,フリー,ソフト"/>
   <meta property="og:title" content="THE TIMELINE"/>
   <meta property="og:type" content="website"/>
@@ -14,100 +14,336 @@
   <meta property="og:site_name" content="THE TIMELINE(ザ・タイムライン)"/>
   <meta property="og:description" content="THE TIMELINE(ザ・タイムライン)は、簡単・便利な無料の年表作成サービスです"/>
   <meta property="og:locale" content="ja_JP"/>
-  <link rel="canonical" href="https://the-timeline.jp">
+  <link rel="canonical" href="">
 
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.3/semantic.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.css">
-  <link rel="stylesheet" type="text/css" href="css/application.css">
+  <style media="screen">
+    /*****************************************************************
+    * Color Palatte
+    *****************************************************************/
+    .red.vis-group .vis-item {
+      color: #DB2828;
+      border-color: #DB2828;
+      background: rgba(255, 207, 207, 0.9);
+    }
+    .orange.vis-group .vis-item {
+      color: #F2711C;
+      border-color: #F2711C;
+      background: rgba(255, 229, 211, 0.9);
+    }
+    .yellow.vis-group .vis-item {
+      color: #d87e04;
+      border-color: #eaae00;
+      background: rgba(253, 235, 181, 0.9);;
+    }
+    .olive.vis-group .vis-item {
+      color: #7a8a0b;
+      border-color: #B5CC18;
+      background: rgba(237, 246, 177, 0.9);
+    }
+    .green.vis-group .vis-item {
+      color: #119f32;
+      border-color: #21BA45;
+      background: rgba(207, 246, 216, 0.9);
+    }
+    .teal.vis-group .vis-item {
+      color: #00B5AD;
+      border-color: #00B5AD;
+      background: rgba(213,247,245,0.9);
+    }
+    .blue.vis-group .vis-item {
+      color: #2185D0;
+      border-color: #2185D0;
+      background: rgba(212,235,253,0.9);
+    }
+    .violet.vis-group .vis-item {
+      color: #6435C9;
+      border-color: #6435C9;
+      background: rgba(222,209,251,0.9);
+    }
+    .purple.vis-group .vis-item {
+      color: #A333C8;
+      border-color: #A333C8;
+      background: rgba(241,211,251,0.9);
+    }
+    .pink.vis-group .vis-item {
+      color: #E03997;
+      border-color: #E03997;
+      background: rgba(224, 57, 57, 0.2);
+    }
+    .pink.vis-group .vis-item {
+      color: #E03997;
+      border-color: #E03997;
+      background: rgba(253,218,238,0.9);
+    }
+    .brown.vis-group .vis-item {
+      color: #A5673F;
+      border-color: #A5673F;
+      background: rgba(239,213,196,0.9);
+    }
+    .grey.vis-group .vis-item {
+      color: #5a5959;
+      border-color: #767676;
+      background: rgba(230,222,222,0.9);
+    }
+    .black.vis-group .vis-item {
+      color: #1B1C1D;
+      border-color: #1B1C1D;
+      background: rgba(179,180,182,0.95);
+    }
+
+
+    .red.vis-item {
+      color: #DB2828!important;
+      border-color: #DB2828!important;
+      background: rgba(255, 207, 207, 0.9)!important;
+    }
+    .orange.vis-item {
+      color: #F2711C!important;
+      border-color: #F2711C!important;
+      background: rgba(255, 229, 211, 0.9)!important;
+    }
+    .yellow.vis-item {
+      color: #d87e04!important;
+      border-color: #eaae00!important;
+      background: rgba(253, 235, 181, 0.9)!important;
+    }
+    .olive.vis-item {
+      color: #7a8a0b!important;
+      border-color: #B5CC18!important;
+      background: rgba(237, 246, 177, 0.9)!important;
+    }
+    .green.vis-item {
+      color: #119f32!important;
+      border-color: #21BA45!important;
+      background: rgba(207, 246, 216, 0.9)!important;
+    }
+    .teal.vis-item {
+      color: #00B5AD!important;
+      border-color: #00B5AD!important;
+      background: rgba(213,247,245,0.9)!important;
+    }
+    .blue.vis-item {
+      color: #2185D0!important;
+      border-color: #2185D0!important;
+      background: rgba(212,235,253,0.9)!important;
+    }
+    .violet.vis-item {
+      color: #6435C9!important;
+      border-color: #6435C9!important;
+      background: rgba(222,209,251,0.9)!important;
+    }
+    .purple.vis-item {
+      color: #A333C8!important;
+      border-color: #A333C8!important;
+      background: rgba(241,211,251,0.9)!important;
+    }
+    .pink.vis-item {
+      color: #E03997!important;
+      border-color: #E03997!important;
+      background: rgba(224, 57, 57, 0.2)!important;
+    }
+    .pink.vis-item {
+      color: #E03997!important;
+      border-color: #E03997!important;
+      background: rgba(253,218,238,0.9)!important;
+    }
+    .brown.vis-item {
+      color: #A5673F!important;
+      border-color: #A5673F!important;
+      background: rgba(239,213,196,0.9)!important;
+    }
+    .grey.vis-item {
+      color: #5a5959!important;
+      border-color: #767676!important;
+      background: rgba(230,222,222,0.9)!important;
+    }
+    .black.vis-item {
+      color: #1B1C1D!important;
+      border-color: #1B1C1D!important;
+      background: rgba(179,180,182,0.95)!important;
+    }
+
+
+    /*****************************************************************
+    * Vis.js
+    *****************************************************************/
+    .vis-panel.vis-center { cursor: move; }
+    .vis-item { cursor: pointer; }
+    .vis-item .vis-item-overflow { overflow: visible; }
+
+    @media screen and (max-width: 768px)  {
+      .vis-labelset { display:none; }
+    }
+
+    .vis-foreground .vis-group, .vis-labelset .vis-label {
+      border-bottom: 1px dotted #ddd;
+    }
+    .vis-item {
+      opacity: 0.9;
+      color: #424242;
+      background: #F5F5F5;
+      border-color: #424242;
+    }
+    .vis-item[data-type="point"] {
+      background: transparent !important;
+      border: none;
+    }
+
+
+    /*****************************************************************
+    * Custom
+    *****************************************************************/
+    #timeline-container {
+      position: relative;
+    }
+    #controller {
+      position: fixed;
+      top: 60px;
+      right: 10px;
+      margin: 10px;
+      z-index: 2;
+    }
+  </style>
 </head>
 <body>
-	<div class="ui fixed inverted borderless small menu">
-	  <a href="/" class="header item">
-	    <h4>
-	      <i class="align left teal icon"></i>
-	    </h4>
-	  </a>
-	</div>
+  <div class="ui fluid container" style="margin: 45px 0 0 !important;">
+    <div class="ui active page dimmer">
+      <div class="ui indeterminate huge text loader">Loading..</div>
+    </div>
 
-  <div class="ui fluid container" style="margin-top:42px!important;margin-left:0!important;margin-right:0!important;">
-      <div class="ui active dimmer">
-        <div class="ui indeterminate huge text loader">Loading..</div>
-      </div>
-
-      <!-- Timeline Contents -->
-      <div id="timeline-container"></div>
-
-      <!-- Controller -->
-      <div id="controller" class="ui vertical inverted borderless icon menu">
-        <a id="zoomIn" class="item" href="#"><i class="icon zoom"></i></a>
-        <a id="zoomOut" class="item" href="#"><i class="icon zoom out"></i></a>
-        <a id="moveLeft" class="item" href="#"><i class="icon chevron left"></i></a>
-        <a id="moveRight" class="item" href="#"><i class="icon chevron right"></i></a>
-        <a id="maximize" class="item" href="#"><i class="icon repeat"></i></a>
-      </div>
-
-      <!-- Share Modal -->
-      <div class="ui basic modal">
-        <i class="close icon"></i>
-        <div class="header"></div>
-        <div class="image content">
-          <div class="description">
-            <div class="ui inverted header">共有URL</div>
-            <div class="ui form">
-              <input type="text" readonly="" value="https://the-timeline.jp/timelines/?key=xxx">
-            </div>
-
-            <div class="ui inverted header">SNSシェア</div>
-            <div class="ui one column grid">
-              <div class="computer only column">
-                <a class="fb-share" href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank">
-  	              <button class="ui facebook medium button">
-  	                <i class="facebook icon"></i>
-  	                Facebook
-  	              </button>
-  	          </a>
-  	          <a class="tw-share" href="https://twitter.com/share?url=&text=" target="_blank">
-  	              <button class="ui twitter medium button">
-  	                <i class="twitter icon"></i>
-  	                Twitter&nbsp;
-  	              </button>
-  	          </a>
+    <!-- Header Menu -->
+    <div class="ui grid">
+	    <div class="computer only row">
+		    <div class="ui fixed inverted borderless menu">
+		      <a href="/" class="header item">
+		        <h4>
+		          <i class="align left teal icon"></i>
+		        </h4>
+		      </a>
+		      <div class="item menu-title"></div>
+		      <div class="right menu">
+		        <a href="#" class="item menu-maximize" target="_blank">
+		          <i class="maximize icon"></i>
+		          Full Screen
+		        </a>
+		        <a href="#" class="item menu-source" target="_blank">
+		          <i class="table icon"></i>
+		          Source
+		        </a>
+		        <a class="item menu-share">
+		          <i class="share alternate icon"></i>
+		          Share
+		        </a>
+		      </div>
+		    </div>
+	    </div>
+      <div class="mobile tablet only row">
+        <div class="ui fixed inverted borderless menu">
+          <a href="/" class="header item">
+            <h4>
+              <i class="align left teal icon"></i>
+            </h4>
+          </a>
+          <div class="item menu-title"></div>
+          <div class="right menu">
+            <div class="ui simple dropdown item">
+              <i class="content icon"></i>
+              <div class="menu">
+    		        <a href="#" class="item menu-maximize" target="_blank">
+    		          <i class="maximize icon"></i>
+    		          Full Screen
+    		        </a>
+                <a href="#" class="item menu-source" target="_blank">
+                  <i class="table icon"></i>
+                  Source
+                </a>
+                <a class="item menu-share">
+                  <i class="share alternate icon"></i>
+                  Share
+                </a>
               </div>
-              <div class="mobile tablet only column">
-                <a class="fb-share" href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank">
-  	              <button class="ui icon facebook button circular">
-  	                <i class="facebook f icon"></i>
-  	              </button>
-  	          </a>
-  	          <a class="tw-share" href="https://twitter.com/share?url=&text=" target="_blank">
-  	              <button class="ui twitter icon button circular">
-  	                <i class="twitter icon"></i>
-  	              </button>
-  	          </a>
-  	          <a class="line-share" href="https://line.me/R/msg/text/?" target="_blank">
-  	              <button class="ui green icon button circular">
-  	                <i class="comment icon"></i>
-  	              </button>
-  	          </a>
-              </div>
-            </div>
-
-            <div class="ui inverted header">埋め込み用タグ</div>
-            <div class="ui form">
-              <textarea readonly="" style="resize:none;"><iframe width="100%" height="500px" seamless frameborder='0' src=""></iframe></textarea>
             </div>
           </div>
         </div>
+	    </div>
+    </div>
+
+    <!-- Timeline Contents -->
+    <div id="timeline-container"></div>
+
+    <!-- Controller -->
+    <div id="controller" class="ui vertical inverted borderless icon menu">
+      <a id="zoomIn" class="item" href="#"><i class="icon zoom"></i></a>
+      <a id="zoomOut" class="item" href="#"><i class="icon zoom out"></i></a>
+      <a id="moveLeft" class="item" href="#"><i class="icon chevron left"></i></a>
+      <a id="moveRight" class="item" href="#"><i class="icon chevron right"></i></a>
+      <a id="maximize" class="item" href="#"><i class="icon repeat"></i></a>
+    </div>
+
+    <!-- Share Modal -->
+    <div class="ui basic modal">
+      <i class="close icon"></i>
+      <div class="header"></div>
+      <div class="image content">
+        <div class="description">
+          <div class="ui inverted header">共有URL</div>
+          <div class="ui form">
+            <input type="text" readonly="" value="https://the-timeline.jp/timelines/?key=xxx">
+          </div>
+
+          <div class="ui inverted header">SNSシェア</div>
+          <div class="ui one column grid">
+            <div class="computer only column">
+              <a class="fb-share" href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank">
+	              <button class="ui facebook medium button">
+	                <i class="facebook icon"></i>
+	                Facebook
+	              </button>
+	          </a>
+	          <a class="tw-share" href="https://twitter.com/share?url=&text=" target="_blank">
+	              <button class="ui twitter medium button">
+	                <i class="twitter icon"></i>
+	                Twitter&nbsp;
+	              </button>
+	          </a>
+            </div>
+            <div class="mobile tablet only column">
+              <a class="fb-share" href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank">
+	              <button class="ui icon facebook button circular">
+	                <i class="facebook f icon"></i>
+	              </button>
+	          </a>
+	          <a class="tw-share" href="https://twitter.com/share?url=&text=" target="_blank">
+	              <button class="ui twitter icon button circular">
+	                <i class="twitter icon"></i>
+	              </button>
+	          </a>
+	          <a class="line-share" href="https://line.me/R/msg/text/?" target="_blank">
+	              <button class="ui green icon button circular">
+	                <i class="comment icon"></i>
+	              </button>
+	          </a>
+            </div>
+          </div>
+
+          <div class="ui inverted header">埋め込み用タグ</div>
+          <div class="ui form">
+            <textarea readonly="" style="resize:none;"><iframe width="100%" height="500px" seamless frameborder='0' src=""></iframe></textarea>
+          </div>
+        </div>
       </div>
+    </div>
   </div>
-  <div class="ui dimmer"><div class="ui indeterminate huge text loader">Loading</div></div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.3/semantic.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
-
-  <script type="text/javascript">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.4.3/tabletop.min.js"></script>
+  <script>
     $(function(){
       /*****************************************************************
       * Main Controller
@@ -115,93 +351,121 @@
       window.timeline = '';
       window.group_names = [];
 
-      var key = getQueryString('key');
-      var url = 'https://firebasestorage.googleapis.com/v0/b/timeline-9747a.appspot.com/o/json%2F'+key+'.json?alt=media';
-      $.getJSON(url, function(timeline) {
-        $.each(timeline.data, function(index, row){
-    			row = formatElement(row)
-        })
-        createTimeline(timeline.data).done(function(){
+      //Set Canonical URL
+      var canonical_url = setParameterToURL({ 'key': getQueryString('key') });
+      $('link[rel="canonical"]').attr('href', canonical_url);
+      $('.menu-maximize').attr('href', canonical_url);
+
+      var gids = getQueryString('key').split("+");
+      var requests = [];
+      for(i=0;i<gids.length;i++){
+        requests.push(tabletopInit(gids[i]));
+      }
+
+      $.when.apply($, requests).done(function(){
+        var data = [];
+        for(i=0;i<arguments.length;i++){
+          data = data.concat(arguments[i].data);
+        }
+        createTimeline(data).done(function(){
           setPopup();
           setRangechangedEvent();
-        })
+        });
+
+        var title = arguments[0].tabletop['googleSheetName'];
+        setMetatags(title, gids[0]);
       });
 
 
       /*****************************************************************
       * Core Functions
       *****************************************************************/
+      function tabletopInit(gid) {
+        var d = $.Deferred();
+        Tabletop.init({
+          key: gid,
+          prettyColumnNames: false,
+          simpleSheet: true,
+          postProcess: function(element) { formatElement(element); },
+          callback: function(data, tabletop) {
+            d.resolve({data: data, tabletop: tabletop});
+          },
+        });
+        return d.promise();
+      }
+
+
       function formatElement(element) {
         // Start
-        var month = (element.startMonth) ? ("0"+element.startMonth).slice(-2) : "01";
-        var day = (element.startDay) ? ("0"+element.startDay).slice(-2) : "01";
-        var year = element.startYear;
-        if(element.startYear < 0){
-          var year_num = element.startYear.replace('-', '');
+        var month = (element['month']) ? ("0"+element['month']).slice(-2) : "01";
+        var day = (element['day']) ? ("0"+element['day']).slice(-2) : "01";
+        var year = element['year'];
+        if(element['year'] < 0){
+          var year_num = element['year'].replace('-', '');
           year = '-'+('000000' + year_num).slice(-6);
         }
-        element.start = moment( year +'-'+ month +'-'+ day + ' ' + element.startTime );
+        element['start'] = moment( year +'-'+ month +'-'+ day + ' ' + element['time'] );
 
         // End
-        element.end = null;
-        if(element.endYear){
-          if(element.endYear=='now') {
-            element.end = moment();
+        element['end'] = null;
+        if(element['endyear']){
+          if(element['endyear']=='now') {
+            element['end'] = moment();
           }else {
-            var endMonth = (element.endMonth) ? ("0"+element.endMonth).slice(-2) : "01";
-            var endDay = (element.endDay) ? ("0"+element.endDay).slice(-2) : "01";
+            var endmonth = (element['endmonth']) ? ("0"+element['endmonth']).slice(-2) : "01";
+            var endday = (element['endday']) ? ("0"+element['endday']).slice(-2) : "01";
 
-            var endYear = element.endYear;
-            if(element.endYear < 0){
-              var endYear_num = element.endYear.replace('-', '');
-              endYear = '-'+('000000' + endYear_num).slice(-6);
+            var endyear = element['endyear'];
+            if(element['endyear'] < 0){
+              var endyear_num = element['endyear'].replace('-', '');
+              endyear = '-'+('000000' + endyear_num).slice(-6);
             }
-            element.end = moment( endYear +'-'+ endMonth +'-'+ endDay + ' ' + element.endTime );
+            element['end'] = moment( endyear +'-'+ endmonth +'-'+ endday + ' ' + element['endtime'] );
           }
         }
 
         // Display date
-        if(!element.displayDate) {
+        if(!element['displaydate']) {
           //Start
-          element.displayDate += element.startYear + '年';
-          if(element.startMonth) { element.displayDate += element.startMonth + '月'; }
-          if(element.startDay) { element.displayDate += element.startDay + '日'; }
+          element['displaydate'] += element['year'] + '年';
+          if(element['month']) { element['displaydate'] += element['month'] + '月'; }
+          if(element['day']) { element['displaydate'] += element['day'] + '日'; }
 
-          if(element.end){
-            element.displayDate += "～";
-            if(element.endYear!='now') {
-              element.displayDate += element.endYear + '年';
-              if(element.endMonth) { element.displayDate += element.endMonth + '月'; }
-              if(element.endDay) { element.displayDate += element.endDay + '日'; }
+          if(element['end']){
+            element['displaydate'] += "～";
+            if(element['endyear']!='now') {
+              element['displaydate'] += element['endyear'] + '年';
+              if(element['endmonth']) { element['displaydate'] += element['endmonth'] + '月'; }
+              if(element['endday']) { element['displaydate'] += element['endday'] + '日'; }
             }
           }
         }
 
         // Type
-        if(!element.type && !element.end) { element.type = 'point'; }
+        if(!element['type'] && !element['end']) { element['type'] = 'point'; }
 
         // Content
-        var content = element.title + '&nbsp;<small>(' + element.displayDate + ')</small>';
+        var content = element['title'] + '&nbsp;<small>(' + element['displaydate'] + ')</small>';
 
         // Image
-        if(element.imageUrl && element.type=='box') {
-          content += '<br><div style="margin:auto;width:80px;height:80px;background-size:cover;background-position:center;background-image:url(\''+element.imageUrl+'\');"></div>';
+        if(element['imageurl'] && element['type']=='box') {
+          content += '<br><div style="margin:auto;width:80px;height:80px;background-size:cover;background-position:center;background-image:url(\''+element['imageurl']+'\');"></div>';
         }
-        element.content = content;
+        element['content'] = content;
 
         // HTML
-        var html = '<h3 class="ui medium header">' + element.title + '<div class="ui small grey sub header">' + element.displayDate + '</div></h3>';
-        if(element.imageUrl) { html += '<div><img class="ui medium image" src="' + element.imageUrl + '"></div>'; }
-        if(element.detail) { html += '<div class="ui divider"></div>' + element.detail; }
-        if(element.url) { html += '<div class="ui divider"></div><div style="text-align:center;"><a class="ui right labeled icon inverted basic small button" href="'+ element.url +'" target="_blank">詳細を見る<i class="chevron right icon"></i></a></div>' }
-        element.html = html;
+        var html = '<h3 class="ui medium header">' + element['title'] + '<div class="ui small grey sub header">' + element['displaydate'] + '</div></h3>';
+        if(element['imageurl']) { html += '<div><img class="ui medium image" src="' + element['imageurl'] + '"></div>'; }
+        if(element['detail']) { html += '<div class="ui divider"></div>' + element['detail']; }
+        if(element['url']) { html += '<div class="ui divider"></div><div style="text-align:center;"><a class="ui right labeled icon inverted basic small button" href="'+ element['url'] +'" target="_blank">詳細を見る<i class="chevron right icon"></i></a></div>' }
+        element['html'] = html;
 
         // Colors
-        if(element.color) { element.className = element.color; }
+        if(element['color']) { element['className'] = element['color']; }
 
         // Group
-        if(group_names.indexOf(element.group) < 0) {
-          group_names.push(element.group);
+        if(group_names.indexOf(element['group']) < 0) {
+          group_names.push(element['group']);
         }
       }
 
@@ -229,6 +493,10 @@
           dataAttributes: 'all',
           orientation: {axis: 'both'},
         };
+        if(getQueryString('start')) { options['start'] = getQueryString('start'); }
+        if(getQueryString('end')) { options['end'] = getQueryString('end'); }
+        var height = getQueryString('height');
+        if(height && height > 300) { options['height'] = getQueryString('height'); }
 
         // Create a Timeline
         try {
@@ -242,6 +510,29 @@
           $('.dimmer').removeClass('active');
         }
         return d.promise();
+      }
+
+
+      function setMetatags(title, gid) {
+        var url = window.location.href;
+        //Meta Tags
+        $('title').text(title + ' | THE TIMELINE');
+        $('.menu-title').text(title);
+        $('.menu-source').attr("href", 'https://docs.google.com/spreadsheets/d/'+gid+'/pubhtml');
+        $('meta[property="og:title"]').attr("content", title+' | THE TIMELINE');
+        $('meta[property="description"]').attr("content", title+'の年表(タイムライン)です。');
+        $('meta[property="keywords"]').attr("content", title + ',年表,作成,無料,タイムライン,THE TIMELINE,アプリ,ツール,フリー,ソフト');
+        $('meta[property="og:url"]').attr("content", url);
+
+        //Share Modal
+        $(".ui.basic.modal .ui.form input").val(url);
+        var textarea = '<iframe width="100%" height="500px" seamless frameborder="0" src="'+ url +'"></iframe>';
+        $(".ui.basic.modal .ui.form textarea").text(textarea);
+
+        var encoded_url = encodeURIComponent(url);
+        $('.fb-share').attr('href', 'https://www.facebook.com/sharer/sharer.php?u='+encoded_url);
+        $('.tw-share').attr('href', 'https://twitter.com/share?url='+ encoded_url);
+        $('.line-share').attr('href', 'http://line.me/R/msg/text/?'+ encoded_url);
       }
 
 
@@ -263,7 +554,7 @@
       function setRangechangedEvent() {
         timeline.on('rangechanged', function (properties) {
           var visible_url = setParameterToURL({
-            'key': key,
+            'key': getQueryString('key'),
             'start': moment(properties.start).format("YYYYMMDDHHmmSS"),
             'end': moment(properties.end).format("YYYYMMDDHHmmSS"),
           });
@@ -335,5 +626,15 @@
       }
     });
   </script>
+
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PWX57P"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PWX57P');</script>
+  <!-- End Google Tag Manager -->
 </body>
 </html>

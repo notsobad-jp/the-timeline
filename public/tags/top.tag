@@ -129,30 +129,32 @@
         </div>
     </div>
 
-      <div class="computer only column">
+      <!-- <div class="computer only column"> -->
+      <div class="column">
         <div class="ui very padded secondary center aligned segment">
           <p>公開設定が完了したら、シートのURLをコピーして以下のフォームに貼り付け、表示ボタンを押してください。</p>
           <div class="ui fluid action input">
-            <input type="text" placeholder="スプレッドシートのURL">
-            <a class="ui red right labeled icon button" href="#" target="_blank">
+            <input type="text" placeholder="スプレッドシートのURL" ref="url">
+            <div class="ui red right labeled icon button" onclick={ showTimeline }>
               年表を表示する
               <i class="icon right chevron"></i>
-            </a>
+            </div>
           </div>
         </div>
       </div>
+      <!-- </div> -->
 
-      <div class="mobile tablet only column">
+      <!-- <div class="mobile tablet only column">
         <div class="ui basic secondary center aligned segment">
           <div class="ui small header">作成した年表を表示する</div>
           <div class="ui fluid action input">
-            <input type="text" placeholder="スプレッドシートのURL">
-            <a class="ui red icon button" href="#" target="_blank">
+            <input type="text" placeholder="スプレッドシートのURL" ref="url">
+            <div class="ui red icon button" onclick={ showTimeline }>
               <i class="icon right chevron"></i>
-            </a>
+            </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -383,6 +385,10 @@
     var sW = window.innerWidth;
 		that.mixin('Utility')
 
+    firebase.auth().onAuthStateChanged(function(user) {
+      that.user = user
+    })
+
     //Show particleGround for PC
     $(function(){
       if(sW > 991) {
@@ -394,5 +400,36 @@
         });
       }
     })
+
+    showTimeline() {
+      var gurl = that.refs.url.value
+      var gid = gurl.replace('https://docs.google.com/spreadsheets/d/', '').split('/')[0];
+
+      if(that.user) {
+        that.tabletopInit(gid).done(function(obj){
+          var title = obj.tabletop['googleSheetName'];
+          var postData = { title: title, gid: gid }
+          var updates = {};
+          updates['/posts/' + gid] = postData;
+          updates['/user-posts/' + that.user.uid + '/' + gid] = postData;
+
+          return firebase.database().ref().update(updates);
+        })
+      }
+      window.open('https://the-timeline.jp/?key='+gid, '_blank');
+    }
+
+    tabletopInit(gid) {
+      var d = $.Deferred();
+      Tabletop.init({
+        key: gid,
+        prettyColumnNames: false,
+        simpleSheet: true,
+        callback: function(data, tabletop) {
+          d.resolve({data: data, tabletop: tabletop});
+        },
+      });
+      return d.promise();
+    }
   </script>
 </top>
