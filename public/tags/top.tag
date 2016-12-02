@@ -405,31 +405,18 @@
       var gurl = that.refs.url.value
       var gid = gurl.replace('https://docs.google.com/spreadsheets/d/', '').split('/')[0];
 
-      if(that.user) {
-        that.tabletopInit(gid).done(function(obj){
-          var title = obj.tabletop['googleSheetName'];
-          var postData = { title: title, gid: gid }
-          var updates = {};
-          updates['/posts/' + gid] = postData;
-          updates['/user-posts/' + that.user.uid + '/' + gid] = postData;
-
-          return firebase.database().ref().update(updates);
-        })
-      }
       window.open('https://the-timeline.jp/?key='+gid, '_blank');
-    }
 
-    tabletopInit(gid) {
-      var d = $.Deferred();
-      Tabletop.init({
-        key: gid,
-        prettyColumnNames: false,
-        simpleSheet: true,
-        callback: function(data, tabletop) {
-          d.resolve({data: data, tabletop: tabletop});
-        },
-      });
-      return d.promise();
+      that.tabletopInit(gid).done(function(obj){
+        var title = obj.tabletop['googleSheetName'];
+        var postData = { title: title, gid: gid }
+        var updates = {};
+        updates['/posts/' + gid] = postData;
+        if(that.user) {
+          updates['/user-posts/' + that.user.uid + '/' + gid] = postData;
+        }
+        return firebase.database().ref().update(updates);
+      })
     }
   </script>
 </top>

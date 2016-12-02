@@ -29,6 +29,7 @@
   <footer></footer>
 
 
+  <script src="/tags/meta.tag" type="riot/tag"></script>
   <script src="/tags/header.tag" type="riot/tag"></script>
   <script src="/tags/footer.tag" type="riot/tag"></script>
   <script src="/tags/flash.tag" type="riot/tag"></script>
@@ -58,6 +59,7 @@
     firebase.initializeApp(config)
 
     route.base('/')
+    riot.mount('meta')
     riot.mount('header')
     riot.mount('footer')
     riot.mount('flash')
@@ -75,8 +77,8 @@
     route('/timelines/*', function(id){
       riot.mount('content', 'timeline', {id: id})
     })
-    route('/users/*', function(uid){
-      riot.mount('content', 'mypage', {uid: uid})
+    route('/mypage', function(uid){
+      riot.mount('content', 'mypage')
     });
     route.start(true)
 
@@ -87,6 +89,18 @@
       createTimeline: function() {
         var newPostKey = firebase.database().ref().child('timelines').push().key
         route('/timelines/'+newPostKey)
+      },
+      tabletopInit: function(gid) {
+        var d = $.Deferred();
+        Tabletop.init({
+          key: gid,
+          prettyColumnNames: false,
+          simpleSheet: true,
+          callback: function(data, tabletop) {
+            d.resolve({data: data, tabletop: tabletop});
+          },
+        });
+        return d.promise();
       }
     });
   </script>

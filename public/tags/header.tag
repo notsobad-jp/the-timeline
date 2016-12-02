@@ -8,25 +8,14 @@
 	  </a>
 
 	  <div class="right icon menu" if={user}>
-			<div class="item">
-				<div class="ui pink left labeled icon button" onclick={ createTimeline }>
-					<i class="icon plus"></i>
-					年表を作る
-				</div>
-			</div>
-			<div class="ui simple dropdown item">
-				<i class="icon content"></i>
-				<div class="menu">
-		      <a class="header item" href="/users/{user.uid}">
-						<i class="icon user"></i>
-		        マイページ
-		      </a>
-		      <div class="item" onclick={signOut}>
-						<i class="icon sign out"></i>
-						ログアウト
-					</div>
-				</div>
-			</div>
+			<a class="header item" href="/mypage">
+				<i class="icon user"></i>
+				マイページ
+			</a>
+			<a class="item" onclick={signOut}>
+				<i class="icon sign out"></i>
+				ログアウト
+			</a>
 		</div>
 
 	  <div class="right menu" if={!user}>
