@@ -12,7 +12,7 @@
 			  </a>
 			</div>
 
-      <div class="ui very padded segment">
+      <div class="ui padded segment">
         <p>GoogleスプレッドシートのURLを以下のフォームに貼り付け、表示ボタンを押してください。</p>
         <div class="ui fluid action input">
           <input type="text" placeholder="スプレッドシートのURL" ref="url">

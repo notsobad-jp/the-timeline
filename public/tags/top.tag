@@ -129,12 +129,11 @@
         </div>
     </div>
 
-      <!-- <div class="computer only column"> -->
-      <div class="column">
+      <div class="computer only column">
         <div class="ui very padded secondary center aligned segment">
           <p>公開設定が完了したら、シートのURLをコピーして以下のフォームに貼り付け、表示ボタンを押してください。</p>
           <div class="ui fluid action input { (urlInvalid) ? 'error' : '' }">
-            <input type="text" placeholder="スプレッドシートのURL" ref="url" oninput={ updateGid }>
+            <input type="text" placeholder="スプレッドシートのURL" oninput={ updateGid }>
             <div class="ui red { (urlInvalid) ? 'disabled' : '' } right labeled icon button" onclick={ createAndShowTimeline }>
               年表を表示する
               <i class="icon right chevron"></i>
@@ -142,19 +141,18 @@
           </div>
         </div>
       </div>
-      <!-- </div> -->
 
-      <!-- <div class="mobile tablet only column">
+      <div class="mobile tablet only column">
         <div class="ui basic secondary center aligned segment">
           <div class="ui small header">作成した年表を表示する</div>
-          <div class="ui fluid action input">
-            <input type="text" placeholder="スプレッドシートのURL" ref="url">
-            <div class="ui red icon button" onclick={ showTimeline }>
+          <div class="ui fluid action input { (urlInvalid) ? 'error' : '' }">
+            <input type="text" placeholder="スプレッドシートのURL" oninput={ updateGid }>
+            <div class="ui red { (urlInvalid) ? 'disabled' : '' } icon button" onclick={ createAndShowTimeline }>
               <i class="icon right chevron"></i>
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 
@@ -169,11 +167,11 @@
     <div class="ui three column stackable grid">
       <div class="column">
         <div class="ui fluid card">
-          <a class="image" href="https://the-timeline.jp/timelines/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg" target="_blank">
+          <a class="image" href="https://app.the-timeline.jp/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg" target="_blank">
             <img src="img/examples/1.jpg" />
           </a>
           <div class="content">
-            <a href="https://the-timeline.jp/timelines/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg" target="_blank" class="header">
+            <a href="https://app.the-timeline.jp/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg" target="_blank" class="header">
               電気の歴史
             </a>
             <div class="meta">
@@ -185,7 +183,7 @@
                 17世紀後半から、科学者たちが少しずつ電磁気の秘密を解き明かしていった歴史。
                 主にヨーロッパの出来事が中心ですが、日本の年号を並べて表示すると時代背景の比較ができておもしろいですね。
               </p>
-              <a href="https://the-timeline.jp/timelines/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg" class="ui basic button" target="_blank">
+              <a href="https://app.the-timeline.jp/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg" class="ui basic button" target="_blank">
                 <i class="align left icon"></i>
                 年表を見る
               </a>
@@ -205,11 +203,11 @@
 
       <div class="column">
         <div class="ui fluid card">
-          <a class="image" href="https://the-timeline.jp/timelines/?key=1uZmRGsLz2A2N6OuTYi78woovscQXUcz7Gf4EyLAdXYY" target="_blank">
+          <a class="image" href="https://app.the-timeline.jp/?key=1uZmRGsLz2A2N6OuTYi78woovscQXUcz7Gf4EyLAdXYY" target="_blank">
             <img src="img/examples/2.png" />
           </a>
           <div class="content">
-            <a href="https://the-timeline.jp/timelines/?key=1uZmRGsLz2A2N6OuTYi78woovscQXUcz7Gf4EyLAdXYY" target="_blank" class="header">
+            <a href="https://app.the-timeline.jp/?key=1uZmRGsLz2A2N6OuTYi78woovscQXUcz7Gf4EyLAdXYY" target="_blank" class="header">
               火星年代記
             </a>
             <div class="meta">
@@ -218,7 +216,7 @@
             </div>
             <div class="description">
               <p>レイ・ブラッドベリの名作SF「火星年代記」の出来事を年表で整理。実在の歴史だけでなく、小説や映画のストーリーを年表にして楽しむこともできます。</p>
-              <a href="https://the-timeline.jp/timelines/?key=1uZmRGsLz2A2N6OuTYi78woovscQXUcz7Gf4EyLAdXYY" class="ui basic button" target="_blank">
+              <a href="https://app.the-timeline.jp/?key=1uZmRGsLz2A2N6OuTYi78woovscQXUcz7Gf4EyLAdXYY" class="ui basic button" target="_blank">
                 <i class="align left icon"></i>
                 年表を見る
               </a>
@@ -238,11 +236,11 @@
 
       <div class="column">
         <div class="ui fluid card">
-          <a class="image" href="https://the-timeline.jp/timelines/?key=1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc" target="_blank">
+          <a class="image" href="https://app.the-timeline.jp/?key=1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc" target="_blank">
             <img src="img/examples/3.png" />
           </a>
           <div class="content">
-            <a href="https://the-timeline.jp/timelines/?key=1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc" target="_blank" class="header">
+            <a href="https://app.the-timeline.jp/?key=1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc" target="_blank" class="header">
               クエンティン・タランティーノ
             </a>
             <div class="meta">
@@ -251,7 +249,7 @@
             </div>
             <div class="description">
               <p>映画監督タランティーノの半生を、作品リスト・受賞歴とともに紹介。年表には画像を表示することもできます。自分史作成にも活用してください。</p>
-              <a href="https://the-timeline.jp/timelines/?key=1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc" class="ui basic button" target="_blank">
+              <a href="https://app.the-timeline.jp/timelines/?key=1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc" class="ui basic button" target="_blank">
                 <i class="align left icon"></i>
                 年表を見る
               </a>
@@ -428,8 +426,8 @@
       return firebase.database().ref().update(updates)
     }
 
-    updateGid() {
-      var gurl = that.refs.url.value
+    updateGid(e) {
+      var gurl = e.target.value
       var matched = gurl.match(/https:\/\/docs.google.com\/spreadsheets\/d\/(.*)\/?.*/)
       if(matched && matched[1]) {
         that.gid = matched[1]

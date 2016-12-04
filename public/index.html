@@ -63,7 +63,7 @@
     riot.mount('flash')
     riot.mount('dimmer')
 
-    route('/|/#.*', function() {
+    route('/', function() {
       riot.mount('content', 'top')
     })
     route('/signin', function(){
