@@ -36,7 +36,7 @@
   <script src="/tags/top.tag" type="riot/tag"></script>
   <script src="/tags/auth.tag" type="riot/tag"></script>
   <script src="/tags/mypage.tag" type="riot/tag"></script>
-  <script src="/tags/timeline.tag" type="riot/tag"></script>
+  <script src="/tags/create.tag" type="riot/tag"></script>
 
 
   <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
@@ -63,7 +63,7 @@
     riot.mount('flash')
     riot.mount('dimmer')
 
-    route('/', function() {
+    route('/|/#.*', function() {
       riot.mount('content', 'top')
     })
     route('/signin', function(){
@@ -72,11 +72,11 @@
     route('/signup', function(){
       riot.mount('content', 'auth', {type: 'signup'})
     });
-    route('/timelines/*', function(id){
-      riot.mount('content', 'timeline', {id: id})
-    })
-    route('/mypage', function(uid){
+    route('/mypage', function(){
       riot.mount('content', 'mypage')
+    });
+    route('/create', function(){
+      riot.mount('content', 'create')
     });
     route.start(true)
 

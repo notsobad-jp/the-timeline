@@ -2,9 +2,13 @@
 	<div class="ui stackable centered grid">
 		<div class="ui ten wide column">
 			<div class="ui secondary pointing menu">
-			  <a class="active item">
+			  <a class="item" href="create">
+					<i class="icon write"></i>
+			    作成
+			  </a>
+			  <a class="active item" href="mypage">
 					<i class="icon history"></i>
-			    History
+			    履歴
 			  </a>
 			</div>
 

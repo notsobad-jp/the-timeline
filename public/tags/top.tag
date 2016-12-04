@@ -10,17 +10,17 @@
       </div>
       <br><br>
       <div>
-        <button class="ui right labeled icon pink large button" onclick={ createTimeline }>
-          <i class="chevron right icon"></i>
+        <a class="ui right labeled icon pink large button" href="#howto">
+          <i class="chevron down icon"></i>
           さっそく使ってみる
-        </button>
+        </a>
       </div>
 
       <div class="ui hidden divider"></div>
 
       <div class="ui stackable centered grid basic padded segment">
         <div class="ten wide column">
-          <iframe seamless frameBorder="0" src="https://the-timeline.jp/timelines/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg"></iframe>
+          <iframe seamless frameBorder="0" src="https://app.the-timeline.jp/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg"></iframe>
         </div>
       </div>
     </div>
@@ -133,9 +133,9 @@
       <div class="column">
         <div class="ui very padded secondary center aligned segment">
           <p>公開設定が完了したら、シートのURLをコピーして以下のフォームに貼り付け、表示ボタンを押してください。</p>
-          <div class="ui fluid action input">
-            <input type="text" placeholder="スプレッドシートのURL" ref="url">
-            <div class="ui red right labeled icon button" onclick={ showTimeline }>
+          <div class="ui fluid action input { (urlInvalid) ? 'error' : '' }">
+            <input type="text" placeholder="スプレッドシートのURL" ref="url" oninput={ updateGid }>
+            <div class="ui red { (urlInvalid) ? 'disabled' : '' } right labeled icon button" onclick={ createAndShowTimeline }>
               年表を表示する
               <i class="icon right chevron"></i>
             </div>
@@ -370,7 +370,7 @@
       height:500px;
       overflow:auto;
       -webkit-overflow-scrolling:touch;
-      background:#ddd;
+      background:#111;
       padding:0 !important;
     }
     #top .ten.wide.column iframe {
@@ -382,7 +382,6 @@
 
   <script>
     var that = this
-    var sW = window.innerWidth;
 
     firebase.auth().onAuthStateChanged(function(user) {
       that.user = user
@@ -390,7 +389,7 @@
 
     //Show particleGround for PC
     $(function(){
-      if(sW > 991) {
+      if(window.innerWidth > 991) {
         $("#top").css('height', '870px')
         $("#top > div").css('position', 'absolute')
         particleground(document.getElementById('top'), {
@@ -400,35 +399,44 @@
       }
     })
 
-    showTimeline() {
-      var gurl = that.refs.url.value
-      var gid = gurl.replace('https://docs.google.com/spreadsheets/d/', '').split('/')[0];
+    createAndShowTimeline() {
+      if(!that.gid) {
+        that.urlInvalid = true
+        return false
+      }
 
-      window.open('https://the-timeline.jp/?key='+gid, '_blank');
+      window.open('https://app.the-timeline.jp/?key='+ that.gid, '_blank');
 
-      that.tabletopInit(gid).done(function(obj){
-        var title = obj.tabletop['googleSheetName'];
-        var postData = { title: title, gid: gid }
-        var updates = {};
-        updates['/posts/' + gid] = postData;
-        if(that.user) {
-          updates['/user-posts/' + that.user.uid + '/' + gid] = postData;
-        }
-        return firebase.database().ref().update(updates);
+      Tabletop.init({
+        key: that.gid,
+        prettyColumnNames: false,
+        simpleSheet: true,
+        callback: that.saveTimelineData
       })
     }
 
-    tabletopInit(gid) {
-      var d = $.Deferred();
-      Tabletop.init({
-        key: gid,
-        prettyColumnNames: false,
-        simpleSheet: true,
-        callback: function(data, tabletop) {
-          d.resolve({data: data, tabletop: tabletop});
-        },
-      });
-      return d.promise();
+    saveTimelineData(data, tabletop) {
+      var title = tabletop['googleSheetName']
+      var newPostKey = firebase.database().ref().child('posts').push().key;
+      var postData = { title: title, gid: that.gid }
+
+      var updates = {};
+      updates['/posts/' + newPostKey] = postData;
+      if(that.user) {
+        updates['/user-posts/' + that.user.uid + '/' + newPostKey] = postData;
+      }
+      return firebase.database().ref().update(updates)
+    }
+
+    updateGid() {
+      var gurl = that.refs.url.value
+      var matched = gurl.match(/https:\/\/docs.google.com\/spreadsheets\/d\/(.*)\/?.*/)
+      if(matched && matched[1]) {
+        that.gid = matched[1]
+        that.urlInvalid = false
+      }else {
+        that.urlInvalid = true
+      }
     }
   </script>
 </top>
