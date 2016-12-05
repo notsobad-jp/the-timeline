@@ -4,11 +4,11 @@
 			<div class="ui secondary pointing menu">
 			  <a class="item" href="create">
 					<i class="icon write"></i>
-			    作成
+			    新規作成
 			  </a>
 			  <a class="active item" href="mypage">
 					<i class="icon history"></i>
-			    履歴
+			    作成済み年表
 			  </a>
 			</div>
 

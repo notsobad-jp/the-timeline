@@ -10,7 +10,7 @@
       </div>
       <br><br>
       <div>
-        <a class="ui right labeled icon pink large button" href="#howto">
+        <a class="ui right labeled icon pink large button" href="create">
           <i class="chevron down icon"></i>
           さっそく使ってみる
         </a>
@@ -56,111 +56,6 @@
               <div class="description">
                 <img class="ui image" src="img/sample.png" />
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <br><br>
-
-
-  <div id="howto" class="ui basic segment">
-    <div class="ui stackable centered grid">
-      <div class="row">
-        <div class="twelve wide column">
-          <h3 class="ui horizontal divider header">
-            <i class="setting icon"></i>
-            使い方
-          </h3>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="twelve wide column">
-          <div class="ui ordered stackable three steps">
-            <div class="step">
-              <div class="content">
-                <div class="title ui header">
-                  テンプレートからシートを新規作成
-                </div>
-                <div class="description">
-                  <p>
-                    以下のテンプレートをコピーして、自分用のシートを作成します。
-                    下記のリンク先で、メニューの「ファイル」→「コピーを作成」を選択してください。
-                    （Googleアカウントにログインしている必要があります）
-                  </p>
-                  <a class="ui basic button" href="https://docs.google.com/spreadsheets/d/1ZzL0aWBK7F9TtKOuapX5PceJ2CUT_x2MCh7xmJ_C_nI" target="_blank">
-                    <i class="icon external"></i>
-                    テンプレートを取得する
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="step">
-              <div class="content">
-                <div class="title ui header">
-                  シートにデータを登録
-                </div>
-                <div class="description">
-                  <p>
-                    作成したシートで、テンプレートの形式に沿ってデータを登録します。
-                    データ登録方法のオプションについては、サンプルの元データを参考にしてください。
-                  </p>
-                  <a class="ui basic button" href="#examples">
-                    サンプルを見る&nbsp;
-                    <i class="icon chevron down"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="step">
-              <div class="content">
-                <div class="title ui header">
-                  シートを公開する
-                </div>
-                <div class="description">
-                  <p>
-                    登録が完了したら、シートを公開します。
-                    メニューの「ファイル」→「ウェブに公開」を選択してください。
-                    操作がわからない場合は、以下のGoogle公式ドキュメントも参考にしてください。
-                  </p>
-                  <a class="ui basic button" href="https://support.google.com/docs/answer/37579?hl=ja" target="_blank">
-                    <i class="icon external"></i>
-                    シートの公開手順
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="twelve wide center aligned column">
-        <div class="ui header"><i class="icon down chevron"></i></div>
-      </div>
-
-      <div class="computer only twelve wide column">
-        <div class="ui very padded secondary center aligned segment">
-          <p>公開設定が完了したら、シートのURLをコピーして以下のフォームに貼り付け、表示ボタンを押してください。</p>
-          <div class="ui fluid action input { (urlInvalid) ? 'error' : '' }">
-            <input type="text" placeholder="スプレッドシートのURL" oninput={ updateGid }>
-            <div class="ui red { (urlInvalid) ? 'disabled' : '' } right labeled icon button" onclick={ createAndShowTimeline }>
-              年表を表示する
-              <i class="icon right chevron"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mobile tablet only column">
-        <div class="ui basic secondary center aligned segment">
-          <div class="ui small header">作成した年表を表示する</div>
-          <div class="ui fluid action input { (urlInvalid) ? 'error' : '' }">
-            <input type="text" placeholder="スプレッドシートのURL" oninput={ updateGid }>
-            <div class="ui red { (urlInvalid) ? 'disabled' : '' } icon button" onclick={ createAndShowTimeline }>
-              <i class="icon right chevron"></i>
             </div>
           </div>
         </div>
@@ -265,7 +160,7 @@
             </div>
             <div class="description">
               <p>映画監督タランティーノの半生を、作品リスト・受賞歴とともに紹介。年表には画像を表示することもできます。自分史作成にも活用してください。</p>
-              <a href="https://app.the-timeline.jp/timelines/?key=1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc" class="ui basic small button" target="_blank">
+              <a href="https://app.the-timeline.jp/?key=1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc" class="ui basic small button" target="_blank">
                 <i class="align left icon"></i>
                 年表を見る
               </a>
@@ -412,10 +307,6 @@
   <script>
     var that = this
 
-    firebase.auth().onAuthStateChanged(function(user) {
-      that.user = user
-    })
-
     //Show particleGround for PC
     $(function(){
       if(window.innerWidth > 991) {
@@ -427,45 +318,5 @@
         });
       }
     })
-
-    createAndShowTimeline() {
-      if(!that.gid) {
-        that.urlInvalid = true
-        return false
-      }
-
-      window.open('https://app.the-timeline.jp/?key='+ that.gid, '_blank');
-
-      Tabletop.init({
-        key: that.gid,
-        prettyColumnNames: false,
-        simpleSheet: true,
-        callback: that.saveTimelineData
-      })
-    }
-
-    saveTimelineData(data, tabletop) {
-      var title = tabletop['googleSheetName']
-      var newPostKey = firebase.database().ref().child('posts').push().key;
-      var postData = { title: title, gid: that.gid }
-
-      var updates = {};
-      updates['/posts/' + newPostKey] = postData;
-      if(that.user) {
-        updates['/user-posts/' + that.user.uid + '/' + newPostKey] = postData;
-      }
-      return firebase.database().ref().update(updates)
-    }
-
-    updateGid(e) {
-      var gurl = e.target.value
-      var matched = gurl.match(/https:\/\/docs.google.com\/spreadsheets\/d\/(.*)\/?.*/)
-      if(matched && matched[1]) {
-        that.gid = matched[1]
-        that.urlInvalid = false
-      }else {
-        that.urlInvalid = true
-      }
-    }
   </script>
 </top>
