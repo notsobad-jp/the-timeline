@@ -11,7 +11,7 @@
       <br><br>
       <div>
         <a class="ui right labeled icon pink large button" href="create">
-          <i class="chevron down icon"></i>
+          <i class="chevron right icon"></i>
           さっそく使ってみる
         </a>
       </div>
