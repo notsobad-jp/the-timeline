@@ -38,6 +38,7 @@
   <script src="/tags/auth.tag" type="riot/tag"></script>
   <script src="/tags/mypage.tag" type="riot/tag"></script>
   <script src="/tags/create.tag" type="riot/tag"></script>
+  <script src="/tags/search.tag" type="riot/tag"></script>
 
 
   <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
@@ -69,19 +70,23 @@
     })
     route('/signin', function(){
       riot.mount('content', 'auth', {type: 'signin'})
-    });
+    })
     route('/signup', function(){
       riot.mount('content', 'auth', {type: 'signup'})
-    });
+    })
     route('/mypage', function(){
       riot.mount('content', 'mypage')
-    });
+    })
     route('/create', function(){
       riot.mount('content', 'create')
-    });
+    })
+    route('/search..', function() {
+      var q = route.query()
+      riot.mount('content', 'search', {q: q})
+    })
     route.start(true)
 
-    var obs = riot.observable();
+    var obs = riot.observable()
     var log = function(text) { console.log(text) }
   </script>
 </body>

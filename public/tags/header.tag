@@ -6,9 +6,14 @@
 	      THE TIMELINE
 	    </h4>
 	  </a>
+	  <a href="/search" class="item">
+			<i class="icon search"></i>
+			Explore
+		</a>
+
 
 	  <div class="right icon menu" if={user}>
-			<a class="header item" href="/mypage">
+			<a class="item" href="/mypage">
 				<i class="icon user"></i>
 				マイページ
 			</a>

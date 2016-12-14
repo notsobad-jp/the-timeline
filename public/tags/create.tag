@@ -127,13 +127,12 @@
 
     saveTimelineData(data, tabletop) {
       var title = tabletop['googleSheetName']
-      var newPostKey = firebase.database().ref().child('posts').push().key;
       var postData = { title: title, gid: that.gid }
 
       var updates = {};
-      updates['/posts/' + newPostKey] = postData;
+      updates['/posts/' + that.gid] = postData;
       if(that.user) {
-        updates['/user-posts/' + that.user.uid + '/' + newPostKey] = postData;
+        updates['/user-posts/' + that.user.uid + '/' + that.gid] = postData;
       }
       return firebase.database().ref().update(updates)
     }
