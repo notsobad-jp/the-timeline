@@ -84,6 +84,24 @@
       var q = route.query()
       riot.mount('content', 'search', {q: q})
     })
+    route('/auth..', function(){
+			obs.trigger("dimmerChanged", 'active')
+      var q = route.query()
+      if(q.mode == 'resetPassword') {
+        firebase.auth().verifyPasswordResetCode(q.oobCode).then(function(email) {
+          var newPassword = Math.random().toString(36).slice(-12)
+          firebase.auth().confirmPasswordReset(q.oobCode, newPassword).then(function(){
+            firebase.auth().signInWithEmailAndPassword(email, newPassword)
+            obs.trigger("flashChanged", {type:'success',text:'ログインしました'})
+          })
+        }).catch(function(error){
+          obs.trigger("flashChanged", {type:'error',text:'ログインに失敗しました..'})
+        }).then(function(){
+          obs.trigger("dimmerChanged", '')
+          route('/')
+        })
+      }
+    })
     route.start(true)
 
     var obs = riot.observable()

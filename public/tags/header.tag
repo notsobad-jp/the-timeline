@@ -11,34 +11,46 @@
 			Explore
 		</a>
 
-
-	  <div class="right icon menu" if={user}>
-			<a class="item" href="/mypage">
-				<i class="icon user"></i>
-				マイページ
-			</a>
-			<a class="item" onclick={signOut}>
-				<i class="icon sign out"></i>
-				ログアウト
-			</a>
-		</div>
-
-	  <div class="right menu" if={!user}>
+		<div class="right menu">
 			<div class="item">
-				<a class="ui pink button" href="/signup">ユーザー登録</a>
+				<a class="ui pink button" href="/create">
+					年表をつくる
+				</a>
 			</div>
-      <div class="item">
-          <a href='/signin'>ログイン</a>
-      </div>
-	  </div>
+			<a class="item" href="/mypage">
+				<i class="user icon"></i>
+				{ (user && !user.isAnonymous) ? user.email : 'ゲストユーザー' }
+			</a>
+			<div class="ui simple dropdown item">
+				<i class="content icon"></i>
+				<div class="menu">
+					<a class="item" href="/mypage">
+						<i class="icon folder"></i>
+						マイリスト
+					</a>
+					<a class="item" onclick={signOut} if={ user && !user.isAnonymous }>
+						<i class="icon sign out"></i>
+						ログアウト
+					</a>
+					<a class="item" href='/signin' if={ !user || user.isAnonymous }>
+						<i class="icon sign in"></i>
+						簡単ログイン
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<script>
 		var that = this
 
 		firebase.auth().onAuthStateChanged(function(user) {
-			that.user = user
-			that.update()
+			if(user) {
+				that.user = user
+				that.update()
+			}else {
+				firebase.auth().signInAnonymously()
+			}
 		})
 
 		signOut() {

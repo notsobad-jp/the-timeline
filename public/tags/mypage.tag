@@ -8,8 +8,8 @@
 				    新規作成
 				  </a>
 				  <a class="active item" href="mypage">
-						<i class="icon history"></i>
-				    作成済み年表
+						<i class="icon folder"></i>
+				    マイリスト
 				  </a>
 				</div>
 
@@ -40,17 +40,17 @@
 
 	<script>
 		var that = this
-		obs.trigger("dimmerChanged", 'active')
 
 		firebase.auth().onAuthStateChanged(function(user) {
 			that.user = user
 			if(user) {
+				obs.trigger("dimmerChanged", 'active')
 				firebase.database().ref('/user-posts/'+user.uid).once('value').then(function(snapshot) {
 					that.items = snapshot.val()
 					that.update()
+					obs.trigger("dimmerChanged", '')
 				})
 			}
-			obs.trigger("dimmerChanged", '')
 		})
 	</script>
 </mypage>

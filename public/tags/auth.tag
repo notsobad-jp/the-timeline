@@ -2,34 +2,26 @@
   <div class="ui padded basic segment">
     <br><br>
     <div class="ui three column center aligned stackable grid">
-      <div class="column">
-        <h2 class="ui header">
-            { opts.type=='signup' ? 'Sign Up' : 'Sign In'}
-        </h2>
-        <form class="ui large form">
-          <div class="ui segment">
-            <div class="field">
-              <div class="ui left icon input">
-                <i class="user icon"></i>
-                <input ref="email" type="text" name="email" placeholder="E-mail address">
+      <div class="ui column">
+        <div class="ui center aligned basic segment">
+            <i class="icons">
+              <i class="purple inverted mail circular huge icon"></i>
+              <i class="horizontally flipped wizard huge icon"></i>
+            </i>
+            <h1 class="ui header">
+              Magic Login
+              <div class="sub header">
+                Get a magic linked email for super easy sign-in;)
               </div>
-            </div>
-            <div class="field">
-              <div class="ui left icon input">
-                <i class="lock icon"></i>
-                <input ref="password" type="password" name="password" placeholder="Password">
-              </div>
-            </div>
-            <div class="ui fluid large teal submit button" onclick={ opts.type=='signup' ? signup : signin }>
-                { opts.type=='signup' ? 'Register' : 'Login'}
-            </div>
+            </h1>
+          <div class="ui action fluid input">
+            <input type="text" ref="email" placeholder="Type your email here.">
+            <button class="ui pink right labeled icon button" onclick={ magicAuth }>
+              <i class="send icon"></i>
+              Send
+            </button>
           </div>
-          <div if={ error_message } class="ui visible error message">{ error_message }</div>
-        </form>
-
-        <div class="ui message">
-          <p if={ opts.type=='signup' }>Already user? <a href="/signin">Sign In</a></p>
-          <p if={ opts.type=='signin' }>New to us? <a href="/signup">Sign Up</a></p>
+          <div if={ message } class="ui visible left aligned basic segment { message.type } message">{ message.text }</div>
         </div>
       </div>
     </div>
@@ -41,35 +33,39 @@
     var that = this
 
     firebase.auth().onAuthStateChanged(function(user) {
-        if(user) { route('/') }
-    });
+      that.user = user
+    })
 
-    signup() {
+    magicAuth() {
+      that.errorMessage = ''
 			obs.trigger("dimmerChanged", 'active')
-      firebase.auth().createUserWithEmailAndPassword(this.refs.email.value, this.refs.password.value).then(
-        function() {
-					obs.trigger("flashChanged", {type:'success',text:'アカウントを登録しました'})
-        },
-        function(error) {
-          that.error_message = error.message
-          that.update()
-        }
-      ).then(function(){
-			  obs.trigger("dimmerChanged", '')
-      })
-    }
+      var newPassword = Math.random().toString(36).slice(-12)
 
-    signin() {
-			obs.trigger("dimmerChanged", 'active')
-      firebase.auth().signInWithEmailAndPassword(this.refs.email.value, this.refs.password.value).then(
-        function() {
-					obs.trigger("flashChanged", {type:'success',text:'ログインしました'})
-        },
-        function(error) {
-          that.error_message = error.message
-          that.update()
+      firebase.auth().createUserWithEmailAndPassword(that.refs.email.value, newPassword).then(function(){
+        //新規ユーザーの場合
+        firebase.auth().sendPasswordResetEmail(that.refs.email.value)
+        firebase.auth().signOut()
+        that.message = {
+          type: 'success',
+          text: 'ログイン用のメールを送信しました。メール内のリンクをクリックしてログインしてください。'
         }
-      ).then(function(){
+      }).catch(function(error) {
+        //アドレスが既に登録済みの場合
+        if(error.code == 'auth/email-already-in-use') {
+          firebase.auth().sendPasswordResetEmail(that.refs.email.value)
+          that.message = {
+            type: 'success',
+            text: 'ログイン用のメールを送信しました。メール内のリンクをクリックしてログインしてください。'
+          }
+        //validationエラーなど
+        }else {
+          that.message = {
+            type: 'error',
+            text: error.message
+          }
+        }
+      }).then(function(){
+        that.update()
 			  obs.trigger("dimmerChanged", '')
       })
     }

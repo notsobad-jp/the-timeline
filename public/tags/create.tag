@@ -8,8 +8,8 @@
 				    新規作成
 				  </a>
 				  <a class="item" href="mypage">
-						<i class="icon history"></i>
-				    作成済み年表
+						<i class="icon folder"></i>
+				    マイリスト
 				  </a>
 				</div>
 			</div>
