@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>THE TIMELINE</title>
+  <meta name="description" content=""/>
+  <meta name="keywords" content="年表,作成,無料,タイムライン,THE TIMELINE,アプリ,ツール,フリー,ソフト"/>
+  <meta property="og:title" content="THE TIMELINE"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://the-timeline.jp"/>
+  <meta property="og:image" content="https://the-timeline.jp/img/sample.png"/>
+  <meta property="og:site_name" content="THE TIMELINE(ザ・タイムライン)"/>
+  <meta property="og:description" content="THE TIMELINE(ザ・タイムライン)は、簡単・便利な無料の年表作成サービスです"/>
+  <meta property="og:locale" content="ja_JP"/>
+  <link rel="canonical" href="">
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.3/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.css">
+  <link rel="stylesheet" type="text/css" href="/application.css">
+</head>
+<body>
+  <div class="ui fluid container" style="margin: 45px 0 0 !important;">
+    <div class="ui active page dimmer">
+      <div class="ui indeterminate huge text loader">Loading..</div>
+    </div>
+
+    <!-- Header Menu -->
+    <div class="ui grid">
+	    <div class="computer only row">
+		    <div class="ui fixed inverted borderless menu">
+		      <a href="https://the-timeline.jp" class="header item">
+		        <h4>
+		          <i class="align left teal icon"></i>
+		        </h4>
+		      </a>
+		      <div class="item menu-title"></div>
+		      <div class="right menu">
+		        <a href="#" class="item menu-source" target="_blank">
+		          <i class="table icon"></i>
+		          Source
+		        </a>
+		        <a class="item menu-share">
+		          <i class="share alternate icon"></i>
+		          Share
+		        </a>
+		      </div>
+		    </div>
+	    </div>
+      <div class="mobile tablet only row">
+        <div class="ui fixed inverted borderless menu">
+          <a href="https://the-timeline.jp" class="header item">
+            <h4>
+              <i class="align left teal icon"></i>
+            </h4>
+          </a>
+          <div class="item menu-title"></div>
+          <div class="right menu">
+            <div class="ui simple dropdown item">
+              <i class="content icon"></i>
+              <div class="menu">
+                <a href="#" class="item menu-source" target="_blank">
+                  <i class="table icon"></i>
+                  Source
+                </a>
+                <a class="item menu-share">
+                  <i class="share alternate icon"></i>
+                  Share
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+	    </div>
+    </div>
+
+    <!-- Timeline Contents -->
+    <div id="timeline-container"></div>
+
+    <!-- Controller -->
+    <div id="controller" class="ui vertical inverted borderless icon menu">
+      <a id="zoomIn" class="item" href="#"><i class="icon zoom"></i></a>
+      <a id="zoomOut" class="item" href="#"><i class="icon zoom out"></i></a>
+      <a id="moveLeft" class="item" href="#"><i class="icon chevron left"></i></a>
+      <a id="moveRight" class="item" href="#"><i class="icon chevron right"></i></a>
+      <a id="maximize" class="item" href="#"><i class="icon repeat"></i></a>
+    </div>
+
+    <!-- Share Modal -->
+    <div class="ui basic modal">
+      <i class="close icon"></i>
+      <div class="header"></div>
+      <div class="image content">
+        <div class="description">
+          <div class="ui inverted header">共有URL</div>
+          <div class="ui form">
+            <input type="text" readonly="" value="https://the-timeline.jp/timelines/?key=xxx">
+          </div>
+
+          <div class="ui inverted header">SNSシェア</div>
+          <div class="ui one column grid">
+            <div class="computer only column">
+              <a class="fb-share" href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank">
+	              <button class="ui facebook medium button">
+	                <i class="facebook icon"></i>
+	                Facebook
+	              </button>
+	          </a>
+	          <a class="tw-share" href="https://twitter.com/share?url=&text=" target="_blank">
+	              <button class="ui twitter medium button">
+	                <i class="twitter icon"></i>
+	                Twitter&nbsp;
+	              </button>
+	          </a>
+            </div>
+            <div class="mobile tablet only column">
+              <a class="fb-share" href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank">
+	              <button class="ui icon facebook button circular">
+	                <i class="facebook f icon"></i>
+	              </button>
+	          </a>
+	          <a class="tw-share" href="https://twitter.com/share?url=&text=" target="_blank">
+	              <button class="ui twitter icon button circular">
+	                <i class="twitter icon"></i>
+	              </button>
+	          </a>
+	          <a class="line-share" href="https://line.me/R/msg/text/?" target="_blank">
+	              <button class="ui green icon button circular">
+	                <i class="comment icon"></i>
+	              </button>
+	          </a>
+            </div>
+          </div>
+
+          <div class="ui inverted header">埋め込み用タグ</div>
+          <div class="ui form">
+            <textarea readonly="" style="resize:none;"><iframe width="100%" height="500px" seamless frameborder='0' src=""></iframe></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui bottom fixed menu">
+      <!-- Nend Ad -->
+      <script type="text/javascript">
+      var nend_params = {"media":41572,"site":240284,"spot":691432,"type":1,"oriented":1};
+      </script>
+      <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+    </div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.3/semantic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.4.3/tabletop.min.js"></script>
+  <script src="/application.js"></script>
+
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PWX57P"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PWX57P');</script>
+  <!-- End Google Tag Manager -->
+</body>
+</html>
