@@ -27,7 +27,7 @@
         </div>
       </div>
 
-      <div class="mobile tablet only column">
+      <div class="mobile tablet only ten wide column">
         <div class="ui basic secondary center aligned padded segment">
           <div class="ui small header">作成した年表を表示する</div>
           <div class="ui fluid action input { (urlInvalid) ? 'error' : '' }">
