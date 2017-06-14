@@ -7,7 +7,7 @@
       </h4>
     </a>
     <div class="ui horizontal inverted small divided link list">
-      <a class="item" href="http://notosbad.jp" target="_blank">運営</a>
+      <a class="item" href="https://notsobad.jp" target="_blank">運営</a>
       <a class="item" href="#">利用規約</a>
       <a class="item" href="#">プライバシーポリシー</a>
       <a class="item" href="#">お問い合わせ</a>
