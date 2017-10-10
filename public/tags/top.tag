@@ -94,7 +94,7 @@
                 17世紀後半から、科学者たちが少しずつ電磁気の秘密を解き明かしていった歴史。
                 主にヨーロッパの出来事が中心ですが、日本の年号を並べて表示すると時代背景の比較ができておもしろいですね。
               </p>
-              <a href="https://app.the-timeline.jp/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg" class="ui basic small button" target="_blank">
+              <a href="https://app.the-timeline.jp/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg" class="ui basic teal small button" target="_blank">
                 <i class="align left icon"></i>
                 年表を見る
               </a>
@@ -127,7 +127,7 @@
             </div>
             <div class="description">
               <p>レイ・ブラッドベリの名作SF「火星年代記」の出来事を年表で整理。実在の歴史だけでなく、小説や映画のストーリーを年表にして楽しむこともできます。</p>
-              <a href="https://app.the-timeline.jp/?key=1uZmRGsLz2A2N6OuTYi78woovscQXUcz7Gf4EyLAdXYY" class="ui basic small button" target="_blank">
+              <a href="https://app.the-timeline.jp/?key=1uZmRGsLz2A2N6OuTYi78woovscQXUcz7Gf4EyLAdXYY" class="ui basic teal small button" target="_blank">
                 <i class="align left icon"></i>
                 年表を見る
               </a>
@@ -160,7 +160,7 @@
             </div>
             <div class="description">
               <p>映画監督タランティーノの半生を、作品リスト・受賞歴とともに紹介。年表には画像を表示することもできます。自分史作成にも活用してください。</p>
-              <a href="https://app.the-timeline.jp/?key=1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc" class="ui basic small button" target="_blank">
+              <a href="https://app.the-timeline.jp/?key=1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc" class="ui basic teal small button" target="_blank">
                 <i class="align left icon"></i>
                 年表を見る
               </a>
