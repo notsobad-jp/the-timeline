@@ -294,6 +294,57 @@
   <br><br>
 
 
+  <div id="feature" class="ui basic segment">
+    <div class="ui stackable centered grid">
+      <div class="row">
+        <div class="twelve wide column">
+          <h3 class="ui horizontal divider header">
+            <i class="heart icon"></i>
+            ここがすごい
+          </h3>
+          <br>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="four wide column">
+          <h4 class="ui icon medium header">
+            <i class="icon pink smile"></i>
+            <div class="content">
+              めっちゃ簡単
+              <div class="sub header">
+                Googleスプレッドシートにデータを入れるだけで、自動で年表化してくれます。むずかしい操作はまったくありません。
+              </div>
+            </div>
+          </h4>
+        </div>
+        <div class="four wide column">
+          <h4 class="ui icon medium header">
+            <i class="icon pink money"></i>
+            <div class="content">
+              ずっと無料
+              <div class="sub header">
+                基本機能はずっと無料。高度な機能のみ有料オプションとして提供予定です。
+              </div>
+            </div>
+          </h4>
+        </div>
+        <div class="four wide column">
+          <h4 class="ui icon medium header">
+            <i class="icon pink database"></i>
+            <div class="content">
+              データなくならない
+              <div class="sub header">
+                すべてのデータはGoogleスプレッドシートに保存。このサービスが終了してもデータはなくなりません！
+              </div>
+            </div>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div id="faq" class="ui basic segment">
     <div class="ui stackable centered grid">
       <div class="twelve wide column">
