@@ -282,6 +282,13 @@
           </div>
         </div>
       </div>
+
+      <div class="ui basic center aligned segment">
+        <a href="/search" class="ui right labeled icon button">
+          <i class="icon chevron right"></i>
+          他の年表も見てみる
+        </a>
+      </div>
     </div>
   </div>
   <br><br>
