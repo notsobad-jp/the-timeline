@@ -418,6 +418,28 @@
   <br><br>
 
 
+  <div id="news" class="ui basic segment">
+    <div class="ui stackable centered grid">
+      <div class="twelve wide column">
+        <h3 class="ui horizontal divider header">
+          <i class="newspaper icon"></i>
+          お知らせ
+        </h3>
+        <div class="ui very relaxed middle aligned link list">
+          <a class="active item" each={ feed, i in feeds } target="_blank" if={ i<3 } href={ feed.children[1].attributes[0].value }>
+            <div class="content">
+              <div class="ui basic small label">{ feed.children[3].textContent.slice(0,10) }</div>
+              { feed.children[0].textContent.replace(/【THE TIMELINE】/g , "") }
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <br><br>
+
+
   <div id="contact" class="ui basic segment">
     <div class="ui stackable centered grid">
       <div class="twelve wide column">
@@ -470,8 +492,8 @@
   <script>
     var that = this
 
-    //Show particleGround for PC
     $(function(){
+      //Show particleGround for PC
       if(window.innerWidth > 991) {
         $("#top").css('height', '870px')
         $("#top > div").css('position', 'absolute')
@@ -480,6 +502,16 @@
           lineColor: '#5cbdaa'
         });
       }
+
+      //Show Blog Feed
+      $.ajax({
+        dataType: 'xml',
+        url: 'http://blog.notsobad.jp/feed/category/THE%20TIMELINE',
+        success: function(data) {
+          that.feeds = $(data).find('entry').slice(0,3)
+          that.update()
+        }
+      })
     })
   </script>
 </top>
