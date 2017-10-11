@@ -418,6 +418,7 @@
   <br><br>
 
 
+  <!--
   <div id="news" class="ui basic segment">
     <div class="ui stackable centered grid">
       <div class="twelve wide column">
@@ -438,6 +439,7 @@
     </div>
   </div>
   <br><br>
+  -->
 
 
   <div id="contact" class="ui basic segment">
@@ -504,6 +506,7 @@
       }
 
       //Show Blog Feed
+      /*
       $.ajax({
         dataType: 'xml',
         url: 'http://blog.notsobad.jp/feed/category/THE%20TIMELINE',
@@ -512,6 +515,7 @@
           that.update()
         }
       })
+      */
     })
   </script>
 </top>
