@@ -418,28 +418,19 @@
   <br><br>
 
 
-  <!--
   <div id="news" class="ui basic segment">
     <div class="ui stackable centered grid">
-      <div class="twelve wide column">
+      <div class="twelve wide center aligned column">
         <h3 class="ui horizontal divider header">
           <i class="newspaper icon"></i>
           お知らせ
         </h3>
-        <div class="ui very relaxed middle aligned link list">
-          <a class="active item" each={ feed, i in feeds } target="_blank" if={ i<3 } href={ feed.children[1].attributes[0].value }>
-            <div class="content">
-              <div class="ui basic small label">{ feed.children[3].textContent.slice(0,10) }</div>
-              { feed.children[0].textContent.replace(/【THE TIMELINE】/g , "") }
-            </div>
-          </a>
-        </div>
 
+        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fthetimelinejp&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=139414576217599" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
       </div>
     </div>
   </div>
   <br><br>
-  -->
 
 
   <div id="contact" class="ui basic segment">
