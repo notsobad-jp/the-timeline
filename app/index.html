@@ -185,7 +185,7 @@
     .vis-item .vis-item-overflow { overflow: visible; }
 
     @media screen and (max-width: 768px)  {
-      .vis-labelset { display:none; }
+      .vis-panel.vis-left { display: none; }
     }
 
     .vis-foreground .vis-group, .vis-labelset .vis-label {
@@ -222,7 +222,7 @@
     }
     #controller {
       position: fixed;
-      top: 60px;
+      top: 120px;
       right: 10px;
       margin: 10px;
       z-index: 2;
@@ -294,6 +294,7 @@
       <a id="moveLeft" class="item" href="#"><i class="icon chevron left"></i></a>
       <a id="moveRight" class="item" href="#"><i class="icon chevron right"></i></a>
       <a id="maximize" class="item" href="#"><i class="icon repeat"></i></a>
+      <a id="toggleLabel" class="item" href="#"><i class="icon tags"></i></a>
     </div>
 
     <!-- Share Modal -->
@@ -614,6 +615,11 @@
       $(document).on('click', '#zoomOut', function(){ zoom(0.2); });
       $(document).on('click', '#moveLeft', function(){ move(0.2); });
       $(document).on('click', '#moveRight', function(){ move(-0.2); });
+
+      $(document).on('click', '#toggleLabel', function(){
+        $('.vis-panel.vis-left').toggle();
+        move(0.0001);
+      });
 
       $(document).on('click', '.menu-share', function(){ $('.ui.modal').modal('show'); });
       // Keypress Control
