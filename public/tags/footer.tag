@@ -23,4 +23,9 @@
       <a class="item" href="#">お問い合わせ</a>
     </div>
   </div>
+
+
+	<style>
+		footer { overflow: hidden; }
+	</style>
 </footer>
