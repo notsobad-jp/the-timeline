@@ -216,6 +216,11 @@
     /*****************************************************************
     * Custom
     *****************************************************************/
+    header {
+      width: 100%;
+      overflow: hidden;
+    }
+
     #timeline-container {
       position: relative;
       margin-bottom: 50px;
@@ -230,58 +235,67 @@
   </style>
 </head>
 <body>
-  <div class="ui fluid container" style="margin: 45px 0 0 !important;">
-    <div class="ui active page dimmer">
-      <div class="ui indeterminate huge text loader">Loading..</div>
-    </div>
-
-    <!-- Header Menu -->
-    <div class="ui grid">
-	    <div class="computer only row">
-		    <div class="ui fixed inverted borderless menu">
-		      <a href="https://the-timeline.jp" class="header item" target="_blank">
-		        <h4>
-		          <i class="align left teal icon"></i>
-		        </h4>
-		      </a>
-		      <div class="item menu-title"></div>
-		      <div class="right menu">
-		        <a href="#" class="item menu-source" target="_blank">
-		          <i class="table icon"></i>
-		          Source
-		        </a>
-		        <a class="item menu-share">
-		          <i class="share alternate icon"></i>
-		          Share
-		        </a>
-		      </div>
-		    </div>
-	    </div>
-      <div class="mobile tablet only row">
-        <div class="ui fixed inverted borderless menu">
-          <a href="https://the-timeline.jp" class="header item">
-            <h4>
-              <i class="align left teal icon"></i>
-            </h4>
+  <!-- Header Menu -->
+  <header class="ui grid">
+    <div class="computer only row">
+      <div class="ui fixed inverted borderless menu">
+        <a href="https://the-timeline.jp" class="header item" target="_blank">
+          <h4>
+            <i class="align left teal icon"></i>
+          </h4>
+        </a>
+        <div class="item menu-title"></div>
+        <div class="right menu">
+          <a href="#" class="item menu-source" target="_blank">
+            <i class="table icon"></i>
+            Source
           </a>
-          <div class="item menu-title"></div>
-          <div class="right menu">
-            <div class="ui simple dropdown item">
-              <i class="content icon"></i>
-              <div class="menu">
-                <a href="#" class="item menu-source" target="_blank">
-                  <i class="table icon"></i>
-                  Source
-                </a>
-                <a class="item menu-share">
-                  <i class="share alternate icon"></i>
-                  Share
-                </a>
-              </div>
+          <a class="item menu-share">
+            <i class="share alternate icon"></i>
+            Share
+          </a>
+          <a href="#" class="item menu-maximize" target="_blank">
+            <i class="maximize icon"></i>
+            Full Screen
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="mobile tablet only row">
+      <div class="ui fixed inverted borderless menu">
+        <a href="https://the-timeline.jp" class="header item">
+          <h4>
+            <i class="align left teal icon"></i>
+          </h4>
+        </a>
+        <div class="item menu-title"></div>
+        <div class="right menu">
+          <div class="ui simple dropdown item">
+            <i class="content icon"></i>
+            <div class="menu">
+              <a href="#" class="item menu-source" target="_blank">
+                <i class="table icon"></i>
+                Source
+              </a>
+              <a class="item menu-share">
+                <i class="share alternate icon"></i>
+                Share
+              </a>
+              <a href="#" class="item menu-maximize" target="_blank">
+                <i class="maximize icon"></i>
+                Full Screen
+              </a>
             </div>
           </div>
         </div>
-	    </div>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="ui fluid container" style="margin: 45px 0 0 !important;">
+    <div class="ui active page dimmer">
+      <div class="ui indeterminate huge text loader">Loading..</div>
     </div>
 
     <!-- Timeline Contents -->
@@ -350,15 +364,15 @@
         </div>
       </div>
     </div>
-
-    <div class="ui bottom fixed menu">
-      <!-- Nend Ad -->
-      <script type="text/javascript">
-      var nend_params = {"media":41572,"site":240284,"spot":691432,"type":1,"oriented":1};
-      </script>
-      <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-    </div>
   </div>
+
+  <footer class="ui bottom fixed menu">
+    <!-- Nend Ad -->
+    <script type="text/javascript">
+    var nend_params = {"media":41572,"site":240284,"spot":691432,"type":1,"oriented":1};
+    </script>
+    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+  </footer>
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -377,7 +391,13 @@
       //Set Canonical URL
       var canonical_url = setParameterToURL({ 'key': getQueryString('key') });
       $('link[rel="canonical"]').attr('href', canonical_url);
-      $('.menu-maximize').attr('href', canonical_url);
+      // 直接表示されてるとき
+      if(window == window.parent) {
+        $('.menu-maximize').hide();
+      // iframeで読み込まれてるとき
+      }else {
+        $('.menu-maximize').attr('href', canonical_url);
+      }
 
       var gids = getQueryString('key').split("+");
       var requests = [];
