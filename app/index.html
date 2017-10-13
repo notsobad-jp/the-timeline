@@ -399,24 +399,32 @@
         $('.menu-maximize').attr('href', canonical_url);
       }
 
-      var gids = getQueryString('key').split("+");
-      var requests = [];
-      for(i=0;i<gids.length;i++){
-        requests.push(tabletopInit(gids[i]));
-      }
-
-      $.when.apply($, requests).done(function(){
-        var data = [];
-        for(i=0;i<arguments.length;i++){
-          data = data.concat(arguments[i].data);
-        }
-        createTimeline(data).done(function(){
-          setPopup();
-          setRangechangedEvent();
-        });
-
-        var title = arguments[0].tabletop['googleSheetName'];
-        setMetatags(title, gids[0]);
+      var gid = getQueryString('key');
+      tabletopInit(gid).done(
+        function(){
+          var data = [];
+          for(i=0;i<arguments.length;i++){
+            data = data.concat(arguments[i].data);
+          }
+          createTimeline(data).then(
+            // success
+            function(){
+              setPopup();
+              setRangechangedEvent();
+            },
+            // error
+            function(e) {
+              alert(e);
+              $('.dimmer').removeClass('active');
+            }
+          );
+          var title = arguments[0].tabletop['googleSheetName'];
+          setMetatags(title, gid);
+        },
+      ).fail(function(e){
+        alert(e);
+      }).always(function(){
+        $('.dimmer').removeClass('active');
       });
 
 
@@ -425,6 +433,7 @@
       *****************************************************************/
       function tabletopInit(gid) {
         var d = $.Deferred();
+
         Tabletop.init({
           key: gid,
           prettyColumnNames: false,
@@ -432,8 +441,15 @@
           postProcess: function(element) { formatElement(element); },
           callback: function(data, tabletop) {
             d.resolve({data: data, tabletop: tabletop});
-          },
+          }
         });
+
+        setTimeout(function(){
+          if(d.state()!='resolved') {
+            d.reject('スプレッドシートの読み込みに失敗しました😢 URLが間違っている、もしくはシートが公開されていない可能性があります。お手数ですがもう一度ご確認ください。');
+          }
+        }, 5000);
+
         return d.promise();
       }
 
@@ -546,11 +562,7 @@
           timeline = new vis.Timeline(container, data, groups, options);
           d.resolve();
         }catch(e) {
-          console.error(e);
-          alert("エラーが発生しました。データが正しく登録されていることを確認してください。");
-          d.reject();
-        }finally {
-          $('.dimmer').removeClass('active');
+          d.reject("データ読み込み中にエラーが発生しました。データが正しく登録されていることを確認してください。");
         }
         return d.promise();
       }
