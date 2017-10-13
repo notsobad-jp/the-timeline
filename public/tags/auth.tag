@@ -11,14 +11,14 @@
             <h1 class="ui header">
               Magic Login
               <div class="sub header">
-                Get a magic linked email for super easy sign-in;)
+                入力したメールアドレスに、ログイン用URLがメールで届きます。
               </div>
             </h1>
           <div class="ui action fluid input">
-            <input type="text" ref="email" placeholder="Type your email here.">
+            <input type="text" ref="email" placeholder="メールアドレス">
             <button class="ui pink right labeled icon button" onclick={ magicAuth }>
               <i class="send icon"></i>
-              Send
+              送信
             </button>
           </div>
           <div if={ message } class="ui visible left aligned basic segment { message.type } message">{ message.text }</div>
