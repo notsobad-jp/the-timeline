@@ -135,8 +135,7 @@
         title: title,
         gid: that.gid,
         userId: userId,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date()
       })
     }
 

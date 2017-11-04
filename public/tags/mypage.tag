@@ -13,7 +13,7 @@
           </a>
         </div>
 
-        <table class="ui basic table" if={ user && items }>
+        <table class="ui basic table" if={ user && items.length>0 }>
           <tbody>
             <tr each={ value, key in items }>
               <td>
@@ -28,7 +28,7 @@
         </table>
 
         <p if={ !user }>作成済み年表を見るには<a href="signin">ログイン</a>してください</p>
-        <p if={ user && !items }>まだ年表がありません。<a href="create">新規作成</a>ページから年表を作成してください。</p>
+        <p if={ user && items.length==0 }>まだ年表がありません。<a href="create">新規作成</a>ページから年表を作成してください。</p>
       </div>
     </div>
   </div>

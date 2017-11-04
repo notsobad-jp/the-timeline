@@ -495,18 +495,6 @@
           lineColor: '#5cbdaa'
         });
       }
-
-      //Show Blog Feed
-      /*
-      $.ajax({
-        dataType: 'xml',
-        url: 'http://blog.notsobad.jp/feed/category/THE%20TIMELINE',
-        success: function(data) {
-          that.feeds = $(data).find('entry').slice(0,3)
-          that.update()
-        }
-      })
-      */
     })
   </script>
 </top>
