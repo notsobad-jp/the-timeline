@@ -128,13 +128,16 @@
     saveTimelineData(data, tabletop) {
       var title = tabletop['googleSheetName']
       var postData = { title: title, gid: that.gid }
+      var userId = (that.user) ? that.user.uid : null
 
-      var updates = {};
-      updates['/posts/' + that.gid] = postData;
-      if(that.user) {
-        updates['/user-posts/' + that.user.uid + '/' + that.gid] = postData;
-      }
-      return firebase.database().ref().update(updates)
+      var docRef = db.collection("timelines").doc(that.gid)
+      docRef.set({
+        title: title,
+        gid: that.gid,
+        userId: userId,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      })
     }
 
     updateGid(e) {
