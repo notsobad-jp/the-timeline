@@ -54,7 +54,7 @@
   <script src="/tags/search.tag" type="riot/tag"></script>
 
 
-  <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/3.0.0/riot+compiler.min.js"></script>
@@ -63,12 +63,25 @@
   <script type="text/javascript" src="/js/jquery.particleground.min.js"></script>
 
   <script>
-    var config = {
-      apiKey: "AIzaSyDIE-_jR8MNs2ZITuAZxGvDYDZpjVsT_co",
-      authDomain: "timeline-9747a.firebaseapp.com",
-      databaseURL: "https://timeline-9747a.firebaseio.com",
-      storageBucket: "timeline-9747a.appspot.com",
-      messagingSenderId: "254688706209"
+    if(location.hostname=='localhost') {
+      /* Staging */
+      var config = {
+        apiKey: "AIzaSyBKhIvS5oBGeiR7q_zLdAfTcT4-B3ags18",
+        authDomain: "timeline-stg.firebaseapp.com",
+        databaseURL: "https://timeline-stg.firebaseio.com",
+        projectId: "timeline-stg",
+        storageBucket: "timeline-stg.appspot.com",
+        messagingSenderId: "1080317801907"
+      }
+    }else {
+      /* Production */
+      var config = {
+        apiKey: "AIzaSyDIE-_jR8MNs2ZITuAZxGvDYDZpjVsT_co",
+        authDomain: "timeline-9747a.firebaseapp.com",
+        databaseURL: "https://timeline-9747a.firebaseio.com",
+        storageBucket: "timeline-9747a.appspot.com",
+        messagingSenderId: "254688706209"
+      }
     }
     firebase.initializeApp(config)
 
@@ -118,7 +131,6 @@
     route.start(true)
 
     var obs = riot.observable()
-    var log = function(text) { console.log(text) }
   </script>
   <script src="https://embed.small.chat/T02RE3SKUG59854MFX.js" async></script>
 </body>
