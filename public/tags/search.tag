@@ -3,7 +3,7 @@
     <div class="ui stackable centered grid">
       <div class="ui ten wide column">
         <div class="ui secondary pointing menu">
-          <a class="active item" href="create">
+          <a class="active item" href="#">
             <i class="icon search"></i>
             Explore
           </a>
@@ -22,11 +22,11 @@
         </table>
 
         <div class="ui clearing basic segment">
-          <div class="ui left floated mini button" onclick={prevPage} if={firstVisible}>
+          <div class="ui left floated mini button" onclick={ prevPage } if={ firstVisible }>
             <i class="icon chevron left"></i>
             Prev
           </div>
-          <div class="ui right floated mini button" onclick={nextPage} if={lastVisible}>
+          <div class="ui right floated mini button" onclick={ nextPage } if={ lastVisible }>
             Next
             <i class="icon chevron right"></i>
           </div>
@@ -44,40 +44,47 @@
     that.perPage = 20
     obs.trigger("dimmerChanged", 'active')
 
-    that.firstVisible = null
+    that.firstId = null
     that.lastVisible = null
+    that.firstVisible = null
 
     getItems(args) {
       obs.trigger("dimmerChanged", 'active')
 
-      var docRef = db.collection("timelines").orderBy('createdAt', 'desc')
-      if(args.lastVisible) {
-        docRef = docRef.startAfter(args.lastVisible)
-      }else if(args.firstVisible) {
-        docRef = docRef.endBefore(args.firstVisible)
+      var docRef = db.collection("timelines")
+      // Next
+      if(args.startAfter) {
+        docRef = docRef.orderBy('gid', 'desc').startAfter(args.startAfter)
+      // Prev
+      }else if(args.endBefore) {
+        docRef = docRef.orderBy('gid').startAfter(args.endBefore)
+      // Initial
+      }else {
+        docRef = docRef.orderBy('gid', 'desc')
       }
       docRef = docRef.limit(that.perPage)
 
       docRef.get().then(function(querySnapshot){
-        // パラメータなし=最初の表示はPrevなし
-        if(args.lastVisible || args.firstVisible) {
-          that.firstVisible = querySnapshot.docs[0]
-        }else {
-          that.firstVisible = null
-        }
-        // 最後のページでなければNext表示
-        if(querySnapshot.docs.length >= that.perPage) {
-          that.lastVisible = querySnapshot.docs[querySnapshot.docs.length-1]
+        that.items = querySnapshot.docs
+        if(args.endBefore) { that.items = that.items.reverse() }
+
+        // 最終ページ判定
+        if(that.items.length >= that.perPage) {
+          that.lastVisible = that.items[that.items.length-1]
         }else {
           that.lastVisible = null
         }
 
-        // 0件のときはitemsを変えずにNextのみなくす
-        if(querySnapshot.docs.length==0) {
-          if(args.lastVisible){ that.lastVisible = null }
-          if(args.firstVisible) { that.firstVisible = null }
+        // 最初にページアクセスしたときに、最初のIDを記録しておく
+        if(Object.keys(args).length === 0) {
+          that.firstId = that.items[0].data().gid
+        // ページ遷移時に、先頭まで戻ったかどうかの判定
         }else {
-          that.items = querySnapshot.docs
+          if(that.firstId == that.items[0].data().gid) {
+            that.firstVisible = null
+          }else {
+            that.firstVisible = that.items[0]
+          }
         }
 
         that.update()
@@ -86,10 +93,10 @@
     }
 
     nextPage() {
-      that.getItems({lastVisible: that.lastVisible})
+      that.getItems({startAfter: that.lastVisible})
     }
     prevPage() {
-      that.getItems({firstVisible: that.firstVisible})
+      that.getItems({endBefore: that.firstVisible})
     }
 
 
