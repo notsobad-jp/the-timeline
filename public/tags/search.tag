@@ -54,13 +54,13 @@
       var docRef = db.collection("timelines")
       // Next
       if(args.startAfter) {
-        docRef = docRef.orderBy('gid', 'desc').startAfter(args.startAfter)
+        docRef = docRef.orderBy('createdAt', 'desc').startAfter(args.startAfter)
       // Prev
       }else if(args.endBefore) {
-        docRef = docRef.orderBy('gid').startAfter(args.endBefore)
+        docRef = docRef.orderBy('createdAt').startAfter(args.endBefore)
       // Initial
       }else {
-        docRef = docRef.orderBy('gid', 'desc')
+        docRef = docRef.orderBy('createdAt', 'desc')
       }
       docRef = docRef.limit(that.perPage)
 
