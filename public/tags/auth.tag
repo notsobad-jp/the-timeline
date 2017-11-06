@@ -1,7 +1,7 @@
 <auth>
   <div class="ui padded basic segment">
     <br><br>
-    <div class="ui three column center aligned stackable grid">
+    <div class="ui two column center aligned stackable grid">
       <div class="ui column">
         <div class="ui center aligned basic segment">
             <i class="icons">
@@ -24,6 +24,14 @@
           <div if={ message } class="ui visible left aligned basic segment { message.type } message">{ message.text }</div>
         </div>
       </div>
+      <div class="ui column">
+        <div class="ui center aligned basic segment">
+          <div class="ui facebook button" onclick={ facebookLogin }>
+            <i class="icon facebook"></i>
+            Facebookでログイン
+          </div>
+        </div>
+      </div>
     </div>
     <br><br>
   </div>
@@ -35,6 +43,13 @@
     firebase.auth().onAuthStateChanged(function(user) {
       that.user = user
     })
+
+    var provider = new firebase.auth.FacebookAuthProvider();
+
+    facebookLogin() {
+      firebase.auth().signInWithRedirect(provider);
+    }
+
 
     magicAuth() {
       that.errorMessage = ''
