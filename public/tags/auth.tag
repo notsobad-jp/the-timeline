@@ -1,19 +1,15 @@
 <auth>
   <div class="ui padded basic segment">
     <br><br>
-    <div class="ui two column center aligned stackable grid">
-      <div class="ui column">
-        <div class="ui center aligned basic segment">
-            <i class="icons">
-              <i class="purple inverted mail circular huge icon"></i>
-              <i class="horizontally flipped wizard huge icon"></i>
-            </i>
-            <h1 class="ui header">
-              Magic Login
-              <div class="sub header">
-                入力したメールアドレスに、ログイン用URLがメールで届きます。
-              </div>
-            </h1>
+    <div class="ui center aligned stackable grid">
+      <div class="ui six wide column">
+        <div class="ui basic padded segment">
+          <h3 class="ui header">
+            <i class="icon mail"></i>
+            メールアドレスでログイン
+          </h3>
+          <br>
+
           <div class="ui action fluid input">
             <input type="text" ref="email" placeholder="メールアドレス">
             <button class="ui pink right labeled icon button" onclick={ magicAuth }>
@@ -21,14 +17,36 @@
               送信
             </button>
           </div>
+          <div class="">
+            入力したメールアドレスに、ログイン用URLが届きます。
+          </div>
           <div if={ message } class="ui visible left aligned basic segment { message.type } message">{ message.text }</div>
         </div>
       </div>
-      <div class="ui column">
-        <div class="ui center aligned basic segment">
-          <div class="ui facebook button" onclick={ facebookLogin }>
+
+      <div class="ui vertical divider">OR</div>
+
+      <div class="ui six wide column">
+        <div class="ui basic padded segment">
+          <h3 class="ui header">
+            <i class="icon user"></i>
+            SNSアカウントでログイン
+          </h3>
+          <br>
+
+          <div class="ui facebook fluid large button" onclick={ snsLogin.bind(this, 'facebook') }>
             <i class="icon facebook"></i>
             Facebookでログイン
+          </div>
+          <br>
+          <div class="ui twitter fluid large button" onclick={ snsLogin.bind(this, 'twitter') }>
+            <i class="icon twitter"></i>
+            Twitterでログイン
+          </div>
+          <br>
+          <div class="ui google plus fluid large button" onclick={ snsLogin.bind(this, 'google') }>
+            <i class="icon google"></i>
+            Googleでログイン
           </div>
         </div>
       </div>
@@ -44,12 +62,17 @@
       that.user = user
     })
 
-    var provider = new firebase.auth.FacebookAuthProvider();
-
-    facebookLogin() {
+    snsLogin(providerName) {
+      var provider = ""
+      if(providerName=='facebook') {
+        provider = new firebase.auth.FacebookAuthProvider()
+      }else if(providerName=='twitter') {
+        provider = new firebase.auth.TwitterAuthProvider();
+      }else if(providerName=='google') {
+        provider = new firebase.auth.GoogleAuthProvider();
+      }
       firebase.auth().signInWithRedirect(provider);
     }
-
 
     magicAuth() {
       that.errorMessage = ''
