@@ -17,9 +17,8 @@
               送信
             </button>
           </div>
-          <div class="">
-            入力したメールアドレスに、ログイン用URLが届きます。
-          </div>
+          <br>
+          <p><small>入力したメールアドレスに、ログイン用URLが届きます。</small></p>
           <div if={ message } class="ui visible left aligned basic segment { message.type } message">{ message.text }</div>
         </div>
       </div>
@@ -48,6 +47,8 @@
             <i class="icon google"></i>
             Googleでログイン
           </div>
+          <br>
+          <p><small>※もちろん勝手に投稿したりしませんのでご安心ください。</small></p>
         </div>
       </div>
     </div>

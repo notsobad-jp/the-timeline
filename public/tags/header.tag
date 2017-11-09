@@ -36,7 +36,7 @@
               </a>
               <a class="item" href='/signin' if={ !user || user.isAnonymous }>
                 <i class="icon sign in"></i>
-                簡単ログイン
+                ログイン
               </a>
             </div>
           </div>
@@ -79,7 +79,7 @@
               </a>
               <a class="item" href='/signin' if={ !user || user.isAnonymous }>
                 <i class="icon sign in"></i>
-                簡単ログイン
+                ログイン
               </a>
             </div>
           </div>
