@@ -50,8 +50,8 @@
           </h3>
           <div class="ui stackable two column grid">
             <div class="column">
-              <a href="/img/howto/1.png" target="_blank">
-                <img src="img/howto/1.png" class="ui image" />
+              <a href="/img/howto/copy.png" target="_blank">
+                <img src="img/howto/copy.png" class="ui image" />
               </a>
             </div>
             <div class="column">
