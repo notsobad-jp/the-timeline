@@ -31,7 +31,7 @@
         <div class="ui basic secondary center aligned padded segment">
           <div class="ui small header">作成した年表を表示する</div>
           <div class="ui fluid action input { (urlInvalid) ? 'error' : '' }">
-            <input type="text" placeholder="スプレッドシートのURL" oninput={ updateGid }>
+            <input type="text" placeholder="スプレッドシートの共有用URL" oninput={ updateGid }>
             <div class="ui pink { (urlInvalid) ? 'disabled' : '' } icon button" onclick={ createAndShowTimeline }>
               <i class="icon right chevron"></i>
             </div>
