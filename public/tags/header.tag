@@ -19,9 +19,9 @@
             <i class="user icon"></i>
             { (user && !user.isAnonymous) ? user.email : 'ゲストユーザー' }
           </a>
-          <div class="ui simple dropdown item">
-            <i class="content icon"></i>
-            <div class="menu">
+          <div class="ui dropdown item { active: menuOpened, visible: menuOpened }" onclick={ toggleMenu }>
+            <i class="content icon { rotated: menuOpened }"></i>
+            <div class="menu { transition: menuOpened, visible: menuOpened }">
               <a class="item" href="/mypage">
                 <i class="icon folder"></i>
                 マイリスト
@@ -54,9 +54,9 @@
         </a>
         <div class="item menu-title"></div>
         <div class="right menu">
-          <div class="ui simple dropdown item">
-            <i class="content icon"></i>
-            <div class="menu">
+          <div class="ui dropdown item { active: menuOpened, visible: menuOpened }" onclick={ toggleMenu }>
+            <i class="content icon { rotated: menuOpened }"></i>
+            <div class="menu { transition: menuOpened, visible: menuOpened }">
               <div class="header">
                 { (user && !user.isAnonymous) ? user.email : 'ゲストユーザー' }
               </div>
@@ -91,11 +91,13 @@
 
 	<style>
 		header { overflow: hidden; }
+    .icon.content { transition: all 300ms 0s ease; }
 	</style>
 
 
 	<script>
 		var that = this
+    that.menuOpened = false
 
 		firebase.auth().onAuthStateChanged(function(user) {
 			if(user) {
@@ -111,5 +113,9 @@
 			obs.trigger("flashChanged", {type:'success',text:'ログアウトしました'})
 			route('/')
 		}
+
+    toggleMenu() {
+      that.menuOpened = !that.menuOpened
+    }
 	</script>
 </header>
