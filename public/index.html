@@ -7,7 +7,7 @@
 
   <title>THE TIMELINE | 無料年表作成サービス</title>
   <meta name="description" content="THE TIMELINE(ザ・タイムライン)は、簡単・便利な無料の年表作成サービスです"/>
-  <meta name="keywords" content="年表,作成,無料,タイムライン,THE TIMELINE, サービス, アプリ,ツール,フリー,ソフト"/>
+  <meta name="keywords" content="年表,作成,無料,時系列,歴史,ツール,サービス,フリー,ソフト,アプリ,エクセル,自分史,作り方,タイムライン,THE TIMELINE"/>
   <meta property="og:title" content="簡単・便利な無料の年表作成サービス | THE TIMELINE(ザ・タイムライン)"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://the-timeline.jp"/>
@@ -64,17 +64,7 @@
   <script type="text/javascript" src="/js/jquery.particleground.min.js"></script>
 
   <script>
-    if(location.hostname=='localhost' || location.hostname=='timeline-stg.firebaseapp.com') {
-      /* Staging */
-      var config = {
-        apiKey: "AIzaSyBKhIvS5oBGeiR7q_zLdAfTcT4-B3ags18",
-        authDomain: "timeline-stg.firebaseapp.com",
-        databaseURL: "https://timeline-stg.firebaseio.com",
-        projectId: "timeline-stg",
-        storageBucket: "timeline-stg.appspot.com",
-        messagingSenderId: "1080317801907"
-      }
-    }else {
+    if(location.hostname == 'the-timeline.jp'){
       /* Production */
       var config = {
         apiKey: "AIzaSyDIE-_jR8MNs2ZITuAZxGvDYDZpjVsT_co",
@@ -83,6 +73,16 @@
         projectId: "timeline-9747a",
         storageBucket: "timeline-9747a.appspot.com",
         messagingSenderId: "254688706209"
+      }
+    }else {
+      /* Staging */
+      var config = {
+        apiKey: "AIzaSyBKhIvS5oBGeiR7q_zLdAfTcT4-B3ags18",
+        authDomain: "timeline-stg.firebaseapp.com",
+        databaseURL: "https://timeline-stg.firebaseio.com",
+        projectId: "timeline-stg",
+        storageBucket: "timeline-stg.appspot.com",
+        messagingSenderId: "1080317801907"
       }
     }
     firebase.initializeApp(config)
