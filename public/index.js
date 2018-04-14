@@ -22,23 +22,22 @@ exports.createEmbedHTML = functions.firestore.document('timelines/{id}').onWrite
   const timeline = event.data.data();
   const id = event.params.id;
   const url = 'https://' + bucketName + '/' + storage_root + '/' + version + '/' + id;
+  const encodedUrl = encodeURIComponent(url);
+  const sourceUrl = 'https://docs.google.com/spreadsheets/d/' + id + '/pubhtml';
 
-  fs.readFile('./embed.html', 'utf8', function (err, templateHtml) {
-    if(err) {
-      console.error(err);
-      return false;
-    }
+  const templateHtml = fs.readFileSync('./embed.html', 'utf8');
+  const responseHtml = templateHtml
+    .replace(/\{{title}}/g, xss(timeline.title))
+    .replace(/\{{id}}/g, id)
+    .replace(/\{{url}}/g, url)
+    .replace(/\{{encodedUrl}}/g, encodedUrl)
+    .replace(/\{{sourceUrl}}/g, sourceUrl);
 
-    const responseHtml = templateHtml
-      .replace(/\{{title}}/g, xss(timeline.title))
-      .replace(/\{{url}}/g, url);
-
-    var file = admin.storage().bucket(bucketName).file(storage_root +'/'+ version +'/' + id + '/index.html');
-    return file.save(responseHtml, {
-      metadata: { contentType: 'text/html' },
-      gzip: true
-    });
-  })
+  var file = admin.storage().bucket(bucketName).file(storage_root +'/'+ version +'/' + id + '.html');
+  return file.save(responseHtml, {
+    metadata: { contentType: 'text/html' },
+    gzip: true
+  });
 
   process.on('unhandledRejection', console.dir);
 });

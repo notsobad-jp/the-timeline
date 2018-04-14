@@ -14,16 +14,17 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="https://app.the-timeline.jp/assets/img/favicon.ico">
 
   <title>{{title}} | 年表作成サービス「THE TIMELINE」</title>
-  <meta name="description" content="{{title}}の年表です。"/>
+  <meta name="description" content="{{title}} | 年表作成サービス「THE TIMELINE」"/>
   <meta name="keywords" content="{{title}},年表,時系列,出来事,歴史,まとめ,THE TIMELINE"/>
   <meta property="og:title" content="{{title}} | 年表作成サービス「THE TIMELINE」"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="{{url}}"/>
   <meta property="og:image" content="https://the-timeline.jp/img/sample.png"/>
   <meta property="og:site_name" content="THE TIMELINE(ザ・タイムライン)"/>
-  <meta property="og:description" content="{{title}}の年表です。"/>
+  <meta property="og:description" content="{{title}} | 年表作成サービス「THE TIMELINE」"/>
   <meta property="og:locale" content="ja_JP"/>
   <link rel="canonical" href="{{url}}">
 
@@ -244,9 +245,9 @@
             <i class="align left teal icon"></i>
           </h4>
         </a>
-        <div class="item menu-title"></div>
+        <div class="item menu-title">{{title}}</div>
         <div class="right menu">
-          <a href="#" class="item menu-source" target="_blank">
+          <a href="{{sourceUrl}}" class="item menu-source" target="_blank">
             <i class="table icon"></i>
             Source
           </a>
@@ -268,12 +269,12 @@
             <i class="align left teal icon"></i>
           </h4>
         </a>
-        <div class="item menu-title"></div>
+        <div class="item menu-title">{{title}}</div>
         <div class="right menu">
           <div class="ui simple dropdown item">
             <i class="content icon"></i>
             <div class="menu">
-              <a href="#" class="item menu-source" target="_blank">
+              <a href="{{sourceUrl}}" class="item menu-source" target="_blank">
                 <i class="table icon"></i>
                 Source
               </a>
@@ -319,19 +320,19 @@
         <div class="description">
           <div class="ui inverted header">共有URL</div>
           <div class="ui form">
-            <input type="text" readonly="" value="https://the-timeline.jp/timelines/?key=xxx">
+            <input type="text" readonly="" value="{{url}}">
           </div>
 
           <div class="ui inverted header">SNSシェア</div>
           <div class="ui one column grid">
             <div class="computer only column">
-              <a class="fb-share" href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank">
+              <a class="fb-share" href="https://www.facebook.com/sharer/sharer.php?u={{encodedUrl}}" target="_blank">
 	              <button class="ui facebook medium button">
 	                <i class="facebook icon"></i>
 	                Facebook
 	              </button>
 	          </a>
-	          <a class="tw-share" href="https://twitter.com/share?url=&text=" target="_blank">
+	          <a class="tw-share" href="https://twitter.com/share?url={{encodedUrl}}" target="_blank">
 	              <button class="ui twitter medium button">
 	                <i class="twitter icon"></i>
 	                Twitter&nbsp;
@@ -339,17 +340,17 @@
 	          </a>
             </div>
             <div class="mobile tablet only column">
-              <a class="fb-share" href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank">
+              <a class="fb-share" href="https://www.facebook.com/sharer/sharer.php?u={{encodedUrl}}" target="_blank">
 	              <button class="ui icon facebook button circular">
 	                <i class="facebook f icon"></i>
 	              </button>
 	          </a>
-	          <a class="tw-share" href="https://twitter.com/share?url=&text=" target="_blank">
+	          <a class="tw-share" href="https://twitter.com/share?url={{encodedUrl}}" target="_blank">
 	              <button class="ui twitter icon button circular">
 	                <i class="twitter icon"></i>
 	              </button>
 	          </a>
-	          <a class="line-share" href="https://line.me/R/msg/text/?" target="_blank">
+	          <a class="line-share" href="https://line.me/R/msg/text/?{{encodedUrl}}" target="_blank">
 	              <button class="ui green icon button circular">
 	                <i class="comment icon"></i>
 	              </button>
@@ -359,7 +360,7 @@
 
           <div class="ui inverted header">埋め込み用タグ</div>
           <div class="ui form">
-            <textarea readonly="" style="resize:none;"><iframe width="100%" height="500px" seamless frameborder='0' src=""></iframe></textarea>
+            <textarea readonly="" style="resize:none;"><iframe width="100%" height="500px" seamless frameborder='0' src="{{url}}"></iframe></textarea>
           </div>
         </div>
       </div>
@@ -388,44 +389,43 @@
       window.timeline = '';
       window.group_names = [];
 
-      //Set Canonical URL
-      var canonical_url = setParameterToURL({ 'key': getQueryString('key') });
-      $('link[rel="canonical"]').attr('href', canonical_url);
-      // 直接表示されてるとき
+      // 直接表示されてるときはmaximizeメニューを隠す
       if(window == window.parent) {
         $('.menu-maximize').hide();
-      // iframeで読み込まれてるとき
-      }else {
-        $('.menu-maximize').attr('href', canonical_url);
       }
 
-      var gid = getQueryString('key');
-      tabletopInit(gid).done(
-        function(){
-          var data = [];
-          for(i=0;i<arguments.length;i++){
-            data = data.concat(arguments[i].data);
-          }
-          createTimeline(data).then(
-            // success
-            function(){
-              setPopup();
-              setRangechangedEvent();
-            },
-            // error
-            function(e) {
-              alert(e);
-              $('.dimmer').removeClass('active');
+      try {
+        const gid = location.pathname.match(/([^/]*?)\.html/)[1]
+
+        tabletopInit(gid).done(
+          function(){
+            var data = [];
+            for(i=0;i<arguments.length;i++){
+              data = data.concat(arguments[i].data);
             }
-          );
-          var title = arguments[0].tabletop['googleSheetName'];
-          setMetatags(title, gid);
-        },
-      ).fail(function(e){
-        alert(e);
-      }).always(function(){
+            createTimeline(data).then(
+              // success
+              function(){
+                setPopup();
+                setRangechangedEvent();
+              },
+              // error
+              function(e) {
+                alert(e);
+                $('.dimmer').removeClass('active');
+              }
+            );
+          },
+        ).fail(function(e){
+          alert(e);
+        }).always(function(){
+          $('.dimmer').removeClass('active');
+        });
+      }catch(e) {
+        alert('スプレッドシートの読み込みに失敗しました😢 URLが間違っている、もしくはシートが公開されていない可能性があります。お手数ですがもう一度ご確認ください。');
+        console.error(e);
         $('.dimmer').removeClass('active');
-      });
+      }
 
 
       /*****************************************************************
@@ -568,29 +568,6 @@
       }
 
 
-      function setMetatags(title, gid) {
-        var url = window.location.href;
-        //Meta Tags
-        $('title').text(title + ' | THE TIMELINE');
-        $('.menu-title').text(title);
-        $('.menu-source').attr("href", 'https://docs.google.com/spreadsheets/d/'+gid+'/pubhtml');
-        $('meta[property="og:title"]').attr("content", title+' | THE TIMELINE');
-        $('meta[property="description"]').attr("content", title+'の年表(タイムライン)です。');
-        $('meta[property="keywords"]').attr("content", title + ',年表,作成,無料,タイムライン,THE TIMELINE,アプリ,ツール,フリー,ソフト');
-        $('meta[property="og:url"]').attr("content", url);
-
-        //Share Modal
-        $(".ui.basic.modal .ui.form input").val(url);
-        var textarea = '<iframe width="100%" height="500px" seamless frameborder="0" src="'+ url +'"></iframe>';
-        $(".ui.basic.modal .ui.form textarea").text(textarea);
-
-        var encoded_url = encodeURIComponent(url);
-        $('.fb-share').attr('href', 'https://www.facebook.com/sharer/sharer.php?u='+encoded_url);
-        $('.tw-share').attr('href', 'https://twitter.com/share?url='+ encoded_url);
-        $('.line-share').attr('href', 'http://line.me/R/msg/text/?'+ encoded_url);
-      }
-
-
       /*****************************************************************
       * Timeline Controller
       *****************************************************************/
@@ -609,7 +586,6 @@
       function setRangechangedEvent() {
         timeline.on('rangechanged', function (properties) {
           var visible_url = setParameterToURL({
-            'key': getQueryString('key'),
             'start': moment(properties.start).format("YYYYMMDDHHmmSS"),
             'end': moment(properties.end).format("YYYYMMDDHHmmSS"),
           });
