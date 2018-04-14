@@ -21,7 +21,7 @@ exports.createEmbedHTML = functions.firestore.document('timelines/{id}').onWrite
 
   const timeline = event.data.data();
   const id = event.params.id;
-  const url = 'https://' + bucketName + '/' + storage_root + '/' + version + '/' + id;
+  const url = 'https://' + bucketName + '/' + storage_root + '/' + version + '/' + id + '.html';
   const encodedUrl = encodeURIComponent(url);
   const sourceUrl = 'https://docs.google.com/spreadsheets/d/' + id + '/pubhtml';
 
@@ -40,4 +40,40 @@ exports.createEmbedHTML = functions.firestore.document('timelines/{id}').onWrite
   });
 
   process.on('unhandledRejection', console.dir);
+});
+
+
+/* Trigger: /feed  */
+/* /feed にアクセスが来たら、動的にrssフィードを作って返す */
+exports.returnRSS = functions.https.onRequest((req, res) => {
+  res.set('Cache-Control', 'public, max-age=21600, s-maxage=43200');
+  res.set('Content-Type', 'application/xml');
+  const feedItemCount = 20;
+
+  let feed = new RSS({
+    title: 'THE TIMELINE',
+    feed_url: 'https://the-timeline.jp/feed',
+    site_url: 'https://the-timeline.jp/',
+    language: 'ja',
+  })
+
+  let docRef = admin.firestore().collection("timelines").orderBy('createdAt', 'desc').limit(feedItemCount);
+  docRef.get().then(function(querySnapshot){
+    const items = querySnapshot.docs;
+    for(var i=0; i < items.length; i++ ) {
+      let item = items[i].data();
+      let url = 'https://' + bucketName + '/' + storage_root + '/' + version + '/' + items[i].id + '.html';
+
+      feed.item({
+        title: item.title,
+        description: item.title,
+        url: url,
+        date: item.createdAt, // any format that js Date can parse.
+      });
+    }
+    res.status(200).send(feed.xml());
+  }).catch(error => {
+    console.error(error);
+    res.status(500).send(error);
+  });
 });
