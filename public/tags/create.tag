@@ -140,6 +140,8 @@
 
   <script>
     var that = this
+    const embDir = (location.hostname == 'the-timeline.jp') ? 'embed' : 'embed_stg'
+    const version = 'v1'
 
     firebase.auth().onAuthStateChanged(function(user) {
       that.user = user
@@ -151,7 +153,7 @@
         return false
       }
 
-      window.open('https://app.the-timeline.jp/?key='+ that.gid, '_blank');
+      window.open('https://app.the-timeline.jp/' + embDir +'/' + version + '/' + that.gid + '.html', '_blank');
 
       Tabletop.init({
         key: that.gid,

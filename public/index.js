@@ -8,19 +8,14 @@ const bucketName = 'app.the-timeline.jp'
 const version = 'v1'
 const storage_root = (process.env.GCLOUD_PROJECT=='timeline-9747a') ? 'embed' : 'embed_stg';
 
-
-var serviceAccount = require("./cert_"+ process.env.GCLOUD_PROJECT +".json");
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://"+ process.env.GCLOUD_PROJECT +".firebaseio.com"
-});
+admin.initializeApp();
 
 
-exports.createEmbedHTML = functions.firestore.document('timelines/{id}').onWrite(event => {
-  if(!event.data.exists) { return false; }  //削除時など、データがないときは終了
+exports.createEmbedHTML = functions.firestore.document('timelines/{id}').onWrite((change, context) => {
+  if(!change.after.data()) { return false; }  //削除時など、データがないときは終了
 
-  const timeline = event.data.data();
-  const id = event.params.id;
+  const timeline = change.after.data();
+  const id = context.params.id;
   const url = 'https://' + bucketName + '/' + storage_root + '/' + version + '/' + id + '.html';
   const encodedUrl = encodeURIComponent(url);
   const sourceUrl = 'https://docs.google.com/spreadsheets/d/' + id + '/pubhtml';
