@@ -11,31 +11,37 @@ const storage_root = (process.env.GCLOUD_PROJECT=='timeline-9747a') ? 'embed' : 
 admin.initializeApp();
 
 
-exports.createEmbedHTML = functions.firestore.document('timelines/{id}').onWrite((change, context) => {
-  if(!change.after.data()) { return false; }  //削除時など、データがないときは終了
 
-  const timeline = change.after.data();
-  const id = context.params.id;
-  const url = 'https://' + bucketName + '/' + storage_root + '/' + version + '/' + id + '.html';
+/* Trigger: /timelines/xxxx  */
+/* 詳細ページへの直接アクセスは、metaタグを埋め込んでからindex.htmlを返す */
+exports.returnWithOGP = functions.https.onRequest((req, res) => {
+  res.set('Cache-Control', 'public, max-age=86400, s-maxage=2592000');
+
+  const id = req.path.match(/\/timelines\/([^\/\?]*)/)[1]
+  const url = 'https://the-timeline.jp' + req.url;
   const encodedUrl = encodeURIComponent(url);
   const sourceUrl = 'https://docs.google.com/spreadsheets/d/' + id + '/pubhtml';
 
-  const templateHtml = fs.readFileSync('./embed.html', 'utf8');
-  const responseHtml = templateHtml
-    .replace(/\{{title}}/g, xss(timeline.title))
-    .replace(/\{{id}}/g, id)
-    .replace(/\{{url}}/g, url)
-    .replace(/\{{encodedUrl}}/g, encodedUrl)
-    .replace(/\{{sourceUrl}}/g, sourceUrl);
+  fs.readFile('./embed.html', 'utf8', function (err, templateHtml) {
+    if(err) { res.status(500).send(err); }
 
-  var file = admin.storage().bucket(bucketName).file(storage_root +'/'+ version +'/' + id + '.html');
-  return file.save(responseHtml, {
-    metadata: { contentType: 'text/html' },
-    gzip: true
-  });
+    admin.firestore().collection('timelines').doc(id).get().then(doc => {
+      const timeline = doc.data();
+      const responseHtml = templateHtml
+        .replace(/\{{title}}/g, xss(timeline.title))
+        .replace(/\{{id}}/g, id)
+        .replace(/\{{url}}/g, url)
+        .replace(/\{{encodedUrl}}/g, encodedUrl)
+        .replace(/\{{sourceUrl}}/g, sourceUrl);
 
-  process.on('unhandledRejection', console.dir);
+      res.status(200).send(responseHtml);
+    }).catch(error => {
+      console.error(error);
+      res.status(404).send(templateHtml);
+    });
+  })
 });
+
 
 
 /* Trigger: /feed  */

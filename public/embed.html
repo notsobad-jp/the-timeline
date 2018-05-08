@@ -395,7 +395,7 @@
       }
 
       try {
-        const gid = location.pathname.match(/([^/]*?)\.html/)[1]
+        const gid = location.pathname.match(/\/timelines\/([^\/\?]*)/)[1]
 
         tabletopInit(gid).done(
           function(){

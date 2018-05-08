@@ -110,6 +110,10 @@
     route('/create', function(){
       riot.mount('content', 'create')
     })
+    route('/timelines/*', function(gid) {
+      route.stop()
+      location.href = '/timelines/' + gid
+    })
     route('/search..', function() {
       var q = route.query()
       riot.mount('content', 'search', {q: q})

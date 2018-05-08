@@ -146,12 +146,12 @@
     })
 
     createAndShowTimeline() {
+      obs.trigger("dimmerChanged", 'active')
       if(!that.gid) {
         that.urlInvalid = true
+        obs.trigger("dimmerChanged", '')
         return false
       }
-
-      window.open('https://app.the-timeline.jp/?key='+ that.gid, '_blank');
 
       Tabletop.init({
         key: that.gid,
@@ -172,6 +172,12 @@
         gid: that.gid,
         userId: userId,
         createdAt: new Date()
+      }).then(function(){
+        obs.trigger("dimmerChanged", '')
+        window.open('/timelines/'+ that.gid, '_blank');
+      }).catch(function(error){
+        alert("エラー！年表の表示に失敗しました…(´；ω；｀)")
+        obs.trigger("dimmerChanged", '')
       })
     }
 

@@ -15,7 +15,7 @@
               <td>{ value.data().title }</td>
               <td class="right aligned">
                 <a class="ui icon basic button" href={ 'https://docs.google.com/spreadsheets/d/'+value.data().gid+'/pubhtml' } target="_blank" data-tooltip="元データを見る" data-inverted=""><i class="icon table"></i></a>
-                <a class="ui icon teal basic button" href={ 'https://app.the-timeline.jp/?key='+value.data().gid } target="_blank" data-tooltip="年表を見る" data-inverted=""><i class="icon align left"></i></a>
+                <a class="ui icon teal basic button" href={ '/timelines/'+value.data().gid } target="_blank" data-tooltip="年表を見る" data-inverted=""><i class="icon align left"></i></a>
               </td>
             </tr>
           </tbody>
