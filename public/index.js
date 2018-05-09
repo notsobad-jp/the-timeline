@@ -63,7 +63,7 @@ exports.returnRSS = functions.https.onRequest((req, res) => {
     const items = querySnapshot.docs;
     for(var i=0; i < items.length; i++ ) {
       let item = items[i].data();
-      let url = 'https://' + bucketName + '/' + storage_root + '/' + version + '/' + items[i].id + '.html';
+      let url = site_url + 'timelines/' + items[i].id;
 
       feed.item({
         title: item.title,
