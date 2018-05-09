@@ -4,9 +4,7 @@ const fs = require('fs');
 const xss = require('xss');
 const RSS = require('rss');
 
-const bucketName = 'app.the-timeline.jp'
-const version = 'v1'
-const storage_root = (process.env.GCLOUD_PROJECT=='timeline-9747a') ? 'embed' : 'embed_stg';
+const BASE_URL = 'https://the-timeline.jp/'
 
 admin.initializeApp();
 
@@ -53,8 +51,8 @@ exports.returnRSS = functions.https.onRequest((req, res) => {
 
   let feed = new RSS({
     title: 'THE TIMELINE',
-    feed_url: 'https://the-timeline.jp/feed',
-    site_url: 'https://the-timeline.jp/',
+    feed_url: BASE_URL + 'feed',
+    site_url: BASE_URL,
     language: 'ja',
   })
 
@@ -63,7 +61,7 @@ exports.returnRSS = functions.https.onRequest((req, res) => {
     const items = querySnapshot.docs;
     for(var i=0; i < items.length; i++ ) {
       let item = items[i].data();
-      let url = site_url + 'timelines/' + items[i].id;
+      let url = BASE_URL + 'timelines/' + items[i].id;
 
       feed.item({
         title: item.title,
