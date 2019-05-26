@@ -183,8 +183,12 @@
 
     updateGid(e) {
       var gurl = e.target.value
-      var matched = gurl.match(/https:\/\/docs\.google\.com\/spreadsheets\/d[\/e]?\/([^\/]*)/)
-      if(matched && matched[1]) {
+      var matched = gurl.match(/https:\/\/docs\.google\.com\/spreadsheets\/d\/([^\/]*)\/edit.*/)
+      var wrong_match = gurl.match(/https:\/\/docs\.google\.com\/spreadsheets\/d\/e\/([^\/]*)\/pubhtml/)
+      if(wrong_match && wrong_match[1]) {
+        alert('URL形式が間違っています。スプレッドシート画面右上の「共有」→「共有可能なリンクを取得」から取得したURLを使用してください。')
+        that.urlInvalid = true
+      }else if(matched && matched[1]) {
         that.gid = matched[1]
         that.urlInvalid = false
       }else {
