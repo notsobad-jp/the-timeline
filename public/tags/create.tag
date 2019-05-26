@@ -183,7 +183,7 @@
 
     updateGid(e) {
       var gurl = e.target.value
-      var matched = gurl.match(/https:\/\/docs\.google\.com\/spreadsheets\/d\/([^\/]*)/)
+      var matched = gurl.match(/https:\/\/docs\.google\.com\/spreadsheets\/d[\/e]?\/([^\/]*)/)
       if(matched && matched[1]) {
         that.gid = matched[1]
         that.urlInvalid = false
