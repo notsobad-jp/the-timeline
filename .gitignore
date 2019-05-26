@@ -6,6 +6,7 @@
 firebase-debug.log
 cert*.json
 node_modules
+.firebase
 
 # Icon must ends with two \r.
 Icon
