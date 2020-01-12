@@ -18,9 +18,9 @@
     <br>
     <div class="ui horizontal inverted small divided link list">
       <a class="item" href="https://notsobad.jp" target="_blank">運営</a>
-      <a class="item" href="#">利用規約</a>
-      <a class="item" href="#">プライバシーポリシー</a>
-      <a class="item" href="#">お問い合わせ</a>
+      <a class="item" href="https://app.the-tournament.jp/pages/terms.html" target="_blank">利用規約</a>
+      <a class="item" href="https://app.the-tournament.jp/pages/privacy.html" target="_blank">プライバシーポリシー</a>
+      <a class="item" href="mailto:info@notsobad.jp?subject=【THE TIMELINE】お問い合わせ">お問い合わせ</a>
     </div>
   </div>
 

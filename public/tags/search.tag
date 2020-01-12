@@ -12,7 +12,10 @@
         <table class="ui basic table">
           <tbody>
             <tr each={ value, key in items }>
-              <td>{ value.data().title }</td>
+              <td>
+                { value.data().title }
+                <small class="right aligned"> ({ createdAt(value.data().createdAt) })</small>
+              </td>
               <td class="right aligned">
                 <a class="ui icon basic button" href={ 'https://docs.google.com/spreadsheets/d/'+value.data().gid+'/pubhtml' } target="_blank" data-tooltip="元データを見る" data-inverted=""><i class="icon table"></i></a>
                 <a class="ui icon teal basic button" href={ '/timelines/'+value.data().gid } target="_blank" data-tooltip="年表を見る" data-inverted=""><i class="icon align left"></i></a>
@@ -37,6 +40,7 @@
 
   <style>
     .grid { margin: 30px 0; }
+    small { color: #999; }
   </style>
 
   <script>
@@ -97,6 +101,13 @@
     }
     prevPage() {
       that.getItems({endBefore: that.firstVisible})
+    }
+
+    createdAt(date) {
+      var d = new Date(date)
+      var month = ("0"+(d.getMonth() + 1)).slice(-2)
+      var day = ("0"+(d.getDate())).slice(-2)
+      return d.getFullYear() + "-" + month + "-" + day
     }
 
 
