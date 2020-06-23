@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box';
 import ProTip from '../src/ProTip';
 import Link from '../src/Link';
 import Copyright from '../src/Copyright';
-import { loadDB } from '../lib/firebase.js'
+import { auth, firestore, firebase } from '../lib/firebase.js'
 
 export default function Index({result}) {
   return (
@@ -29,9 +29,9 @@ export default function Index({result}) {
 
 
 export async function getStaticProps() {
-  const db = await loadDB()
   const result = await new Promise((resolve, reject) => {
-    db.firestore().collection('timelines').limit(10).get()
+    // firebase.firestore().collection('timelines').limit(10).get()
+    firestore.collection('timelines').limit(10).get()
       .then(snapshot => {
         let data = []
         snapshot.forEach(doc => {
