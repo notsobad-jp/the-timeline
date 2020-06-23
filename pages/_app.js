@@ -4,8 +4,11 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
+import { auth, firestore, firebase } from '../lib/firebase.js'
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function MyApp(props) {
+  const [user, initialising, error] = useAuthState(firebase.auth());
   const { Component, pageProps } = props;
 
   React.useEffect(() => {
@@ -25,6 +28,9 @@ export default function MyApp(props) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
+        { !user &&
+            <div>Need to Login</div>
+        }
         <Component {...pageProps} />
       </ThemeProvider>
     </React.Fragment>
