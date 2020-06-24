@@ -6,6 +6,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 import { auth, firestore, firebase } from '../lib/firebase.js'
 import { useAuthState } from "react-firebase-hooks/auth";
+import Login from "../components/login.js"
+import Logout from "../components/logout.js"
+
 
 export default function MyApp(props) {
   const [user, initialising, error] = useAuthState(firebase.auth());
@@ -29,9 +32,15 @@ export default function MyApp(props) {
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         { !user &&
-            <div>Need to Login</div>
+            <Login />
         }
-        <Component {...pageProps} />
+        { user &&
+            <>
+              <div>{ user.email }</div>
+              <Logout />
+              <Component {...pageProps} />
+            </>
+        }
       </ThemeProvider>
     </React.Fragment>
   );
