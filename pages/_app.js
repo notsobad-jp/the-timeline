@@ -31,16 +31,7 @@ export default function MyApp(props) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        { !user &&
-            <Login />
-        }
-        { user &&
-            <>
-              <div>{ user.email }</div>
-              <Logout />
-              <Component {...pageProps} />
-            </>
-        }
+          <Component {...pageProps} />
       </ThemeProvider>
     </React.Fragment>
   );

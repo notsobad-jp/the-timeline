@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "latest",
     "clsx": "latest",
+    "csv-parser": "^2.3.3",
     "dotenv": "^8.2.0",
     "firebase": "^7.15.4",
     "next": "latest",
@@ -18,5 +19,8 @@
     "build": "next build",
     "start": "next start",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+  },
+  "browser": {
+    "fs": false
   }
 }
