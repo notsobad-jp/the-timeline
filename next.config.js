@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 require('dotenv').config();
-const withTM = require('next-transpile-modules')(['next-vis-timeline']); // pass the modules you would like to see transpiled
+const withTM = require('next-transpile-modules')(['vis-timeline']); // pass the modules you would like to see transpiled
 
 module.exports = withTM({
   webpack: config => {

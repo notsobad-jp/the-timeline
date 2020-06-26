@@ -8,30 +8,28 @@ import Copyright from '../src/Copyright';
 import { auth, firestore, firebase } from '../lib/firebase.js'
 import csv from 'csvtojson'
 import request from 'request'
+import { DataSet, Timeline } from "vis-timeline/standalone";
+import { useEffect } from 'react'
 
 
 export default function Index({result}) {
-  const items = [{
-    start: new Date(2010, 7, 15),
-    end: new Date(2010, 8, 2),  // end is optional
-    content: 'Trajectory A'
-  }]
+  useEffect(() => {
+    // Create a DataSet (allows two way data-binding)
+    const items = new DataSet([
+      { id: 1, content: "item 1", start: "2014-04-20" },
+      { id: 2, content: "item 2", start: "2014-04-14" },
+      { id: 3, content: "item 3", start: "2014-04-18" },
+      { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-19" },
+      { id: 5, content: "item 5", start: "2014-04-25" },
+      { id: 6, content: "item 6", start: "2014-04-27", type: "point" }
+    ]);
 
-  const options = {
-    width: '100%',
-    height: '60px',
-    stack: false,
-    showMajorLabels: true,
-    showCurrentTime: true,
-    zoomMin: 1000000,
-    type: 'background',
-    format: {
-      minorLabels: {
-        minute: 'h:mma',
-        hour: 'ha'
-      }
-    }
-  }
+    // Configuration for the Timeline
+    const options = {};
+
+    // Create a Timeline
+    const timeline = new Timeline(document.getElementById('target'), items, options);
+  }, [])
 
   return (
     <Container maxWidth="sm">
@@ -45,8 +43,8 @@ export default function Index({result}) {
         <ProTip />
         <Copyright />
       </Box>
-      <div>{result}</div>
-      <Timeline options={options} items={items} />
+      <div>{JSON.stringify(result)}</div>
+      <div id='target'></div>
     </Container>
   );
 }
@@ -66,7 +64,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      result: 'a'
+      result: result
     }
   }
 }
