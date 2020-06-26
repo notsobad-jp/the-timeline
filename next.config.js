@@ -1,7 +1,8 @@
 const webpack = require('webpack');
 require('dotenv').config();
+const withTM = require('next-transpile-modules')(['next-vis-timeline']); // pass the modules you would like to see transpiled
 
-module.exports = {
+module.exports = withTM({
   webpack: config => {
     const env = Object.keys(process.env).reduce((acc, curr) => {
       acc[`process.env.${curr}`] = JSON.stringify(process.env[curr]);
@@ -12,4 +13,4 @@ module.exports = {
 
     return config;
   }
-};
+});

@@ -8,6 +8,7 @@ import { auth, firestore, firebase } from '../lib/firebase.js'
 import { useAuthState } from "react-firebase-hooks/auth";
 import Login from "../components/login.js"
 import Logout from "../components/logout.js"
+import Timeline from 'react-visjs-timeline'
 
 
 export default function MyApp(props) {

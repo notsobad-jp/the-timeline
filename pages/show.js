@@ -6,14 +6,33 @@ import ProTip from '../src/ProTip';
 import Link from '../src/Link';
 import Copyright from '../src/Copyright';
 import { auth, firestore, firebase } from '../lib/firebase.js'
-import Csv from 'csv-parser'
-import fs from 'fs'
 import csv from 'csvtojson'
-import Papa from "papaparse";
 import request from 'request'
 
 
 export default function Index({result}) {
+  const items = [{
+    start: new Date(2010, 7, 15),
+    end: new Date(2010, 8, 2),  // end is optional
+    content: 'Trajectory A'
+  }]
+
+  const options = {
+    width: '100%',
+    height: '60px',
+    stack: false,
+    showMajorLabels: true,
+    showCurrentTime: true,
+    zoomMin: 1000000,
+    type: 'background',
+    format: {
+      minorLabels: {
+        minute: 'h:mma',
+        hour: 'ha'
+      }
+    }
+  }
+
   return (
     <Container maxWidth="sm">
       <Box my={4}>
@@ -26,7 +45,8 @@ export default function Index({result}) {
         <ProTip />
         <Copyright />
       </Box>
-        <div>{result}</div>
+      <div>{result}</div>
+      <Timeline options={options} items={items} />
     </Container>
   );
 }

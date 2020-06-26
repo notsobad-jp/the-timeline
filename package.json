@@ -3,16 +3,26 @@
   "version": "4.0.0",
   "private": true,
   "dependencies": {
+    "@egjs/hammerjs": "^2.0.17",
     "@material-ui/core": "latest",
     "clsx": "latest",
     "csv-parser": "^2.3.3",
     "dotenv": "^8.2.0",
     "firebase": "^7.15.4",
+    "keycharm": "^0.3.1",
+    "moment": "^2.27.0",
     "next": "latest",
+    "next-transpile-modules": "^3.3.0",
     "prop-types": "latest",
+    "propagating-hammerjs": "^1.4.7",
     "react": "latest",
     "react-dom": "latest",
-    "react-firebase-hooks": "^2.2.0"
+    "react-firebase-hooks": "^2.2.0",
+    "react-visjs-timeline": "^1.6.0",
+    "request": "^2.88.2",
+    "vis-data": "^6.6.1",
+    "vis-timeline": "^7.3.7",
+    "vis-util": "^4.3.2"
   },
   "scripts": {
     "dev": "next",
