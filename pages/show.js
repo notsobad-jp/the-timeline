@@ -44,12 +44,13 @@ export async function getServerSideProps(context) {
     const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKBGiTAL7Vh4PfnPWdqBOyWWqIZjRnyJ0Q_rTVckz9h8EjO432sTWhT7nUltBvWZawQ2MZsd9ZCfpO/pub?output=csv';
     csv()
       .fromStream(request.get(url))
-      .then((json)=>{
-        console.log(json);
-        resolve(json)
-        // long operation for each json e.g. transform / write into database.
-      });
+      .subscribe((json)=>{
+        json.content = 'hoge'
+      })
+      .then((json) => resolve(json))
   })
+  console.log(result);
+
 
   const items = [
     { id: 1, content: "item 1", start: "2014-04-20" },
