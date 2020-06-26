@@ -8,21 +8,20 @@ import Copyright from '../src/Copyright';
 import { auth, firestore, firebase } from '../lib/firebase.js'
 import csv from 'csvtojson'
 import request from 'request'
-import { DataSet, Timeline } from "vis-timeline/standalone";
+import { Timeline } from "vis-timeline/standalone";
 import { useEffect } from 'react'
 
 
 export default function Index({result}) {
   useEffect(() => {
-    // Create a DataSet (allows two way data-binding)
-    const items = new DataSet([
+    const items = [
       { id: 1, content: "item 1", start: "2014-04-20" },
       { id: 2, content: "item 2", start: "2014-04-14" },
       { id: 3, content: "item 3", start: "2014-04-18" },
       { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-19" },
       { id: 5, content: "item 5", start: "2014-04-25" },
       { id: 6, content: "item 6", start: "2014-04-27", type: "point" }
-    ]);
+    ];
 
     // Configuration for the Timeline
     const options = {};
@@ -43,7 +42,6 @@ export default function Index({result}) {
         <ProTip />
         <Copyright />
       </Box>
-      <div>{JSON.stringify(result)}</div>
       <div id='target'></div>
     </Container>
   );
