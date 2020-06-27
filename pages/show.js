@@ -12,13 +12,21 @@ import { Timeline } from "vis-timeline/standalone";
 import { useEffect } from 'react'
 
 
-export default function Index({items}) {
+export default function Index({items, groups}) {
   useEffect(() => {
     // Configuration for the Timeline
-    const options = {};
+    const options = {
+      minHeight: 300,
+      order: function(a,b){ return b.start - a.start; },
+      groupOrder: function (a, b) {
+        return a.order - b.order;
+      },
+      zoomable: false,
+      orientation: {axis: 'both'},
+    };
 
     // Create a Timeline
-    const timeline = new Timeline(document.getElementById('target'), items, options);
+    const timeline = new Timeline(document.getElementById('target'), items, groups, options);
   }, [])
 
   return (
@@ -40,30 +48,50 @@ export default function Index({items}) {
 
 
 export async function getServerSideProps(context) {
+  let groupNames = [];
   const result = await new Promise((resolve, reject) => {
     const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKBGiTAL7Vh4PfnPWdqBOyWWqIZjRnyJ0Q_rTVckz9h8EjO432sTWhT7nUltBvWZawQ2MZsd9ZCfpO/pub?output=csv';
     csv()
       .fromStream(request.get(url))
       .subscribe((json)=>{
-        json.content = 'hoge'
+        json.content = json["Title"];
+        json.start = calcDateTime(json["Year"], json["Month"], json["Day"], json["Time"]);
+        if(json["End Year"]){
+          json.end = calcDateTime(json["End Year"], json["End Month"], json["End Day"], json["End Time"]);
+        }
+        json.group = json["Group"];
+        if(groupNames.indexOf(json['Group']) < 0) {
+          groupNames.push(json['Group']);
+        }
       })
       .then((json) => resolve(json))
   })
-  console.log(result);
 
-
-  const items = [
-    { id: 1, content: "item 1", start: "2014-04-20" },
-    { id: 2, content: "item 2", start: "2014-04-14" },
-    { id: 3, content: "item 3", start: "2014-04-18" },
-    { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-19" },
-    { id: 5, content: "item 5", start: "2014-04-25" },
-    { id: 6, content: "item 6", start: "2014-04-27", type: "point" }
-  ];
+  const colors = ['red', 'blue', 'green', 'orange', 'yellow', 'olive', 'teal', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'];
+  const groups = [];
+  groupNames.forEach((groupName, index) => {
+    groups.push({id: groupName, content: groupName, order: index, className: colors[index]});
+  });
 
   return {
     props: {
-      items: items
+      items: result,
+      groups: groups
     }
   }
+}
+
+function calcDateTime(year, month, date, time) {
+  let yyyy;
+  if(year >= 0) {
+    // 年は最低４桁。入力が５桁以上ならそっちに合わせる
+    yyyy = year.length > 4 ? year : ("0000" + year).slice(-4);
+  }else {
+    // 紀元前はマイナス+７桁表示（TODO: 入力が7桁以上のときどうする？？）
+    yyyy = ("-0000000" + Math.abs(year)).slice(8);
+  }
+  const mm = month ? ("00" + month).slice(-2) : "01";
+  const dd = date ? ("00" + date).slice(-2) : "01";
+
+  return `${yyyy}-${mm}-${dd} ${time}`
 }
