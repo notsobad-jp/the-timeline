@@ -144,6 +144,12 @@
   background: rgba(179,180,182,0.95)!important;
 }
 
+.transparent.vis-item {
+  color: #333!important;
+  border: none !important;
+  background: transparent !important;
+}
+
 
 /*****************************************************************
 * Vis.js
@@ -151,18 +157,29 @@
 .vis-panel.vis-center { cursor: move; }
 .vis-item { cursor: pointer; }
 .vis-item .vis-item-overflow { overflow: visible; }
+.vis-panel.vis-top, .vis-panel.vis-bottom { border-style: none !important; }
 
-.vis-panel.vis-center,
+/* Group見出しをなくしてコンテンツを100%表示 */
+/* TODO: Boxの表示がずれる */
+/* .vis-panel.vis-center, */
 .vis-panel.vis-top,
 .vis-panel.vis-bottom {
   width: 100% !important;
   left: 0 !important;
 }
-
-.vis-label .vis-inner {
-  margin: 1px 0 0 1px;
-  background: rgba(255,255,255,0.7);
+.vis-panel.vis-left {
+  display: none;
 }
+
+
+/* Group単位の非表示対応 */
+/* .vis-labe.closed, .vis-group.closed {
+  height: 45px !important;
+} */
+.vis-group.closed .vis-item:not(.transparent) {
+  display: none;
+}
+
 
 .vis-foreground .vis-group, .vis-labelset .vis-label {
   border-bottom: 1px dotted #ddd;

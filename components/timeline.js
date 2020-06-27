@@ -17,6 +17,14 @@ export default function Index({items, groups}) {
 
     // Create a Timeline
     const timeline = new Timeline(document.getElementById('timeline'), items, groups, options);
+
+    // Click Event
+    const labels = document.querySelectorAll('.vis-label .vis-inner');
+    labels.forEach(el => el.addEventListener('click', event => {
+      const groupName = event.target.innerText;
+      const targets = document.querySelectorAll(`.${groupName}`);
+      targets.forEach(e => e.classList.toggle("closed"));
+    }));
   }, [])
 
   return (
