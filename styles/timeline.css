@@ -152,8 +152,16 @@
 .vis-item { cursor: pointer; }
 .vis-item .vis-item-overflow { overflow: visible; }
 
-@media screen and (max-width: 768px)  {
-  .vis-panel.vis-left { display: none; }
+.vis-panel.vis-center,
+.vis-panel.vis-top,
+.vis-panel.vis-bottom {
+  width: 100% !important;
+  left: 0 !important;
+}
+
+.vis-label .vis-inner {
+  margin: 1px 0 0 1px;
+  background: rgba(255,255,255,0.7);
 }
 
 .vis-foreground .vis-group, .vis-labelset .vis-label {
