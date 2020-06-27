@@ -8,27 +8,9 @@ import Copyright from '../src/Copyright';
 import { auth, firestore, firebase } from '../lib/firebase.js'
 import csv from 'csvtojson'
 import request from 'request'
-import { Timeline } from "vis-timeline/standalone";
-import { useEffect } from 'react'
 
 
 export default function Index({items, groups}) {
-  useEffect(() => {
-    // Configuration for the Timeline
-    const options = {
-      minHeight: 300,
-      order: function(a,b){ return b.start - a.start; },
-      groupOrder: function (a, b) {
-        return a.order - b.order;
-      },
-      zoomable: false,
-      orientation: {axis: 'both'},
-    };
-
-    // Create a Timeline
-    const timeline = new Timeline(document.getElementById('target'), items, groups, options);
-  }, [])
-
   return (
     <Container maxWidth="sm">
       <Box my={4}>
@@ -41,7 +23,7 @@ export default function Index({items, groups}) {
         <ProTip />
         <Copyright />
       </Box>
-      <div id='target'></div>
+      <Timeline items={items} groups={groups} />
     </Container>
   );
 }
