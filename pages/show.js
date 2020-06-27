@@ -6,7 +6,7 @@ import ProTip from '../src/ProTip';
 import Link from '../src/Link';
 import Copyright from '../src/Copyright';
 import Timeline from '../components/timeline';
-import { getTimelineData } from '../lib/timeline_utils';
+import { sheetsToJson } from '../lib/timeline_utils';
 import { auth, firestore, firebase } from '../lib/firebase.js'
 
 
@@ -31,7 +31,7 @@ export default function Index({data}) {
 
 export async function getServerSideProps(context) {
   const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKBGiTAL7Vh4PfnPWdqBOyWWqIZjRnyJ0Q_rTVckz9h8EjO432sTWhT7nUltBvWZawQ2MZsd9ZCfpO/pub?output=csv';
-  const data = await getTimelineData(url);
+  const data = await sheetsToJson([url]);
 
   return {
     props: {

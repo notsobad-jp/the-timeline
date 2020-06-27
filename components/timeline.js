@@ -13,6 +13,8 @@ export default function Index({data}) {
       },
       zoomable: false,
       orientation: {axis: 'both'},
+      showTooltips: false,
+      // width: "calc(100% + 30px)",
       // start: data.window.start,
       // end: data.window.end,
     };
