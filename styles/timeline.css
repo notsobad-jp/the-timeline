@@ -167,9 +167,9 @@
   width: 100% !important;
   left: 0 !important;
 }
-.vis-panel.vis-left {
+/* .vis-panel.vis-left {
   display: none;
-}
+} */
 
 
 /* Group単位の非表示対応 */

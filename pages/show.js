@@ -31,7 +31,8 @@ export default function Index({data}) {
 
 export async function getServerSideProps(context) {
   const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKBGiTAL7Vh4PfnPWdqBOyWWqIZjRnyJ0Q_rTVckz9h8EjO432sTWhT7nUltBvWZawQ2MZsd9ZCfpO/pub?output=csv';
-  const data = await sheetsToJson([url]);
+  const url2 = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSZTSb51geZ5Ix81cRxbYV6nYJ5qIbIjUpk42d1qDLfdg8C33EasNI-nXcaArcjbvjzqW8gx0bECZBF/pub?output=csv';
+  const data = await sheetsToJson([url, url2]);
 
   return {
     props: {
