@@ -9,6 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Login from "../components/login.js"
 import Logout from "../components/logout.js"
 import "vis-timeline/styles/vis-timeline-graph2d.css";
+import "../styles/timeline.css";
 
 
 

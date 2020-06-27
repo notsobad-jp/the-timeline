@@ -32,8 +32,6 @@ export default function Index({data}) {
 export async function getServerSideProps(context) {
   const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKBGiTAL7Vh4PfnPWdqBOyWWqIZjRnyJ0Q_rTVckz9h8EjO432sTWhT7nUltBvWZawQ2MZsd9ZCfpO/pub?output=csv';
   const data = await getTimelineData(url);
-  console.log("-----------")
-  console.log(data)
 
   return {
     props: {
