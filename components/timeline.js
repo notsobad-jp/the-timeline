@@ -2,7 +2,7 @@ import { Timeline } from "vis-timeline/standalone";
 import { useEffect } from 'react'
 
 
-export default function Index({items, groups}) {
+export default function Index({data}) {
   useEffect(() => {
     // Configuration for the Timeline
     const options = {
@@ -13,10 +13,12 @@ export default function Index({items, groups}) {
       },
       zoomable: false,
       orientation: {axis: 'both'},
+      // start: data.window.start,
+      // end: data.window.end,
     };
 
     // Create a Timeline
-    const timeline = new Timeline(document.getElementById('timeline'), items, groups, options);
+    const timeline = new Timeline(document.getElementById('timeline'), data.items, data.groups, options);
 
     // Click Event
     const labels = document.querySelectorAll('.vis-label .vis-inner');

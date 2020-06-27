@@ -23,7 +23,7 @@ export default function Index({data}) {
         <ProTip />
         <Copyright />
       </Box>
-      <Timeline items={data.items} groups={data.groups} />
+      <Timeline data={data} />
     </Container>
   );
 }
