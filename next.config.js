@@ -9,6 +9,12 @@ module.exports = withTM({
       return acc;
     }, {});
 
+    if (!isServer) {
+      config.node = {
+        fs: 'empty'
+      }
+    }
+
     config.plugins.push(new webpack.DefinePlugin(env));
 
     return config;
