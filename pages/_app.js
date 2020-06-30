@@ -8,6 +8,7 @@ import { auth, firestore, firebase } from '../lib/firebase.js'
 import { useAuthState } from "react-firebase-hooks/auth";
 import Login from "../components/login.js"
 import Logout from "../components/logout.js"
+import Header from "../components/header.js"
 import "vis-timeline/styles/vis-timeline-graph2d.css";
 import "../styles/timeline.css";
 
@@ -34,6 +35,7 @@ export default function MyApp(props) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
+          <Header />
           <Component {...pageProps} />
       </ThemeProvider>
     </React.Fragment>
