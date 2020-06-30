@@ -159,17 +159,15 @@
 .vis-item .vis-item-overflow { overflow: visible; }
 .vis-panel.vis-top, .vis-panel.vis-bottom { border-style: none !important; }
 
-/* Group見出しをなくしてコンテンツを100%表示 */
-/* TODO: Boxの表示がずれる */
-/* .vis-panel.vis-center, */
-.vis-panel.vis-top,
-.vis-panel.vis-bottom {
-  width: 100% !important;
-  left: 0 !important;
+/* Group見出しを透過して本体をwidth100%表示 */
+.vis-panel.vis-left {
+  width: 0;
+  overflow: visible !important;
 }
-/* .vis-panel.vis-left {
-  display: none;
-} */
+.vis-labelset {
+  overflow: visible !important;
+  white-space: nowrap;
+}
 
 
 /* Group単位の非表示対応 */
