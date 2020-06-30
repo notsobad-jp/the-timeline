@@ -21,15 +21,17 @@ export default function Index({data}) {
     let groups = data.groups;
     const timeline = new Timeline(document.getElementById('timeline'), items, groups, options);
 
-    // Click Event
-    const labels = document.querySelectorAll('.vis-label .vis-inner');
+    // Toggle Group
+    let hiddenGroups = [];
+    const labels = document.querySelectorAll('.vis-label');
     labels.forEach(el => el.addEventListener('click', event => {
-      const groupName = event.target.innerText;
-      const targets = document.querySelectorAll(`.${groupName}`);
-      timeline.setData({
-        groups: groups,
-        items: items.filter(item => item.group == `${groupName}0`)
-      });
+      const groupName = event.currentTarget.classList.value.split(" ").slice(-1)[0];
+      if(hiddenGroups.includes(groupName)) {
+        hiddenGroups = hiddenGroups.filter(g => g != groupName);
+      }else {
+        hiddenGroups.push(groupName);
+      }
+      timeline.setItems( items.filter(item => !hiddenGroups.includes(item.group)) );
     }));
   }, [])
 

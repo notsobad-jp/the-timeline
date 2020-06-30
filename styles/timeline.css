@@ -168,6 +168,10 @@
   overflow: visible !important;
   white-space: nowrap;
 }
+.vis-label .vis-inner {
+  cursor: pointer;
+  width: 100vw;
+}
 
 
 /* Group単位の非表示対応 */
