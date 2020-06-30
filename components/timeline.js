@@ -1,4 +1,4 @@
-import { Timeline } from "vis-timeline/standalone";
+import { Timeline, DataSet } from "vis-timeline/standalone";
 import { useEffect } from 'react'
 
 
@@ -14,20 +14,22 @@ export default function Index({data}) {
       zoomable: false,
       orientation: {axis: 'both'},
       showTooltips: false,
-      // width: "calc(100% + 30px)",
-      // start: data.window.start,
-      // end: data.window.end,
     };
 
     // Create a Timeline
-    const timeline = new Timeline(document.getElementById('timeline'), data.items, data.groups, options);
+    let items = data.items;
+    let groups = data.groups;
+    const timeline = new Timeline(document.getElementById('timeline'), items, groups, options);
 
     // Click Event
     const labels = document.querySelectorAll('.vis-label .vis-inner');
     labels.forEach(el => el.addEventListener('click', event => {
       const groupName = event.target.innerText;
       const targets = document.querySelectorAll(`.${groupName}`);
-      targets.forEach(e => e.classList.toggle("closed"));
+      timeline.setData({
+        groups: groups,
+        items: items.filter(item => item.group == `${groupName}0`)
+      });
     }));
   }, [])
 
