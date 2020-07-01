@@ -45,7 +45,6 @@ export default function Index({result}) {
 
 export async function getServerSideProps(context) {
   const result = await new Promise((resolve, reject) => {
-    // firebase.firestore().collection('timelines').limit(10).get()
     firestore.collection('timelines').limit(10).get()
       .then(snapshot => {
         let data = []
