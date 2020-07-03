@@ -50,31 +50,26 @@ export default function Index({data}) {
       orientation: {axis: 'both'},
       showTooltips: false,
     };
-
     // Create a Timeline
-    let items = data.items;
-    let groups = data.groups;
-    setTimeline(new Timeline(document.getElementById('timeline'), items, groups, options));
+    setTimeline(new Timeline(document.getElementById('timeline'), data.items, data.groups, options));
 
-    console.log(timeline);
-
-    // Toggle Group
-    // let hiddenGroups = [];
-    // const labels = document.querySelectorAll('.vis-label');
-    // labels.forEach(el => el.addEventListener('click', event => {
-    //   const groupName = event.currentTarget.classList.value.split(" ").slice(-1)[0];
-    //   if(hiddenGroups.includes(groupName)) {
-    //     setHiddenGroups(hiddenGroups.filter(g => g != groupName));
-    //   }else {
-    //     setHiddenGroups(hiddenGroups.push(groupName));
-    //   }
-    //   timeline.setItems( items.filter(item => !hiddenGroups.includes(item.group)) );
-    // }));
-
-    return console.log("aaa")
+    // TODO: unmount時にtimelineを削除する
+    return console.log("aaa");
   }, [])
 
 
+  function toggleGroups(e) {
+    // ラベルがclickされたときのみ、groupのtoggleを実行
+    if(e.target.className != 'vis-inner') { return; }
+
+    const groupName = e.target.innerText + "0";
+    if(hiddenGroups.includes(groupName)) {
+      setHiddenGroups(hiddenGroups.filter(g => g != groupName));
+    }else {
+      setHiddenGroups(hiddenGroups.concat([groupName]));
+    }
+    timeline.setItems( data.items.filter(item => !hiddenGroups.includes(item.group)) );
+  }
 
   function zoom(percentage) {
     if(percentage > 0) {
@@ -91,7 +86,7 @@ export default function Index({data}) {
 
   return (
     <>
-      <div id="timeline" ref={timelineRef}></div>
+      <div onClick={toggleGroups} id="timeline" ref={timelineRef}></div>
 
       <div className={classes.controller}>
         <ButtonGroup
