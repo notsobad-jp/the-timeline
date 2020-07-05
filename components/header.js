@@ -32,7 +32,7 @@ export default function Header(){
           </IconButton>
           <Typography variant="h6" component="h1" className={classes.title}>
             <Link href="/" color="inherit">
-              <a>THE TIMELINE</a>
+              THE TIMELINE
             </Link>
           </Typography>
           <Button color="inherit">Login</Button>

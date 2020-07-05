@@ -22,8 +22,10 @@ export default function Index() {
   const classes = useStyles();
   const [user, setUser] = useState();
 
-  firebase.auth().onAuthStateChanged((user) => {
-    setUser(user);
+  firebase.auth().onAuthStateChanged((u) => {
+    console.log("state changed!")
+    console.log(u)
+    setUser(u);
   })
 
   const snsLogin = (providerName) => {
@@ -43,6 +45,42 @@ export default function Index() {
   }
 
 
+  const login = () => {
+    const email = "tomomichi.onishi@gmail.com"
+    const actionCodeSettings = {
+      // URL you want to redirect back to. The domain (www.example.com) for this
+      // URL must be whitelisted in the Firebase Console.
+      url: 'http://localhost:3000/api/auth',
+      // This must be true.
+      handleCodeInApp: true,
+    };
+    firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+      .then(function() {
+        // The link was successfully sent. Inform the user.
+        // Save the email locally so you don't need to ask the user for it again
+        // if they open the link on the same device.
+        console.log("sent email")
+        window.localStorage.setItem('emailForSignIn', email);
+      })
+      .catch(function(error) {
+        // Some error occurred, you can inspect the code: error.code
+      });
+
+
+    // console.log("email login")
+    // const code = "Mdk9Lt6GEa80ZIX3m13NCgd0Yetf0c8bOyNllk-SlJ0AAAFzHsnX7A&apiKey=AIzaSyBKhIvS5oBGeiR7q_zLdAfTcT4-B3ags18"
+    // // firebase.auth().sendPasswordResetEmail(email)
+    // firebase.auth().verifyPasswordResetCode(code).then(function(email) {
+    //   console.log("code verified")
+    //   const newPassword = Math.random().toString(36).slice(-12)
+    //   firebase.auth().confirmPasswordReset(code, newPassword).then(function(){
+    //     console.log("password changed")
+    //     firebase.auth().signInWithEmailAndPassword(email, newPassword)
+    //   })
+    // })
+  }
+
+
   return (
     <Container maxWidth="lg">
       <Box my={8} align="center">
@@ -53,6 +91,7 @@ export default function Index() {
               <div>{user.email}</div>
             }
             さん
+            <Button onClick={ login }>メールログイン</Button>
           </Grid>
           <Grid item xs={12} sm={6}>
             <FacebookLoginButton onClick={() => { snsLogin('facebook') }} />
