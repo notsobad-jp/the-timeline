@@ -36,7 +36,9 @@ export default function Index({result}) {
         </div>
       </Box>
       { result.map((item) => (
-        <div key={item.id}>{item.title}</div>
+        <Link key={item.id} href="/timelines/[id]" as={`/timelines/${item.id}`}>
+          <a>{item.title}</a>
+        </Link>
       ))}
     </Container>
   );
@@ -45,7 +47,7 @@ export default function Index({result}) {
 
 export async function getServerSideProps(context) {
   const result = await new Promise((resolve, reject) => {
-    firestore.collection('timelines').limit(10).get()
+    firestore.collection('v2').limit(10).get()
       .then(snapshot => {
         let data = []
         snapshot.forEach(doc => {
