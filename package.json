@@ -20,6 +20,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-firebase-hooks": "^2.2.0",
+    "react-social-login-buttons": "^3.1.0",
     "react-visjs-timeline": "^1.6.0",
     "request": "^2.88.2",
     "vis-data": "^6.6.1",
