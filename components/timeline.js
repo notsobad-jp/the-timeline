@@ -1,5 +1,5 @@
 import { Timeline, DataSet } from "vis-timeline/standalone";
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useReducer } from 'react'
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
@@ -35,10 +35,11 @@ const useStyles = makeStyles((theme) => ({
 export default function Index({data}) {
   const classes = useStyles();
   const [timeline, setTimeline] = useState();
-  const [hiddenGroups, setHiddenGroups] = useState([]);
-  const timelineRef = useRef(null);
+  let hiddenGroups = [];
 
   useEffect(() => {
+    if(timeline) { return; }  // 複数回レンダリングを防ぐ
+
     // Configuration for the Timeline
     const options = {
       minHeight: 300,
@@ -64,9 +65,9 @@ export default function Index({data}) {
 
     const groupName = e.target.innerText + "0";
     if(hiddenGroups.includes(groupName)) {
-      setHiddenGroups(hiddenGroups.filter(g => g != groupName));
+      hiddenGroups = hiddenGroups.filter(g => g != groupName);
     }else {
-      setHiddenGroups(hiddenGroups.concat([groupName]));
+      hiddenGroups.push(groupName)
     }
     timeline.setItems( data.items.filter(item => !hiddenGroups.includes(item.group)) );
   }
@@ -86,7 +87,7 @@ export default function Index({data}) {
 
   return (
     <>
-      <div onClick={toggleGroups} id="timeline" ref={timelineRef}></div>
+      <div onClick={toggleGroups} id="timeline"></div>
 
       <div className={classes.controller}>
         <ButtonGroup
