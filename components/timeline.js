@@ -9,6 +9,7 @@ import ZoomoutIcon from '@material-ui/icons/Zoomout';
 import ChevronleftIcon from '@material-ui/icons/Chevronleft';
 import ChevronrightIcon from '@material-ui/icons/Chevronright';
 import RefreshIcon from '@material-ui/icons/Refresh';
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -80,6 +81,15 @@ export default function Index({data}) {
     }
   }
 
+  function move (percentage) {
+    const range = timeline.getWindow();
+    const interval = range.end - range.start;
+    timeline.setWindow({
+      start: range.start.valueOf() - interval * percentage,
+      end:   range.end.valueOf()   - interval * percentage
+    });
+  }
+
   function fit() {
     timeline.fit();
   }
@@ -93,15 +103,25 @@ export default function Index({data}) {
         <ButtonGroup
           disableElevation
           orientation="vertical"
-          aria-label="vertical contained button group"
+          aria-label="vertical conta  ined button group"
           variant="contained"
           size="small"
         >
-          <Button onClick={() => zoom(0.2) } className={ classes.button }><ZoominIcon fontSize="small" /></Button>
-          <Button onClick={() => zoom(-0.2)} className={ classes.button }><ZoomoutIcon fontSize="small" /></Button>
-          <Button className={ classes.button }><ChevronleftIcon fontSize="small" /></Button>
-          <Button className={ classes.button }><ChevronrightIcon fontSize="small" /></Button>
-          <Button onClick={ fit } className={ classes.button }><RefreshIcon fontSize="small" /></Button>
+          <Tooltip title="Zoom In" placement="left">
+            <Button onClick={() => zoom(0.3) } className={ classes.button }><ZoominIcon fontSize="small" /></Button>
+          </Tooltip>
+          <Tooltip title="Zoom Out" placement="left">
+            <Button onClick={() => zoom(-0.3)} className={ classes.button }><ZoomoutIcon fontSize="small" /></Button>
+          </Tooltip>
+          <Tooltip title="Move Left" placement="left">
+            <Button onClick={() => move(0.2)} className={ classes.button }><ChevronleftIcon fontSize="small" /></Button>
+          </Tooltip>
+          <Tooltip title="Move Right" placement="left">
+            <Button onClick={() => move(-0.2)} className={ classes.button }><ChevronrightIcon fontSize="small" /></Button>
+          </Tooltip>
+          <Tooltip title="Reset" placement="left">
+            <Button onClick={ fit } className={ classes.button }><RefreshIcon fontSize="small" /></Button>
+          </Tooltip>
         </ButtonGroup>
       </div>
     </>
