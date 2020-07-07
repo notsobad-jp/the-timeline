@@ -5,9 +5,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 import { auth, firestore, firebase } from '../lib/firebase.js'
-import { useAuthState } from "react-firebase-hooks/auth";
-import Login from "../components/login.js"
-import Logout from "../components/logout.js"
+// import { useAuthState } from "react-firebase-hooks/auth";
 import Header from "../components/header.js"
 import "vis-timeline/styles/vis-timeline-graph2d.css";
 import "../styles/timeline.css";
@@ -15,7 +13,7 @@ import "../styles/timeline.css";
 
 
 export default function MyApp(props) {
-  const [user, initialising, error] = useAuthState(firebase.auth());
+  // const [user, initialising, error] = useAuthState(firebase.auth());
   const { Component, pageProps } = props;
 
   React.useEffect(() => {

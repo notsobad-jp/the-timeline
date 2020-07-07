@@ -23,8 +23,6 @@ export default function Index() {
   const [user, setUser] = useState();
 
   firebase.auth().onAuthStateChanged((u) => {
-    console.log("state changed!")
-    console.log(u)
     setUser(u);
   })
 

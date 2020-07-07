@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Link from '../src/Link';
+import { useState } from 'react'
+import { auth, firestore, firebase } from '../lib/firebase.js'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,6 +24,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header(){
   const classes = useStyles();
+  const [user, setUser] = useState();
+
+  firebase.auth().onAuthStateChanged((u) => {
+    setUser(u);
+  })
 
   return (
     <div className={classes.root}>
@@ -35,7 +42,16 @@ export default function Header(){
               THE TIMELINE
             </Link>
           </Typography>
-          <Button color="inherit">Login</Button>
+
+          {(() => {
+            if (user) {
+              return user.email;
+            } else {
+              return <Button color="inherit">
+                Login
+              </Button>;
+            }
+          })()}
         </Toolbar>
       </AppBar>
     </div>

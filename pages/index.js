@@ -37,7 +37,7 @@ export default function Index({result}) {
       </Box>
       { result.map((item) => (
         <Link key={item.id} href="/timelines/[id]" as={`/timelines/${item.id}`}>
-          <a>{item.title}</a>
+          {item.title}
         </Link>
       ))}
     </Container>
