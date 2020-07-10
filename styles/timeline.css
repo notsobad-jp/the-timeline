@@ -144,12 +144,6 @@
   background: rgba(179,180,182,0.95)!important;
 }
 
-.transparent.vis-item {
-  color: #333!important;
-  border: none !important;
-  background: transparent !important;
-}
-
 
 /*****************************************************************
 * Vis.js
@@ -172,18 +166,14 @@
   cursor: pointer;
   width: 100vw;
 }
+/* Nested Groupの見出しを隠す */
+.vis-label.vis-nested-group { visibility: hidden; }
+.vis-foreground .vis-group.nesting:not(:first-child) { border-top: 1px solid #bfbfbf; }
+.vis-foreground .vis-group.nesting { border-bottom: none; }
+.vis-foreground .vis-group.nested { border: none !important; }
 
 
-/* Group単位の非表示対応 */
-/* .vis-labe.closed, .vis-group.closed {
-  height: 45px !important;
-} */
-.vis-group.closed .vis-item:not(.transparent) {
-  display: none;
-}
-
-
-.vis-foreground .vis-group, .vis-labelset .vis-label {
+.vis-foreground .vis-group {
   border-bottom: 1px dotted #ddd;
 }
 .vis-item {

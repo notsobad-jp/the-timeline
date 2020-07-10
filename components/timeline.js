@@ -45,33 +45,21 @@ export default function Index({data}) {
     const options = {
       minHeight: 300,
       order: function(a,b){ return b.start - a.start; },
-      groupOrder: function (a, b) {
-        return a.order - b.order;
-      },
+      // groupOrder: function (a, b) {
+      //   return a.order - b.order;
+      // },
       zoomable: false,
       orientation: {axis: 'both'},
       showTooltips: false,
     };
     // Create a Timeline
-    setTimeline(new Timeline(document.getElementById('timeline'), data.items, data.groups, options));
+    const items = new DataSet(data.items);  // subGroupで折りたたみできるようにDataSetを使う
+    const groups = new DataSet(data.groups);
+    setTimeline(new Timeline(document.getElementById('timeline'), items, groups, options));
 
     // TODO: unmount時にtimelineを削除する
-    return console.log("aaa");
+    return;
   }, [])
-
-
-  function toggleGroups(e) {
-    // ラベルがclickされたときのみ、groupのtoggleを実行
-    if(e.target.className != 'vis-inner') { return; }
-
-    const groupName = e.target.innerText + "0";
-    if(hiddenGroups.includes(groupName)) {
-      hiddenGroups = hiddenGroups.filter(g => g != groupName);
-    }else {
-      hiddenGroups.push(groupName)
-    }
-    timeline.setItems( data.items.filter(item => !hiddenGroups.includes(item.group)) );
-  }
 
   function zoom(percentage) {
     if(percentage > 0) {
@@ -97,7 +85,7 @@ export default function Index({data}) {
 
   return (
     <>
-      <div onClick={toggleGroups} id="timeline"></div>
+      <div id="timeline"></div>
 
       <div className={classes.controller}>
         <ButtonGroup
