@@ -49,6 +49,7 @@ export default function Index({data}) {
       zoomable: false,
       orientation: {axis: 'both'},
       tooltip: {
+        delay: 100,
         template: (item, parsedItemData) => {
           let html = `
             <h5>${item.title}</h5>
@@ -56,7 +57,7 @@ export default function Index({data}) {
           `;
           if(item.image_url){ html += `<div><img src='${item.image_url}' alt='${item.title}' /></div>`; }
           html += `<div>${item.detail}</div>`;
-          // html += `<div><a href='https://yahoo.co.jp'>yahoo</a></div>`;
+          html += `<div><a href='https://yahoo.co.jp'>yahoo</a></div>`;
           return html;
         }
       }
