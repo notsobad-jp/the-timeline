@@ -167,14 +167,10 @@
 }
 /* Nested Groupの見出しを隠す */
 .vis-label.vis-nested-group { visibility: hidden; }
-.vis-foreground .vis-group.nesting:not(:first-child) { border-top: 1px solid #bfbfbf; }
+.vis-foreground .vis-group.nesting:not(:first-child) { border-top: 1px dotted #ddd; }
 .vis-foreground .vis-group.nesting { border-bottom: none; }
 .vis-foreground .vis-group.nested { border: none !important; }
 
-
-.vis-foreground .vis-group {
-  border-bottom: 1px dotted #ddd;
-}
 .vis-item {
   opacity: 0.9;
   color: #424242;
