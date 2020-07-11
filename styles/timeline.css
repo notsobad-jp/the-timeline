@@ -150,7 +150,7 @@
 *****************************************************************/
 .vis-panel.vis-center { cursor: move; }
 .vis-item { cursor: pointer; }
-.vis-item .vis-item-overflow { overflow: visible; }
+.vis-item .vis-item-overflow { overflow: visible !important; }
 .vis-panel.vis-top, .vis-panel.vis-bottom { border-style: none !important; }
 
 /* Group見出しを透過して本体をwidth100%表示 */
@@ -180,6 +180,15 @@
 .vis-item[data-type="point"] {
   background: transparent !important;
   border: none;
+}
+
+.vis-tooltip {
+  background-color: rgba(0,0,0,0.9) !important;
+  color: #fff !important;
+  padding: 15px 20px !important;
+  max-width: 450px;
+  white-space: normal !important;
+  border: none !important;
 }
 
 /* 上部の年代見出しを固定表示 */

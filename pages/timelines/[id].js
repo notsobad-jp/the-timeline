@@ -4,9 +4,12 @@ import { sheetsToJson } from '../../lib/timeline_utils';
 import { auth, firestore, firebase } from '../../lib/firebase.js'
 
 
-export default function Index({data}) {
+export default function Index({title, data}) {
   return (
-    <Timeline data={data} />
+    <>
+      <div>{title}</div>
+      <Timeline data={data} />
+    </>
   );
 }
 
@@ -28,6 +31,7 @@ export async function getStaticProps({params}) {
 
   return {
     props: {
+      title: result.title,
       data: data
     }
   }

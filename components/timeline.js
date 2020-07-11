@@ -46,12 +46,20 @@ export default function Index({data}) {
     const options = {
       minHeight: 300,
       order: function(a,b){ return b.start - a.start; },
-      // groupOrder: function (a, b) {
-      //   return a.order - b.order;
-      // },
       zoomable: false,
       orientation: {axis: 'both'},
-      showTooltips: false,
+      tooltip: {
+        template: (item, parsedItemData) => {
+          let html = `
+            <h5>${item.title}</h5>
+            <small>${item.display_date}</small>
+          `;
+          if(item.image_url){ html += `<div><img src='${item.image_url}' alt='${item.title}' /></div>`; }
+          html += `<div>${item.detail}</div>`;
+          // html += `<div><a href='https://yahoo.co.jp'>yahoo</a></div>`;
+          return html;
+        }
+      }
     };
     // Create a Timeline
     const items = new DataSet(data.items);  // subGroupで折りたたみできるようにDataSetを使う
