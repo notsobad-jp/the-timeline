@@ -14,6 +14,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme) => ({
   controller: {
+    zIndex: 100,
     position: "fixed",
     top: 150,
     right: 30,

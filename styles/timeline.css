@@ -163,7 +163,6 @@
   white-space: nowrap;
 }
 .vis-label .vis-inner {
-  cursor: pointer;
   width: 100vw;
 }
 /* Nested Groupの見出しを隠す */
