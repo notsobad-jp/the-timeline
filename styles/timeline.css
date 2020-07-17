@@ -180,15 +180,6 @@
   border: none;
 }
 
-div.vis-tooltip {
-  background-color: rgba(0,0,0,0.9) !important;
-  color: #fff !important;
-  padding: 15px 20px !important;
-  max-width: 450px;
-  white-space: normal !important;
-  border: none !important;
-}
-
 /* 上部の年代見出しを固定表示 */
 /* .vis-panel.vis-top {
   position: fixed;
@@ -198,3 +189,13 @@ div.vis-tooltip {
   margin-top: 1px;
   border-bottom-style: solid;
 } */
+
+/* Tippy Tooltiop */
+.tippy-box {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.tippy-box img {
+  max-width: 100%;
+  max-height: 450px;
+}
