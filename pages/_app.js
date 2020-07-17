@@ -9,7 +9,7 @@ import Header from "../components/header.js"
 import "vis-timeline/styles/vis-timeline-graph2d.css";
 import "../styles/timeline.css";
 import { useRouter } from 'next/router'
-
+import 'tippy.js/dist/tippy.css'; // optional for styling
 
 
 export default function MyApp(props) {

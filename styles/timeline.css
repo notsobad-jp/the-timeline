@@ -153,7 +153,7 @@
 .vis-item .vis-item-overflow { overflow: visible !important; }
 .vis-panel.vis-top, .vis-panel.vis-bottom { border-style: none !important; }
 
-/* Group見出しを透過して本体をwidth100%表示 */
+/* Group見出しを透過する */
 .vis-panel.vis-left {
   width: 0;
   overflow: visible !important;
@@ -162,9 +162,7 @@
   overflow: visible !important;
   white-space: nowrap;
 }
-.vis-label .vis-inner {
-  width: 100vw;
-}
+
 /* Nested Groupの見出しを隠す */
 .vis-label.vis-nested-group { visibility: hidden; }
 .vis-foreground .vis-group.nesting:not(:first-child) { border-top: 1px dotted #ddd; }

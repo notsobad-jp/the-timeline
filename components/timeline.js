@@ -10,7 +10,7 @@ import ChevronleftIcon from '@material-ui/icons/Chevronleft';
 import ChevronrightIcon from '@material-ui/icons/Chevronright';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import Tooltip from '@material-ui/core/Tooltip';
-
+import tippy from 'tippy.js';
 
 const useStyles = makeStyles((theme) => ({
   controller: {
@@ -48,19 +48,14 @@ export default function Index({data}) {
       order: function(a,b){ return b.start - a.start; },
       zoomable: false,
       orientation: {axis: 'both'},
-      tooltip: {
-        delay: 100,
-        template: (item, parsedItemData) => {
-          let html = `
-            <h5>${item.title}</h5>
-            <small>${item.display_date}</small>
-          `;
-          if(item.image_url){ html += `<div><img src='${item.image_url}' alt='${item.title}' /></div>`; }
-          html += `<div>${item.detail}</div>`;
-          html += `<div><a href='https://yahoo.co.jp'>yahoo</a></div>`;
-          return html;
-        }
-      }
+      showTooltips: false,
+      dataAttributes: ['tippy-content'],
+      onInitialDrawComplete: () => {
+        tippy('[data-tippy-content]', {
+          allowHTML: true,
+          interactive: true,
+        });
+      },
     };
     // Create a Timeline
     const items = new DataSet(data.items);  // subGroupで折りたたみできるようにDataSetを使う
