@@ -101,10 +101,10 @@ export default function Index({data}) {
           size="small"
         >
           <Tooltip title="Zoom In" placement="left">
-            <Button onClick={() => zoom(0.3) } className={ classes.button }><ZoominIcon fontSize="small" /></Button>
+            <Button onClick={() => zoom(0.5) } className={ classes.button }><ZoominIcon fontSize="small" /></Button>
           </Tooltip>
           <Tooltip title="Zoom Out" placement="left">
-            <Button onClick={() => zoom(-0.3)} className={ classes.button }><ZoomoutIcon fontSize="small" /></Button>
+            <Button onClick={() => zoom(-0.5)} className={ classes.button }><ZoomoutIcon fontSize="small" /></Button>
           </Tooltip>
           <Tooltip title="Move Left" placement="left">
             <Button onClick={() => move(0.2)} className={ classes.button }><ChevronleftIcon fontSize="small" /></Button>

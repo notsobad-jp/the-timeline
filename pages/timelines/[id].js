@@ -6,10 +6,7 @@ import { auth, firestore, firebase } from '../../lib/firebase.js'
 
 export default function Index({title, data}) {
   return (
-    <>
-      <div>{title}</div>
-      <Timeline data={data} />
-    </>
+    <Timeline data={data} />
   );
 }
 

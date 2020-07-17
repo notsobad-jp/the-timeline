@@ -32,8 +32,8 @@ export default function Header(){
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
+      <AppBar position="fixed">
+        <Toolbar variant="dense">
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
@@ -54,6 +54,7 @@ export default function Header(){
           })()}
         </Toolbar>
       </AppBar>
+      <Toolbar variant="dense" />
     </div>
   );
 };

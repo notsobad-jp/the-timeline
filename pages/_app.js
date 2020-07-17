@@ -32,9 +32,7 @@ export default function MyApp(props) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        { router.pathname != '/timelines/[id]' &&
-            <Header />
-        }
+        <Header />
         <Component {...pageProps} />
       </ThemeProvider>
     </React.Fragment>

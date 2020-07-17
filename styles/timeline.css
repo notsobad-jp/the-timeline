@@ -151,7 +151,7 @@
 .vis-panel.vis-center { cursor: move; }
 .vis-item { cursor: pointer; }
 .vis-item .vis-item-overflow { overflow: visible !important; }
-.vis-panel.vis-top, .vis-panel.vis-bottom { border-style: none !important; }
+.vis-panel.vis-bottom { border-style: none !important; }
 
 /* Group見出しを透過する */
 .vis-panel.vis-left {
@@ -181,14 +181,12 @@
 }
 
 /* 上部の年代見出しを固定表示 */
-/* .vis-panel.vis-top {
+.vis-panel.vis-top {
   position: fixed;
-  top: 45px !important;
+  top: 49px !important;
   background: rgba(255, 255, 255, 0.8);
-  margin-left: 1px;
-  margin-top: 1px;
-  border-bottom-style: solid;
-} */
+  border-bottom-style: solid !important;
+}
 
 /* Tippy Tooltiop */
 .tippy-box {
