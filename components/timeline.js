@@ -12,6 +12,7 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import Tooltip from '@material-ui/core/Tooltip';
 import tippy from 'tippy.js';
 
+
 const useStyles = makeStyles((theme) => ({
   controller: {
     zIndex: 100,
@@ -57,10 +58,20 @@ export default function Index({data}) {
         });
       },
     };
+
+    // Set start & end if query exists
+    const url = new URL(location);
+    const start = parseDate(url.searchParams.get('start'));
+    if(start) { options["start"] = start; }
+    const end = parseDate(url.searchParams.get('end'));
+    if(end) { options["end"] = end; }
+
     // Create a Timeline
     const items = new DataSet(data.items);  // subGroupで折りたたみできるようにDataSetを使う
     const groups = new DataSet(data.groups);
-    setTimeline(new Timeline(document.getElementById('timeline'), items, groups, options));
+    const tl = new Timeline(document.getElementById('timeline'), items, groups, options);
+    setTimeline(tl);
+    tl.on('rangechanged', rangeChanged);
 
     // TODO: unmount時にtimelineを削除する
     return;
@@ -85,6 +96,23 @@ export default function Index({data}) {
 
   function fit() {
     timeline.fit();
+  }
+
+  function rangeChanged(e) {
+    const url = new URL(location);
+    const start = new Date(e.start).toISOString().replace(/[^0-9]/g, "").slice(0,14)
+    const end =   new Date(e.end  ).toISOString().replace(/[^0-9]/g, "").slice(0,14)
+
+    url.searchParams.set("start", start);
+    url.searchParams.set("end", end);
+    history.replaceState(null, null, url.href);
+  }
+
+  // 日付文字列をパースして、有効な日付ならDateを返す
+  function parseDate(string) {
+    if(!string || string == '') { return }
+    const date = new Date(string.replace(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/, '$1-$2-$3T$4:$5:$6'));
+    if(!isNaN(date)) { return date; }
   }
 
 
