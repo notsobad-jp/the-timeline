@@ -8,24 +8,34 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    marginTop: theme.spacing(4),
+  }
 }));
 
 export default function Index({result}) {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="lg">
-      <Typography variant="h3" component="h1" gutterBottom>
-        みんなの年表
+    <Container maxWidth="md" className={classes.container}>
+      <Typography variant="h4" component="h1" gutterBottom>
+        Search
       </Typography>
-      { result.map((item) => (
-        <Link key={item.id} href="/timelines/[id]" as={`/timelines/${item.id}`}>
-          {item.title}
-        </Link>
-      ))}
+
+      <List component="nav">
+        { result.map((item) => (
+          <ListItem button component="a" href={`/timelines/${item.id}`} key={item.id}>
+            <ListItemText primary={item.title} />
+          </ListItem>
+        ))}
+      </List>
     </Container>
   );
 }
