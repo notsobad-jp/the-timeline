@@ -12,6 +12,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import IconButton from '@material-ui/core/IconButton';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,10 +33,24 @@ export default function Index({result}) {
         Search
       </Typography>
 
+      <Tabs
+        value={0}
+        indicatorColor="primary"
+        textColor="primary"
+      >
+        <Tab label="Latest" disabled />
+        <Tab label="v1（旧バージョン）" component="a" href="/timelines/v1" />
+      </Tabs>
+
       <List component="nav">
         { result.map((item) => (
-          <ListItem button component="a" href={`/timelines/${item.id}`} key={item.id}>
-            <ListItemText primary={item.title} />
+          <ListItem button divider component="a" href={`/timelines/${item.id}`} key={item.id}>
+            <ListItemText primary={item.title} secondary={item.createdAt} />
+            <ListItemSecondaryAction>
+              <IconButton edge="end" aria-label="delete">
+                <ChevronRightIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
           </ListItem>
         ))}
       </List>
@@ -49,7 +67,10 @@ export async function getServerSideProps(context) {
         snapshot.forEach(doc => {
           data.push(Object.assign({
             id: doc.id
-          }, {title: doc.data().title}))
+          }, {
+            title: doc.data().title,
+            createdAt: doc.data().createdAt.toDate().toISOString().slice(0,10),
+          }))
         })
         resolve(data)
       }).catch(error => {

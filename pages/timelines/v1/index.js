@@ -12,7 +12,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Paper from '@material-ui/core/Paper';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import IconButton from '@material-ui/core/IconButton';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,15 +33,27 @@ export default function Index({result}) {
         Search
       </Typography>
 
-      <Paper>
-        <List component="nav">
-          { result.map((item) => (
-            <ListItem button divider component="a" href={`/timelines/${item.id}`} key={item.id}>
-              <ListItemText primary={item.title} />
-            </ListItem>
-          ))}
-        </List>
-      </Paper>
+      <Tabs
+        value={1}
+        indicatorColor="primary"
+        textColor="primary"
+      >
+        <Tab label="Latest" component="a" href="/timelines" />
+        <Tab label="v1（旧バージョン）" disabled />
+      </Tabs>
+
+      <List component="nav">
+        { result.map((item) => (
+          <ListItem button divider component="a" href={`https://the-timeline.jp/timelines/${item.gid}`} target="_blank" rel="noopener" key={item.id}>
+            <ListItemText primary={item.title} secondary={item.createdAt} />
+            <ListItemSecondaryAction>
+              <IconButton edge="end" aria-label="delete">
+                <ChevronRightIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+        ))}
+      </List>
     </Container>
   );
 }
@@ -52,7 +67,11 @@ export async function getServerSideProps(context) {
         snapshot.forEach(doc => {
           data.push(Object.assign({
             id: doc.id
-          }, {title: doc.data().title}))
+          }, {
+            title: doc.data().title,
+            createdAt: doc.data().createdAt.toDate().toISOString().slice(0,10),
+            gid: doc.data().gid,
+          }))
         })
         resolve(data)
       }).catch(error => {
