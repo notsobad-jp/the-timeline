@@ -16,11 +16,16 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Pagination from '@material-ui/lab/Pagination';
 
 
 const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(10),
+  },
+  pagination: {
+    marginTop: theme.spacing(2)
   }
 }));
 
@@ -54,6 +59,8 @@ export default function Index({result}) {
           </ListItem>
         ))}
       </List>
+
+      <Pagination className={classes.pagination} count={10} color="primary" />
     </Container>
   );
 }
@@ -61,7 +68,7 @@ export default function Index({result}) {
 
 export async function getServerSideProps(context) {
   const result = await new Promise((resolve, reject) => {
-    firestore.collection('timelines').limit(10).get()
+    firestore.collection('timelines').orderBy('createdAt', 'desc').limit(10).get()
       .then(snapshot => {
         let data = []
         snapshot.forEach(doc => {
