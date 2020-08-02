@@ -10,6 +10,7 @@ import Icon from '@material-ui/core/Icon';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
+import { useRouter } from 'next/router'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,9 +24,27 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewTimeline() {
   const classes = useStyles();
+  const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const titleField = document.getElementById('titleField');
+    const urlField = document.getElementById('urlField');
+
+    //TODO: URLが読み取れるかチェック
+
+    firestore.collection("v2").add({
+      title: titleField.value,
+      sources: [urlField.value],
+      createdAt: new Date(),
+    })
+    .then(function(docRef) {
+      router.push(`/timelines/${docRef.id}`);
+    })
+    .catch(function(error) {
+      console.log(error);
+      alert("Error! Failed on saving data.")
+    });
   }
 
   return (
@@ -35,8 +54,8 @@ export default function NewTimeline() {
       </Typography>
 
       <form onSubmit={handleSubmit}>
-        <TextField id="title" label="タイトル" fullWidth variant="outlined" className={classes.input} />
-        <TextField id="url" label="スプレッドシートの公開URL" fullWidth variant="outlined" className={classes.input} />
+        <TextField id="titleField" required label="タイトル" fullWidth variant="outlined" className={classes.input} />
+        <TextField id="urlField" required type="url" label="スプレッドシートの公開URL" fullWidth variant="outlined" className={classes.input} />
         <Button type="submit" variant="contained" size="large" color="secondary">Create</Button>
       </form>
     </Container>
