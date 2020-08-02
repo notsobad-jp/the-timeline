@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Index({result}) {
+export default function Index() {
   const classes = useStyles();
 
   return (
@@ -30,40 +30,11 @@ export default function Index({result}) {
           簡単・便利な無料の年表作成サービスです。
         </Typography>
         <div>
-          <Button variant="contained" color="secondary" size="large" className={classes.button} endIcon={<ChevronRightIcon />}>
+          <Button href="/timelines/new" variant="contained" color="secondary" size="large" className={classes.button} endIcon={<ChevronRightIcon />}>
             年表を作る
           </Button>
         </div>
       </Box>
-      { result.map((item) => (
-        <Link key={item.id} href="/timelines/[id]" as={`/timelines/${item.id}`}>
-          {item.title}
-        </Link>
-      ))}
     </Container>
   );
-}
-
-
-export async function getServerSideProps(context) {
-  const result = await new Promise((resolve, reject) => {
-    firestore.collection('v2').limit(10).get()
-      .then(snapshot => {
-        let data = []
-        snapshot.forEach(doc => {
-          data.push(Object.assign({
-            id: doc.id
-          }, {title: doc.data().title}))
-        })
-        resolve(data)
-      }).catch(error => {
-        reject([])
-      })
-  })
-
-  return {
-    props: {
-      result: result
-    }
-  }
 }
