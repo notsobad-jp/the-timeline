@@ -11,6 +11,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import { useRouter } from 'next/router'
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -25,9 +27,15 @@ const useStyles = makeStyles((theme) => ({
 export default function NewTimeline() {
   const classes = useStyles();
   const router = useRouter();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setOpen(true);
     const titleField = document.getElementById('titleField');
     const urlField = document.getElementById('urlField');
 
@@ -35,6 +43,7 @@ export default function NewTimeline() {
     const url = urlField.value.match(/https:\/\/docs\.google\.com\/spreadsheets\/d\/e\/.+\/pubhtml/g);
     if(!url) {
       alert("[Error] URL形式が異なっています。スプレッドシートのウェブ公開URLが正しく入力されていることをご確認ください。");
+      setOpen(false);
       return;
     }
 
@@ -54,6 +63,8 @@ export default function NewTimeline() {
       });
     }).catch(error => {
       alert("[Error] スプレッドシートの読み込みに失敗しました。シートがウェブに公開されていることをご確認ください。");
+    }).finally(() => {
+      setOpen(false);
     });
   }
 
@@ -68,6 +79,10 @@ export default function NewTimeline() {
         <TextField id="urlField" required type="url" label="スプレッドシートの公開URL" fullWidth variant="outlined" className={classes.input} />
         <Button type="submit" variant="contained" size="large" color="secondary">Create</Button>
       </form>
+
+      <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </Container>
   );
 }
