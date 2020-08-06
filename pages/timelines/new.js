@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -13,7 +13,7 @@ import TextField from '@material-ui/core/TextField';
 import { useRouter } from 'next/router'
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import { TitleContext } from '../_app';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -28,6 +28,12 @@ export default function NewTimeline() {
   const classes = useStyles();
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
+  const [title, setTitle] = useContext(TitleContext);
+
+  useEffect(() => {
+    setTitle('Create');
+    return () => setTitle(title);
+  }, []);
 
   const handleClose = () => {
     setOpen(false);

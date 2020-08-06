@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -16,6 +16,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { TitleContext } from '../_app';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,13 +27,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Index({result}) {
   const classes = useStyles();
+  const [title, setTitle] = useContext(TitleContext);
+
+  useEffect(() => {
+    setTitle('Search');
+    return () => setTitle(title);
+  }, []);
 
   return (
     <Container maxWidth="md" className={classes.container}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Search
-      </Typography>
-
       <Tabs
         value={0}
         indicatorColor="primary"
