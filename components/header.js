@@ -23,6 +23,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { useRouter } from 'next/router'
+import Snackbar from '@material-ui/core/Snackbar';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,6 +49,7 @@ export default function Header(){
   const [drawerOpened, setDrawerOpened] = useState(false);
   const [title, setTitle] = useContext(TitleContext);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   firebase.auth().onAuthStateChanged((u) => {
     setUser(u);
@@ -101,7 +104,7 @@ export default function Header(){
                     open={Boolean(anchorEl)}
                     onClose={handleAccountMenuClose}
                   >
-                    <MenuItem onClick={handleAccountMenuClose}>Mypage</MenuItem>
+                    <MenuItem onClick={()=>{ setSnackbarOpen(true); }}>Mypage</MenuItem>
                     <MenuItem onClick={logout}>Logout</MenuItem>
                   </Menu>
                 </>
@@ -136,13 +139,31 @@ export default function Header(){
               <ListItemIcon><AccountCircle /></ListItemIcon>
               <ListItemText primary="Mypage" />
             </ListItem>
-            <ListItem button component="a" href="/logout" key="logout">
+            <ListItem button component="a" onClick={ logout } >
               <ListItemIcon><ExitToAppIcon /></ListItemIcon>
               <ListItemText primary="Logout" />
             </ListItem>
           </List>
         </div>
       </Drawer>
+
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={snackbarOpen}
+        autoHideDuration={5000}
+        onClose={()=>{ setSnackbarOpen(false); }}
+        message="Logout successfully."
+        action={
+          <React.Fragment>
+            <IconButton size="small" aria-label="close" color="inherit" onClick={()=>{ setSnackbarOpen(false); }}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </React.Fragment>
+        }
+      />
     </div>
   );
 };
