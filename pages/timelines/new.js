@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -13,7 +13,8 @@ import TextField from '@material-ui/core/TextField';
 import { useRouter } from 'next/router'
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { TitleContext } from '../_app';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -28,12 +29,8 @@ export default function NewTimeline() {
   const classes = useStyles();
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
-  const [title, setTitle] = useContext(TitleContext);
-
-  useEffect(() => {
-    setTitle('Create');
-    return () => setTitle(title);
-  }, []);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleClose = () => {
     setOpen(false);
@@ -77,13 +74,13 @@ export default function NewTimeline() {
   return (
     <Container maxWidth="md" className={classes.container}>
       <Typography variant="h4" component="h1" gutterBottom>
-        New Timeline
+        Create Timeline
       </Typography>
 
       <form onSubmit={handleSubmit}>
-        <TextField id="titleField" required label="タイトル" fullWidth variant="outlined" className={classes.input} />
-        <TextField id="urlField" required type="url" label="スプレッドシートの公開URL" fullWidth variant="outlined" className={classes.input} />
-        <Button type="submit" variant="contained" size="large" color="secondary">Create</Button>
+        <TextField id="titleField" required label="タイトル" fullWidth className={classes.input} />
+        <TextField id="urlField" required type="url" label="スプレッドシートの公開URL" fullWidth className={classes.input} />
+        <Button type="submit" variant="contained" fullWidth={ isMobile } size="large" color="secondary">Create</Button>
       </form>
 
       <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>

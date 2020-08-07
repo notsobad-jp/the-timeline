@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { TitleContext } from '../pages/_app';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -47,7 +46,6 @@ export default function Header(){
   const router = useRouter();
   const [user, setUser] = useState();
   const [drawerOpened, setDrawerOpened] = useState(false);
-  const [title, setTitle] = useContext(TitleContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
@@ -68,6 +66,7 @@ export default function Header(){
 
   const logout = () => {
     firebase.auth().signOut().then(function() {
+      setSnackbarOpen(true);
       router.push(`/login`);
     });
   };
@@ -81,7 +80,7 @@ export default function Header(){
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="h1" className={classes.title}>
-            { title }
+            THE TIMELINE
           </Typography>
 
           {(() => {
