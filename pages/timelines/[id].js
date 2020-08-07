@@ -2,11 +2,23 @@ import React from 'react';
 import Timeline from '../../components/timeline';
 import { sheetsToJson } from '../../lib/timeline_utils';
 import { auth, firestore, firebase } from '../../lib/firebase.js'
+import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 
 
 export default function Index({title, data}) {
   return (
-    <Timeline data={data} />
+    <>
+      { data.items.length == 0 &&
+        <Snackbar open={true} anchorOrigin={{horizontal: "left", vertical: "bottom"}}>
+          <Alert severity="error">
+            データを読み込めませんでした。シートがWebに公開されていることをご確認ください。
+          </Alert>
+        </Snackbar>
+      }
+
+      <Timeline data={data} />
+    </>
   );
 }
 
