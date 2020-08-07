@@ -20,6 +20,9 @@ import HomeIcon from '@material-ui/icons/Home';
 import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from '@material-ui/icons/Add';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { useRouter } from 'next/router'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,23 +42,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header(){
   const classes = useStyles();
+  const router = useRouter();
   const [user, setUser] = useState();
   const [drawerOpened, setDrawerOpened] = useState(false);
   const [title, setTitle] = useContext(TitleContext);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   firebase.auth().onAuthStateChanged((u) => {
     setUser(u);
   })
 
-  const handleMenu = (event) => {
-    // setAnchorEl(event.currentTarget);
+  const handleAccountMenuClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleAccountMenuClose = () => {
+    setAnchorEl(null);
   };
 
   const toggleDrawer = (open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      // return;
-    }
     setDrawerOpened(open);
+  };
+
+  const logout = () => {
+    firebase.auth().signOut().then(function() {
+      router.push(`/login`);
+    });
   };
 
 
@@ -70,23 +81,33 @@ export default function Header(){
             { title }
           </Typography>
 
-          <IconButton
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleMenu}
-            color="inherit"
-          >
-            <AccountCircle />
-          </IconButton>
-
           {(() => {
             if (user) {
-              return user.email;
+              return(
+                <>
+                  <IconButton
+                    aria-label="account of current user"
+                    color="inherit"
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    onClick={handleAccountMenuClick}
+                  >
+                    <AccountCircle />
+                  </IconButton>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleAccountMenuClose}
+                  >
+                    <MenuItem onClick={handleAccountMenuClose}>Mypage</MenuItem>
+                    <MenuItem onClick={logout}>Logout</MenuItem>
+                  </Menu>
+                </>
+              );
             } else {
-              return <Button color="inherit">
-                Login
-              </Button>;
+              return <Link color="inherit" href="/login">Login</Link>
             }
           })()}
         </Toolbar>
