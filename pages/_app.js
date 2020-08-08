@@ -36,7 +36,11 @@ export default function MyApp(props) {
       <ThemeProvider theme={theme}>
         <TitleContext.Provider value={[title, setTitle]}>
           <CssBaseline />
-          <Header />
+          {(() => {
+            if(router.pathname != "/timelines/[id]") {
+              return <Header />;
+            }
+          })()}
           <Component {...pageProps} />
         </TitleContext.Provider>
       </ThemeProvider>

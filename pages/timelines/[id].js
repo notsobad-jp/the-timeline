@@ -1,5 +1,6 @@
 import React from 'react';
 import Timeline from '../../components/timeline';
+import TimelineHeader from '../../components/timelineHeader';
 import { sheetsToJson } from '../../lib/timeline_utils';
 import { auth, firestore, firebase } from '../../lib/firebase.js'
 import Alert from '@material-ui/lab/Alert';
@@ -9,6 +10,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 export default function Index({title, data}) {
   return (
     <>
+      <TimelineHeader title={title} />
+
       { data.items.length == 0 &&
         <Snackbar open={true} anchorOrigin={{horizontal: "left", vertical: "bottom"}}>
           <Alert severity="error">

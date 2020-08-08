@@ -5,7 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 import Link from '../src/Link';
 import { auth, firestore, firebase } from '../lib/firebase.js'
 import Drawer from '@material-ui/core/Drawer';
@@ -25,17 +24,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { useRouter } from 'next/router'
 import Snackbar from '@material-ui/core/Snackbar';
 import CloseIcon from '@material-ui/icons/Close';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Tooltip from '@material-ui/core/Tooltip';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  logoIcon: {
-    marginRight: theme.spacing(1),
-    verticalAlign: 'text-bottom',
+  menuButton: {
+    marginRight: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
@@ -43,26 +39,34 @@ const useStyles = makeStyles((theme) => ({
   list: {
     width: 250,
   },
-  divider: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-  },
 }));
 
-export default function Header(){
+export default function TimelineHeader({title}){
   const classes = useStyles();
   const router = useRouter();
   const [user, setUser] = useState();
   const [drawerOpened, setDrawerOpened] = useState(false);
-  const [snackbarOpened, setSnackbarOpened] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   firebase.auth().onAuthStateChanged((u) => {
     setUser(u);
   })
 
+  const handleAccountMenuClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleAccountMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const toggleDrawer = (open) => (event) => {
+    setDrawerOpened(open);
+  };
+
   const logout = () => {
     firebase.auth().signOut().then(function() {
-      setsnackbarOpened(true);
+      setSnackbarOpen(true);
       router.push(`/login`);
     });
   };
@@ -71,43 +75,21 @@ export default function Header(){
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="h1" className={classes.title}>
-            <Link href="/" color="inherit">
-              <FormatAlignLeftIcon className={classes.logoIcon} />
-              THE TIMELINE
-            </Link>
-          </Typography>
-
-          {(() => {
-            if (user) {
-              return(
-                <Tooltip title={user.email} aria-label={user.email}>
-                  <IconButton
-                    aria-label="account of current user"
-                    color="inherit"
-                    href="mypage"
-                  >
-                    <AccountCircle />
-                  </IconButton>
-                </Tooltip>
-              );
-            } else {
-              return <Link color="inherit" href="/login">Login</Link>
-            }
-          })()}
-
-          <IconButton onClick={()=>{ setDrawerOpened(true) }} edge="end" color="inherit" aria-label="menu">
-            <MoreVertIcon />
+        <Toolbar variant="dense">
+          <IconButton onClick={toggleDrawer(true)} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
           </IconButton>
+          <Typography variant="h6" component="h1" className={classes.title}>
+            { title }
+          </Typography>
         </Toolbar>
       </AppBar>
 
-      <Drawer anchor="right" open={drawerOpened} onClose={()=>{ setDrawerOpened(false) }}>
+      <Drawer anchor="left" open={drawerOpened} onClose={toggleDrawer(false)}>
         <div
           role="presentation"
-          onClick={()=>{ setDrawerOpened(false) }}
-          onKeyDown={()=>{ setDrawerOpened(false) }}
+          onClick={toggleDrawer(false)}
+          onKeyDown={toggleDrawer(false)}
         >
           <List className={classes.list}>
             <ListItem button component="a" href="/">
@@ -122,7 +104,6 @@ export default function Header(){
               <ListItemIcon><AddIcon /></ListItemIcon>
               <ListItemText primary="Create" />
             </ListItem>
-            <Divider className={classes.divider} />
             {(() => {
               if (user) {
                 return(
@@ -155,13 +136,13 @@ export default function Header(){
           vertical: 'bottom',
           horizontal: 'left',
         }}
-        open={snackbarOpened}
+        open={snackbarOpen}
         autoHideDuration={5000}
-        onClose={()=>{ setsnackbarOpened(false); }}
+        onClose={()=>{ setSnackbarOpen(false); }}
         message="Logout successfully."
         action={
           <React.Fragment>
-            <IconButton size="small" aria-label="close" color="inherit" onClick={()=>{ setsnackbarOpened(false); }}>
+            <IconButton size="small" aria-label="close" color="inherit" onClick={()=>{ setSnackbarOpen(false); }}>
               <CloseIcon fontSize="small" />
             </IconButton>
           </React.Fragment>
