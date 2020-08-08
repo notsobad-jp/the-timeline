@@ -7,10 +7,10 @@ import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 
 
-export default function Index({title, data}) {
+export default function Index({title, sourceUrl, data}) {
   return (
     <>
-      <TimelineHeader title={title} />
+      <TimelineHeader title={title} sourceUrl={sourceUrl} />
 
       { data.items.length == 0 &&
         <Snackbar open={true} anchorOrigin={{horizontal: "left", vertical: "bottom"}}>
@@ -44,7 +44,8 @@ export async function getStaticProps({params}) {
   return {
     props: {
       title: result.title,
-      data: data
+      sourceUrl: result.sources[0].replace('pub?output=csv', 'pubhtml'),
+      data: data,
     }
   }
 }
