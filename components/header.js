@@ -122,26 +122,41 @@ export default function Header(){
           onKeyDown={toggleDrawer(false)}
         >
           <List className={classes.list}>
-            <ListItem button component="a" href="/" key="home">
+            <ListItem button component="a" href="/">
               <ListItemIcon><HomeIcon /></ListItemIcon>
               <ListItemText primary="Home" />
             </ListItem>
-            <ListItem button component="a" href="/timelines" key="search">
+            <ListItem button component="a" href="/timelines">
               <ListItemIcon><SearchIcon /></ListItemIcon>
               <ListItemText primary="Search" />
             </ListItem>
-            <ListItem button component="a" href="/timelines/new" key="create">
+            <ListItem button component="a" href="/timelines/new">
               <ListItemIcon><AddIcon /></ListItemIcon>
               <ListItemText primary="Create" />
             </ListItem>
-            <ListItem button component="a" href="/mypage" key="mypage">
-              <ListItemIcon><AccountCircle /></ListItemIcon>
-              <ListItemText primary="Mypage" />
-            </ListItem>
-            <ListItem button component="a" onClick={ logout } >
-              <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-              <ListItemText primary="Logout" />
-            </ListItem>
+            {(() => {
+              if (user) {
+                return(
+                  <>
+                    <ListItem button component="a" href="/mypage">
+                      <ListItemIcon><AccountCircle /></ListItemIcon>
+                      <ListItemText primary="Mypage" />
+                    </ListItem>
+                    <ListItem button component="a" onClick={ logout } >
+                      <ListItemIcon><ExitToAppIcon /></ListItemIcon>
+                      <ListItemText primary="Logout" />
+                    </ListItem>
+                  </>
+                );
+              } else {
+                return(
+                  <ListItem button component="a" href="/login">
+                    <ListItemIcon><ExitToAppIcon /></ListItemIcon>
+                    <ListItemText primary="Login" />
+                  </ListItem>
+                );
+              }
+            })()}
           </List>
         </div>
       </Drawer>
