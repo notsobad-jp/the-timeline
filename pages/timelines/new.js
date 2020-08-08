@@ -39,29 +39,32 @@ export default function NewTimeline() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setOpen(true);
-    const titleField = document.getElementById('titleField');
     const urlField = document.getElementById('urlField');
 
     // URLがスプレッドシートの形式になっていることを確認
-    const url = urlField.value.match(/https:\/\/docs\.google\.com\/spreadsheets\/d\/e\/.+\/pubhtml/g);
-    if(!url) {
+    const { 0: url, 1: gid } = urlField.value.match(/https:\/\/docs\.google\.com\/spreadsheets\/d\/e\/(.+)\/pubhtml/);
+    if(!url || !gid) {
       alert("[Error] URL形式が異なっています。スプレッドシートのウェブ公開URLが正しく入力されていることをご確認ください。");
       setOpen(false);
       return;
     }
 
     // スプレッドシートが公開されていることを確認
-    fetch(url, { method: 'HEAD' }).then(res => {
+    fetch(url).then(res => {
+      return res.text();
+    }).then(body => {
+      const title = body.match(/<title>(.*)<\/title>/)[1].replace(/ - Google ドライブ/, "");
       // 公開されていればFirestoreに保存
-      firestore.collection("v2").add({
-        title: titleField.value,
-        sources: [url[0].replace('pubhtml', 'pub?output=csv')],
+      firestore.collection("v2").doc(gid).set({
+        title: title,
+        sources: [url.replace('pubhtml', 'pub?output=csv')],
         createdAt: new Date(),
       })
-      .then(function(docRef) {
-        router.push(`/timelines/${docRef.id}`);
+      .then(docRef => {
+        router.push(`/timelines/${gid}`);
       })
-      .catch(function(error) {
+      .catch(error => {
+        console.log(error);
         alert("[Error] データの保存に失敗しました。しばらくしてから再度お試しください。");
       });
     }).catch(error => {
@@ -78,7 +81,6 @@ export default function NewTimeline() {
       </Typography>
 
       <form onSubmit={handleSubmit}>
-        <TextField id="titleField" required label="タイトル" fullWidth className={classes.input} />
         <TextField id="urlField" required type="url" label="スプレッドシートの公開URL" fullWidth className={classes.input} />
         <Button type="submit" variant="contained" fullWidth={ isMobile } size="large" color="secondary">Create</Button>
       </form>
