@@ -6,10 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 import { auth, firestore, firebase } from '../lib/firebase.js'
 import Header from "../components/header.js"
-import "vis-timeline/styles/vis-timeline-graph2d.css";
-import "../styles/timeline.css";
 import { useRouter } from 'next/router'
-import 'tippy.js/dist/tippy.css'; // optional for styling
 
 
 export const TitleContext = createContext(["", () => {}]);
@@ -26,7 +23,6 @@ export default function MyApp(props) {
   }, []);
 
   const router = useRouter()
-  const [title, setTitle] = useState("THE TIMELINE");
 
   return (
     <React.Fragment>
@@ -34,15 +30,9 @@ export default function MyApp(props) {
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
-        <TitleContext.Provider value={[title, setTitle]}>
-          <CssBaseline />
-          {(() => {
-            if(router.pathname != "/timelines/[id]") {
-              return <Header />;
-            }
-          })()}
-          <Component {...pageProps} />
-        </TitleContext.Provider>
+        <CssBaseline />
+        <Header />
+        <Component {...pageProps} />
       </ThemeProvider>
     </React.Fragment>
   );
