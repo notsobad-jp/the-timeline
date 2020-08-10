@@ -1,0 +1,201 @@
+/* purgecss start ignore */
+/*****************************************************************
+* Color Palatte
+*****************************************************************/
+.red.vis-group .vis-item {
+  color: #DB2828;
+  border-color: #DB2828;
+  background: rgba(255, 207, 207, 0.9);
+}
+.orange.vis-group .vis-item {
+  color: #F2711C;
+  border-color: #F2711C;
+  background: rgba(255, 229, 211, 0.9);
+}
+.yellow.vis-group .vis-item {
+  color: #d87e04;
+  border-color: #eaae00;
+  background: rgba(253, 235, 181, 0.9);;
+}
+.olive.vis-group .vis-item {
+  color: #7a8a0b;
+  border-color: #B5CC18;
+  background: rgba(237, 246, 177, 0.9);
+}
+.green.vis-group .vis-item {
+  color: #119f32;
+  border-color: #21BA45;
+  background: rgba(207, 246, 216, 0.9);
+}
+.teal.vis-group .vis-item {
+  color: #00B5AD;
+  border-color: #00B5AD;
+  background: rgba(213,247,245,0.9);
+}
+.blue.vis-group .vis-item {
+  color: #2185D0;
+  border-color: #2185D0;
+  background: rgba(212,235,253,0.9);
+}
+.violet.vis-group .vis-item {
+  color: #6435C9;
+  border-color: #6435C9;
+  background: rgba(222,209,251,0.9);
+}
+.purple.vis-group .vis-item {
+  color: #A333C8;
+  border-color: #A333C8;
+  background: rgba(241,211,251,0.9);
+}
+.pink.vis-group .vis-item {
+  color: #E03997;
+  border-color: #E03997;
+  background: rgba(224, 57, 57, 0.2);
+}
+.pink.vis-group .vis-item {
+  color: #E03997;
+  border-color: #E03997;
+  background: rgba(253,218,238,0.9);
+}
+.brown.vis-group .vis-item {
+  color: #A5673F;
+  border-color: #A5673F;
+  background: rgba(239,213,196,0.9);
+}
+.grey.vis-group .vis-item {
+  color: #5a5959;
+  border-color: #767676;
+  background: rgba(230,222,222,0.9);
+}
+.black.vis-group .vis-item {
+  color: #1B1C1D;
+  border-color: #1B1C1D;
+  background: rgba(179,180,182,0.95);
+}
+
+
+.red.vis-item {
+  color: #DB2828!important;
+  border-color: #DB2828!important;
+  background: rgba(255, 207, 207, 0.9)!important;
+}
+.orange.vis-item {
+  color: #F2711C!important;
+  border-color: #F2711C!important;
+  background: rgba(255, 229, 211, 0.9)!important;
+}
+.yellow.vis-item {
+  color: #d87e04!important;
+  border-color: #eaae00!important;
+  background: rgba(253, 235, 181, 0.9)!important;
+}
+.olive.vis-item {
+  color: #7a8a0b!important;
+  border-color: #B5CC18!important;
+  background: rgba(237, 246, 177, 0.9)!important;
+}
+.green.vis-item {
+  color: #119f32!important;
+  border-color: #21BA45!important;
+  background: rgba(207, 246, 216, 0.9)!important;
+}
+.teal.vis-item {
+  color: #00B5AD!important;
+  border-color: #00B5AD!important;
+  background: rgba(213,247,245,0.9)!important;
+}
+.blue.vis-item {
+  color: #2185D0!important;
+  border-color: #2185D0!important;
+  background: rgba(212,235,253,0.9)!important;
+}
+.violet.vis-item {
+  color: #6435C9!important;
+  border-color: #6435C9!important;
+  background: rgba(222,209,251,0.9)!important;
+}
+.purple.vis-item {
+  color: #A333C8!important;
+  border-color: #A333C8!important;
+  background: rgba(241,211,251,0.9)!important;
+}
+.pink.vis-item {
+  color: #E03997!important;
+  border-color: #E03997!important;
+  background: rgba(224, 57, 57, 0.2)!important;
+}
+.pink.vis-item {
+  color: #E03997!important;
+  border-color: #E03997!important;
+  background: rgba(253,218,238,0.9)!important;
+}
+.brown.vis-item {
+  color: #A5673F!important;
+  border-color: #A5673F!important;
+  background: rgba(239,213,196,0.9)!important;
+}
+.grey.vis-item {
+  color: #5a5959!important;
+  border-color: #767676!important;
+  background: rgba(230,222,222,0.9)!important;
+}
+.black.vis-item {
+  color: #1B1C1D!important;
+  border-color: #1B1C1D!important;
+  background: rgba(179,180,182,0.95)!important;
+}
+
+
+/*****************************************************************
+* Vis.js
+*****************************************************************/
+.vis-panel.vis-center { cursor: move; }
+.vis-item { cursor: pointer; }
+.vis-item .vis-item-overflow { overflow: visible !important; }
+.vis-panel.vis-bottom { border-style: none !important; }
+
+/* Group見出しを透過する */
+.vis-panel.vis-left {
+  width: 0;
+  overflow: visible !important;
+}
+.vis-labelset {
+  overflow: visible !important;
+  white-space: nowrap;
+}
+
+/* Nested Groupの見出しを隠す */
+.vis-label.vis-nested-group { visibility: hidden; }
+.vis-foreground .vis-group.nesting:not(:first-child) { border-top: 1px dotted #ddd; }
+.vis-foreground .vis-group.nesting { border-bottom: none; }
+.vis-foreground .vis-group.nested { border: none !important; }
+
+.vis-item {
+  opacity: 0.9;
+  color: #424242;
+  background: #F5F5F5;
+  border-color: #424242;
+}
+.vis-item[data-type="point"] {
+  background: transparent !important;
+  border: none;
+}
+
+/* 上部の年代見出しを固定表示 */
+.vis-panel.vis-top {
+  position: fixed;
+  top: 42px !important;
+  background: #fff;
+  border-bottom-style: solid !important;
+}
+
+/* Tippy Tooltiop */
+.tippy-box {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.tippy-box img {
+  max-width: 100%;
+  max-height: 450px;
+}
+/* purgecss end ignore */
