@@ -1,5 +1,10 @@
 {
   "version": 2,
+  "build": {
+    "env": {
+      "BUILDING_FOR_NOW": "true"
+    }
+  },
   "builds": [
     { "src": "app/package.json", "use": "@now/next" },
     { "src": "web/package.json", "use": "@now/next" }
@@ -9,4 +14,3 @@
     { "src": "(.*)", "dest": "web$1" }
   ]
 }
-
