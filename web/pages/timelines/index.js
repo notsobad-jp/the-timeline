@@ -20,8 +20,10 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CloseIcon from '@material-ui/icons/Close';
+import SyncIcon from '@material-ui/icons/Sync';
 import Tooltip from '@material-ui/core/Tooltip';
 import Snackbar from '@material-ui/core/Snackbar';
+import { getTitleFromSheet } from '../../lib/utils.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -56,6 +58,23 @@ export default function Index({result}) {
     });
   }
 
+  const syncTitle = async (id) => {
+    try {
+      const title = await getTitleFromSheet(id);
+      firestore.collection('v2').doc(id).update({title: title}).then(function() {
+        items.find(i => i.id == id).title = title;
+        setItems(items);
+        setSnackbar({open: true, message: 'The title was updated.'});
+      }).catch(function(error) {
+        console.error("Error updating document: ", error);
+        setSnackbar({open: true, message: 'Failed to update the title... Please try again later.'});
+      });
+    } catch(e) {
+      console.log(e);
+      setSnackbar({open: true, message: e});
+    }
+  }
+
   return (
     <Container maxWidth="md" className={classes.container}>
       <Typography variant="h4" component="h1" gutterBottom>
@@ -76,6 +95,11 @@ export default function Index({result}) {
           <ListItem button divider component="a" href={`/timelines/${item.id}`} key={item.id}>
             <ListItemText primary={item.title} secondary={item.createdAt} />
             <ListItemSecondaryAction>
+              <Tooltip title="Sync Title" aria-label="Sync Title">
+                <IconButton edge="start" aria-label="sync-title" onClick={()=>{syncTitle(item.id)}}>
+                  <SyncIcon />
+                </IconButton>
+              </Tooltip>
               <Tooltip title="Delete" aria-label="Delete">
                 <IconButton edge="end" aria-label="delete" onClick={()=>{deleteTimeline(item.id)}}>
                   <DeleteIcon />
@@ -101,6 +125,7 @@ export default function Index({result}) {
         autoHideDuration={5000}
         onClose={()=>{ setSnackbar({open: false, message: ''}); }}
         message={snackbar.message}
+        severity="success"
         action={
           <React.Fragment>
             <IconButton size="small" aria-label="close" color="inherit" onClick={()=>{ setSnackbar({open: false, message: ''}); }}>
