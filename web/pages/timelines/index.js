@@ -141,7 +141,7 @@ export default function Index({result}) {
 
 export async function getServerSideProps(context) {
   const result = await new Promise((resolve, reject) => {
-    firestore.collection('v2').limit(10).get()
+    firestore.collection('v2').orderBy('createdAt', 'desc').limit(10).get()
       .then(snapshot => {
         let data = []
         snapshot.forEach(doc => {

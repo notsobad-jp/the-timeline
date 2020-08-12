@@ -31,10 +31,15 @@ export default function NewTimeline() {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [user, setUser] = useState();
 
   const handleClose = () => {
     setOpen(false);
   };
+
+  firebase.auth().onAuthStateChanged((u) => {
+    setUser(u);
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,6 +54,13 @@ export default function NewTimeline() {
       return;
     }
 
+    // ログイン状態であることを確認
+    if(!user) {
+      alert("[Error] ログインしてください");
+      setOpen(false);
+      return;
+    }
+
     // スプレッドシートが公開されていることを確認
     fetch(url).then(res => {
       return res.text();
@@ -59,6 +71,7 @@ export default function NewTimeline() {
         title: title,
         sources: [url.replace('pubhtml', 'pub?output=csv')],
         createdAt: new Date(),
+        userId: user.uid,
       })
       .then(docRef => {
         router.push(`/timelines/${gid}`);
