@@ -30,13 +30,33 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Index({result}) {
+export default function Mypage() {
   const classes = useStyles();
   const [user, setUser] = useState();
+  const [items, setItems] = useState([]);
 
   firebase.auth().onAuthStateChanged((u) => {
     setUser(u);
-  })
+    if(!u) { return; }
+
+    firestore.collection("v2").where("userId", "==", u.uid).orderBy('createdAt', 'desc').limit(10).get()
+      .then(snapshot => {
+        let data = []
+        snapshot.forEach(doc => {
+          data.push(Object.assign({
+            id: doc.id
+          }, {
+            title: doc.data().title,
+            createdAt: doc.data().createdAt.toDate().toISOString().slice(0,10),
+            userId: doc.data().userId,
+          }))
+        })
+        setItems(data);
+        console.log(data);
+      }).catch(error => {
+        console.log(error);
+      })
+  });
 
   return (
     <Container maxWidth="md" className={classes.container}>
@@ -54,7 +74,7 @@ export default function Index({result}) {
       </Tabs>
 
       <List component="nav">
-        { result.map((item) => (
+        { items.map((item) => (
           <ListItem button divider component="a" href={`/timelines/${item.id}`} key={item.id}>
             <ListItemText primary={item.title} secondary={item.createdAt} />
             <ListItemSecondaryAction>
@@ -71,31 +91,4 @@ export default function Index({result}) {
       </Fab>
     </Container>
   );
-}
-
-
-export async function getServerSideProps(context) {
-  const result = await new Promise((resolve, reject) => {
-    const docRef = firestore.collection("v2").where("userId", "==", user.uid).orderBy('createdAt', 'desc')
-    docRef.get().then(snapshot => {
-      let data = []
-      snapshot.forEach(doc => {
-        data.push(Object.assign({
-          id: doc.id
-        }, {
-          title: doc.data().title,
-          createdAt: doc.data().createdAt.toDate().toISOString().slice(0,10),
-        }))
-      })
-      resolve(data)
-    }).catch(error => {
-      reject([])
-    })
-  })
-
-  return {
-    props: {
-      result: result
-    }
-  }
 }
