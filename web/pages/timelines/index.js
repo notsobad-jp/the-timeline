@@ -16,11 +16,17 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: theme.spacing(4),
+  },
+  fab: {
+    position: "fixed",
+    bottom: theme.spacing(4),
+    right: theme.spacing(4),
   }
 }));
 
@@ -54,6 +60,10 @@ export default function Index({result}) {
           </ListItem>
         ))}
       </List>
+
+      <Fab className={classes.fab} color="secondary" aria-label="add" component="a" href="/timelines/new">
+        <AddIcon />
+      </Fab>
     </Container>
   );
 }
