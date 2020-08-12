@@ -10,7 +10,7 @@
     { "src": "web/package.json", "use": "@now/next" }
   ],
   "routes": [
-    { "src": "/timelines/v2/(.*)", "dest": "app/timelines/v2/$1" },
+    { "src": "/timelines/v2(.*)", "dest": "app/timelines/v2$1" },
     { "src": "(.*)", "dest": "web$1" }
   ]
 }
