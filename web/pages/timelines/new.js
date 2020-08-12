@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 export default function NewTimeline() {
   const classes = useStyles();
   const router = useRouter();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 

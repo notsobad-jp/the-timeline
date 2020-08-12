@@ -18,6 +18,11 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CloseIcon from '@material-ui/icons/Close';
+import Tooltip from '@material-ui/core/Tooltip';
+import Snackbar from '@material-ui/core/Snackbar';
+
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -32,6 +37,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Index({result}) {
   const classes = useStyles();
+  const [items, setItems] = useState(result);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+  });
+
+  const deleteTimeline = (id) => {
+    const confirmed = confirm('Are you sure to delete this?');
+    if(!confirmed){ return; }
+
+    firestore.collection('v2').doc(id).delete().then(function() {
+      setItems(items.filter(i => i.id != id));
+      setSnackbar({open: true, message: 'The item was deleted.'});
+    }).catch(function(error) {
+      console.error("Error removing document: ", error);
+      setSnackbar({open: true, message: 'Failed to delete the item... Please try again later.'});
+    });
+  }
 
   return (
     <Container maxWidth="md" className={classes.container}>
@@ -49,13 +72,20 @@ export default function Index({result}) {
       </Tabs>
 
       <List component="nav">
-        { result.map((item) => (
+        { items.map((item) => (
           <ListItem button divider component="a" href={`/timelines/${item.id}`} key={item.id}>
             <ListItemText primary={item.title} secondary={item.createdAt} />
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete">
-                <ChevronRightIcon />
-              </IconButton>
+              <Tooltip title="Delete" aria-label="Delete">
+                <IconButton edge="end" aria-label="delete" onClick={()=>{deleteTimeline(item.id)}}>
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Show" aria-label="Show">
+                <IconButton edge="end" aria-label="show">
+                  <ChevronRightIcon />
+                </IconButton>
+              </Tooltip>
             </ListItemSecondaryAction>
           </ListItem>
         ))}
@@ -64,6 +94,21 @@ export default function Index({result}) {
       <Fab className={classes.fab} color="secondary" aria-label="add" component="a" href="/timelines/new">
         <AddIcon />
       </Fab>
+
+      <Snackbar
+        anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
+        open={snackbar.open}
+        autoHideDuration={5000}
+        onClose={()=>{ setSnackbar({open: false, message: ''}); }}
+        message={snackbar.message}
+        action={
+          <React.Fragment>
+            <IconButton size="small" aria-label="close" color="inherit" onClick={()=>{ setSnackbar({open: false, message: ''}); }}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </React.Fragment>
+        }
+      />
     </Container>
   );
 }

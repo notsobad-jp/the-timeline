@@ -62,7 +62,7 @@ export default function Header(){
 
   const logout = () => {
     firebase.auth().signOut().then(function() {
-      setsnackbarOpened(true);
+      setSnackbarOpened(true);
       router.push(`/login`);
     });
   };
@@ -157,11 +157,11 @@ export default function Header(){
         }}
         open={snackbarOpened}
         autoHideDuration={5000}
-        onClose={()=>{ setsnackbarOpened(false); }}
+        onClose={()=>{ setSnackbarOpened(false); }}
         message="Logout successfully."
         action={
           <React.Fragment>
-            <IconButton size="small" aria-label="close" color="inherit" onClick={()=>{ setsnackbarOpened(false); }}>
+            <IconButton size="small" aria-label="close" color="inherit" onClick={()=>{ setSnackbarOpened(false); }}>
               <CloseIcon fontSize="small" />
             </IconButton>
           </React.Fragment>
