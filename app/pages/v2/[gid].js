@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
-import Timeline from '../../../components/timeline';
-import { getTitleFromSheet, sheetsToJson } from '../../../lib/timeline_utils';
+import Timeline from '../../components/timeline';
+import { getTitleFromSheet, sheetsToJson } from '../../lib/utils';
 
 
 export default function Index({title, data}) {
