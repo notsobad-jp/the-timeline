@@ -9,9 +9,9 @@
     { "src": "app/package.json", "use": "@now/next" },
     { "src": "web/package.json", "use": "@now/next" }
   ],
-  "routes": [ 
+  "routes": [
     { "src": "/app/_next(.*)", "dest": "app/_next$1" },
-    { "src": "/app(.*)", "dest": "app/app$1" },
+    { "src": "/app(.*)", "dest": "app$1" },
     { "src": "(.*)", "dest": "web$1" }
   ]
 }
