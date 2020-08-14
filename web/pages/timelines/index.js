@@ -92,7 +92,7 @@ export default function Index({result}) {
 
       <List component="nav">
         { items.map((item) => (
-          <ListItem button divider component="a" href={`/v2/${item.id}`} key={item.id}>
+          <ListItem button divider component="a" href={`/app/${item.id}`} key={item.id}>
             <ListItemText primary={item.title} secondary={item.createdAt} />
             <ListItemSecondaryAction>
               <Tooltip title="Sync Title" aria-label="Sync Title">
