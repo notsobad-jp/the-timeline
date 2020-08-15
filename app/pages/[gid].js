@@ -3,7 +3,7 @@ import Timeline from '../components/timeline';
 import { getTitleFromSheet, sheetsToJson } from '../lib/utils';
 
 
-export default function Index({title, data, url}) {
+export default function Index({title, data, sourceUrl, canonicalUrl}) {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
@@ -22,14 +22,16 @@ export default function Index({title, data, url}) {
         </h1>
 
         <div className="flex-grow text-right">
-          <a href={url} target="_blank" rel="noopener">
+          <a href={sourceUrl} target="_blank" rel="noopener">
             <div className="inline-block w-4 h-4 fill-current align-middle hover:opacity-75">
               <svg focusable="true" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM8 20H4v-4h4v4zm0-6H4v-4h4v4zm0-6H4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4z"></path></svg>
             </div>
           </a>
-          <div className="inline-block w-4 h-4 fill-current ml-4 align-middle hover:opacity-75">
-            <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"></path></svg>
-          </div>
+          <a href={`https://twitter.com/share?url=${encodeURIComponent(canonicalUrl)}&hashtags=the_timeline&text=${encodeURIComponent(title)}`} target="_blank" rel="noopener">
+            <div className="inline-block w-4 h-4 fill-current ml-4 align-middle hover:opacity-75">
+              <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"></path></svg>
+            </div>
+          </a>
         </div>
       </div>
 
@@ -48,18 +50,19 @@ export default function Index({title, data, url}) {
 
 
 export async function getStaticProps({params}) {
-  const url =    `https://docs.google.com/spreadsheets/d/e/${params.gid}/pubhtml`;
-  const source = `https://docs.google.com/spreadsheets/d/e/${params.gid}/pub?output=csv`;
+  const sourceUrl =    `https://docs.google.com/spreadsheets/d/e/${params.gid}/pubhtml`;
   const [data, title] = await Promise.all([
-    sheetsToJson([source]),
+    sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]),
     getTitleFromSheet(params.gid)
   ]);
+  const canonicalUrl = `https://the-timeline.vercel.app/app/${params.gid}`;
 
   return {
     props: {
       title: title,
       data: data,
-      url: url
+      sourceUrl: sourceUrl,
+      canonicalUrl: canonicalUrl
     },
     unstable_revalidate: 60,
   }
