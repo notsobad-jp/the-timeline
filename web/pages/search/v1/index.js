@@ -19,7 +19,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 
-const baseUrl = 'https://the-timeline.vercel.app';
+const baseUrl = 'http://localhost:3001';
 const limit = 30;
 
 const useStyles = makeStyles((theme) => ({
@@ -124,14 +124,15 @@ export default function Index({result, nextStartAfter, prevEndBefore}) {
 export async function getStaticProps(context) {
   let nextStartAfter = null;
 
-  const res = await fetch(`${baseUrl}/api/timelines?version=v1&limit=${limit + 1}`); // 1つ多く取得して次ページあるか確認
-  const json = await res.json();
-
-  // 次のページがあればnextStartAfterにセット
-  if(json.items.length == limit + 1) {
-    json.items.pop(); // pop()で次ページ確認用のitemをitemsから消す
-    nextStartAfter = json.items[limit-1].createdAt;
-  }
+  // const res = await fetch(`${baseUrl}/api/timelines?version=v1&limit=${limit + 1}`); // 1つ多く取得して次ページあるか確認
+  // const json = await res.json();
+  //
+  // // 次のページがあればnextStartAfterにセット
+  // if(json.items.length == limit + 1) {
+  //   json.items.pop(); // pop()で次ページ確認用のitemをitemsから消す
+  //   nextStartAfter = json.items[limit-1].createdAt;
+  // }
+  const json = { items: [] };
 
   return {
     props: {
