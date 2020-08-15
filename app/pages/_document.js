@@ -4,7 +4,10 @@ export default class MyDocument extends Document {
   render() {
     return (
       <html lang='ja'>
-        <Head />
+        <Head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        </Head>
         <body className="text-sm">
           <Main />
           <NextScript />

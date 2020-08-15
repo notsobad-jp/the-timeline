@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 import Timeline from '../components/timeline';
 import { getTitleFromSheet, sheetsToJson } from '../lib/utils';
 
@@ -11,6 +12,21 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
 
   return (
     <>
+      <Head>
+        <title>{ title } - 年表作成サービス「THE TIMELINE」</title>
+        <link rel="icon" type="image/x-icon" href="https://app.the-timeline.jp/assets/img/favicon.ico" />
+        <meta name="description" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
+        <meta name="keywords" content={`${title},年表,時系列,出来事,歴史,まとめ,THE TIMELINE`} />
+        <meta property="og:title" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content="https://the-timeline.jp/img/sample.png" />
+        <meta property="og:site_name" content="THE TIMELINE(ザ・タイムライン)" />
+        <meta property="og:description" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
+        <meta property="og:locale" content="ja_JP" />
+        <link rel="canonical" href={canonicalUrl} />
+      </Head>
+
       <div className="bg-gray-900 px-4 pt-2 pb-3 text-white flex fixed w-full z-50">
         <h1>
           <a href="/" target="_blank" rel="noopener">
