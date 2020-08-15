@@ -2,11 +2,12 @@ import { auth, firestore, firebase } from '../../lib/firebase.js'
 
 export default async (req, res) => {
   const result = await new Promise((resolve, reject) => {
-    firestore.collection('v2').orderBy('createdAt', 'desc').limit(30).get()
+    firestore.collection('v2').orderBy('createdAt', 'desc').get()
       .then(snapshot => {
-        let data = []
+        let data = {items: []};
+
         snapshot.forEach(doc => {
-          data.push(Object.assign({
+          data.items.push(Object.assign({
             id: doc.id
           }, {
             title: doc.data().title,

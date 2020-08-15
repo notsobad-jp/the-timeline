@@ -100,8 +100,20 @@ export async function getStaticProps({params}) {
 }
 
 export async function getStaticPaths() {
+  const url = "http://localhost:3001/api/timeline";
+  const res = await fetch(url);
+  const json = await res.json();
+
+  const paths = json.items.map(item => {
+    return {
+      params: {
+        gid: item.id,
+      }
+    }
+  });
+
   return {
-    paths: [],
+    paths: paths,
     fallback: true
   }
 }

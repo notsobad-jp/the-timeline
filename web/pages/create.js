@@ -66,16 +66,16 @@ export default function NewTimeline() {
     fetch(url).then(res => {
       return res.text();
     }).then(body => {
-      const title = body.match(/<title>(.*)<\/title>/)[1].replace(/ - Google ドライブ/, "");
+      const title = body.match(/<title>(.*)<\/title>/)[1].replace(/ - Google (ドライブ|Drive)/, "");
       // 公開されていればFirestoreに保存
       firestore.collection("v2").doc(gid).set({
         title: title,
-        sources: [url.replace('pubhtml', 'pub?output=csv')],
+        gid: gid,
         createdAt: new Date(),
         userId: user.uid,
       })
       .then(docRef => {
-        router.push(`/timelines/${gid}`);
+        router.push(`/app/v2/${gid}`);
       })
       .catch(error => {
         console.log(error);
