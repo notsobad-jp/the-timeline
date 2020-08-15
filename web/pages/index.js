@@ -30,7 +30,7 @@ export default function Index() {
           簡単・便利な無料の年表作成サービスです。
         </Typography>
         <div>
-          <Button href="/timelines/new" variant="contained" color="secondary" size="large" className={classes.button} endIcon={<ChevronRightIcon />}>
+          <Button href="/create" variant="contained" color="secondary" size="large" className={classes.button} endIcon={<ChevronRightIcon />}>
             年表を作る
           </Button>
         </div>

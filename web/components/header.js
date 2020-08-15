@@ -114,11 +114,11 @@ export default function Header(){
               <ListItemIcon><HomeIcon /></ListItemIcon>
               <ListItemText primary="Home" />
             </ListItem>
-            <ListItem button component="a" href="/timelines">
+            <ListItem button component="a" href="/search">
               <ListItemIcon><SearchIcon /></ListItemIcon>
               <ListItemText primary="Search" />
             </ListItem>
-            <ListItem button component="a" href="/timelines/new">
+            <ListItem button component="a" href="/create">
               <ListItemIcon><AddIcon /></ListItemIcon>
               <ListItemText primary="Create" />
             </ListItem>
