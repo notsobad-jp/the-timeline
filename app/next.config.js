@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const withTM = require('next-transpile-modules')(['vis-timeline']); // pass the modules you would like to see transpiled
-const assetPrefix = process.env.BUILDING_FOR_NOW ? '/app' : ''
+const assetPrefix = process.env.BUILDING_FOR_NOW ? '/timelines' : ''
 
 module.exports = withTM({
   assetPrefix,
