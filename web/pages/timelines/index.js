@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -76,65 +77,73 @@ export default function Index({result}) {
   }
 
   return (
-    <Container maxWidth="md" className={classes.container}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Search
-      </Typography>
+    <>
+      <Head>
+        <title>Search - THE TIMELINE</title>
+        <meta name="description" content="作成年表一覧 - THE TIMELINE" />
+        <link rel="canonical" href="https://the-timeline.jp/search" />
+      </Head>
 
-      <Tabs
-        value={0}
-        indicatorColor="primary"
-        textColor="primary"
-      >
-        <Tab label="Latest" disabled />
-        <Tab label="v1（旧バージョン）" component="a" href="/timelines/v1" />
-      </Tabs>
+      <Container maxWidth="md" className={classes.container}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Search
+        </Typography>
 
-      <List component="nav">
-        { items.map((item) => (
-          <ListItem button divider component="a" href={`/app/${item.id}`} key={item.id}>
-            <ListItemText primary={item.title} secondary={item.createdAt} />
-            <ListItemSecondaryAction>
-              <Tooltip title="Sync Title" aria-label="Sync Title">
-                <IconButton edge="start" aria-label="sync-title" onClick={()=>{syncTitle(item.id)}}>
-                  <SyncIcon />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Delete" aria-label="Delete">
-                <IconButton edge="end" aria-label="delete" onClick={()=>{deleteTimeline(item.id)}}>
-                  <DeleteIcon />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Show" aria-label="Show">
-                <IconButton edge="end" aria-label="show">
-                  <ChevronRightIcon />
-                </IconButton>
-              </Tooltip>
-            </ListItemSecondaryAction>
-          </ListItem>
-        ))}
-      </List>
+        <Tabs
+          value={0}
+          indicatorColor="primary"
+          textColor="primary"
+        >
+          <Tab label="Latest" disabled />
+          <Tab label="v1（旧バージョン）" component="a" href="/timelines/v1" />
+        </Tabs>
 
-      <Fab className={classes.fab} color="secondary" aria-label="add" component="a" href="/timelines/new">
-        <AddIcon />
-      </Fab>
+        <List component="nav">
+          { items.map((item) => (
+            <ListItem button divider component="a" href={`/app/${item.id}`} key={item.id}>
+              <ListItemText primary={item.title} secondary={item.createdAt} />
+              <ListItemSecondaryAction>
+                <Tooltip title="Sync Title" aria-label="Sync Title">
+                  <IconButton edge="start" aria-label="sync-title" onClick={()=>{syncTitle(item.id)}}>
+                    <SyncIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Delete" aria-label="Delete">
+                  <IconButton edge="end" aria-label="delete" onClick={()=>{deleteTimeline(item.id)}}>
+                    <DeleteIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Show" aria-label="Show">
+                  <IconButton edge="end" aria-label="show">
+                    <ChevronRightIcon />
+                  </IconButton>
+                </Tooltip>
+              </ListItemSecondaryAction>
+            </ListItem>
+          ))}
+        </List>
 
-      <Snackbar
-        anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
-        open={snackbar.open}
-        autoHideDuration={5000}
-        onClose={()=>{ setSnackbar({open: false, message: ''}); }}
-        message={snackbar.message}
-        severity="success"
-        action={
-          <React.Fragment>
-            <IconButton size="small" aria-label="close" color="inherit" onClick={()=>{ setSnackbar({open: false, message: ''}); }}>
-              <CloseIcon fontSize="small" />
-            </IconButton>
-          </React.Fragment>
-        }
-      />
-    </Container>
+        <Fab className={classes.fab} color="secondary" aria-label="add" component="a" href="/timelines/new">
+          <AddIcon />
+        </Fab>
+
+        <Snackbar
+          anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
+          open={snackbar.open}
+          autoHideDuration={5000}
+          onClose={()=>{ setSnackbar({open: false, message: ''}); }}
+          message={snackbar.message}
+          severity="success"
+          action={
+            <React.Fragment>
+              <IconButton size="small" aria-label="close" color="inherit" onClick={()=>{ setSnackbar({open: false, message: ''}); }}>
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            </React.Fragment>
+          }
+        />
+      </Container>
+    </>
   );
 }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -59,36 +60,43 @@ export default function Mypage() {
   });
 
   return (
-    <Container maxWidth="md" className={classes.container}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Mypage
-      </Typography>
+    <>
+      <Head>
+        <title>Mypage - THE TIMELINE</title>
+        <meta name="robots" content="noindex" />
+      </Head>
 
-      <Tabs
-        value={0}
-        indicatorColor="primary"
-        textColor="primary"
-      >
-        <Tab label="Latest" disabled />
-        <Tab label="v1（旧バージョン）" component="a" href="/mypage/v1" />
-      </Tabs>
+      <Container maxWidth="md" className={classes.container}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Mypage
+        </Typography>
 
-      <List component="nav">
-        { items.map((item) => (
-          <ListItem button divider component="a" href={`/timelines/${item.id}`} key={item.id}>
-            <ListItemText primary={item.title} secondary={item.createdAt} />
-            <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete">
-                <ChevronRightIcon />
-              </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>
-        ))}
-      </List>
+        <Tabs
+          value={0}
+          indicatorColor="primary"
+          textColor="primary"
+        >
+          <Tab label="Latest" disabled />
+          <Tab label="v1（旧バージョン）" component="a" href="/mypage/v1" />
+        </Tabs>
 
-      <Fab className={classes.fab} color="secondary" aria-label="add" component="a" href="/timelines/new">
-        <AddIcon />
-      </Fab>
-    </Container>
+        <List component="nav">
+          { items.map((item) => (
+            <ListItem button divider component="a" href={`/timelines/${item.id}`} key={item.id}>
+              <ListItemText primary={item.title} secondary={item.createdAt} />
+              <ListItemSecondaryAction>
+                <IconButton edge="end" aria-label="delete">
+                  <ChevronRightIcon />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+          ))}
+        </List>
+
+        <Fab className={classes.fab} color="secondary" aria-label="add" component="a" href="/timelines/new">
+          <AddIcon />
+        </Fab>
+      </Container>
+    </>
   );
 }

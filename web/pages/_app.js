@@ -27,8 +27,20 @@ export default function MyApp(props) {
   return (
     <React.Fragment>
       <Head>
+        <meta charSet="utf-8" />
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <title>THE TIMELINE | 無料年表作成サービス</title>
+        <meta name="description" content="THE TIMELINE(ザ・タイムライン)は、簡単・便利な無料の年表作成サービスです" />
+        <meta name="keywords" content="年表,作成,無料,時系列,歴史,ツール,サービス,フリー,ソフト,アプリ,エクセル,自分史,作り方,タイムライン,THE TIMELINE" />
+        <meta property="og:title" content="簡単・便利な無料の年表作成サービス | THE TIMELINE(ザ・タイムライン)" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://the-timeline.jp" />
+        <meta property="og:image" content="https://the-timeline.jp/img/sample.png" />
+        <meta property="og:site_name" content="簡単・便利な無料の年表作成サービス | THE TIMELINE(ザ・タイムライン)" />
+        <meta property="og:description" content="THE TIMELINE(ザ・タイムライン)は、簡単・便利な無料の年表作成サービスです" />
+        <meta property="og:locale" content="ja_JP" />
       </Head>
+
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header />

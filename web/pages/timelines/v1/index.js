@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -33,35 +34,43 @@ export default function Index({result}) {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="md" className={classes.container}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Search
-      </Typography>
+    <>
+      <Head>
+        <title>Search(V1) - THE TIMELINE</title>
+        <meta name="description" content="作成年表一覧(v1) - THE TIMELINE" />
+        <link rel="canonical" href="https://the-timeline.jp/search/v1" />
+      </Head>
 
-      <Tabs
-        value={1}
-        indicatorColor="primary"
-        textColor="primary"
-      >
-        <Tab label="Latest" component="a" href="/timelines" />
-        <Tab label="v1（旧バージョン）" disabled />
-      </Tabs>
+      <Container maxWidth="md" className={classes.container}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Search
+        </Typography>
 
-      <List component="nav">
-        { result.map((item) => (
-          <ListItem button divider component="a" href={`https://the-timeline.jp/timelines/${item.gid}`} target="_blank" rel="noopener" key={item.id}>
-            <ListItemText primary={item.title} secondary={item.createdAt} />
-            <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete">
-                <ChevronRightIcon />
-              </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>
-        ))}
-      </List>
+        <Tabs
+          value={1}
+          indicatorColor="primary"
+          textColor="primary"
+        >
+          <Tab label="Latest" component="a" href="/timelines" />
+          <Tab label="v1（旧バージョン）" disabled />
+        </Tabs>
 
-      <Pagination className={classes.pagination} count={10} color="primary" />
-    </Container>
+        <List component="nav">
+          { result.map((item) => (
+            <ListItem button divider component="a" href={`https://the-timeline.jp/timelines/${item.gid}`} target="_blank" rel="noopener" key={item.id}>
+              <ListItemText primary={item.title} secondary={item.createdAt} />
+              <ListItemSecondaryAction>
+                <IconButton edge="end" aria-label="delete">
+                  <ChevronRightIcon />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+          ))}
+        </List>
+
+        <Pagination className={classes.pagination} count={10} color="primary" />
+      </Container>
+    </>
   );
 }
 

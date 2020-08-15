@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -80,24 +81,31 @@ export default function Index() {
 
 
   return (
-    <Container maxWidth="lg">
-      <Box my={8} align="center">
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <Typography gutterBottom>ログイン</Typography>
-            { user &&
-              <div>{user.email}</div>
-            }
-            さん
-            <Button onClick={ login }>メールログイン</Button>
+    <>
+      <Head>
+        <title>Login - THE TIMELINE</title>
+        <meta name="robots" content="noindex" />
+      </Head>
+
+      <Container maxWidth="lg">
+        <Box my={8} align="center">
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <Typography gutterBottom>ログイン</Typography>
+              { user &&
+                <div>{user.email}</div>
+              }
+              さん
+              <Button onClick={ login }>メールログイン</Button>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <FacebookLoginButton onClick={() => { snsLogin('facebook') }} />
+              <TwitterLoginButton onClick={() => { snsLogin('twitter') }} />
+              <GoogleLoginButton onClick={() => { snsLogin('google') }} />
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <FacebookLoginButton onClick={() => { snsLogin('facebook') }} />
-            <TwitterLoginButton onClick={() => { snsLogin('twitter') }} />
-            <GoogleLoginButton onClick={() => { snsLogin('google') }} />
-          </Grid>
-        </Grid>
-      </Box>
-    </Container>
+        </Box>
+      </Container>
+    </>
   );
 }

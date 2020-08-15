@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -88,19 +89,25 @@ export default function NewTimeline() {
   }
 
   return (
-    <Container maxWidth="md" className={classes.container}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Create Timeline
-      </Typography>
+    <>
+      <Head>
+        <title>New Timeline - THE TIMELINE</title>
+      </Head>
 
-      <form onSubmit={handleSubmit}>
-        <TextField id="urlField" required type="url" label="スプレッドシートの公開URL" fullWidth className={classes.input} />
-        <Button type="submit" variant="contained" fullWidth={ isMobile } size="large" color="secondary">Create</Button>
-      </form>
+      <Container maxWidth="md" className={classes.container}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Create Timeline
+        </Typography>
 
-      <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    </Container>
+        <form onSubmit={handleSubmit}>
+          <TextField id="urlField" required type="url" label="スプレッドシートの公開URL" fullWidth className={classes.input} />
+          <Button type="submit" variant="contained" fullWidth={ isMobile } size="large" color="secondary">Create</Button>
+        </form>
+
+        <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </Container>
+    </>
   );
 }
