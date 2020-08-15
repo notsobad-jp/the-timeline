@@ -3,9 +3,13 @@ import { auth, firestore, firebase } from '../../lib/firebase.js'
 export default async (req, res) => {
   const result = await new Promise((resolve, reject) => {
     const collection = (req.query.version == 'v1') ? 'timelines' : 'v2';
-    let docRef = firestore.collection(collection).orderBy('createdAt', 'desc');
-    if(req.query.startAt) { docRef = docRef.startAt(new Date(req.query.startAt)); }
+    let docRef = firestore.collection(collection);
+    const order = req.query.endBefore ? 'asc' : 'desc';
+    docRef = docRef.orderBy('createdAt', order);
+
     if(req.query.limit) { docRef = docRef.limit(Number(req.query.limit)); }
+    if(req.query.startAt) { docRef = docRef.startAt(new Date(req.query.startAt)); }
+    if(req.query.endBefore) { docRef = docRef.startAfter(new Date(req.query.endBefore)); }
 
     docRef.get()
       .then(snapshot => {
@@ -19,8 +23,14 @@ export default async (req, res) => {
             createdAt: doc.data().createdAt.toDate().toISOString(),
           }))
         })
+        data.items.sort((a,b) => {
+          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        });
         res.statusCode = 200
         resolve(data);
+        // resolve(data.sort((a,b)=>{
+        //   return new Date(a).getTime() - new Date(b).getTime();
+        // }));
       }).catch(error => {
         res.statusCode = 500
         resolve(error);
