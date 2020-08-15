@@ -5,7 +5,7 @@ export default class MyDocument extends Document {
     return (
       <html lang='ja'>
         <Head />
-        <body>
+        <body className="text-sm">
           <Main />
           <NextScript />
         </body>
