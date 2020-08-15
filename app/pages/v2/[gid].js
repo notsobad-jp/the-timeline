@@ -100,7 +100,7 @@ export async function getStaticProps({params}) {
 }
 
 export async function getStaticPaths() {
-  const url = "http://localhost:3001/api/timeline";
+  const url = "http://localhost:3001/api/timelines";
   const res = await fetch(url);
   const json = await res.json();
 

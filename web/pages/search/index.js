@@ -95,7 +95,7 @@ export default function Index({result}) {
           textColor="primary"
         >
           <Tab label="Latest" disabled />
-          <Tab label="v1（旧バージョン）" component="a" href="/timelines/v1" />
+          <Tab label="v1（旧バージョン）" component="a" href="/search/v1" />
         </Tabs>
 
         <List component="nav">

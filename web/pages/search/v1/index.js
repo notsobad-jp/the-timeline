@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -17,7 +17,6 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Pagination from '@material-ui/lab/Pagination';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,8 +29,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Index({result}) {
+export default function Index({result, nextStartAt}) {
   const classes = useStyles();
+  const [items, setItems] = useState(result);
 
   return (
     <>
@@ -51,13 +51,13 @@ export default function Index({result}) {
           indicatorColor="primary"
           textColor="primary"
         >
-          <Tab label="Latest" component="a" href="/timelines" />
+          <Tab label="Latest" component="a" href="/search" />
           <Tab label="v1（旧バージョン）" disabled />
         </Tabs>
 
         <List component="nav">
           { result.map((item) => (
-            <ListItem button divider component="a" href={`https://the-timeline.jp/timelines/${item.gid}`} target="_blank" rel="noopener" key={item.id}>
+            <ListItem button divider component="a" href={`/app/${item.id}`} target="_blank" rel="noopener" key={item.id}>
               <ListItemText primary={item.title} secondary={item.createdAt} />
               <ListItemSecondaryAction>
                 <IconButton edge="end" aria-label="delete">
@@ -68,17 +68,32 @@ export default function Index({result}) {
           ))}
         </List>
 
-        <Pagination className={classes.pagination} count={10} color="primary" />
+        <Box className={classes.pagination} display="flex" justifyContent="space-between">
+          <Button onClick={()=>{ showNextPage(nextStartAt) }}>Prev</Button>
+          {(() => {
+            if (nextStartAt) {
+              return(
+                <Button onClick={()=>{ showNextPage(nextStartAt) }}>Next</Button>
+              )
+            }
+          })()}
+        </Box>
       </Container>
     </>
   );
 }
 
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
+  const limit = 10;
+  let nextStartAt = null;
+
   const result = await new Promise((resolve, reject) => {
-    firestore.collection('timelines').orderBy('createdAt', 'desc').limit(10).get()
+    firestore.collection('timelines').orderBy('createdAt', 'desc').limit(limit + 1).get()
       .then(snapshot => {
+        if(snapshot.docs.length == limit + 1) {
+          nextStartAt = snapshot.docs[limit].id;
+        }
         let data = []
         snapshot.forEach(doc => {
           data.push(Object.assign({
@@ -89,15 +104,17 @@ export async function getServerSideProps(context) {
             gid: doc.data().gid,
           }))
         })
-        resolve(data)
+        resolve(data);
       }).catch(error => {
-        reject([])
+        reject([]);
       })
   })
 
   return {
     props: {
-      result: result
-    }
+      result: result,
+      nextStartAt: nextStartAt
+    },
+    unstable_revalidate: 60,
   }
 }
