@@ -8,7 +8,7 @@ export default async (req, res) => {
     docRef = docRef.orderBy('createdAt', order);
 
     if(req.query.limit) { docRef = docRef.limit(Number(req.query.limit)); }
-    if(req.query.startAt) { docRef = docRef.startAt(new Date(req.query.startAt)); }
+    if(req.query.startAfter) { docRef = docRef.startAfter(new Date(req.query.startAfter)); }
     if(req.query.endBefore) { docRef = docRef.startAfter(new Date(req.query.endBefore)); }
 
     docRef.get()
@@ -28,9 +28,6 @@ export default async (req, res) => {
         });
         res.statusCode = 200
         resolve(data);
-        // resolve(data.sort((a,b)=>{
-        //   return new Date(a).getTime() - new Date(b).getTime();
-        // }));
       }).catch(error => {
         res.statusCode = 500
         resolve(error);

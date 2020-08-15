@@ -19,8 +19,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 
-const baseUrl = 'http://localhost:3001';
-const limit = 3;
+const baseUrl = 'https://the-timeline.vercel.app';
+const limit = 30;
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -32,25 +32,24 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Index({result, nextStartAt, prevEndBefore}) {
+export default function Index({result, nextStartAfter, prevEndBefore}) {
   const classes = useStyles();
   const [items, setItems] = useState(result);
-  const [startAt, setStartAt] = useState(nextStartAt);
+  const [startAfter, setStartAfter] = useState(nextStartAfter);
   const [endBefore, setEndBefore] = useState(prevEndBefore);
 
   const showNextPage = async (at) => {
-    const res = await fetch(`${baseUrl}/api/timelines?version=v1&limit=${limit + 1}&startAt=${at}`); // 1つ多く取得して次ページあるか確認
+    const res = await fetch(`${baseUrl}/api/timelines?version=v1&limit=${limit + 1}&startAfter=${at}`); // 1つ多く取得して次ページあるか確認
     const json = await res.json();
 
-    // 次のページがあればnextStartAtにセット
+    // 次のページがあればnextStartAfterにセット
     if(json.items.length == limit + 1) {
-      const lastVisible = json.items.pop(); // pop()で次ページ確認用のlastVisibleはitemsから消えてちょうどいい
-      setStartAt(lastVisible.createdAt);
+      json.items.pop(); // pop()で次ページ確認用のitemをitemsから消す
+      setStartAfter(json.items[limit-1].createdAt);
     }else {
-      setStartAt(null);
+      setStartAfter(null);
     }
     setEndBefore(json.items[0].createdAt);
-
     setItems(json.items);
   }
 
@@ -58,13 +57,14 @@ export default function Index({result, nextStartAt, prevEndBefore}) {
     const res = await fetch(`${baseUrl}/api/timelines?version=v1&limit=${limit + 1}&endBefore=${at}`); // 1つ多く取得して次ページあるか確認
     const json = await res.json();
 
-    // 次のページがあればnextStartAtにセット
+    // 次のページがあればnextStartAfterにセット
     if(json.items.length == limit + 1) {
-      const lastVisible = json.items.pop(); // pop()で次ページ確認用のlastVisibleはitemsから消えてちょうどいい
-      setEndBefore(lastVisible.createdAt);
+      json.items.shift(); // shift()で次ページ確認用のitemをitemsから消す
+      setEndBefore(json.items[0].createdAt);
     }else {
       setEndBefore(null);
     }
+    setStartAfter(json.items[json.items.length-1].createdAt);
     setItems(json.items);
   }
 
@@ -109,9 +109,9 @@ export default function Index({result, nextStartAt, prevEndBefore}) {
               <Button onClick={()=>{ showPrevPage(endBefore) }}>Prev</Button>
             </Box>
           }
-          { startAt &&
+          { startAfter &&
             <Box flexGrow={1} textAlign="right">
-              <Button onClick={()=>{ showNextPage(startAt) }}>Next</Button>
+              <Button onClick={()=>{ showNextPage(startAfter) }}>Next</Button>
             </Box>
           }
         </Box>
@@ -122,21 +122,21 @@ export default function Index({result, nextStartAt, prevEndBefore}) {
 
 
 export async function getStaticProps(context) {
-  let nextStartAt = null;
+  let nextStartAfter = null;
 
   const res = await fetch(`${baseUrl}/api/timelines?version=v1&limit=${limit + 1}`); // 1つ多く取得して次ページあるか確認
   const json = await res.json();
 
-  // 次のページがあればnextStartAtにセット
+  // 次のページがあればnextStartAfterにセット
   if(json.items.length == limit + 1) {
-    const lastVisible = json.items.pop(); // pop()で次ページ確認用のlastVisibleはitemsから消えてちょうどいい
-    nextStartAt = lastVisible.createdAt
+    json.items.pop(); // pop()で次ページ確認用のitemをitemsから消す
+    nextStartAfter = json.items[limit-1].createdAt;
   }
 
   return {
     props: {
       result: json.items,
-      nextStartAt: nextStartAt,
+      nextStartAfter: nextStartAfter,
       prevEndBefore: null
     },
     unstable_revalidate: 60,
