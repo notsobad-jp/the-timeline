@@ -19,6 +19,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 
+const baseUrl = 'http://localhost:3001';
+const limit = 3;
+
 const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: theme.spacing(4),
@@ -29,9 +32,41 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Index({result, nextStartAt}) {
+export default function Index({result, nextStartAt, prevEndBefore}) {
   const classes = useStyles();
   const [items, setItems] = useState(result);
+  const [startAt, setStartAt] = useState(nextStartAt);
+  const [endBefore, setEndBefore] = useState(prevEndBefore);
+
+  const showNextPage = async (at) => {
+    const res = await fetch(`${baseUrl}/api/timelines?version=v1&limit=${limit + 1}&startAt=${at}`); // 1つ多く取得して次ページあるか確認
+    const json = await res.json();
+
+    // 次のページがあればnextStartAtにセット
+    if(json.items.length == limit + 1) {
+      const lastVisible = json.items.pop(); // pop()で次ページ確認用のlastVisibleはitemsから消えてちょうどいい
+      setStartAt(lastVisible.createdAt);
+    }else {
+      setStartAt(null);
+    }
+    setEndBefore(json.items[0].createdAt);
+
+    setItems(json.items);
+  }
+
+  const showPrevPage = async (at) => {
+    const res = await fetch(`${baseUrl}/api/timelines?version=v1&limit=${limit + 1}&endBefore=${at}`); // 1つ多く取得して次ページあるか確認
+    const json = await res.json();
+
+    // 次のページがあればnextStartAtにセット
+    if(json.items.length == limit + 1) {
+      const lastVisible = json.items.pop(); // pop()で次ページ確認用のlastVisibleはitemsから消えてちょうどいい
+      setEndBefore(lastVisible.createdAt);
+    }else {
+      setEndBefore(null);
+    }
+    setItems(json.items);
+  }
 
   return (
     <>
@@ -56,9 +91,9 @@ export default function Index({result, nextStartAt}) {
         </Tabs>
 
         <List component="nav">
-          { result.map((item) => (
+          { items.map((item) => (
             <ListItem button divider component="a" href={`/app/${item.id}`} target="_blank" rel="noopener" key={item.id}>
-              <ListItemText primary={item.title} secondary={item.createdAt} />
+              <ListItemText primary={item.title} secondary={item.createdAt.slice(0, 10)} />
               <ListItemSecondaryAction>
                 <IconButton edge="end" aria-label="delete">
                   <ChevronRightIcon />
@@ -69,14 +104,16 @@ export default function Index({result, nextStartAt}) {
         </List>
 
         <Box className={classes.pagination} display="flex" justifyContent="space-between">
-          <Button onClick={()=>{ showNextPage(nextStartAt) }}>Prev</Button>
-          {(() => {
-            if (nextStartAt) {
-              return(
-                <Button onClick={()=>{ showNextPage(nextStartAt) }}>Next</Button>
-              )
-            }
-          })()}
+          { endBefore &&
+            <Box flexGrow={1} textAlign="left">
+              <Button onClick={()=>{ showPrevPage(endBefore) }}>Prev</Button>
+            </Box>
+          }
+          { startAt &&
+            <Box flexGrow={1} textAlign="right">
+              <Button onClick={()=>{ showNextPage(startAt) }}>Next</Button>
+            </Box>
+          }
         </Box>
       </Container>
     </>
@@ -85,35 +122,22 @@ export default function Index({result, nextStartAt}) {
 
 
 export async function getStaticProps(context) {
-  const limit = 10;
   let nextStartAt = null;
 
-  const result = await new Promise((resolve, reject) => {
-    firestore.collection('timelines').orderBy('createdAt', 'desc').limit(limit + 1).get()
-      .then(snapshot => {
-        if(snapshot.docs.length == limit + 1) {
-          nextStartAt = snapshot.docs[limit].id;
-        }
-        let data = []
-        snapshot.forEach(doc => {
-          data.push(Object.assign({
-            id: doc.id
-          }, {
-            title: doc.data().title,
-            createdAt: doc.data().createdAt.toDate().toISOString().slice(0,10),
-            gid: doc.data().gid,
-          }))
-        })
-        resolve(data);
-      }).catch(error => {
-        reject([]);
-      })
-  })
+  const res = await fetch(`${baseUrl}/api/timelines?version=v1&limit=${limit + 1}`); // 1つ多く取得して次ページあるか確認
+  const json = await res.json();
+
+  // 次のページがあればnextStartAtにセット
+  if(json.items.length == limit + 1) {
+    const lastVisible = json.items.pop(); // pop()で次ページ確認用のlastVisibleはitemsから消えてちょうどいい
+    nextStartAt = lastVisible.createdAt
+  }
 
   return {
     props: {
-      result: result,
-      nextStartAt: nextStartAt
+      result: json.items,
+      nextStartAt: nextStartAt,
+      prevEndBefore: null
     },
     unstable_revalidate: 60,
   }

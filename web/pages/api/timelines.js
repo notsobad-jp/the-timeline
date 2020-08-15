@@ -2,7 +2,12 @@ import { auth, firestore, firebase } from '../../lib/firebase.js'
 
 export default async (req, res) => {
   const result = await new Promise((resolve, reject) => {
-    firestore.collection('v2').orderBy('createdAt', 'desc').get()
+    const collection = (req.query.version == 'v1') ? 'timelines' : 'v2';
+    let docRef = firestore.collection(collection).orderBy('createdAt', 'desc');
+    if(req.query.startAt) { docRef = docRef.startAt(new Date(req.query.startAt)); }
+    if(req.query.limit) { docRef = docRef.limit(Number(req.query.limit)); }
+
+    docRef.get()
       .then(snapshot => {
         let data = {items: []};
 
@@ -11,7 +16,7 @@ export default async (req, res) => {
             id: doc.id
           }, {
             title: doc.data().title,
-            createdAt: doc.data().createdAt.toDate().toISOString().slice(0,10),
+            createdAt: doc.data().createdAt.toDate().toISOString(),
           }))
         })
         res.statusCode = 200
