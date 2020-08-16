@@ -19,7 +19,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 
-const limit = 3;
+const limit = 10;
 
 const useStyles = makeStyles((theme) => ({
   container: {

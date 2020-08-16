@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Link from '../../src/Link';
-import { auth, firestore, firebase } from '../../lib/firebase.js'
+import { getTimelines } from '../../lib/firebase.js'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
@@ -27,6 +27,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import { getTitleFromSheet } from '../../lib/utils.js';
 
 
+const limit = 10;
+
 const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: theme.spacing(4),
@@ -35,12 +37,17 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     bottom: theme.spacing(4),
     right: theme.spacing(4),
+  },
+  pagination: {
+    marginTop: theme.spacing(2)
   }
 }));
 
-export default function Index({result}) {
+export default function Index({result, nextStartAfter, prevEndBefore}) {
   const classes = useStyles();
   const [items, setItems] = useState(result);
+  const [startAfter, setStartAfter] = useState(nextStartAfter);
+  const [endBefore, setEndBefore] = useState(prevEndBefore);
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: '',
@@ -74,6 +81,34 @@ export default function Index({result}) {
       console.log(e);
       setSnackbar({open: true, message: e});
     }
+  }
+
+  const showNextPage = async (at) => {
+    const res = await getTimelines({version: 'v2', limit: limit + 1, startAfter: at}); // 1つ多く取得して次ページあるか確認
+
+    // 次のページがあればnextStartAfterにセット
+    if(res.length == limit + 1) {
+      res.pop(); // pop()で次ページ確認用のitemをitemsから消す
+      setStartAfter(res[limit-1].createdAt);
+    }else {
+      setStartAfter(null);
+    }
+    setEndBefore(res[0].createdAt);
+    setItems(res);
+  }
+
+  const showPrevPage = async (at) => {
+    const res = await getTimelines({version: 'v2', limit: limit + 1, endBefore: at}); // 1つ多く取得して次ページあるか確認
+
+    // 次のページがあればnextStartAfterにセット
+    if(res.length == limit + 1) {
+      res.shift(); // shift()で次ページ確認用のitemをitemsから消す
+      setEndBefore(res[0].createdAt);
+    }else {
+      setEndBefore(null);
+    }
+    setStartAfter(res[res.length-1].createdAt);
+    setItems(res);
   }
 
   return (
@@ -123,6 +158,19 @@ export default function Index({result}) {
           ))}
         </List>
 
+        <Box className={classes.pagination} display="flex" justifyContent="space-between">
+          { endBefore &&
+            <Box flexGrow={1} textAlign="left">
+              <Button onClick={()=>{ showPrevPage(endBefore) }}>Prev</Button>
+            </Box>
+          }
+          { startAfter &&
+            <Box flexGrow={1} textAlign="right">
+              <Button onClick={()=>{ showNextPage(startAfter) }}>Next</Button>
+            </Box>
+          }
+        </Box>
+
         <Fab className={classes.fab} color="secondary" aria-label="add" component="a" href="/create">
           <AddIcon />
         </Fab>
@@ -148,28 +196,22 @@ export default function Index({result}) {
 }
 
 
-export async function getServerSideProps(context) {
-  const result = await new Promise((resolve, reject) => {
-    firestore.collection('v2').orderBy('createdAt', 'desc').limit(10).get()
-      .then(snapshot => {
-        let data = []
-        snapshot.forEach(doc => {
-          data.push(Object.assign({
-            id: doc.id
-          }, {
-            title: doc.data().title,
-            createdAt: doc.data().createdAt.toDate().toISOString().slice(0,10),
-          }))
-        })
-        resolve(data)
-      }).catch(error => {
-        reject([])
-      })
-  })
+export async function getStaticProps(context) {
+  const res = await getTimelines({version: 'v2', limit: limit + 1}); // 1つ多く取得して次ページあるか確認
+
+  // 次のページがあればnextStartAfterにセット
+  let nextStartAfter = null;
+  if(res.length == limit + 1) {
+    res.pop(); // pop()で次ページ確認用のitemをitemsから消す
+    nextStartAfter = res[limit-1].createdAt;
+  }
 
   return {
     props: {
-      result: result
-    }
+      result: res,
+      nextStartAfter: nextStartAfter,
+      prevEndBefore: null
+    },
+    unstable_revalidate: 60,
   }
 }
