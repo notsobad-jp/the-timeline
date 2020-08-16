@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from './_app';
 import Head from 'next/head';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -21,11 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Index() {
   const classes = useStyles();
-  const [user, setUser] = useState();
-
-  firebase.auth().onAuthStateChanged((u) => {
-    setUser(u);
-  })
+  const [user, setUser] = useContext(UserContext);
 
   const snsLogin = (providerName) => {
     let provider;

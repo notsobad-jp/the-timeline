@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
+import { UserContext } from './_app';
 import Head from 'next/head';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -32,15 +33,11 @@ export default function NewTimeline() {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const [user, setUser] = useState();
+  const [user, setUser] = useContext(UserContext);
 
   const handleClose = () => {
     setOpen(false);
   };
-
-  firebase.auth().onAuthStateChanged((u) => {
-    setUser(u);
-  });
 
   const handleSubmit = (e) => {
     e.preventDefault();

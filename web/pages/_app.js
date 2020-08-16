@@ -9,7 +9,7 @@ import Header from "../components/header.js"
 import { useRouter } from 'next/router'
 
 
-export const TitleContext = createContext(["", () => {}]);
+export const UserContext = createContext(["", () => {}]);
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
@@ -23,6 +23,12 @@ export default function MyApp(props) {
   }, []);
 
   const router = useRouter()
+  const [user, setUser] = useState();
+
+  firebase.auth().onAuthStateChanged((u) => {
+    setUser(u);
+  })
+
 
   return (
     <React.Fragment>
@@ -42,9 +48,11 @@ export default function MyApp(props) {
       </Head>
 
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Header />
-        <Component {...pageProps} />
+        <UserContext.Provider value={[user, setUser]}>
+          <CssBaseline />
+          <Header />
+          <Component {...pageProps} />
+        </UserContext.Provider>
       </ThemeProvider>
     </React.Fragment>
   );

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { UserContext } from '../pages/_app';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -52,13 +53,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Header(){
   const classes = useStyles();
   const router = useRouter();
-  const [user, setUser] = useState();
+  const [user, setUser] = useContext(UserContext);
   const [drawerOpened, setDrawerOpened] = useState(false);
   const [snackbarOpened, setSnackbarOpened] = useState(false);
-
-  firebase.auth().onAuthStateChanged((u) => {
-    setUser(u);
-  })
 
   const logout = () => {
     firebase.auth().signOut().then(function() {
