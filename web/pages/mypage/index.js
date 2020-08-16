@@ -1,26 +1,20 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { getTimelines } from '../../lib/firebase.js'
+import { makeStyles } from '@material-ui/core/styles';
 import { UserContext } from '../_app';
+import TimelineList from '../../components/TimelineList';
 import Head from 'next/head';
 import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Link from '../../src/Link';
-import { auth, firestore, firebase } from '../../lib/firebase.js'
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import AddIcon from '@material-ui/icons/Add';
+
+
+const limit = 10;
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -30,31 +24,20 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     bottom: theme.spacing(4),
     right: theme.spacing(4),
-  }
+  },
 }));
 
 export default function Mypage() {
   const classes = useStyles();
   const [user, setUser] = useContext(UserContext);
-  const [items, setItems] = useState([]);
 
-  if(user) {
-    firestore.collection("v2").where("userId", "==", user.uid).orderBy('createdAt', 'desc').limit(10).get()
-      .then(snapshot => {
-        let data = []
-        snapshot.forEach(doc => {
-          data.push(Object.assign({
-            id: doc.id
-          }, {
-            title: doc.data().title,
-            createdAt: doc.data().createdAt.toDate().toISOString().slice(0,10),
-            userId: doc.data().userId,
-          }))
-        })
-        setItems(data);
-      }).catch(error => {
-        console.log(error);
-      })
+  const fetchTimelines = async () => {
+    const res = await getTimelines({version: 'v2', limit: limit + 1, userId: user.uid});
+    // 次のページがあればnextStartAfterにセット
+    if(res.length == limit + 1) {
+      res.shift(); // shift()で次ページ確認用のitemをitemsから消す
+    }
+    return res;
   }
 
   return (
@@ -69,27 +52,14 @@ export default function Mypage() {
           Mypage
         </Typography>
 
-        <Tabs
-          value={0}
-          indicatorColor="primary"
-          textColor="primary"
-        >
+        <Tabs value={0} indicatorColor="primary" textColor="primary">
           <Tab label="Latest" disabled />
           <Tab label="v1（旧バージョン）" component="a" href="/mypage/v1" />
         </Tabs>
 
-        <List component="nav">
-          { items.map((item) => (
-            <ListItem button divider component="a" href={`/timelines/${item.id}`} key={item.id}>
-              <ListItemText primary={item.title} secondary={item.createdAt} />
-              <ListItemSecondaryAction>
-                <IconButton edge="end" aria-label="delete">
-                  <ChevronRightIcon />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-          ))}
-        </List>
+        { user &&
+          <TimelineList result={()=>{ fetchTimelines(); }} version="v2" limit={limit} userId={ user ? user.uid : null} />
+        }
 
         { !user &&
           <Box textAlign="center">
@@ -97,7 +67,7 @@ export default function Mypage() {
           </Box>
         }
 
-        <Fab className={classes.fab} color="secondary" aria-label="add" component="a" href="/timelines/new">
+        <Fab className={classes.fab} color="secondary" aria-label="add" component="a" href="/create">
           <AddIcon />
         </Fab>
       </Container>

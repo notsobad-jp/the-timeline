@@ -80,11 +80,7 @@ export default function Header(){
             if (user) {
               return(
                 <Tooltip title={user.email} aria-label={user.email}>
-                  <IconButton
-                    aria-label="account of current user"
-                    color="inherit"
-                    href="mypage"
-                  >
+                  <IconButton aria-label="account of current user" color="inherit" href="/mypage">
                     <AccountCircle />
                   </IconButton>
                 </Tooltip>

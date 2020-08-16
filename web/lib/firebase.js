@@ -23,7 +23,7 @@ const auth = firebase.auth();
 export { auth, firestore, firebase };
 
 
-export const getTimelines = async ({version = 'v2', limit = 30, startAfter = null, endBefore = null} = {}) => {
+export const getTimelines = async ({version = 'v2', limit = 30, startAfter = null, endBefore = null, userId = null} = {}) => {
   const collection = (version == 'v1') ? 'timelines' : 'v2';
   let docRef = firestore.collection(collection);
   const order = endBefore ? 'asc' : 'desc';
@@ -32,6 +32,7 @@ export const getTimelines = async ({version = 'v2', limit = 30, startAfter = nul
   if(limit) { docRef = docRef.limit(Number(limit)); }
   if(startAfter) { docRef = docRef.startAfter(new Date(startAfter)); }
   if(endBefore) { docRef = docRef.startAfter(new Date(endBefore)); }
+  if(userId) { docRef = docRef.where('userId', '==', userId); }
 
   const snapshot = await docRef.get();
   let items = [];

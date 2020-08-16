@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { getTimelines } from '../lib/firebase.js'
 import { getTitleFromSheet } from '../lib/utils.js';
 import { makeStyles } from '@material-ui/core/styles';
@@ -25,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function TimelineList({result, nextStartAfter, limit, version, userId}) {
+export default function TimelineList({result, limit, version, userId}) {
   const classes = useStyles();
   const [items, setItems] = useState(result);
-  const [startAfter, setStartAfter] = useState(nextStartAfter);
+  const initialStartAfter = result.length == limit ? result[result.length - 1].createdAt : null;
+  const [startAfter, setStartAfter] = useState(initialStartAfter);
   const [endBefore, setEndBefore] = useState(null);
   const [snackbar, setSnackbar] = useState({ open: false, message: '' });
 

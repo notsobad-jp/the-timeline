@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Link from '../src/Link';
 import { auth, firestore, firebase } from '../lib/firebase.js'
-import { useEffect, useState, useReducer } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';

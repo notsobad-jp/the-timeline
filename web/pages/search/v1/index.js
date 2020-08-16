@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { getTimelines } from '../../../lib/firebase.js'
+import { makeStyles } from '@material-ui/core/styles';
+import TimelineList from '../../../components/TimelineList';
 import Head from 'next/head';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import TimelineList from '../../../components/TimelineList';
-import { getTimelines } from '../../../lib/firebase.js'
-import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
 
-const limit = 10;
+const limit = 3;
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Index({result, nextStartAfter}) {
+export default function Index({result}) {
   const classes = useStyles();
 
   return (
@@ -40,7 +40,7 @@ export default function Index({result, nextStartAfter}) {
           <Tab label="v1（旧バージョン）" disabled />
         </Tabs>
 
-        <TimelineList result={result} version="v1" limit={limit} nextStartAfter={nextStartAfter} />
+        <TimelineList result={result} version="v1" limit={limit} />
       </Container>
     </>
   );
@@ -48,20 +48,11 @@ export default function Index({result, nextStartAfter}) {
 
 
 export async function getStaticProps(context) {
-  const res = await getTimelines({version: 'v1', limit: limit + 1}); // 1つ多く取得して次ページあるか確認
-
-  // 次のページがあればnextStartAfterにセット
-  let nextStartAfter = null;
-  if(res.length == limit + 1) {
-    res.pop(); // pop()で次ページ確認用のitemをitemsから消す
-    nextStartAfter = res[limit-1].createdAt;
-  }
+  const res = await getTimelines({version: 'v1', limit: limit});
 
   return {
     props: {
       result: res,
-      nextStartAfter: nextStartAfter,
-      prevEndBefore: null
     },
     unstable_revalidate: 60,
   }
