@@ -1,4 +1,4 @@
-export async function getTitleFromSheet(gid) {
+export const getTitleFromSheet = async (gid) => {
   const url = `https://docs.google.com/spreadsheets/d/e/${gid}/pubhtml`;
   const res = await fetch(url);
   const body = await res.text();

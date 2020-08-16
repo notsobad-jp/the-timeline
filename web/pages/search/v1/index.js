@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Link from '../../../src/Link';
-import { auth, firestore, firebase } from '../../../lib/firebase.js'
+import { getTimelines } from '../../../lib/firebase.js'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
@@ -19,8 +19,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 
-const baseUrl = 'http://localhost:3001';
-const limit = 30;
+const limit = 3;
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -39,33 +38,31 @@ export default function Index({result, nextStartAfter, prevEndBefore}) {
   const [endBefore, setEndBefore] = useState(prevEndBefore);
 
   const showNextPage = async (at) => {
-    const res = await fetch(`${baseUrl}/api/timelines?version=v1&limit=${limit + 1}&startAfter=${at}`); // 1つ多く取得して次ページあるか確認
-    const json = await res.json();
+    const res = await getTimelines({version: 'v1', limit: limit + 1, startAfter: at}); // 1つ多く取得して次ページあるか確認
 
     // 次のページがあればnextStartAfterにセット
-    if(json.items.length == limit + 1) {
-      json.items.pop(); // pop()で次ページ確認用のitemをitemsから消す
-      setStartAfter(json.items[limit-1].createdAt);
+    if(res.length == limit + 1) {
+      res.pop(); // pop()で次ページ確認用のitemをitemsから消す
+      setStartAfter(res[limit-1].createdAt);
     }else {
       setStartAfter(null);
     }
-    setEndBefore(json.items[0].createdAt);
-    setItems(json.items);
+    setEndBefore(res[0].createdAt);
+    setItems(res);
   }
 
   const showPrevPage = async (at) => {
-    const res = await fetch(`${baseUrl}/api/timelines?version=v1&limit=${limit + 1}&endBefore=${at}`); // 1つ多く取得して次ページあるか確認
-    const json = await res.json();
+    const res = await getTimelines({version: 'v1', limit: limit + 1, endBefore: at}); // 1つ多く取得して次ページあるか確認
 
     // 次のページがあればnextStartAfterにセット
-    if(json.items.length == limit + 1) {
-      json.items.shift(); // shift()で次ページ確認用のitemをitemsから消す
-      setEndBefore(json.items[0].createdAt);
+    if(res.length == limit + 1) {
+      res.shift(); // shift()で次ページ確認用のitemをitemsから消す
+      setEndBefore(res[0].createdAt);
     }else {
       setEndBefore(null);
     }
-    setStartAfter(json.items[json.items.length-1].createdAt);
-    setItems(json.items);
+    setStartAfter(res[res.length-1].createdAt);
+    setItems(res);
   }
 
   return (
@@ -122,20 +119,18 @@ export default function Index({result, nextStartAfter, prevEndBefore}) {
 
 
 export async function getStaticProps(context) {
-  let nextStartAfter = null;
-
-  const res = await fetch(`${baseUrl}/api/timelines?version=v1&limit=${limit + 1}`); // 1つ多く取得して次ページあるか確認
-  const json = await res.json();
+  const res = await getTimelines({version: 'v1', limit: limit + 1}); // 1つ多く取得して次ページあるか確認
 
   // 次のページがあればnextStartAfterにセット
-  if(json.items.length == limit + 1) {
-    json.items.pop(); // pop()で次ページ確認用のitemをitemsから消す
-    nextStartAfter = json.items[limit-1].createdAt;
+  let nextStartAfter = null;
+  if(res.length == limit + 1) {
+    res.pop(); // pop()で次ページ確認用のitemをitemsから消す
+    nextStartAfter = res[limit-1].createdAt;
   }
 
   return {
     props: {
-      result: json.items,
+      result: res,
       nextStartAfter: nextStartAfter,
       prevEndBefore: null
     },
