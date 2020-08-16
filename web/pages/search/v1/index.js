@@ -124,15 +124,14 @@ export default function Index({result, nextStartAfter, prevEndBefore}) {
 export async function getStaticProps(context) {
   let nextStartAfter = null;
 
-  // const res = await fetch(`${baseUrl}/api/timelines?version=v1&limit=${limit + 1}`); // 1つ多く取得して次ページあるか確認
-  // const json = await res.json();
-  //
-  // // 次のページがあればnextStartAfterにセット
-  // if(json.items.length == limit + 1) {
-  //   json.items.pop(); // pop()で次ページ確認用のitemをitemsから消す
-  //   nextStartAfter = json.items[limit-1].createdAt;
-  // }
-  const json = { items: [] };
+  const res = await fetch(`${baseUrl}/api/timelines?version=v1&limit=${limit + 1}`); // 1つ多く取得して次ページあるか確認
+  const json = await res.json();
+
+  // 次のページがあればnextStartAfterにセット
+  if(json.items.length == limit + 1) {
+    json.items.pop(); // pop()で次ページ確認用のitemをitemsから消す
+    nextStartAfter = json.items[limit-1].createdAt;
+  }
 
   return {
     props: {
