@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { UserContext } from '../_app';
 import Head from 'next/head';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -19,6 +20,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -33,14 +35,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Mypage() {
   const classes = useStyles();
-  const [user, setUser] = useState();
+  const [user, setUser] = useContext(UserContext);
   const [items, setItems] = useState([]);
 
-  firebase.auth().onAuthStateChanged((u) => {
-    setUser(u);
-    if(!u) { return; }
-
-    firestore.collection("v2").where("userId", "==", u.uid).orderBy('createdAt', 'desc').limit(10).get()
+  if(user) {
+    firestore.collection("v2").where("userId", "==", user.uid).orderBy('createdAt', 'desc').limit(10).get()
       .then(snapshot => {
         let data = []
         snapshot.forEach(doc => {
@@ -53,11 +52,10 @@ export default function Mypage() {
           }))
         })
         setItems(data);
-        console.log(data);
       }).catch(error => {
         console.log(error);
       })
-  });
+  }
 
   return (
     <>
@@ -92,6 +90,12 @@ export default function Mypage() {
             </ListItem>
           ))}
         </List>
+
+        { !user &&
+          <Box textAlign="center">
+            <CircularProgress />
+          </Box>
+        }
 
         <Fab className={classes.fab} color="secondary" aria-label="add" component="a" href="/timelines/new">
           <AddIcon />
