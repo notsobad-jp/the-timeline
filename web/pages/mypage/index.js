@@ -30,15 +30,19 @@ const useStyles = makeStyles((theme) => ({
 export default function Mypage() {
   const classes = useStyles();
   const [user, setUser] = useContext(UserContext);
+  const [items, setItems] = useState([]);
 
-  const fetchTimelines = async () => {
-    const res = await getTimelines({version: 'v2', limit: limit + 1, userId: user.uid});
-    // 次のページがあればnextStartAfterにセット
-    if(res.length == limit + 1) {
-      res.shift(); // shift()で次ページ確認用のitemをitemsから消す
+  useEffect(() => {
+    let ignore = false;
+    if(!user) { return; }
+    const fetchData = async () => {
+      const res = await getTimelines({version: 'v2', limit: limit, userId: user.uid});
+      if(!ignore) { setItems(res); }
     }
-    return res;
-  }
+    fetchData();
+    return () => { ignore = true; }
+  }, [user] )
+
 
   return (
     <>
@@ -48,7 +52,7 @@ export default function Mypage() {
       </Head>
 
       <Container maxWidth="md" className={classes.container}>
-        <Typography variant="h4" component="h1" gutterBottom>
+        <Typography variant="h4"  component="h1" gutterBottom>
           Mypage
         </Typography>
 
@@ -57,8 +61,8 @@ export default function Mypage() {
           <Tab label="v1（旧バージョン）" component="a" href="/mypage/v1" />
         </Tabs>
 
-        { user &&
-          <TimelineList result={()=>{ fetchTimelines(); }} version="v2" limit={limit} userId={ user ? user.uid : null} />
+        { items.length > 0 &&
+          <TimelineList result={items} version="v2" limit={limit} userId={user.uid} />
         }
 
         { !user &&
