@@ -23,9 +23,8 @@ const auth = firebase.auth();
 export { auth, firestore, firebase };
 
 
-export const getTimelines = async ({version = 'v2', limit = 30, startAfter = null, endBefore = null, userId = null} = {}) => {
-  const collection = (version == 'v1') ? 'timelines' : 'v2';
-  let docRef = firestore.collection(collection);
+export const getTimelines = async ({limit = 30, startAfter = null, endBefore = null, userId = null} = {}) => {
+  let docRef = firestore.collection('timelines');
   const order = endBefore ? 'asc' : 'desc';
   docRef = docRef.orderBy('createdAt', order);
 
@@ -37,13 +36,11 @@ export const getTimelines = async ({version = 'v2', limit = 30, startAfter = nul
   const snapshot = await docRef.get();
   let items = [];
   snapshot.forEach(doc => {
-    items.push(Object.assign({
-      id: doc.id
-    }, {
-      title: doc.data().title,
-      createdAt: doc.data().createdAt.toDate().toISOString(),
-    }))
-  })
+    const data = doc.data();
+    data.id = doc.id;
+    data.createdAt = data.createdAt.toDate().toISOString();
+    items.push(data);
+  });
   items.sort((a,b) => {
     return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
   });

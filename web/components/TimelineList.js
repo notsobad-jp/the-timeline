@@ -11,18 +11,24 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CloseIcon from '@material-ui/icons/Close';
 import SyncIcon from '@material-ui/icons/Sync';
+import ErrorIcon from '@material-ui/icons/Error';
 
 
 const useStyles = makeStyles((theme) => ({
   pagination: {
     marginTop: theme.spacing(2)
-  }
+  },
+  errorIcon: {
+    verticalAlign: 'bottom',
+    marginLeft: theme.spacing(1),
+  },
 }));
 
 export default function TimelineList({result, limit, version, userId}) {
@@ -38,7 +44,7 @@ export default function TimelineList({result, limit, version, userId}) {
     const confirmed = confirm('Are you sure to delete this?');
     if(!confirmed){ return; }
 
-    firestore.collection('v2').doc(id).delete().then(function() {
+    firestore.collection('timelines').doc(id).delete().then(function() {
       setItems(items.filter(i => i.id != id));
       setSnackbar({open: true, message: 'The item was deleted.'});
     }).catch(function(error) {
@@ -50,7 +56,7 @@ export default function TimelineList({result, limit, version, userId}) {
   const syncTitle = async (id) => {
     try {
       const title = await getTitleFromSheet(id);
-      firestore.collection('v2').doc(id).update({title: title}).then(function() {
+      firestore.collection('timelines').doc(id).update({title: title}).then(function() {
         items.find(i => i.id == id).title = title;
         setItems(items);
         setSnackbar({open: true, message: 'The title was updated.'});
@@ -92,16 +98,22 @@ export default function TimelineList({result, limit, version, userId}) {
     setItems(res);
   }
 
-  const appPath = (id) => {
-    return (version != 'v1') ? `/app/v2/${id}` : `/app/${id}`;
-  }
-
   return (
     <>
       <List component="nav">
         { items.map((item) => (
-          <ListItem button divider component="a" href={appPath(item.id)} key={item.id}>
-            <ListItemText primary={item.title} secondary={item.createdAt.slice(0, 10)} />
+          <ListItem button divider component="a" href={`/app/${id}`} key={item.id}>
+            <ListItemText primary={
+                <>
+                  { item.title }
+                  {
+                    item.version != 'v2' && userId &&
+                    <Tooltip title="Outdated!" aria-label="outdated">
+                      <ErrorIcon color="action" className={classes.errorIcon} />
+                    </Tooltip>
+                  }
+                </>
+              } secondary={item.createdAt.slice(0, 10)} />
             <ListItemSecondaryAction>
               { userId &&
                 <>

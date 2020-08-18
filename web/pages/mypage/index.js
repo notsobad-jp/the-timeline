@@ -7,8 +7,6 @@ import Head from 'next/head';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Fab from '@material-ui/core/Fab';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import AddIcon from '@material-ui/icons/Add';
@@ -56,16 +54,11 @@ export default function Mypage() {
           Mypage
         </Typography>
 
-        <Tabs value={0} indicatorColor="primary" textColor="primary">
-          <Tab label="Latest" disabled />
-          <Tab label="v1（旧バージョン）" component="a" href="/mypage/v1" />
-        </Tabs>
-
         { items.length > 0 &&
-          <TimelineList result={items} version="v2" limit={limit} userId={user.uid} />
+          <TimelineList result={items} limit={limit} userId={user.uid} />
         }
 
-        { !user &&
+        { !user && items &&
           <Box textAlign="center">
             <CircularProgress />
           </Box>

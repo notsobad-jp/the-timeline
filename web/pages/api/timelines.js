@@ -2,8 +2,7 @@ import { auth, firestore, firebase } from '../../lib/firebase.js'
 
 export default async (req, res) => {
   const result = await new Promise((resolve, reject) => {
-    const collection = (req.query.version == 'v1') ? 'timelines' : 'v2';
-    let docRef = firestore.collection(collection);
+    let docRef = firestore.collection('timelines');
     const order = req.query.endBefore ? 'asc' : 'desc';
     docRef = docRef.orderBy('createdAt', order);
 
@@ -16,13 +15,11 @@ export default async (req, res) => {
         let data = {items: []};
 
         snapshot.forEach(doc => {
-          data.items.push(Object.assign({
-            id: doc.id
-          }, {
-            title: doc.data().title,
-            createdAt: doc.data().createdAt.toDate().toISOString(),
-          }))
-        })
+          const docData = doc.data();
+          docData.id = doc.id;
+          docData.createdAt = docData.createdAt.toDate().toISOString();
+          data.items.push(docData);
+        });
         data.items.sort((a,b) => {
           return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
         });
