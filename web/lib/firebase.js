@@ -46,3 +46,8 @@ export const getTimelines = async ({limit = 30, startAfter = null, endBefore = n
   });
   return items;
 }
+
+
+export const updateTitle = async (id, title) => {
+  await firestore.collection('timelines').doc(id).update({title: title});
+}

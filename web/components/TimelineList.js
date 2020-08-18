@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getTimelines } from '../lib/firebase.js'
+import { getTimelines, updateTitle } from '../lib/firebase.js'
 import { getTitleFromSheet } from '../lib/utils.js';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -53,21 +53,13 @@ export default function TimelineList({result, limit, version, userId}) {
     });
   }
 
+  // TODO: クライアントからfetchするとCORSエラー？
   const syncTitle = async (id) => {
-    try {
-      const title = await getTitleFromSheet(id);
-      firestore.collection('timelines').doc(id).update({title: title}).then(function() {
-        items.find(i => i.id == id).title = title;
-        setItems(items);
-        setSnackbar({open: true, message: 'The title was updated.'});
-      }).catch(function(error) {
-        console.error("Error updating document: ", error);
-        setSnackbar({open: true, message: 'Failed to update the title... Please try again later.'});
-      });
-    } catch(e) {
-      console.log(e);
-      setSnackbar({open: true, message: e});
-    }
+    const title = await getTitleFromSheet(id).catch(e => setSnackbar({open: true, message: JSON.stringify(e)}));
+    await updateTitle(id, title).catch(e => setSnackbar({open: true, message: JSON.stringify(e)}));
+    items.find(i => i.id == id).title = title;
+    setItems(items);
+    setSnackbar({open: true, message: 'Title was updated.'});
   }
 
   const showNextPage = async (at) => {
