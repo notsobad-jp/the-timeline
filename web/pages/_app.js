@@ -1,6 +1,7 @@
 import React, { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import Box from '@material-ui/core/Box';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
@@ -51,7 +52,9 @@ export default function MyApp(props) {
         <UserContext.Provider value={[user, setUser]}>
           <CssBaseline />
           <Header />
-          <Component {...pageProps} />
+          <Box mb={8}>
+            <Component {...pageProps} />
+          </Box>
         </UserContext.Provider>
       </ThemeProvider>
     </React.Fragment>

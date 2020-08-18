@@ -89,12 +89,12 @@ export default function NewTimeline() {
   return (
     <>
       <Head>
-        <title>New Timeline - THE TIMELINE</title>
+        <title>Create New Timeline - THE TIMELINE</title>
       </Head>
 
       <Container maxWidth="md" className={classes.container}>
         <Typography variant="h4" component="h1" gutterBottom>
-          Create Timeline
+          Create
         </Typography>
 
         <form onSubmit={handleSubmit}>

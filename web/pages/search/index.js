@@ -51,7 +51,6 @@ export default function Index({result}) {
 
 export async function getStaticProps(context) {
   const res = await getTimelines({limit: limit});
-  console.log(res)
 
   return {
     props: {

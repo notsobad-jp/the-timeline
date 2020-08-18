@@ -102,7 +102,7 @@ export default function TimelineList({result, limit, version, userId}) {
     <>
       <List component="nav">
         { items.map((item) => (
-          <ListItem button divider component="a" href={`/app/${id}`} key={item.id}>
+          <ListItem button divider component="a" href={`/app/${item.id}`} key={item.id}>
             <ListItemText primary={
                 <>
                   { item.title }
