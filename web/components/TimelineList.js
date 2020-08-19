@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getTimelines, updateTitle } from '../lib/firebase.js'
+import { getTimelines, deleteTimeline } from '../lib/firebase.js'
 import { getTitleFromSheet } from '../lib/utils.js';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -40,26 +40,17 @@ export default function TimelineList({result, limit, version, userId}) {
   const [snackbar, setSnackbar] = useState({ open: false, message: '' });
 
 
-  const deleteTimeline = (id) => {
+  const remove = (id) => {
     const confirmed = confirm('Are you sure to delete this?');
     if(!confirmed){ return; }
 
-    firestore.collection('timelines').doc(id).delete().then(function() {
+    deleteTimeline(id).then(()=> {
       setItems(items.filter(i => i.id != id));
       setSnackbar({open: true, message: 'The item was deleted.'});
     }).catch(function(error) {
       console.error("Error removing document: ", error);
       setSnackbar({open: true, message: 'Failed to delete the item... Please try again later.'});
     });
-  }
-
-  // TODO: クライアントからfetchするとCORSエラー？
-  const syncTitle = async (id) => {
-    const title = await getTitleFromSheet(id).catch(e => setSnackbar({open: true, message: JSON.stringify(e)}));
-    await updateTitle(id, title).catch(e => setSnackbar({open: true, message: JSON.stringify(e)}));
-    items.find(i => i.id == id).title = title;
-    setItems(items);
-    setSnackbar({open: true, message: 'Title was updated.'});
   }
 
   const showNextPage = async (at) => {
@@ -109,13 +100,8 @@ export default function TimelineList({result, limit, version, userId}) {
             <ListItemSecondaryAction>
               { userId &&
                 <>
-                  <Tooltip title="Sync Title" aria-label="Sync Title">
-                    <IconButton edge="start" aria-label="sync-title" onClick={()=>{syncTitle(item.id)}}>
-                      <SyncIcon />
-                    </IconButton>
-                  </Tooltip>
                   <Tooltip title="Delete" aria-label="Delete">
-                    <IconButton edge="end" aria-label="delete" onClick={()=>{deleteTimeline(item.id)}}>
+                    <IconButton edge="end" aria-label="delete" onClick={()=>{remove(item.id)}}>
                       <DeleteIcon />
                     </IconButton>
                   </Tooltip>
