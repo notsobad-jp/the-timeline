@@ -7,10 +7,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 import { auth, firestore, firebase } from '../lib/firebase.js'
 import Header from "../components/header.js"
+import Snackbar from "../components/snackbar.js"
 import { useRouter } from 'next/router'
 
 
 export const UserContext = createContext(["", () => {}]);
+export const SnackbarContext = createContext(["", () => {}]);
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
@@ -25,6 +27,7 @@ export default function MyApp(props) {
 
   const router = useRouter()
   const [user, setUser] = useState();
+  const [snackbar, setSnackbar] = useState({ open: false, message: '' });
 
   firebase.auth().onAuthStateChanged((u) => {
     setUser(u);
@@ -50,11 +53,14 @@ export default function MyApp(props) {
 
       <ThemeProvider theme={theme}>
         <UserContext.Provider value={[user, setUser]}>
-          <CssBaseline />
-          <Header />
-          <Box mb={8}>
-            <Component {...pageProps} />
-          </Box>
+          <SnackbarContext.Provider value={[snackbar, setSnackbar]}>
+            <CssBaseline />
+            <Header />
+            <Box mb={8}>
+              <Component {...pageProps} />
+            </Box>
+            <Snackbar />
+          </SnackbarContext.Provider>
         </UserContext.Provider>
       </ThemeProvider>
     </React.Fragment>

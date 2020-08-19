@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { SnackbarContext } from '../pages/_app';
 import { getTimelines, deleteTimeline } from '../lib/firebase.js'
 import { getTitleFromSheet } from '../lib/utils.js';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Tooltip from '@material-ui/core/Tooltip';
-import Snackbar from '@material-ui/core/Snackbar';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -37,7 +37,7 @@ export default function TimelineList({result, limit, version, userId}) {
   const initialStartAfter = result.length == limit ? result[result.length - 1].createdAt : null;
   const [startAfter, setStartAfter] = useState(initialStartAfter);
   const [endBefore, setEndBefore] = useState(null);
-  const [snackbar, setSnackbar] = useState({ open: false, message: '' });
+  const [snackbar, setSnackbar] = useContext(SnackbarContext);
 
 
   const remove = (id) => {
@@ -129,22 +129,6 @@ export default function TimelineList({result, limit, version, userId}) {
           </Box>
         }
       </Box>
-
-      <Snackbar
-        anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
-        open={snackbar.open}
-        autoHideDuration={5000}
-        onClose={()=>{ setSnackbar({open: false, message: ''}); }}
-        message={snackbar.message}
-        severity="success"
-        action={
-          <React.Fragment>
-            <IconButton size="small" aria-label="close" color="inherit" onClick={()=>{ setSnackbar({open: false, message: ''}); }}>
-              <CloseIcon fontSize="small" />
-            </IconButton>
-          </React.Fragment>
-        }
-      />
     </>
   );
 }
