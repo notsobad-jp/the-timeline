@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Link from '../src/Link';
-import { auth, firebase } from '../lib/firebase.js'
+import { firebase } from '../lib/firebase.js'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -41,24 +41,26 @@ export default function Login() {
 
 
   const handleSubmit = (e) => {
+    console.log("form!")
     e.preventDefault();
-    setSnackbar({open: true, message: 'Failed to delete the item... Please try again later.'});
-    // const emailField = document.getElementById('emailField');
-    // const email = emailField.value;
-    // const actionCodeSettings = {
-    //   // URL you want to redirect back to. The domain (www.example.com) for this
-    //   // URL must be whitelisted in the Firebase Console.
-    //   url: 'http://localhost:3001/api/auth',
-    //   // This must be true.
-    //   handleCodeInApp: true,
-    // };
-    // firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
-    //   .then(function() {
-    //     console.log("sent email")
-    //   })
-    //   .catch(function(error) {
-    //     // Some error occurred, you can inspect the code: error.code
-    //   });
+    const emailField = document.getElementById('emailField');
+    const email = emailField.value;
+    const actionCodeSettings = {
+      // URL you want to redirect back to. The domain (www.example.com) for this
+      // URL must be whitelisted in the Firebase Console.
+      url: 'http://localhost:3001/api/auth',
+      // This must be true.
+      handleCodeInApp: true,
+    };
+    firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+      .then(function() {
+        console.log("email sent")
+        setSnackbar({open: true, message: "Email was sent to your E-mail address."})
+      })
+      .catch(function(error) {
+        setSnackbar({open: true, message: "Failed to send email.. Please try again later."})
+        console.log(error);
+      });
   }
 
 
@@ -72,16 +74,16 @@ export default function Login() {
       <Container maxWidth="sm">
         <Box my={8}>
           <form onSubmit={handleSubmit}>
-            <Typography variant="h5" component="h1" textAlign="center" gutterBottom>簡単ログイン</Typography>
+            <Typography variant="h5" component="h1" gutterBottom>簡単ログイン</Typography>
             <Box mb={2}>
               <TextField id="emailField" type="email" label="Email" fullWidth />
             </Box>
+            <Button type="submit" variant="contained" color="secondary">ログイン</Button>
           </form>
-          <Button type="submit" variant="contained" color="secondary">ログイン</Button>
         </Box>
 
         <Box my={8}>
-          <Typography variant="h5" component="h1" textAlign="center" gutterBottom>SNSログイン</Typography>
+          <Typography variant="h5" component="h1" gutterBottom>SNSログイン</Typography>
           <TwitterLoginButton onClick={() => { snsLogin('twitter') }} />
           <GoogleLoginButton onClick={() => { snsLogin('google') }} />
         </Box>

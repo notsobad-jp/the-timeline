@@ -1,11 +1,12 @@
-import { auth, firestore, firebase } from '../../lib/firebase.js'
+import React, { useState, useContext } from 'react';
+import { firebase } from '../lib/firebase.js'
+import { UserContext, SnackbarContext } from './_app';
+import Head from 'next/head';
 
-export default (req, res) => {
+export default function Login() {
   // res.statusCode = 200
   // res.setHeader('Content-Type', 'application/json')
   // res.end(JSON.stringify({ name: 'John Doe' }))
-
-  console.log(req);
   const url = `http://localhost:3001${req.url}`;
 
   if (firebase.auth().isSignInWithEmailLink(url)) {
@@ -34,5 +35,11 @@ export default (req, res) => {
         // Common errors could be invalid email and invalid or expired OTPs.
         res.end("failed!!!");
       });
+  }
+}
+
+export async function getServerSideProps(context) {
+  return {
+    props: {}, // will be passed to the page component as props
   }
 }
