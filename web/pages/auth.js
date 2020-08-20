@@ -1,45 +1,48 @@
 import React, { useState, useContext } from 'react';
-import { firebase } from '../lib/firebase.js'
-import { UserContext, SnackbarContext } from './_app';
+import { useRouter } from 'next/router';
+import { SnackbarContext } from './_app';
+import { firebase } from '../lib/firebase.js';
 import Head from 'next/head';
 
-export default function Login() {
-  // res.statusCode = 200
-  // res.setHeader('Content-Type', 'application/json')
-  // res.end(JSON.stringify({ name: 'John Doe' }))
-  const url = `http://localhost:3001${req.url}`;
+export default function Auth() {
+  const router = useRouter();
+  const [snackbar, setSnackbar] = useContext(SnackbarContext);
 
-  if (firebase.auth().isSignInWithEmailLink(url)) {
-    // Additional state parameters can also be passed via URL.
-    // This can be used to continue the user's intended action before triggering
-    // the sign-in operation.
-    // Get the email if available. This should be available if the user completes
-    // the flow on the same device where they started it.
-    const email = "tomomichi.onishi@gmail.com"
-    // The client SDK will parse the code from the link for you.
-    firebase.auth().signInWithEmailLink(email, url)
-      .then(function(result) {
-        // Clear email from storage.
-        // window.localStorage.removeItem('emailForSignIn');
-        console.log("authed!!")
-        console.log(result.user)
-        // You can access the new user via result.user
-        // Additional user info profile not available via:
-        // result.additionalUserInfo.profile == null
-        // You can check if the user is new or existing:
-        // result.additionalUserInfo.isNewUser
-        res.end("successed!!!");
-      })
-      .catch(function(error) {
-        // Some error occurred, you can inspect the code: error.code
-        // Common errors could be invalid email and invalid or expired OTPs.
-        res.end("failed!!!");
-      });
-  }
-}
+  React.useEffect(() => {
+    if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+      // Additional state parameters can also be passed via URL.
+      // This can be used to continue the user's intended action before triggering
+      // the sign-in operation.
+      // Get the email if available. This should be available if the user completes
+      // the flow on the same device where they started it.
+      let email = window.localStorage.getItem('emailForSignIn');
+      if (!email) {
+        // User opened the link on a different device. To prevent session fixation
+        // attacks, ask the user to provide the associated email again. For example:
+        email = window.prompt('Please provide your email for confirmation');
+        window.localStorage.setItem('emailForSignIn', email);
+      }
+      // The client SDK will parse the code from the link for you.
+      firebase.auth().signInWithEmailLink(email, window.location.href)
+        .then(function(result) {
+          // Clear email from storage.
+          window.localStorage.removeItem('emailForSignIn');
+          setSnackbar({open: true, message: `Signin successfully!`});
+          router.push("/mypage");
+        })
+        .catch(function(error) {
+          setSnackbar({open: true, message: 'Signin failed.. Please try again later.'});
+          router.push("/login");
+        });
+    }
+  });
 
-export async function getServerSideProps(context) {
-  return {
-    props: {}, // will be passed to the page component as props
-  }
+  return (
+    <>
+      <Head>
+        <title>Auth - THE TIMELINE</title>
+        <meta name="robots" content="noindex" />
+      </Head>
+    </>
+  );
 }

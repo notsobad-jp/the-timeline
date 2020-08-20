@@ -22,6 +22,12 @@ export default function Login() {
   const classes = useStyles();
   const [user, setUser] = useContext(UserContext);
   const [snackbar, setSnackbar] = useContext(SnackbarContext);
+  const [signinUrl, setSigninUrl] = useState();
+
+  React.useEffect(() => {
+    const url = `${window.location.protocol}//${window.location.host}/auth`;
+    setSigninUrl(url);
+  });
 
   const snsLogin = (providerName) => {
     let provider;
@@ -39,22 +45,20 @@ export default function Login() {
     firebase.auth().signInWithRedirect(provider);
   }
 
-
   const handleSubmit = (e) => {
-    console.log("form!")
     e.preventDefault();
     const emailField = document.getElementById('emailField');
     const email = emailField.value;
     const actionCodeSettings = {
       // URL you want to redirect back to. The domain (www.example.com) for this
       // URL must be whitelisted in the Firebase Console.
-      url: 'http://localhost:3001/api/auth',
+      url: signinUrl,
       // This must be true.
       handleCodeInApp: true,
     };
     firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
       .then(function() {
-        console.log("email sent")
+        window.localStorage.setItem('emailForSignIn', email);
         setSnackbar({open: true, message: "Email was sent to your E-mail address."})
       })
       .catch(function(error) {
