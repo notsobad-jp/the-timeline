@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { SnackbarContext } from '../pages/_app';
 import { getTimelines, deleteTimeline } from '../lib/firebase.js'
 import { getTitleFromSheet } from '../lib/utils.js';
