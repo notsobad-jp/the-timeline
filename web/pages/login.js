@@ -104,6 +104,9 @@ export default function Login() {
               <TextField id="emailField" type="email" label="Email" fullWidth />
             </Box>
             <Button type="submit" variant="contained" color="secondary">ログイン</Button>
+            <Box mt={2}>
+              入力したメールアドレスに、ログインURLが届きます。
+            </Box>
           </form>
         </Box>
 
@@ -111,6 +114,9 @@ export default function Login() {
           <Typography variant="h5" component="h1" gutterBottom>SNSログイン</Typography>
           <TwitterLoginButton onClick={() => { snsLogin('twitter') }} />
           <GoogleLoginButton onClick={() => { snsLogin('google') }} />
+          <Box mt={2}>
+            もちろん勝手に投稿したりしませんのでご安心ください。
+          </Box>
         </Box>
       </Container>
     </>
