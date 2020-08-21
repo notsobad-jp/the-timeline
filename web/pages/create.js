@@ -15,9 +15,15 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import StepContent from '@material-ui/core/StepContent';
+import Alert from '@material-ui/lab/Alert';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import LaunchIcon from '@material-ui/icons/Launch';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     maxWidth: '100%',
+  },
+  bold: {
+    fontWeight: 'bold',
   }
 }));
 
@@ -111,41 +120,60 @@ export default function NewTimeline() {
         </Box>
 
         <Box>
-          <Typography variant="h5" gutterBottom>作成手順</Typography>
+          <Typography className={classes.bold} variant="h5" gutterBottom>
+            ▼ 作成手順 ▼
+          </Typography>
 
-          <Box mb={4}>
-            <Typography variant="h6" gutterBottom>① テンプレートからシートを新規作成</Typography>
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
-                <img src="/images/create/1.png" alt="テンプレートからシートを新規作成" className={classes.image} />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                以下のテンプレートをコピーして、自分用のシートを作成します。
-                下記のリンク先で、メニューの「ファイル」→「コピーを作成」を選択してください。
-              </Grid>
-            </Grid>
-          </Box>
-
-          <Box mb={4}>
-            <Typography variant="h6" gutterBottom>② シートにデータを登録</Typography>
-            <Box>
-              作成したシートで、テンプレートの形式に沿ってデータを登録します。
-              データ登録方法のオプションについては、サンプルの元データを参考にしてください。
-            </Box>
-          </Box>
-
-          <Box mb={4}>
-            <Typography variant="h6" gutterBottom>③ シートを公開する</Typography>
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
-                <img src="/images/create/3.png" alt="シートを公開する" className={classes.image} />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                登録が完了したら、シートを公開します。 メニューの「ファイル」→「ウェブに公開」を選択してください。
-                （Google公式ドキュメント）
-              </Grid>
-            </Grid>
-          </Box>
+          <Stepper orientation="vertical">
+            <Step active={true}>
+              <StepLabel>
+                <Typography variant="h6" className={classes.bold}>テンプレートからシートを新規作成</Typography>
+              </StepLabel>
+              <StepContent>
+                <Grid container spacing={3}>
+                  <Grid item xs={12} sm={6}>
+                    <img src="/images/create/1.png" alt="テンプレートからシートを新規作成" className={classes.image} />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    以下のテンプレートをコピーして、自分用のシートを作成します。
+                    シートの表示画面で、メニューの「ファイル」→「コピーを作成」を選択してください。
+                    <Box my={2}>
+                      <Button component="a" href="/" target="_blank" variant="contained" color="primary" fullWidth={ isMobile } endIcon={<LaunchIcon />}>公式テンプレート</Button>
+                    </Box>
+                    <Alert severity="warning">
+                      <Typography component="p" className={classes.bold}>「アクセス権のリクエスト」ではありません</Typography>
+                      公式テンプレートは上記手順でコピーして、ご自分のファイルとして編集してください。
+                    </Alert>
+                  </Grid>
+                </Grid>
+              </StepContent>
+            </Step>
+            <Step active={true}>
+              <StepLabel>
+                <Typography variant="h6" className={classes.bold}>シートにデータを登録</Typography>
+              </StepLabel>
+              <StepContent>
+                作成したシートで、テンプレートの形式に沿ってデータを登録します。
+                データ登録方法のオプションについては、サンプルの元データを参考にしてください。
+              </StepContent>
+            </Step>
+            <Step active={true}>
+              <StepLabel>
+                <Typography variant="h6" className={classes.bold}>シートをWebに公開する</Typography>
+              </StepLabel>
+              <StepContent>
+                <Grid container spacing={3}>
+                  <Grid item xs={12} sm={6}>
+                    <img src="/images/create/3.png" alt="シートを公開する" className={classes.image} />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    登録が完了したら、メニューの「ファイル」→「ウェブに公開」を選択してシートを公開します。
+                    公開後に発行されるURLをコピーし、この画面上部のフォームに入力してください。
+                  </Grid>
+                </Grid>
+              </StepContent>
+            </Step>
+          </Stepper>
         </Box>
       </Container>
     </>
