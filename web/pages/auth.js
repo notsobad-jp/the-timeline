@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import { SnackbarContext } from './_app';
 import { firebase } from '../lib/firebase.js';
 import Head from 'next/head';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default function Auth() {
   const router = useRouter();
@@ -31,6 +33,10 @@ export default function Auth() {
         <title>Auth - THE TIMELINE</title>
         <meta name="robots" content="noindex" />
       </Head>
+
+      <Backdrop open={true}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </>
   );
 }

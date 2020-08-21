@@ -6,6 +6,7 @@ import TimelineList from '../../components/TimelineList';
 import Head from 'next/head';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import CircularProgress from '@material-ui/core/CircularProgress';
