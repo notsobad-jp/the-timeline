@@ -8,34 +8,22 @@ export default function Auth() {
   const router = useRouter();
   const [snackbar, setSnackbar] = useContext(SnackbarContext);
 
+  // 最初routerが空の状態で来ちゃうのを考慮
   React.useEffect(() => {
-    if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
-      // Additional state parameters can also be passed via URL.
-      // This can be used to continue the user's intended action before triggering
-      // the sign-in operation.
-      // Get the email if available. This should be available if the user completes
-      // the flow on the same device where they started it.
-      let email = window.localStorage.getItem('emailForSignIn');
-      if (!email) {
-        // User opened the link on a different device. To prevent session fixation
-        // attacks, ask the user to provide the associated email again. For example:
-        email = window.prompt('Please provide your email for confirmation');
-        window.localStorage.setItem('emailForSignIn', email);
-      }
-      // The client SDK will parse the code from the link for you.
-      firebase.auth().signInWithEmailLink(email, window.location.href)
-        .then(function(result) {
-          // Clear email from storage.
-          window.localStorage.removeItem('emailForSignIn');
-          setSnackbar({open: true, message: `Signin successfully!`});
-          router.push("/mypage");
-        })
-        .catch(function(error) {
-          setSnackbar({open: true, message: 'Signin failed.. Please try again later.'});
-          router.push("/login");
-        });
-    }
-  });
+    const q = router.query;
+    if(!q.oobCode) { return; }
+    firebase.auth().verifyPasswordResetCode(q.oobCode).then((email) => {
+      const newPassword = Math.random().toString(36).slice(-12)
+      firebase.auth().confirmPasswordReset(q.oobCode, newPassword).then(() => {
+        firebase.auth().signInWithEmailAndPassword(email, newPassword);
+        setSnackbar({open: true, message: 'ログインしました'});
+        router.push('/mypage');
+      });
+    }).catch((error) => {
+      setSnackbar({open: true, message: 'ログインに失敗しました。。'});
+      router.push('/login');
+    });
+  }, [router]);
 
   return (
     <>

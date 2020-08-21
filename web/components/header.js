@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { UserContext } from '../pages/_app';
+import { useRouter } from 'next/router'
+import { UserContext, SnackbarContext } from '../pages/_app';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -23,9 +24,6 @@ import AddIcon from '@material-ui/icons/Add';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { useRouter } from 'next/router'
-import Snackbar from '@material-ui/core/Snackbar';
-import CloseIcon from '@material-ui/icons/Close';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
 
@@ -54,12 +52,12 @@ export default function Header(){
   const classes = useStyles();
   const router = useRouter();
   const [user, setUser] = useContext(UserContext);
+  const [snackbar, setSnackbar] = useContext(SnackbarContext);
   const [drawerOpened, setDrawerOpened] = useState(false);
-  const [snackbarOpened, setSnackbarOpened] = useState(false);
 
   const logout = () => {
     firebase.auth().signOut().then(function() {
-      setSnackbarOpened(true);
+      setSnackbar({open: true, message: 'ログアウトしました'});
       router.push(`/login`);
     });
   };
@@ -142,24 +140,6 @@ export default function Header(){
           </List>
         </div>
       </Drawer>
-
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={snackbarOpened}
-        autoHideDuration={5000}
-        onClose={()=>{ setSnackbarOpened(false); }}
-        message="Logout successfully."
-        action={
-          <React.Fragment>
-            <IconButton size="small" aria-label="close" color="inherit" onClick={()=>{ setSnackbarOpened(false); }}>
-              <CloseIcon fontSize="small" />
-            </IconButton>
-          </React.Fragment>
-        }
-      />
     </div>
   );
 };

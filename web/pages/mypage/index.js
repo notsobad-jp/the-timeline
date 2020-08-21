@@ -54,7 +54,7 @@ export default function Mypage() {
           Mypage
         </Typography>
 
-        { items.length > 0 &&
+        { user && items.length > 0 &&
           <TimelineList result={items} limit={limit} userId={user.uid} />
         }
 

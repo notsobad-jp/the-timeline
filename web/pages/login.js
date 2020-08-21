@@ -66,6 +66,27 @@ export default function Login() {
         console.log(error);
       });
   }
+  const magicAuth = (e) => {
+    e.preventDefault();
+    const emailField = document.getElementById('emailField');
+    const email = emailField.value;
+    const newPassword = Math.random().toString(36).slice(-12)
+
+    firebase.auth().createUserWithEmailAndPassword(email, newPassword).then(function(){
+      //新規ユーザーの場合
+      firebase.auth().sendPasswordResetEmail(email)
+      setSnackbar({open: true, message: 'ログイン用のメールを送信しました。メール内のリンクをクリックしてログインしてください。'});
+    }).catch(function(error) {
+      //アドレスが既に登録済みの場合
+      if(error.code == 'auth/email-already-in-use') {
+        firebase.auth().sendPasswordResetEmail(email)
+        setSnackbar({open: true, message: 'ログイン用のメールを送信しました。メール内のリンクをクリックしてログインしてください。'});
+      //validationエラーなど
+      }else {
+        setSnackbar({open: true, message: error.message});
+      }
+    })
+  }
 
 
   return (
@@ -77,7 +98,7 @@ export default function Login() {
 
       <Container maxWidth="sm">
         <Box my={8}>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={magicAuth}>
             <Typography variant="h5" component="h1" gutterBottom>簡単ログイン</Typography>
             <Box mb={2}>
               <TextField id="emailField" type="email" label="Email" fullWidth />
