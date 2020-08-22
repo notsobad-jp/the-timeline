@@ -76,8 +76,9 @@ export default function Header(){
 
           {(() => {
             if (user) {
+              const displayName = user.isAnonymous ? 'ゲストユーザー' : user.email;
               return(
-                <Tooltip title={user.email} aria-label={user.email}>
+                <Tooltip title={displayName} aria-label={displayName}>
                   <IconButton aria-label="account of current user" color="inherit" href="/mypage">
                     <AccountCircle />
                   </IconButton>

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/router'
-import { UserContext } from './_app';
+import { UserContext, SnackbarContext } from './_app';
 import { auth, firestore, firebase } from '../lib/firebase.js'
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
@@ -38,7 +38,10 @@ const useStyles = makeStyles((theme) => ({
   },
   bold: {
     fontWeight: 'bold',
-  }
+  },
+  backdrop: {
+    zIndex: 999,
+  },
 }));
 
 export default function NewTimeline() {
@@ -48,6 +51,14 @@ export default function NewTimeline() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [user, setUser] = useContext(UserContext);
+  const [snackbar, setSnackbar] = useContext(SnackbarContext);
+  const [buttonDisabled, setButtonDisabled] = useState(!user);
+
+  // 未ログイン状態なら匿名ログインさせる
+  React.useEffect(() => {
+    if(!user) { firebase.auth().signInAnonymously(); }
+    setButtonDisabled(false);
+  }, [user]);
 
   const handleClose = () => {
     setOpen(false);
@@ -59,19 +70,13 @@ export default function NewTimeline() {
     const urlField = document.getElementById('urlField');
 
     // URLがスプレッドシートの形式になっていることを確認
-    const { 0: url, 1: gid } = urlField.value.match(/https:\/\/docs\.google\.com\/spreadsheets\/d\/e\/(.+)\/pubhtml/);
-    if(!url || !gid) {
+    const match = urlField.value.match(/https:\/\/docs\.google\.com\/spreadsheets\/d\/e\/(.+)\/pubhtml/);
+    if(!match) {
       alert("[Error] URL形式が異なっています。スプレッドシートのウェブ公開URLが正しく入力されていることをご確認ください。");
       setOpen(false);
       return;
     }
-
-    // ログイン状態であることを確認
-    if(!user) {
-      alert("[Error] ログインしてください");
-      setOpen(false);
-      return;
-    }
+    const { 0: url, 1: gid } = match;
 
     // スプレッドシートが公開されていることを確認
     fetch(url).then(res => {
@@ -87,6 +92,7 @@ export default function NewTimeline() {
         version: 'v2',
       })
       .then(docRef => {
+        setSnackbar({open: true, message: "年表の作成が完了しました！"})
         router.push(`/app/${gid}`);
       })
       .catch(error => {
@@ -112,7 +118,7 @@ export default function NewTimeline() {
         <Box mb={8}>
           <form onSubmit={handleSubmit}>
             <TextField id="urlField" required type="url" label="スプレッドシートの公開URL" fullWidth className={classes.input} />
-            <Button type="submit" variant="contained" fullWidth={ isMobile } size="large" color="secondary">Create</Button>
+            <Button type="submit" variant="contained" fullWidth={ isMobile } disabled={buttonDisabled} size="large" color="secondary">Create</Button>
           </form>
           <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
             <CircularProgress color="inherit" />
