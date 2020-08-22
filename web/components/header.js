@@ -26,11 +26,16 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
+import Hidden from '@material-ui/core/Hidden';
+import Chip from '@material-ui/core/Chip';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+  },
+  appBar: {
+    backgroundColor: '#000',
   },
   logoIcon: {
     marginRight: theme.spacing(1),
@@ -45,6 +50,10 @@ const useStyles = makeStyles((theme) => ({
   divider: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
+  },
+  chip: {
+    marginLeft: theme.spacing(1),
+    verticalAlign: 'text-bottom',
   },
 }));
 
@@ -65,29 +74,32 @@ export default function Header(){
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
+      <AppBar className={classes.appBar} position="static">
+        <Toolbar variant="dense">
           <Typography variant="h6" component="h1" className={classes.title}>
             <Link href="/" color="inherit">
-              <FormatAlignLeftIcon className={classes.logoIcon} />
+              <FormatAlignLeftIcon color="primary" className={classes.logoIcon} />
               THE TIMELINE
             </Link>
+            <Chip className={classes.chip} label="Ver.2" size="small" />
           </Typography>
 
-          {(() => {
-            if (user) {
-              const displayName = user.isAnonymous ? 'ゲストユーザー' : user.email;
-              return(
-                <Tooltip title={displayName} aria-label={displayName}>
-                  <IconButton aria-label="account of current user" color="inherit" href="/mypage">
-                    <AccountCircle />
-                  </IconButton>
-                </Tooltip>
-              );
-            } else {
-              return <Link color="inherit" href="/login">Login</Link>
-            }
-          })()}
+          <Hidden smDown>
+            {(() => {
+              if (user) {
+                const displayName = user.isAnonymous ? 'ゲストユーザー' : user.email;
+                return(
+                  <Tooltip title={displayName} aria-label={displayName}>
+                    <IconButton aria-label="account of current user" color="inherit" href="/mypage">
+                      <AccountCircle />
+                    </IconButton>
+                  </Tooltip>
+                );
+              } else {
+                return <Link color="inherit" href="/login">Login</Link>
+              }
+            })()}
+          </Hidden>
 
           <IconButton onClick={()=>{ setDrawerOpened(true) }} edge="end" color="inherit" aria-label="menu">
             <MoreVertIcon />

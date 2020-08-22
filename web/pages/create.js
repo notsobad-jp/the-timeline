@@ -2,8 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/router'
 import { UserContext, SnackbarContext } from './_app';
 import { auth, firestore, firebase } from '../lib/firebase.js'
-import { makeStyles } from '@material-ui/core/styles';
-import { useTheme } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Head from 'next/head';
 import Container from '@material-ui/core/Container';
