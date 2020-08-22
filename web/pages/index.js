@@ -11,7 +11,11 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
-import Hidden from '@material-ui/core/Hidden';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 import Icon from '@material-ui/core/Icon';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
@@ -38,6 +42,12 @@ const useStyles = makeStyles((theme) => ({
   bold: {
     fontWeight: 'bold',
   },
+  createButton: {
+    minWidth: 300,
+  },
+  media: {
+    height: 140,
+  },
 }));
 
 export default function Index() {
@@ -62,9 +72,10 @@ export default function Index() {
           簡単・便利な無料の年表作成サービスです。
         </Typography>
         <Box my={4}>
-          <Button href="/create" variant="contained" color="secondary" size="large" fullWidth={ isMobile } endIcon={<ChevronRightIcon />}>
+          <Button className={classes.createButton} href="/create" variant="contained" color="secondary" size="large" fullWidth={ isMobile } endIcon={<ChevronRightIcon />}>
             年表を作る
           </Button>
+          <p><small>（ログインなしでも利用できます）</small></p>
         </Box>
         <Box my={4}>
           { false &&
@@ -107,6 +118,85 @@ export default function Index() {
             }
           </Step>
         </Stepper>
+      </Box>
+
+      <Box my={8}>
+        <Typography variant="h5" component="h3" gutterBottom>サンプル</Typography>
+
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={4}>
+            <Card>
+              <CardActionArea>
+                <CardMedia className={classes.media} image="/images/top/examples/mars.png" title="Mars" />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Lizard
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                    across all continents except Antarctica
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button size="small" color="primary">
+                  Share
+                </Button>
+                <Button size="small" color="primary">
+                  Learn More
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Card>
+              <CardActionArea>
+                <CardMedia className={classes.media} image="/images/top/examples/mars.png" title="Mars" />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Lizard
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                    across all continents except Antarctica
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button size="small" color="primary">
+                  Share
+                </Button>
+                <Button size="small" color="primary">
+                  Learn More
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Card>
+              <CardActionArea>
+                <CardMedia className={classes.media} image="/images/top/examples/mars.png" title="Mars" />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Lizard
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                    across all continents except Antarctica
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button size="small" color="primary">
+                  Share
+                </Button>
+                <Button size="small" color="primary">
+                  Learn More
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        </Grid>
       </Box>
     </>
   );
