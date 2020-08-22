@@ -120,6 +120,12 @@ export default function NewTimeline() {
             <TextField id="urlField" required type="url" label="スプレッドシートの公開URL" fullWidth className={classes.input} />
             <Button type="submit" variant="contained" fullWidth={ isMobile } disabled={buttonDisabled} size="large" color="secondary">Create</Button>
           </form>
+          <Box my={2}>
+            <Alert severity="warning">
+              <Typography component="p" className={classes.bold}>旧バージョンと使用するURLが異なります</Typography>
+              旧バージョンではウェブに公開後、共有用URLを別途取得して登録する必要がありました。新バージョンでは「ウェブに公開」で発行されたURLをそのまま使用しますので、ご注意ください。
+            </Alert>
+          </Box>
           <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
             <CircularProgress color="inherit" />
           </Backdrop>
@@ -173,8 +179,14 @@ export default function NewTimeline() {
                     <img src="/images/create/3.png" alt="シートを公開する" className={classes.image} />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    登録が完了したら、メニューの「ファイル」→「ウェブに公開」を選択してシートを公開します。
-                    公開後に発行されるURLをコピーし、この画面上部のフォームに入力してください。
+                    <Box mb={2}>
+                      登録が完了したら、メニューの「ファイル」→「ウェブに公開」を選択してシートを公開します。
+                      公開後に発行されるURLをコピーし、この画面上部のフォームに入力してください。
+                    </Box>
+                    <Alert severity="warning">
+                      <Typography component="p" className={classes.bold}>旧バージョンとURLが異なります</Typography>
+                      旧バージョンではウェブに公開後、共有用URLを別途取得して登録する必要がありました。新バージョンでは「ウェブに公開」で発行されたURLをそのまま使用しますので、ご注意ください。
+                    </Alert>
                   </Grid>
                 </Grid>
               </StepContent>

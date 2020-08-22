@@ -6,6 +6,7 @@ import Link from '../src/Link';
 import { auth, firestore, firebase } from '../lib/firebase.js'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Alert from '@material-ui/lab/Alert';
 import Icon from '@material-ui/core/Icon';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
@@ -20,7 +21,7 @@ export default function Index() {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="md">
       <Box my={8} align="center">
         <Typography variant="h3" component="h1" gutterBottom>
           年表でないと、伝えられないことがある。
@@ -34,6 +35,14 @@ export default function Index() {
             年表を作る
           </Button>
         </div>
+      </Box>
+
+      <Box my={8}>
+        <Alert severity="info">
+          こちらは近日一般公開予定の新バージョンのベータ版です。
+          ひととおりの機能は使えますがまだ開発中のため、安定した利用をご希望の場合は現行バージョンをお使いください。
+          <a href="https://the-timeline.jp" target="_blank">https://the-timeline.jp</a>
+        </Alert>
       </Box>
     </Container>
   );

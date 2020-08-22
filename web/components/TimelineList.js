@@ -85,7 +85,7 @@ export default function TimelineList({result, limit, version, userId}) {
     <>
       <List component="nav">
         { items.map((item) => (
-          <ListItem button divider component="a" href={`/app/${item.id}`} key={item.id}>
+          <ListItem button divider component="a" href={(item.version=='v2') ? `/app/${item.id}` : `https://the-timeline.jp/timelines/${item.id}`} target='_blank' key={item.id}>
             <ListItemText primary={
                 <>
                   { item.title }
