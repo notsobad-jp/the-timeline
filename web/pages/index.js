@@ -24,6 +24,10 @@ import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 import MoodIcon from '@material-ui/icons/Mood';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import StorageIcon from '@material-ui/icons/Storage';
+import ExploreIcon from '@material-ui/icons/Explore';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ForumIcon from '@material-ui/icons/Forum';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +48,31 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     maxWidth: '100%',
+  },
+  subHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: theme.spacing(6),
+    '& svg': {
+      verticalAlign: 'text-bottom',
+      marginRight: theme.spacing(1),
+    },
+    '& span': {
+      verticalAlign: 'text-top',
+    },
+    '&::before, &::after': {
+      content: '""',
+      borderTop: '1px solid #ddd',
+      flexGrow: 1,
+    },
+    '&::before': {
+      marginRight: theme.spacing(2),
+    },
+    '&::after': {
+      marginLeft: theme.spacing(2),
+    },
   },
   bold: {
     fontWeight: 'bold',
@@ -72,55 +101,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Index() {
+
+export default function Index({examples}) {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
-  const examples = [
-    {
-      title: '村上春樹「1973年のピンボール」',
-      image: 'pingball.jpg',
-      url: 'https://the-timeline.jp/timelines/1Qv7_Up3aYyBalMcZQin242nCIRl4EKpzy7nyFXNf8Q0',
-      tags: ['小説', '村上春樹'],
-      description: '村上春樹の初期の名作「1973年のピンボール」。時系列がややこしいこの作品を、年表で整理してみました。「僕」と「鼠」の物語をわかりやすく色分けしています。',
-    },
-    {
-      title: '週刊少年ジャンプで現在連載中のマンガ',
-      image: 'jump.png',
-      url: 'https://the-timeline.jp/timelines/1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0',
-      tags: ['マンガ', '少年ジャンプ'],
-      description: '現在連載中の作品に加えて、少し前に連載終了した人気作品も合わせて年表化。こち亀のすごさも浮き彫りになります。',
-    },
-    {
-      title: 'かっぴー「左ききのエレン」',
-      image: 'ellen.jpg',
-      url: 'https://the-timeline.jp/timelines/1PSEBmMVfu_y1fqZ8KcKrTZllBvFhDaOIZm35i7HNqas',
-      tags: ['マンガ', '左ききのエレン'],
-      description: 'かっぴーさん初の長編作品、Webで人気の「左ききのエレン」の出来事を年表で整理。天才になれなかったすべての人へーー。',
-    },
-    {
-      title: '電気の歴史',
-      image: 'electricity.jpg',
-      url: 'https://app.the-timeline.jp/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg',
-      tags: ['科学', '歴史'],
-      description: '17世紀後半から、科学者たちが少しずつ電磁気の秘密を解き明かしていった歴史。 主にヨーロッパの出来事が中心ですが、日本の年号を並べて表示すると時代背景の比較ができておもしろいですね。',
-    },
-    {
-      title: 'レイ・ブラッドベリ『火星年代記』',
-      image: 'mars.png',
-      url: 'https://app.the-timeline.jp/?key=1uZmRGsLz2A2N6OuTYi78woovscQXUcz7Gf4EyLAdXYY',
-      tags: ['小説', '歴史'],
-      description: 'レイ・ブラッドベリの名作SF「火星年代記」の出来事を年表で整理。実在の歴史だけでなく、小説や映画のストーリーを年表にして楽しむこともできます。',
-    },
-    {
-      title: 'クエンティン・タランティーノ',
-      image: 'tarantino.png',
-      url: 'https://app.the-timeline.jp/?key=1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc',
-      tags: ['映画', '人物史'],
-      description: '映画監督タランティーノの半生を、作品リスト・受賞歴とともに紹介。年表には画像を表示することもできます。自分史作成にも活用してください。',
-    },
-  ];
 
   return (
     <>
@@ -151,7 +136,7 @@ export default function Index() {
         </Box>
       </Box>
 
-      <Box my={8}>
+      <Box mb={16} mt={8}>
         <Box align="center">
           <p>THE TIMELINEは、Googleスプレッドシートに入力したデータをもとに年表を作成するサービスです。</p>
           <p>テンプレートに沿ってデータを登録するだけで、THE TIMELINEが自動でデータを読み取り、きれいな年表を作成してくれます。</p>
@@ -187,12 +172,15 @@ export default function Index() {
         </Stepper>
       </Box>
 
-      <Box my={8}>
-        <Typography variant="h5" component="h3" gutterBottom>サンプル</Typography>
+      <Box my={16}>
+        <Typography className={classes.subHeader} variant="h6" component="h3" gutterBottom>
+          <ExploreIcon />
+          <span>サンプル</span>
+        </Typography>
 
         <Grid container spacing={4}>
           {examples.map(example => (
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} key={example.title}>
               <Card className={classes.card}>
                 <CardMedia className={classes.media} image={`/images/top/examples/${example.image}`} title={example.title} href={example.url} target="_blank" component="a" />
                 <CardContent className={classes.cardContent}>
@@ -203,7 +191,7 @@ export default function Index() {
                   </Typography>
                   <Box mb={1}>
                     {example.tags.map(tag => (
-                      <Chip size="small" label={tag} />
+                      <Chip size="small" label={tag} key={tag} style={{marginRight: theme.spacing(1)}} />
                     ))}
                   </Box>
                   <Typography variant="body2" color="textSecondary" component="p">
@@ -230,8 +218,11 @@ export default function Index() {
         </Box>
       </Box>
 
-      <Box my={8}>
-        <Typography variant="h5" component="h3" gutterBottom>ここがすごい</Typography>
+      <Box my={16}>
+        <Typography className={classes.subHeader} variant="h6" component="h3" gutterBottom>
+          <FavoriteIcon />
+          <span>ここがすごい</span>
+        </Typography>
 
         <Grid container spacing={4}>
           <Grid item xs={12} md={4} align="center">
@@ -258,8 +249,11 @@ export default function Index() {
         </Grid>
       </Box>
 
-      <Box my={8}>
-        <Typography variant="h5" component="h3" gutterBottom>よくある質問</Typography>
+      <Box my={16}>
+        <Typography className={classes.subHeader} variant="h6" component="h3" gutterBottom>
+          <ForumIcon />
+          <span>よくある質問</span>
+        </Typography>
 
         <ul>
           <Box component="li" mb={3}>
@@ -313,12 +307,70 @@ export default function Index() {
         </ul>
       </Box>
 
-      <Box my={8}>
-        <Typography variant="h5" component="h3" gutterBottom>お問い合わせ</Typography>
+      <Box my={16}>
+        <Typography className={classes.subHeader} variant="h6" component="h3" gutterBottom>
+          <MailOutlineIcon />
+          <span>お問い合わせ</span>
+        </Typography>
         <Box align="center">
           ご意見・ご要望などあれば、info[at]notsobad.jp までお気軽にご連絡ください。
         </Box>
       </Box>
     </>
   );
+}
+
+
+export async function getStaticProps(context) {
+  const examples = [
+    {
+      title: '村上春樹「1973年のピンボール」',
+      image: 'pingball.jpg',
+      url: 'https://the-timeline.jp/timelines/1Qv7_Up3aYyBalMcZQin242nCIRl4EKpzy7nyFXNf8Q0',
+      tags: ['小説', '村上春樹'],
+      description: '村上春樹の初期の名作「1973年のピンボール」。時系列がややこしいこの作品を、年表で整理してみました。「僕」と「鼠」の物語をわかりやすく色分けしています。',
+    },
+    {
+      title: '週刊少年ジャンプで現在連載中のマンガ',
+      image: 'jump.png',
+      url: 'https://the-timeline.jp/timelines/1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0',
+      tags: ['マンガ', '少年ジャンプ'],
+      description: '現在連載中の作品に加えて、少し前に連載終了した人気作品も合わせて年表化。こち亀のすごさも浮き彫りになります。',
+    },
+    {
+      title: 'かっぴー「左ききのエレン」',
+      image: 'ellen.jpg',
+      url: 'https://the-timeline.jp/timelines/1PSEBmMVfu_y1fqZ8KcKrTZllBvFhDaOIZm35i7HNqas',
+      tags: ['マンガ', '左ききのエレン'],
+      description: 'かっぴーさん初の長編作品、Webで人気の「左ききのエレン」の出来事を年表で整理。天才になれなかったすべての人へーー。',
+    },
+    {
+      title: '電気の歴史',
+      image: 'electricity.jpg',
+      url: 'https://app.the-timeline.jp/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg',
+      tags: ['科学', '歴史'],
+      description: '17世紀後半から、科学者たちが少しずつ電磁気の秘密を解き明かしていった歴史。 主にヨーロッパの出来事が中心ですが、日本の年号を並べて表示すると時代背景の比較ができておもしろいですね。',
+    },
+    {
+      title: 'レイ・ブラッドベリ『火星年代記』',
+      image: 'mars.png',
+      url: 'https://app.the-timeline.jp/?key=1uZmRGsLz2A2N6OuTYi78woovscQXUcz7Gf4EyLAdXYY',
+      tags: ['小説', '歴史'],
+      description: 'レイ・ブラッドベリの名作SF「火星年代記」の出来事を年表で整理。実在の歴史だけでなく、小説や映画のストーリーを年表にして楽しむこともできます。',
+    },
+    {
+      title: 'クエンティン・タランティーノ',
+      image: 'tarantino.png',
+      url: 'https://app.the-timeline.jp/?key=1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc',
+      tags: ['映画', '人物史'],
+      description: '映画監督タランティーノの半生を、作品リスト・受賞歴とともに紹介。年表には画像を表示することもできます。自分史作成にも活用してください。',
+    },
+  ];
+
+
+  return {
+    props: {
+      examples: examples,
+    },
+  }
 }

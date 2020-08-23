@@ -116,15 +116,15 @@ export default function Header(){
           <List className={classes.list}>
             <ListItem button component="a" href="/">
               <ListItemIcon><HomeIcon /></ListItemIcon>
-              <ListItemText primary="Home" />
+              <ListItemText primary="ホーム" />
             </ListItem>
             <ListItem button component="a" href="/search">
               <ListItemIcon><SearchIcon /></ListItemIcon>
-              <ListItemText primary="Search" />
+              <ListItemText primary="年表を探す" />
             </ListItem>
             <ListItem button component="a" href="/create">
               <ListItemIcon><AddIcon /></ListItemIcon>
-              <ListItemText primary="Create" />
+              <ListItemText primary="年表を作る" />
             </ListItem>
             <Divider className={classes.divider} />
             {(() => {
@@ -133,11 +133,11 @@ export default function Header(){
                   <>
                     <ListItem button component="a" href="/mypage">
                       <ListItemIcon><AccountCircle /></ListItemIcon>
-                      <ListItemText primary="Mypage" />
+                      <ListItemText primary="マイページ" />
                     </ListItem>
                     <ListItem button component="a" onClick={ logout } >
                       <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-                      <ListItemText primary="Logout" />
+                      <ListItemText primary="ログアウト" />
                     </ListItem>
                   </>
                 );
@@ -145,7 +145,7 @@ export default function Header(){
                 return(
                   <ListItem button component="a" href="/login">
                     <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-                    <ListItemText primary="Login" />
+                    <ListItemText primary="ログイン" />
                   </ListItem>
                 );
               }
