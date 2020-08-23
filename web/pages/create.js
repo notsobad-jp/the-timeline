@@ -45,6 +45,23 @@ const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: 999,
   },
+  subHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    '&::before, &::after': {
+      content: '""',
+      borderTop: '1px solid #ddd',
+      flexGrow: 1,
+    },
+    '&::before': {
+      marginRight: theme.spacing(2),
+    },
+    '&::after': {
+      marginLeft: theme.spacing(2),
+    },
+  },
 }));
 
 export default function NewTimeline() {
@@ -116,15 +133,22 @@ export default function NewTimeline() {
       </Head>
 
       <div>
-        <Typography variant="h5" component="h1" gutterBottom className={classes.pageTitle}>
-          <AddCircleIcon />
-          年表を作る
-        </Typography>
+        <Box mb={4}>
+          <Typography variant="h5" component="h1" gutterBottom className={classes.pageTitle}>
+            <AddCircleIcon />
+            年表を作る
+          </Typography>
+        </Box>
 
-        <Box mb={8}>
+        <Box my={4}>
           <form onSubmit={handleSubmit}>
-            <TextField id="urlField" required type="url" label="スプレッドシートの公開URL" fullWidth className={classes.input} />
-            <Button type="submit" variant="contained" fullWidth={ isMobile } disabled={buttonDisabled} size="large" color="secondary">Create</Button>
+            <TextField id="urlField" variant="outlined" required type="url" label="スプレッドシートの公開URL" fullWidth className={classes.input}
+              InputProps={{
+                endAdornment: (
+                  <Button type="submit" variant="contained" disabled={buttonDisabled} color="secondary">Create</Button>
+                )
+              }}
+             />
           </form>
           <Box my={2}>
             <Alert severity="warning">
@@ -137,8 +161,8 @@ export default function NewTimeline() {
           </Backdrop>
         </Box>
 
-        <Box>
-          <Typography className={classes.bold} variant="h5" gutterBottom>
+        <Box my={8}>
+          <Typography className={classes.subHeader} variant="h6" gutterBottom>
             ▼ 作成手順 ▼
           </Typography>
 
