@@ -11,6 +11,7 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
+import Chip from '@material-ui/core/Chip';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -18,6 +19,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Icon from '@material-ui/core/Icon';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import GridOnIcon from '@material-ui/icons/GridOn';
+import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,6 +50,22 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 140,
+  },
+  card: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  cardContent: {
+    flexGrow: 1,
+  },
+  cardActionButton: {
+    flexGrow: 1,
+  },
+  titleLink: {
+    textDecoration: 'none',
+    color: '#000',
+    '&:hover': { textDecoration: 'underline', },
   },
 }));
 
@@ -123,75 +142,84 @@ export default function Index() {
       <Box my={8}>
         <Typography variant="h5" component="h3" gutterBottom>サンプル</Typography>
 
-        <Grid container spacing={3}>
+        <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
-            <Card>
-              <CardActionArea>
-                <CardMedia className={classes.media} image="/images/top/examples/mars.png" title="Mars" />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Lizard
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                    across all continents except Antarctica
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
+            <Card className={classes.card}>
+              <CardMedia className={classes.media} image="/images/top/examples/pingball.jpg" title="1973年のピンボール" href="https://the-timeline.jp/timelines/1Qv7_Up3aYyBalMcZQin242nCIRl4EKpzy7nyFXNf8Q0" target="_blank" component="a" />
+              <CardContent className={classes.cardContent}>
+                <Typography gutterBottom variant="h6" component="h4">
+                  <a className={classes.titleLink} href="https://the-timeline.jp/timelines/1Qv7_Up3aYyBalMcZQin242nCIRl4EKpzy7nyFXNf8Q0" target="_blank" color="inherit">
+                    村上春樹「1973年のピンボール」
+                  </a>
+                </Typography>
+                <Box mb={1}>
+                  <Chip size="small" label="村上春樹" />
+                  <Chip size="small" label="小説" />
+                </Box>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  村上春樹の初期の名作「1973年のピンボール」。時系列がややこしいこの作品を、年表で整理してみました。「僕」と「鼠」の物語をわかりやすく色分けしています。
+                </Typography>
+              </CardContent>
               <CardActions>
-                <Button size="small" color="primary">
-                  Share
+                <Button className={classes.cardActionButton} size="small" color="primary" startIcon={<FormatAlignLeftIcon />}>
+                  年表を見る
                 </Button>
-                <Button size="small" color="primary">
-                  Learn More
+                <Button className={classes.cardActionButton} size="small" color="primary" startIcon={<GridOnIcon />}>
+                  元データ
                 </Button>
               </CardActions>
             </Card>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Card>
-              <CardActionArea>
-                <CardMedia className={classes.media} image="/images/top/examples/mars.png" title="Mars" />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Lizard
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                    across all continents except Antarctica
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
+            <Card className={classes.card}>
+              <CardMedia className={classes.media} image="/images/top/examples/jump.png" title="週刊少年ジャンプ" href="https://the-timeline.jp/timelines/1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0" target="_blank" component="a" />
+              <CardContent className={classes.cardContent}>
+                <Typography gutterBottom variant="h6" component="h4">
+                  <a className={classes.titleLink} href="https://the-timeline.jp/timelines/1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0" target="_blank" color="inherit">
+                    週刊少年ジャンプで現在連載中のマンガ
+                  </a>
+                </Typography>
+                <Box mb={1}>
+                  <Chip size="small" label="マンガ" />
+                  <Chip size="small" label="少年ジャンプ" />
+                </Box>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  現在連載中の作品に加えて、少し前に連載終了した人気作品も合わせて年表化。こち亀のすごさも浮き彫りになります。
+                </Typography>
+              </CardContent>
               <CardActions>
-                <Button size="small" color="primary">
-                  Share
+                <Button className={classes.cardActionButton} size="small" color="primary" startIcon={<FormatAlignLeftIcon />}>
+                  年表を見る
                 </Button>
-                <Button size="small" color="primary">
-                  Learn More
+                <Button className={classes.cardActionButton} size="small" color="primary" startIcon={<GridOnIcon />}>
+                  元データ
                 </Button>
               </CardActions>
             </Card>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Card>
-              <CardActionArea>
-                <CardMedia className={classes.media} image="/images/top/examples/mars.png" title="Mars" />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Lizard
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                    across all continents except Antarctica
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
+            <Card className={classes.card}>
+              <CardMedia className={classes.media} image="/images/top/examples/ellen.jpg" title="左ききのエレン" href="https://the-timeline.jp/timelines/1PSEBmMVfu_y1fqZ8KcKrTZllBvFhDaOIZm35i7HNqas" target="_blank" component="a" />
+              <CardContent className={classes.cardContent}>
+                <Typography gutterBottom variant="h6" component="h4">
+                  <a className={classes.titleLink} href="https://the-timeline.jp/timelines/1PSEBmMVfu_y1fqZ8KcKrTZllBvFhDaOIZm35i7HNqas" target="_blank" color="inherit">
+                    かっぴー「左ききのエレン」
+                  </a>
+                </Typography>
+                <Box mb={1}>
+                  <Chip size="small" label="マンガ" />
+                  <Chip size="small" label="左ききのエレン" />
+                </Box>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  かっぴーさん初の長編作品、Webで人気の「左ききのエレン」の出来事を年表で整理。天才になれなかったすべての人へーー。
+                </Typography>
+              </CardContent>
               <CardActions>
-                <Button size="small" color="primary">
-                  Share
+                <Button className={classes.cardActionButton} size="small" color="primary" startIcon={<FormatAlignLeftIcon />}>
+                  年表を見る
                 </Button>
-                <Button size="small" color="primary">
-                  Learn More
+                <Button className={classes.cardActionButton} size="small" color="primary" startIcon={<GridOnIcon />}>
+                  元データ
                 </Button>
               </CardActions>
             </Card>
