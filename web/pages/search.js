@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { getTimelines } from '../../lib/firebase.js'
+import { getTimelines } from '../lib/firebase.js'
 import { makeStyles } from '@material-ui/core/styles';
-import TimelineList from '../../components/TimelineList';
+import TimelineList from '../components/TimelineList';
 import Head from 'next/head';
-import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import SearchIcon from '@material-ui/icons/Search';
 
 
 const limit = 10;
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    marginTop: theme.spacing(4),
+  pageTitle: {
+    fontWeight: 'bold',
+    '& svg': {
+      verticalAlign: 'text-bottom',
+      marginRight: theme.spacing(1),
+    },
   },
   fab: {
     position: "fixed",
@@ -33,9 +37,10 @@ export default function Index({result}) {
         <link rel="canonical" href="https://the-timeline.jp/search" />
       </Head>
 
-      <Container maxWidth="md" className={classes.container}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Search
+      <div>
+        <Typography variant="h5" component="h1" gutterBottom className={classes.pageTitle}>
+          <SearchIcon />
+          みんなの年表
         </Typography>
 
         <TimelineList result={result} limit={limit} />
@@ -43,7 +48,7 @@ export default function Index({result}) {
         <Fab className={classes.fab} color="secondary" aria-label="add" component="a" href="/create">
           <AddIcon />
         </Fab>
-      </Container>
+      </div>
     </>
   );
 }

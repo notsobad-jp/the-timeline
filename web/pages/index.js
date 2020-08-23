@@ -120,7 +120,7 @@ export default function Index({examples, tiers}) {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <>
+    <Box mt={-4}>
       <Alert className={classes.fullWidth} severity="warning">
         こちらは近日一般公開予定の新バージョンのベータ版です。
         ひととおりの機能は使えますが、安定した利用をご希望の場合は現行バージョンをお使いください。
@@ -362,7 +362,7 @@ export default function Index({examples, tiers}) {
           ご意見・ご要望などあれば、info[at]notsobad.jp までお気軽にご連絡ください。
         </Box>
       </Box>
-    </>
+    </Box>
   );
 }
 

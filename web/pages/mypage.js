@@ -1,23 +1,25 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { getTimelines } from '../../lib/firebase.js'
+import { getTimelines } from '../lib/firebase.js'
 import { makeStyles } from '@material-ui/core/styles';
-import { UserContext } from '../_app';
-import TimelineList from '../../components/TimelineList';
+import { UserContext } from './_app';
+import TimelineList from '../components/TimelineList';
 import Head from 'next/head';
-import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Fab from '@material-ui/core/Fab';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import AddIcon from '@material-ui/icons/Add';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 
 const limit = 10;
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    marginTop: theme.spacing(4),
+  pageTitle: {
+    fontWeight: 'bold',
+    '& svg': {
+      verticalAlign: 'text-bottom',
+      marginRight: theme.spacing(1),
+    },
   },
   fab: {
     position: "fixed",
@@ -50,9 +52,10 @@ export default function Mypage() {
         <meta name="robots" content="noindex" />
       </Head>
 
-      <Container maxWidth="md" className={classes.container}>
-        <Typography variant="h4"  component="h1" gutterBottom>
-          Mypage
+      <div>
+        <Typography variant="h5" component="h1" gutterBottom className={classes.pageTitle}>
+          <AccountCircleIcon />
+          マイページ
         </Typography>
 
         { user && items.length > 0 &&
@@ -64,11 +67,7 @@ export default function Mypage() {
             <CircularProgress />
           </Box>
         }
-
-        <Fab className={classes.fab} color="secondary" aria-label="add" component="a" href="/create">
-          <AddIcon />
-        </Fab>
-      </Container>
+      </div>
     </>
   );
 }

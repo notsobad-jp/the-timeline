@@ -5,7 +5,6 @@ import { auth, firestore, firebase } from '../lib/firebase.js'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Head from 'next/head';
-import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -21,13 +20,18 @@ import StepContent from '@material-ui/core/StepContent';
 import Alert from '@material-ui/lab/Alert';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import LaunchIcon from '@material-ui/icons/Launch';
 
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    marginTop: theme.spacing(4),
+  pageTitle: {
+    fontWeight: 'bold',
+    '& svg': {
+      verticalAlign: 'text-bottom',
+      marginRight: theme.spacing(1),
+    },
   },
   input: {
     marginBottom: theme.spacing(2),
@@ -111,8 +115,11 @@ export default function NewTimeline() {
         <title>Create New Timeline - THE TIMELINE</title>
       </Head>
 
-      <Container maxWidth="md" className={classes.container}>
-        <Typography variant="h4" component="h1" gutterBottom>Create</Typography>
+      <div>
+        <Typography variant="h5" component="h1" gutterBottom className={classes.pageTitle}>
+          <AddCircleIcon />
+          年表を作る
+        </Typography>
 
         <Box mb={8}>
           <form onSubmit={handleSubmit}>
@@ -192,7 +199,7 @@ export default function NewTimeline() {
             </Step>
           </Stepper>
         </Box>
-      </Container>
+      </div>
     </>
   );
 }
