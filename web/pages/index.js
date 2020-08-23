@@ -21,6 +21,9 @@ import Icon from '@material-ui/core/Icon';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import GridOnIcon from '@material-ui/icons/GridOn';
 import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
+import MoodIcon from '@material-ui/icons/Mood';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import StorageIcon from '@material-ui/icons/Storage';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -73,6 +76,51 @@ export default function Index() {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const examples = [
+    {
+      title: '村上春樹「1973年のピンボール」',
+      image: 'pingball.jpg',
+      url: 'https://the-timeline.jp/timelines/1Qv7_Up3aYyBalMcZQin242nCIRl4EKpzy7nyFXNf8Q0',
+      tags: ['小説', '村上春樹'],
+      description: '村上春樹の初期の名作「1973年のピンボール」。時系列がややこしいこの作品を、年表で整理してみました。「僕」と「鼠」の物語をわかりやすく色分けしています。',
+    },
+    {
+      title: '週刊少年ジャンプで現在連載中のマンガ',
+      image: 'jump.png',
+      url: 'https://the-timeline.jp/timelines/1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0',
+      tags: ['マンガ', '少年ジャンプ'],
+      description: '現在連載中の作品に加えて、少し前に連載終了した人気作品も合わせて年表化。こち亀のすごさも浮き彫りになります。',
+    },
+    {
+      title: 'かっぴー「左ききのエレン」',
+      image: 'ellen.jpg',
+      url: 'https://the-timeline.jp/timelines/1PSEBmMVfu_y1fqZ8KcKrTZllBvFhDaOIZm35i7HNqas',
+      tags: ['マンガ', '左ききのエレン'],
+      description: 'かっぴーさん初の長編作品、Webで人気の「左ききのエレン」の出来事を年表で整理。天才になれなかったすべての人へーー。',
+    },
+    {
+      title: '電気の歴史',
+      image: 'electricity.jpg',
+      url: 'https://app.the-timeline.jp/?key=1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg',
+      tags: ['科学', '歴史'],
+      description: '17世紀後半から、科学者たちが少しずつ電磁気の秘密を解き明かしていった歴史。 主にヨーロッパの出来事が中心ですが、日本の年号を並べて表示すると時代背景の比較ができておもしろいですね。',
+    },
+    {
+      title: 'レイ・ブラッドベリ『火星年代記』',
+      image: 'mars.png',
+      url: 'https://app.the-timeline.jp/?key=1uZmRGsLz2A2N6OuTYi78woovscQXUcz7Gf4EyLAdXYY',
+      tags: ['小説', '歴史'],
+      description: 'レイ・ブラッドベリの名作SF「火星年代記」の出来事を年表で整理。実在の歴史だけでなく、小説や映画のストーリーを年表にして楽しむこともできます。',
+    },
+    {
+      title: 'クエンティン・タランティーノ',
+      image: 'tarantino.png',
+      url: 'https://app.the-timeline.jp/?key=1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc',
+      tags: ['映画', '人物史'],
+      description: '映画監督タランティーノの半生を、作品リスト・受賞歴とともに紹介。年表には画像を表示することもできます。自分史作成にも活用してください。',
+    },
+  ];
 
   return (
     <>
@@ -143,88 +191,133 @@ export default function Index() {
         <Typography variant="h5" component="h3" gutterBottom>サンプル</Typography>
 
         <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
-            <Card className={classes.card}>
-              <CardMedia className={classes.media} image="/images/top/examples/pingball.jpg" title="1973年のピンボール" href="https://the-timeline.jp/timelines/1Qv7_Up3aYyBalMcZQin242nCIRl4EKpzy7nyFXNf8Q0" target="_blank" component="a" />
-              <CardContent className={classes.cardContent}>
-                <Typography gutterBottom variant="h6" component="h4">
-                  <a className={classes.titleLink} href="https://the-timeline.jp/timelines/1Qv7_Up3aYyBalMcZQin242nCIRl4EKpzy7nyFXNf8Q0" target="_blank" color="inherit">
-                    村上春樹「1973年のピンボール」
-                  </a>
-                </Typography>
-                <Box mb={1}>
-                  <Chip size="small" label="村上春樹" />
-                  <Chip size="small" label="小説" />
-                </Box>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  村上春樹の初期の名作「1973年のピンボール」。時系列がややこしいこの作品を、年表で整理してみました。「僕」と「鼠」の物語をわかりやすく色分けしています。
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button className={classes.cardActionButton} size="small" color="primary" startIcon={<FormatAlignLeftIcon />}>
-                  年表を見る
-                </Button>
-                <Button className={classes.cardActionButton} size="small" color="primary" startIcon={<GridOnIcon />}>
-                  元データ
-                </Button>
-              </CardActions>
-            </Card>
+          {examples.map(example => (
+            <Grid item xs={12} md={4}>
+              <Card className={classes.card}>
+                <CardMedia className={classes.media} image={`/images/top/examples/${example.image}`} title={example.title} href={example.url} target="_blank" component="a" />
+                <CardContent className={classes.cardContent}>
+                  <Typography gutterBottom variant="h6" component="h4">
+                    <a className={classes.titleLink} href={example.url} target="_blank" color="inherit">
+                      {example.title}
+                    </a>
+                  </Typography>
+                  <Box mb={1}>
+                    {example.tags.map(tag => (
+                      <Chip size="small" label={tag} />
+                    ))}
+                  </Box>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    {example.description}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button className={classes.cardActionButton} size="small" color="primary" startIcon={<FormatAlignLeftIcon />}>
+                    年表を見る
+                  </Button>
+                  <Button className={classes.cardActionButton} size="small" color="primary" startIcon={<GridOnIcon />}>
+                    元データ
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+
+        <Box my={6} align="center">
+          <Button className={classes.createButton} href="/create" variant="contained" size="large" fullWidth={ isMobile } endIcon={<ChevronRightIcon />}>
+            他の年表も見てみる
+          </Button>
+        </Box>
+      </Box>
+
+      <Box my={8}>
+        <Typography variant="h5" component="h3" gutterBottom>ここがすごい</Typography>
+
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4} align="center">
+            <MoodIcon style={{fontSize: 50}} color="secondary" />
+            <Typography variant="h6" component="h4" gutterBottom>めっちゃ簡単</Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              Googleスプレッドシートにデータを入れるだけで、自動で年表化してくれます。むずかしい操作はまったくありません。
+            </Typography>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Card className={classes.card}>
-              <CardMedia className={classes.media} image="/images/top/examples/jump.png" title="週刊少年ジャンプ" href="https://the-timeline.jp/timelines/1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0" target="_blank" component="a" />
-              <CardContent className={classes.cardContent}>
-                <Typography gutterBottom variant="h6" component="h4">
-                  <a className={classes.titleLink} href="https://the-timeline.jp/timelines/1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0" target="_blank" color="inherit">
-                    週刊少年ジャンプで現在連載中のマンガ
-                  </a>
-                </Typography>
-                <Box mb={1}>
-                  <Chip size="small" label="マンガ" />
-                  <Chip size="small" label="少年ジャンプ" />
-                </Box>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  現在連載中の作品に加えて、少し前に連載終了した人気作品も合わせて年表化。こち亀のすごさも浮き彫りになります。
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button className={classes.cardActionButton} size="small" color="primary" startIcon={<FormatAlignLeftIcon />}>
-                  年表を見る
-                </Button>
-                <Button className={classes.cardActionButton} size="small" color="primary" startIcon={<GridOnIcon />}>
-                  元データ
-                </Button>
-              </CardActions>
-            </Card>
+          <Grid item xs={12} md={4} align="center">
+            <AttachMoneyIcon style={{fontSize: 50}} color="secondary" />
+            <Typography variant="h6" component="h4" gutterBottom>ずっと無料</Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              基本機能はずっと無料。高度な機能のみ有料オプションとして提供予定です。
+            </Typography>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Card className={classes.card}>
-              <CardMedia className={classes.media} image="/images/top/examples/ellen.jpg" title="左ききのエレン" href="https://the-timeline.jp/timelines/1PSEBmMVfu_y1fqZ8KcKrTZllBvFhDaOIZm35i7HNqas" target="_blank" component="a" />
-              <CardContent className={classes.cardContent}>
-                <Typography gutterBottom variant="h6" component="h4">
-                  <a className={classes.titleLink} href="https://the-timeline.jp/timelines/1PSEBmMVfu_y1fqZ8KcKrTZllBvFhDaOIZm35i7HNqas" target="_blank" color="inherit">
-                    かっぴー「左ききのエレン」
-                  </a>
-                </Typography>
-                <Box mb={1}>
-                  <Chip size="small" label="マンガ" />
-                  <Chip size="small" label="左ききのエレン" />
-                </Box>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  かっぴーさん初の長編作品、Webで人気の「左ききのエレン」の出来事を年表で整理。天才になれなかったすべての人へーー。
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button className={classes.cardActionButton} size="small" color="primary" startIcon={<FormatAlignLeftIcon />}>
-                  年表を見る
-                </Button>
-                <Button className={classes.cardActionButton} size="small" color="primary" startIcon={<GridOnIcon />}>
-                  元データ
-                </Button>
-              </CardActions>
-            </Card>
+          <Grid item xs={12} md={4} align="center">
+            <StorageIcon style={{fontSize: 50}} color="secondary" />
+            <Typography variant="h6" component="h4" gutterBottom>データなくならない</Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              すべてのデータはGoogleスプレッドシートに保存。このサービスが終了してもデータはなくなりません！
+            </Typography>
           </Grid>
         </Grid>
+      </Box>
+
+      <Box my={8}>
+        <Typography variant="h5" component="h3" gutterBottom>よくある質問</Typography>
+
+        <ul>
+          <Box component="li" mb={3}>
+            <Typography className={classes.bold} gutterBottom>
+              サービスの利用に料金は必要ですか？
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              いいえ、THE TIMELINEはすべての基本機能を無料で利用いただけます。今後有料プランの提供も検討していますが、基本機能はすべて無料でお使いいただけるようにする予定です。
+            </Typography>
+          </Box>
+          <Box component="li" mb={3}>
+            <Typography className={classes.bold} gutterBottom>
+              一度作成した年表を更新するにはどうすればよいですか？
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              Googleスプレッドシートで元データを編集すれば、THE TIMELINEの年表も自動で最新の内容に更新されます。
+            </Typography>
+          </Box>
+          <Box component="li" mb={3}>
+            <Typography className={classes.bold} gutterBottom>
+              スプレッドシートを公開して、セキュリティ上の問題などないのでしょうか？
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              スプレッドシートを公開しても、誰でも閲覧が可能になるだけで、知らない人が勝手にファイルを編集できるようになるわけではありません（編集権限を一般公開することも可能ですが、おすすめしません）。 また公開したシート以外の情報が閲覧されることもありませんので、安心してご利用ください。
+            </Typography>
+          </Box>
+          <Box component="li" mb={3}>
+            <Typography className={classes.bold} gutterBottom>
+              非公開の年表を作成したいのですが
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              非公開での年表作成オプションは、有料プランでの提供を検討しています。テスターとしてフィードバックにご協力いただける方には無料で先行提供することも可能ですので、ご興味あればお問い合わせください。
+            </Typography>
+          </Box>
+          <Box component="li" mb={3}>
+            <Typography className={classes.bold} gutterBottom>
+              作成途中の年表を、公開せずに下書きで保存したいのですが
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              Googleスプレッドシートを公開しなければ、年表が公開されることもありません。作成途中で年表を確認したい場合は、一時的にシートを公開し、年表をご確認ください。シートを非公開に戻せば年表も自動で非公開に戻ります。
+            </Typography>
+          </Box>
+          <Box component="li" mb={3}>
+            <Typography className={classes.bold} gutterBottom>
+              作成した年表を削除したいのですが
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              Googleスプレッドシートを削除もしくは非公開にすると、年表も自動で閲覧できなくなります。
+            </Typography>
+          </Box>
+        </ul>
+      </Box>
+
+      <Box my={8}>
+        <Typography variant="h5" component="h3" gutterBottom>お問い合わせ</Typography>
+        <Box align="center">
+          ご意見・ご要望などあれば、info[at]notsobad.jp までお気軽にご連絡ください。
+        </Box>
       </Box>
     </>
   );

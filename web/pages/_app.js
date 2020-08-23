@@ -7,6 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 import { auth, firestore, firebase } from '../lib/firebase.js'
 import Header from "../components/header.js"
+import Footer from "../components/footer.js"
 import Snackbar from "../components/snackbar.js"
 import { useRouter } from 'next/router'
 
@@ -56,9 +57,10 @@ export default function MyApp(props) {
           <SnackbarContext.Provider value={[snackbar, setSnackbar]}>
             <CssBaseline />
             <Header />
-            <Container maxWidth="md">
+            <Container maxWidth="md" style={{minHeight: 500, paddingBottom: theme.spacing(16)}}>
               <Component {...pageProps} />
             </Container>
+            <Footer />
             <Snackbar />
           </SnackbarContext.Provider>
         </UserContext.Provider>
