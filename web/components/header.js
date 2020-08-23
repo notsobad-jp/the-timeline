@@ -120,7 +120,7 @@ export default function Header(){
             </ListItem>
             <ListItem button component="a" href="/search">
               <ListItemIcon><SearchIcon /></ListItemIcon>
-              <ListItemText primary="年表を探す" />
+              <ListItemText primary="みんなの年表" />
             </ListItem>
             <ListItem button component="a" href="/create">
               <ListItemIcon><AddIcon /></ListItemIcon>

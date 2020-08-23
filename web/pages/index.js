@@ -13,6 +13,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
 import Chip from '@material-ui/core/Chip';
 import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -88,6 +89,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
+  cardHeader: {
+    backgroundColor: '#efefef',
+  },
   cardContent: {
     flexGrow: 1,
   },
@@ -99,10 +103,18 @@ const useStyles = makeStyles((theme) => ({
     color: '#000',
     '&:hover': { textDecoration: 'underline', },
   },
+  tierList: {
+    paddingLeft: 0,
+    paddingTop: theme.spacing(3),
+    borderTop: '1px solid #ddd',
+    '& li': {
+      listStyle: 'none',
+    },
+  },
 }));
 
 
-export default function Index({examples}) {
+export default function Index({examples, tiers}) {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -251,6 +263,48 @@ export default function Index({examples}) {
 
       <Box my={16}>
         <Typography className={classes.subHeader} variant="h6" component="h3" gutterBottom>
+          <AttachMoneyIcon />
+          <span>料金プラン</span>
+        </Typography>
+
+        <Grid container justify="center" spacing={4}>
+          {tiers.map((tier) => (
+            <Grid style={{display: 'flex'}} item key={tier.title} xs={12} md={4}>
+              <Card style={{display: 'flex', flexDirection: 'column', flexGrow: 1}}>
+                <CardHeader
+                  title={tier.title}
+                  subheader={tier.subheader}
+                  titleTypographyProps={{ align: 'center' }}
+                  subheaderTypographyProps={{ align: 'center' }}
+                  className={classes.cardHeader}
+                />
+                <CardContent style={{flexGrow: 1}}>
+                  <Box align="center" mb={2}>
+                    <Typography component="span" variant="h4" color="textPrimary">
+                      {tier.price}
+                    </Typography>
+                  </Box>
+                  <ul className={classes.tierList}>
+                    {tier.description.map((line) => (
+                      <Typography component="li" variant="subtitle1" align="center" key={line}>
+                        {line}
+                      </Typography>
+                    ))}
+                  </ul>
+                </CardContent>
+                <CardActions>
+                  <Button fullWidth variant={tier.buttonVariant} color="primary">
+                    {tier.buttonText}
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+
+      <Box my={16}>
+        <Typography className={classes.subHeader} variant="h6" component="h3" gutterBottom>
           <ForumIcon />
           <span>よくある質問</span>
         </Typography>
@@ -285,7 +339,7 @@ export default function Index({examples}) {
               非公開の年表を作成したいのですが
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              非公開での年表作成オプションは、有料プランでの提供を検討しています。テスターとしてフィードバックにご協力いただける方には無料で先行提供することも可能ですので、ご興味あればお問い合わせください。
+              非公開での年表作成オプションは、有料プランでの提供を検討しています。ご興味ある方は有料プランの事前登録にお申し込みください。
             </Typography>
           </Box>
           <Box component="li" mb={3}>
@@ -294,14 +348,6 @@ export default function Index({examples}) {
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               Googleスプレッドシートを公開しなければ、年表が公開されることもありません。作成途中で年表を確認したい場合は、一時的にシートを公開し、年表をご確認ください。シートを非公開に戻せば年表も自動で非公開に戻ります。
-            </Typography>
-          </Box>
-          <Box component="li" mb={3}>
-            <Typography className={classes.bold} gutterBottom>
-              作成した年表を削除したいのですが
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Googleスプレッドシートを削除もしくは非公開にすると、年表も自動で閲覧できなくなります。
             </Typography>
           </Box>
         </ul>
@@ -367,10 +413,39 @@ export async function getStaticProps(context) {
     },
   ];
 
+  const tiers = [
+    {
+      title: 'Free',
+      subheader: '基本機能はすべて無料',
+      price: '無料',
+      description: [
+        '公開年表のみ',
+        '更新はおよそ５分毎',
+        '広告表示あり',
+      ],
+      buttonText: 'さっそく使い始める',
+      buttonVariant: 'contained',
+    },
+    {
+      title: 'Pro',
+      subheader: 'ただいま事前登録受付中！',
+      price: '（準備中）',
+      description: [
+        '非公開年表の作成',
+        'リアルタイム更新',
+        '広告非表示',
+        '複数シートの統合',
+        'その他カスタム対応'
+      ],
+      buttonText: '事前登録する',
+      buttonVariant: 'outlined',
+    },
+  ];
 
   return {
     props: {
       examples: examples,
+      tiers: tiers,
     },
   }
 }
