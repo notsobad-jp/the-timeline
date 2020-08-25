@@ -82,10 +82,12 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
 
 export async function getStaticProps({params}) {
   const sourceUrl =    `https://docs.google.com/spreadsheets/d/e/${params.gid}/pubhtml`;
-  const [data, title] = await Promise.all([
-    sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]),
-    getTitleFromSheet(params.gid)
-  ]);
+  // const [data, title] = await Promise.all([
+  //   sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]),
+  //   getTitleFromSheet(params.gid)
+  // ]);
+  const data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
+  const title = "hoge";
   const canonicalUrl = `https://the-timeline.vercel.app/app/${params.gid}`;
 
   return {
