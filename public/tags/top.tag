@@ -1,4 +1,9 @@
 <top>
+      <div class="ui info message">
+        機能追加した新バージョンを近日公開予定です。一足先に試したい方はこちらからどうぞ！
+        <a href="https://the-timeline.vercel.app" target="_blank">https://the-timeline.vercel.app</a>
+      </div>
+
   <div id="top" class="ui inverted attached center aligned basic segment">
     <div>
       <h1 class="ui huge inverted header">
@@ -478,6 +483,10 @@
     @media screen and (max-width: 480px) {
       #top .huge.header { font-size:2.7rem; }
       #top .subheader { font-size:1.2rem; }
+    }
+
+    .message {
+      margin-bottom: 0;
     }
   </style>
 
