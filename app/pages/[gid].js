@@ -112,7 +112,11 @@ export async function getStaticPaths() {
   //     }
   //   }
   // });
-  const paths = [];
+  const paths = [{
+    params: {
+      gid: '2PACX-1vQMAvt6Xii_TgbM5LxHK4Ws8o80QEPARlU4oAPBGisk5ePuHHKD7wEbROt13M-ZV874RzgYBCljBCBE',
+    },
+  }];
 
   return {
     paths: paths,
