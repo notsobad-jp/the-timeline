@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { getTimelines } from '../lib/firebase.js'
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { UserContext } from './_app';
 import TimelineList from '../components/TimelineList';
 import Head from 'next/head';
@@ -16,20 +17,21 @@ const limit = 10;
 const useStyles = makeStyles((theme) => ({
   pageTitle: {
     fontWeight: 'bold',
-    '& svg': {
-      verticalAlign: 'text-bottom',
-      marginRight: theme.spacing(1),
-    },
   },
   fab: {
     position: "fixed",
     bottom: theme.spacing(4),
     right: theme.spacing(4),
   },
+  accountCircle: {
+    marginRight: theme.spacing(1),
+  },
 }));
 
 export default function Mypage() {
   const classes = useStyles();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [user, setUser] = useContext(UserContext);
   const [items, setItems] = useState([]);
 
@@ -54,12 +56,17 @@ export default function Mypage() {
 
       <div>
         <Typography variant="h5" component="h1" gutterBottom className={classes.pageTitle}>
-          <AccountCircleIcon />
           マイページ
         </Typography>
 
         { user && items.length > 0 &&
           <TimelineList result={items} limit={limit} userId={user.uid} />
+        }
+        { user && items.length == 0 &&
+          <>
+            <Box my={2}>※まだ作成済みの年表がありません。</Box>
+            <Button variant="contained" color="secondary" fullWidth={ isMobile }>年表を作る</Button>
+          </>
         }
 
         { !user && items &&
