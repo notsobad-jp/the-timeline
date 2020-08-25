@@ -143,12 +143,15 @@ export default function NewTimeline() {
         <Box my={4}>
           <form onSubmit={handleSubmit}>
             <TextField id="urlField" variant="outlined" required type="url" label="スプレッドシートの公開URL" fullWidth className={classes.input}
-              InputProps={{
+              InputProps={ isMobile ? {} : {
                 endAdornment: (
-                  <Button type="submit" variant="contained" disabled={buttonDisabled} color="secondary">Create</Button>
+                  <Button type="submit" variant="contained" disabled={buttonDisabled} color="secondary">Save</Button>
                 )
               }}
              />
+             { isMobile &&
+               <Button type="submit" variant="contained" fullWidth size="large" disabled={buttonDisabled} color="secondary">作成する</Button>
+             }
           </form>
           <Box my={2}>
             <Alert severity="warning">
@@ -211,12 +214,10 @@ export default function NewTimeline() {
                   <Grid item xs={12} sm={6}>
                     <Box mb={2}>
                       登録が完了したら、メニューの「ファイル」→「ウェブに公開」を選択してシートを公開します。
+                    </Box>
+                    <Box mb={2}>
                       公開後に発行されるURLをコピーし、この画面上部のフォームに入力してください。
                     </Box>
-                    <Alert severity="warning">
-                      <Typography component="p" className={classes.bold}>旧バージョンとURLが異なります</Typography>
-                      旧バージョンではウェブに公開後、共有用URLを別途取得して登録する必要がありました。新バージョンでは「ウェブに公開」で発行されたURLをそのまま使用しますので、ご注意ください。
-                    </Alert>
                   </Grid>
                 </Grid>
               </StepContent>
