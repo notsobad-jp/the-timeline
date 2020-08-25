@@ -293,7 +293,7 @@ export default function Index({examples, tiers}) {
                   </ul>
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant} color="primary">
+                  <Button component="a" href={tier.linkHref} target={tier.linkTarget} fullWidth variant={tier.buttonVariant} color="primary">
                     {tier.buttonText}
                   </Button>
                 </CardActions>
@@ -425,6 +425,8 @@ export async function getStaticProps(context) {
       ],
       buttonText: 'さっそく使い始める',
       buttonVariant: 'contained',
+      linkHref: '/create',
+      linkTarget: '_self',
     },
     {
       title: 'Pro',
@@ -439,6 +441,8 @@ export async function getStaticProps(context) {
       ],
       buttonText: '事前登録する',
       buttonVariant: 'outlined',
+      linkHref: 'https://forms.gle/kHPhwntqPWCksjtS9',
+      linkTarget: '_blank',
     },
   ];
 
