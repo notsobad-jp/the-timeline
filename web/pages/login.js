@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useRouter } from 'next/router'
 import { UserContext, SnackbarContext } from './_app';
 import Head from 'next/head';
 import Container from '@material-ui/core/Container';
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
   const classes = useStyles();
+  const router = useRouter();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [user, setUser] = useContext(UserContext);
@@ -40,7 +42,9 @@ export default function Login() {
   React.useEffect(() => {
     const url = `${window.location.protocol}//${window.location.host}/auth`;
     setSigninUrl(url);
-  });
+
+    if(user && user.isAnonymous) { router.push(`/mypage`); }
+  }, [user]);
 
   const snsLogin = (providerName) => {
     let provider;
