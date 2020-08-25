@@ -9,7 +9,6 @@
     "react": "latest",
     "react-dom": "latest",
     "react-visjs-timeline": "^1.6.0",
-    "request": "^2.88.2",
     "tippy.js": "^6.2.5",
     "vis-data": "^6.6.1",
     "vis-timeline": "^7.3.7",

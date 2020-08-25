@@ -1,13 +1,11 @@
 import csv from 'csvtojson'
-import request from 'request'
 
 const colors = ['red', 'blue', 'green', 'orange', 'yellow', 'olive', 'teal', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'];
 
 export async function getTitleFromSheet(gid) {
   const url = `https://docs.google.com/spreadsheets/d/e/${gid}/pubhtml`;
-  const res = await fetch(url);
-  const body = await res.text();
-  const match = body.match(/<title>(.*)<\/title>/);
+  const text = await fetch(url).then(res => res.text());
+  const match = text.match(/<title>(.*)<\/title>/);
   return match ? match[1].replace(/ - Google (ドライブ|Drive)/, "") : '';
 }
 
@@ -24,9 +22,10 @@ export async function sheetsToJson(urls) {
 
 async function sheetToJson(url) {
   let groupNames = [];
+  const csvString = await fetch(url).then(res => res.text());
 
   return csv()
-    .fromStream(request.get(url))
+    .fromString(csvString)
     .preFileLine((fileLine,lineNumber)=>{
       // 見出し行を小文字化
       return (lineNumber==0) ? fileLine.toLowerCase().replace(/ /g, "_") : fileLine;

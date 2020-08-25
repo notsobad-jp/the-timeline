@@ -82,12 +82,10 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
 
 export async function getStaticProps({params}) {
   const sourceUrl =    `https://docs.google.com/spreadsheets/d/e/${params.gid}/pubhtml`;
-  // const [data, title] = await Promise.all([
-  //   sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]),
-  //   getTitleFromSheet(params.gid)
-  // ]);
-  const data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
-  const title = "hoge";
+  const [data, title] = await Promise.all([
+    sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]),
+    getTitleFromSheet(params.gid)
+  ]);
   const canonicalUrl = `https://the-timeline.vercel.app/app/${params.gid}`;
 
   return {
@@ -103,17 +101,18 @@ export async function getStaticProps({params}) {
 
 export async function getStaticPaths() {
   // const url = "http://localhost:3001/api/timelines";
-  const url = "https://the-timeline.vercel.app/api/timelines";
-  const res = await fetch(url);
-  const json = await res.json();
-
-  const paths = json.items.map(item => {
-    return {
-      params: {
-        gid: item.id,
-      }
-    }
-  });
+  // const url = "https://the-timeline.vercel.app/api/timelines";
+  // const res = await fetch(url);
+  // const json = await res.json();
+  //
+  // const paths = json.items.map(item => {
+  //   return {
+  //     params: {
+  //       gid: item.id,
+  //     }
+  //   }
+  // });
+  const paths = [];
 
   return {
     paths: paths,
