@@ -72,19 +72,8 @@ export default function NewTimeline() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [user, setUser] = useContext(UserContext);
   const [snackbar, setSnackbar] = useContext(SnackbarContext);
-  const [buttonDisabled, setButtonDisabled] = useState(!user);
 
-  // 未ログイン状態なら匿名ログインさせる
-  React.useEffect(() => {
-    if(!user) { firebase.auth().signInAnonymously(); }
-    setButtonDisabled(false);
-  }, [user]);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setOpen(true);
     const urlField = document.getElementById('urlField');
@@ -98,6 +87,15 @@ export default function NewTimeline() {
     }
     const { 0: url, 1: gid } = match;
 
+    // ログインしてなければ匿名ログイン
+    let uid;
+    if(!user) {
+      const credentials = await firebase.auth().signInAnonymously();
+      uid = credentials.user.uid;
+    }else {
+      uid = user.uid;
+    }
+
     // スプレッドシートが公開されていることを確認
     fetch(url).then(res => {
       return res.text();
@@ -108,7 +106,7 @@ export default function NewTimeline() {
         title: title,
         gid: gid,
         createdAt: new Date(),
-        userId: user.uid,
+        userId: uid,
         version: 'v2',
       })
       .then(docRef => {
@@ -120,6 +118,7 @@ export default function NewTimeline() {
         alert("[Error] データの保存に失敗しました。しばらくしてから再度お試しください。");
       });
     }).catch(error => {
+      console.log(error);
       alert("[Error] スプレッドシートの読み込みに失敗しました。シートがウェブに公開されていることをご確認ください。");
     }).finally(() => {
       setOpen(false);
@@ -145,12 +144,12 @@ export default function NewTimeline() {
             <TextField id="urlField" variant="outlined" required type="url" label="スプレッドシートの公開URL" fullWidth className={classes.input}
               InputProps={ isMobile ? {} : {
                 endAdornment: (
-                  <Button type="submit" variant="contained" disabled={buttonDisabled} color="secondary">Save</Button>
+                  <Button type="submit" variant="contained" color="secondary">Save</Button>
                 )
               }}
              />
              { isMobile &&
-               <Button type="submit" variant="contained" fullWidth size="large" disabled={buttonDisabled} color="secondary">作成する</Button>
+               <Button type="submit" variant="contained" fullWidth size="large" color="secondary">作成する</Button>
              }
           </form>
           <Box my={2}>
@@ -159,7 +158,7 @@ export default function NewTimeline() {
               旧バージョンではウェブに公開後、共有用URLを別途取得して登録する必要がありました。新バージョンでは「ウェブに公開」で発行されたURLをそのまま使用しますので、ご注意ください。
             </Alert>
           </Box>
-          <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
+          <Backdrop className={classes.backdrop} open={open}>
             <CircularProgress color="inherit" />
           </Backdrop>
         </Box>
