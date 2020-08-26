@@ -16,7 +16,6 @@ export default async (req, res) => {
 
         snapshot.forEach(doc => {
           const docData = doc.data();
-          docData.id = doc.id;
           docData.createdAt = docData.createdAt.toDate().toISOString();
           data.items.push(docData);
         });

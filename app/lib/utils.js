@@ -3,17 +3,17 @@ import csv from 'csvtojson'
 const colors = ['red', 'blue', 'green', 'orange', 'yellow', 'olive', 'teal', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'];
 
 export async function getTitleFromSheet(gid) {
-  const url = `https://docs.google.com/spreadsheets/d/e/${gid}/pubhtml`;
-  const text = await fetch(url).then(res => res.text());
-  const match = text.match(/<title>(.*)<\/title>/);
-  return match ? match[1].replace(/ - Google (ドライブ|Drive)/, "") : '';
+  const contentDisposition = await fetch(url).then(res => res.headers.get('content-disposition'));
+  const match = contentDisposition.match(/filename\*=UTF-8''(.*)%20-%20.*\.csv/)
+  return match ? decodeURI(match[1]) : '';
 }
 
 export async function sheetsToJson(urls) {
-  let result = { items: [], groups: [] };
+  let result = { titles: [], items: [], groups: [] };
 
   const results = await Promise.all(urls.map((url) => sheetToJson(url)));
   results.forEach((res) => {
+    result.titles = result.titles.concat(res.title);
     result.items = result.items.concat(res.items);
     result.groups = result.groups.concat(res.groups);
   });
@@ -22,7 +22,13 @@ export async function sheetsToJson(urls) {
 
 async function sheetToJson(url) {
   let groupNames = [];
-  const csvString = await fetch(url).then(res => res.text());
+  const res = await fetch(url);
+  const csvString = await res.text();
+
+  // headerからtitle取得
+  const contentDisposition = res.headers.get('content-disposition');
+  const titleMatch = contentDisposition.match(/filename\*=UTF-8''(.*)%20-%20.*\.csv/)
+  const title = titleMatch ? decodeURI(titleMatch[1]) : '';
 
   return csv()
     .fromString(csvString)
@@ -57,6 +63,7 @@ async function sheetToJson(url) {
       });
 
       return({
+        title: title,
         items: items,
         groups: groups,
       })
