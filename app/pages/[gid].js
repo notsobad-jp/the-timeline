@@ -81,29 +81,19 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
 
 
 export async function getStaticProps({params}) {
-  try {
-    const sourceUrl =    `https://docs.google.com/spreadsheets/d/e/${params.gid}/pubhtml`;
-    const data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
-    const title = data["titles"][0];
-    const canonicalUrl = `https://the-timeline.vercel.app/app/${params.gid}`;
+  const sourceUrl =    `https://docs.google.com/spreadsheets/d/e/${params.gid}/pubhtml`;
+  const data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
+  const title = data["titles"][0];
+  const canonicalUrl = `https://the-timeline.vercel.app/app/${params.gid}`;
 
-    return {
-      props: {
-        title: title,
-        data: data,
-        sourceUrl: sourceUrl,
-        canonicalUrl: canonicalUrl
-      },
-      unstable_revalidate: 60,
-    }
-  } catch(e) {
-    console.log(e);
-    return {
-      props: {
-        title: e,
-        data: {items: [], groups: []},
-      }
-    }
+  return {
+    props: {
+      title: title,
+      data: data,
+      sourceUrl: sourceUrl,
+      canonicalUrl: canonicalUrl
+    },
+    unstable_revalidate: 60,
   }
 }
 
