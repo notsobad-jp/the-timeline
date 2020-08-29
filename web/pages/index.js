@@ -142,9 +142,7 @@ export default function Index({examples, tiers}) {
           <p><small>（ログインなしでも利用できます）</small></p>
         </Box>
         <Box my={4}>
-          { false &&
-            <iframe className={classes.iframe} seamless="" frameborder="0" src="https://app.the-timeline.jp/?key=1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0&amp;start=19950226064037&amp;end=20200822005476"></iframe>
-          }
+          <iframe className={classes.iframe} seamless="" frameBorder="0" src="https://app.the-timeline.jp/?key=1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0&amp;start=19950226064037&amp;end=20200822005476"></iframe>
         </Box>
       </Box>
 
