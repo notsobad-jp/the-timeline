@@ -81,10 +81,11 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
 
 
 export async function getStaticProps({params}) {
-  const sourceUrl =    `https://docs.google.com/spreadsheets/d/e/${params.gid}/pubhtml`;
+  //TODO: gidでv1とv2を判別して処理を変える
+  const sourceUrl = `https://docs.google.com/spreadsheets/d/e/${params.gid}/pubhtml`;
   const data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
   const title = data["titles"][0];
-  const canonicalUrl = `https://the-timeline.vercel.app/app/${params.gid}`;
+  const canonicalUrl = `https://app.the-timeline.jp/${params.gid}`;
 
   return {
     props: {

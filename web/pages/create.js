@@ -110,8 +110,9 @@ export default function NewTimeline() {
         version: 'v2',
       })
       .then(docRef => {
-        setSnackbar({open: true, message: "年表の作成が完了しました！"})
-        router.push(`/app/${gid}`);
+        setSnackbar({open: true, message: "年表の作成が完了しました！"});
+        window.open(`${process.env.NEXT_PUBLIC_APP_ROOT}/${gid}`, '_blank');
+        router.push('/mypage');
       })
       .catch(error => {
         console.log(error);
