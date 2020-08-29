@@ -1,7 +1,7 @@
 <top>
       <div class="ui info message">
         機能追加した新バージョンを近日公開予定です。一足先に試したい方はこちらからどうぞ！
-        <a href="https://the-timeline.vercel.app" target="_blank">https://the-timeline.vercel.app</a>
+        <a href="https://the-timeline.vercel.app" target="_blank">https://timeline-web.vercel.app</a>
       </div>
 
   <div id="top" class="ui inverted attached center aligned basic segment">
