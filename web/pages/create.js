@@ -183,7 +183,7 @@ export default function NewTimeline() {
                     以下のテンプレートをコピーして、自分用のシートを作成します。
                     シートの表示画面で、メニューの「ファイル」→「コピーを作成」を選択してください。
                     <Box my={2}>
-                      <Button component="a" href="/" target="_blank" variant="contained" color="primary" fullWidth={ isMobile } endIcon={<LaunchIcon />}>公式テンプレート</Button>
+                      <Button component="a" href="https://docs.google.com/spreadsheets/d/1ZzL0aWBK7F9TtKOuapX5PceJ2CUT_x2MCh7xmJ_C_nI" target="_blank" variant="contained" color="primary" fullWidth={ isMobile } endIcon={<LaunchIcon />}>公式テンプレート</Button>
                     </Box>
                     <Alert severity="warning">
                       <Typography component="p" className={classes.bold}>「アクセス権のリクエスト」ではありません</Typography>
