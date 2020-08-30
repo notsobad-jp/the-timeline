@@ -46,7 +46,8 @@ async function sheetToJson(url) {
         json.end = (json["end_year"]=='now') ? new Date().toString() : parseDate(json["end_year"], json["end_month"], json["end_day"], json["end_time"]);
       }
       // ユニークなGroup一覧を作成
-      if(json.group && groupNames.indexOf(json.group) < 0) {
+      if(!json.group) { json.group = '　　　'; } // 折りたたみできなくなるので、groupなしの場合は空白文字列に置き換え
+      if(groupNames.indexOf(json.group) < 0) {
         groupNames.push(json.group);
       }
       json.group = `sub_${json.group}`; // 実際にはsub_groupに所属させる
