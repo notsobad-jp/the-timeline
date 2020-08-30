@@ -172,25 +172,13 @@ export default function NewTimeline() {
           <Stepper orientation="vertical">
             <Step active={true}>
               <StepLabel>
-                <Typography variant="h6" className={classes.bold}>テンプレートからシートを新規作成</Typography>
+                <Typography variant="h6" className={classes.bold}>テンプレートからシートをコピー</Typography>
               </StepLabel>
               <StepContent>
-                <Grid container spacing={3}>
-                  <Grid item xs={12} sm={6}>
-                    <img src="/images/create/1.png" alt="テンプレートからシートを新規作成" className={classes.image} />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    以下のテンプレートをコピーして、自分用のシートを作成します。
-                    シートの表示画面で、メニューの「ファイル」→「コピーを作成」を選択してください。
-                    <Box my={2}>
-                      <Button component="a" href="https://docs.google.com/spreadsheets/d/1ZzL0aWBK7F9TtKOuapX5PceJ2CUT_x2MCh7xmJ_C_nI" target="_blank" variant="contained" color="primary" fullWidth={ isMobile } endIcon={<LaunchIcon />}>公式テンプレート</Button>
-                    </Box>
-                    <Alert severity="warning">
-                      <Typography component="p" className={classes.bold}>「アクセス権のリクエスト」ではありません</Typography>
-                      公式テンプレートは上記手順でコピーして、ご自分のファイルとして編集してください。
-                    </Alert>
-                  </Grid>
-                </Grid>
+                以下のリンクから公式テンプレートをコピーして、自分用のシートを作成します。
+                <Box my={2}>
+                  <Button component="a" href="https://docs.google.com/spreadsheets/d/1ZzL0aWBK7F9TtKOuapX5PceJ2CUT_x2MCh7xmJ_C_nI/copy" target="_blank" variant="contained" color="primary" fullWidth={ isMobile } endIcon={<LaunchIcon />}>公式テンプレート</Button>
+                </Box>
               </StepContent>
             </Step>
             <Step active={true}>
