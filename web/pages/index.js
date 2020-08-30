@@ -136,7 +136,7 @@ export default function Index({examples, tiers}) {
           簡単・便利な無料の年表作成サービスです。
         </Typography>
         <Box my={4}>
-          <Button className={classes.createButton} href="/create" variant="contained" color="secondary" size="large" fullWidth={ isMobile } endIcon={<ChevronRightIcon />}>
+          <Button className={classes.createButton} component={Link} href="/create" variant="contained" color="secondary" size="large" fullWidth={ isMobile } endIcon={<ChevronRightIcon />}>
             年表を作る
           </Button>
           <p><small>（ログインなしでも利用できます）</small></p>
@@ -222,7 +222,7 @@ export default function Index({examples, tiers}) {
         </Grid>
 
         <Box my={6} align="center">
-          <Button className={classes.createButton} href="/create" variant="contained" size="large" fullWidth={ isMobile } endIcon={<ChevronRightIcon />}>
+          <Button className={classes.createButton} component={Link} href="/search" variant="contained" size="large" fullWidth={ isMobile } endIcon={<ChevronRightIcon />}>
             他の年表も見てみる
           </Button>
         </Box>

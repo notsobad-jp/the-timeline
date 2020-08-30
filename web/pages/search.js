@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getTimelines } from '../lib/firebase.js'
 import { makeStyles } from '@material-ui/core/styles';
+import Link from '../src/Link';
 import TimelineList from '../components/TimelineList';
 import Head from 'next/head';
 import Typography from '@material-ui/core/Typography';
@@ -45,7 +46,7 @@ export default function Index({result}) {
 
         <TimelineList result={result} limit={limit} />
 
-        <Fab className={classes.fab} color="secondary" aria-label="add" component="a" href="/create">
+        <Fab className={classes.fab} color="secondary" aria-label="add" component={Link} href="/create">
           <AddIcon />
         </Fab>
       </div>

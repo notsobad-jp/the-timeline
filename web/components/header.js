@@ -114,15 +114,15 @@ export default function Header(){
           onKeyDown={()=>{ setDrawerOpened(false) }}
         >
           <List className={classes.list}>
-            <ListItem button component="a" href="/">
+            <ListItem button component={Link} href="/">
               <ListItemIcon><HomeIcon /></ListItemIcon>
               <ListItemText primary="ホーム" />
             </ListItem>
-            <ListItem button component="a" href="/search">
+            <ListItem button component={Link} href="/search">
               <ListItemIcon><SearchIcon /></ListItemIcon>
               <ListItemText primary="みんなの年表" />
             </ListItem>
-            <ListItem button component="a" href="/create">
+            <ListItem button component={Link} href="/create">
               <ListItemIcon><AddIcon /></ListItemIcon>
               <ListItemText primary="年表を作る" />
             </ListItem>
@@ -131,11 +131,11 @@ export default function Header(){
               if (user) {
                 return(
                   <>
-                    <ListItem button component="a" href="/mypage">
+                    <ListItem button component={Link} href="/mypage">
                       <ListItemIcon><AccountCircle /></ListItemIcon>
                       <ListItemText primary="マイページ" />
                     </ListItem>
-                    <ListItem button component="a" onClick={ logout } >
+                    <ListItem button onClick={ logout } >
                       <ListItemIcon><ExitToAppIcon /></ListItemIcon>
                       <ListItemText primary="ログアウト" />
                     </ListItem>
@@ -143,7 +143,7 @@ export default function Header(){
                 );
               } else {
                 return(
-                  <ListItem button component="a" href="/login">
+                  <ListItem button component={Link} href="/login">
                     <ListItemIcon><ExitToAppIcon /></ListItemIcon>
                     <ListItemText primary="ログイン" />
                   </ListItem>
