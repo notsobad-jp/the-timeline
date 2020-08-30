@@ -6,6 +6,7 @@ import tippy from 'tippy.js';
 export default function Index({data}) {
   const [timeline, setTimeline] = useState();
   let hiddenGroups = [];
+  let firstRangeChanged = true;
 
   useEffect(() => {
     if(timeline) { return; }  // 複数回レンダリングを防ぐ
@@ -66,6 +67,12 @@ export default function Index({data}) {
   }
 
   function rangeChanged(e) {
+    // 初回描画時はスキップ
+    if(firstRangeChanged) {
+      firstRangeChanged = false;
+      return;
+    }
+
     const url = new URL(location);
     const start = new Date(e.start).toISOString().replace(/[^0-9]/g, "").slice(0,14)
     const end =   new Date(e.end  ).toISOString().replace(/[^0-9]/g, "").slice(0,14)
