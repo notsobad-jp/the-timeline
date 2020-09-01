@@ -51,28 +51,18 @@ const exportCsv = async (id) => {
   const Tabletop = require('tabletop');
   Tabletop.init({
     key: id,
-    prettyColumnNames: false,
+    prettyColumnNames: true,
     simpleSheet: true,
     callback: (data, tabletop) => {
       if(!data || !data[0]) { return; }
-      data[0]["end_year"] = data[0]["endyear"];
-      data[0]["end_month"] = data[0]["endmonth"];
-      data[0]["end_day"] = data[0]["endday"];
-      data[0]["end_time"] = data[0]["endtime"];
-      data[0]["display_date"] = data[0]["displaydate"];
-      data[0]["image_url"] = data[0]["imageurl"];
-      data[0]["image_credit"] = data[0]["imagecredit"];
-      delete data[0]["endyear"];
-      delete data[0]["endmonth"];
-      delete data[0]["endday"];
-      delete data[0]["endtime"];
-      delete data[0]["displaydate"];
-      delete data[0]["imageurl"];
-      delete data[0]["imagecredit"];
-
       const csvData = stringify(data, { header: true });
       fs.writeFileSync(`./tasks/csv/${id}.csv`, csvData);
     }
+  });
+}
+const sleep = (time) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => { resolve(); }, time);
   });
 }
 const exportAllCsv = async () => {
@@ -82,6 +72,7 @@ const exportAllCsv = async () => {
     if(!timelines[id]) { continue; }
     console.log(timelines[id].title);
     await exportCsv(id);
+    await sleep(1000);
   }
 }
 // exportAllCsv();
