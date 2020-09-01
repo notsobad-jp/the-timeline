@@ -81,11 +81,15 @@ export default function TimelineList({result, limit, version, userId}) {
     setItems(res);
   }
 
+  const appUrl = (item) => {
+    return (item.version=='v2') ? `${process.env.NEXT_PUBLIC_APP_ROOT}/${item.id}` : `${process.env.NEXT_PUBLIC_APP_ROOT}/v1/${item.id}`;
+  }
+
   return (
     <>
       <List component="nav">
         { items.map((item) => (
-          <ListItem button divider component="a" href={(item.version=='v2') ? `${process.env.NEXT_PUBLIC_APP_ROOT}/${item.id}` : `https://the-timeline.jp/timelines/${item.id}`} target='_blank' key={item.id}>
+          <ListItem button divider component="a" href={appUrl(item)} target='_blank' key={item.id}>
             <ListItemText primary={
                 <>
                   { item.title }
