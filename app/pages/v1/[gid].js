@@ -1,6 +1,7 @@
+import fs from 'fs'
 import Head from 'next/head'
-import Timeline from '../components/timeline';
-import { sheetsToJson } from '../lib/utils';
+import Timeline from '../../components/timeline';
+import { sheetsToJson } from '../../lib/utils';
 
 
 export default function Index({title, data, sourceUrl, canonicalUrl}) {
@@ -60,11 +61,11 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
 
 
 export async function getStaticProps({params}) {
-  const jsonString = fs.readFileSync('./tasks/v1.json')
+  const jsonString = fs.readFileSync('src/v1.json')
   const json = JSON.parse(jsonString);
   const timeline = json[params.gid];
 
-  const sourceUrl = `https://storage.googleapis.com/app.the-timeline.jp/csv/v1/${params.gid}.csv`;
+  const sourceUrl = `src/csv/v1/${params.gid}.csv`;
   const data = await sheetsToJson([sourceUrl]);
   const canonicalUrl = `https://app.the-timeline.jp/v1/${params.gid}`;
 
@@ -79,7 +80,7 @@ export async function getStaticProps({params}) {
 }
 
 export async function getStaticPaths() {
-  const jsonString = fs.readFileSync('./tasks/v1.json')
+  const jsonString = fs.readFileSync('src/v1.json')
   const json = JSON.parse(jsonString);
   const paths = Object.keys(json).map(gid => {
     return {
@@ -91,5 +92,6 @@ export async function getStaticPaths() {
 
   return {
     paths: paths,
+    fallback: false,
   }
 }

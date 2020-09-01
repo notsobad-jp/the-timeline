@@ -1,3 +1,4 @@
+import fs from 'fs'
 import csv from 'csvtojson'
 
 const colors = ['red', 'blue', 'green', 'orange', 'yellow', 'olive', 'teal', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'];
@@ -22,13 +23,22 @@ export async function sheetsToJson(urls) {
 
 async function sheetToJson(url) {
   let groupNames = [];
-  const res = await fetch(url);
-  const csvString = await res.text();
+  let csvString = '';
+  let title = '';
 
-  // headerからtitle取得
-  const contentDisposition = res.headers.get('content-disposition');
-  const titleMatch = contentDisposition.match(/filename\*=UTF-8''(.*)%20-%20.*\.csv/)
-  const title = titleMatch ? decodeURI(titleMatch[1]) : '';
+  if(url.includes("http")) {
+    const res = await fetch(url);
+    csvString = await res.text();
+
+    // headerからtitle取得
+    const contentDisposition = res.headers.get('content-disposition');
+    const titleMatch = contentDisposition.match(/filename\*=UTF-8''(.*)%20-%20.*\.csv/)
+    title = titleMatch ? decodeURI(titleMatch[1]) : '';
+  } else {
+    // v1はローカルのcsvファイルから読み込む
+    csvString = fs.readFileSync(url, 'utf8');
+  }
+
 
   return csv()
     .fromString(csvString)

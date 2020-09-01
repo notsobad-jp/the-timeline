@@ -1,4 +1,4 @@
-group,year,month,day,time,title,detail,url,type,color,rowNumber,end_year,end_month,end_day,end_time,display_date,image_url,image_credit
+group,year,month,day,time,title,detail,url,type,color,rowNumber,End Year,end_month,end_day,end_time,display_date,image_url,image_credit
 日本の年号,1989,,,,平成,,,,,1,now,,,,,,
 日本の年号,1926,,,,昭和,,,,,2,,,,,,,
 日本の年号,1912,,,,大正,,,,,3,,,,,,,
