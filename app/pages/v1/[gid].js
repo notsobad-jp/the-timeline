@@ -82,11 +82,15 @@ export async function getStaticProps({params}) {
 export async function getStaticPaths() {
   const jsonString = fs.readFileSync('src/v1.json')
   const json = JSON.parse(jsonString);
-  const paths = Object.keys(json).map(gid => {
-    return {
-      params: {
-        gid: gid,
-      }
+  let paths = [];
+  Object.keys(json).map(gid => {
+    try {
+      fs.statSync(`src/csv/v1/${gid}.csv`);
+      paths.push({
+        params: { gid: gid }
+      });
+    } catch(err) {
+      console.log(err);
     }
   });
 
