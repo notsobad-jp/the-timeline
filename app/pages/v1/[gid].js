@@ -1,30 +1,9 @@
-import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Timeline from '../components/timeline';
 import { sheetsToJson } from '../lib/utils';
 
 
 export default function Index({title, data, sourceUrl, canonicalUrl}) {
-  const router = useRouter()
-  if (router.isFallback) {
-    return(
-      <>
-        <div className="bg-gray-900 px-4 pt-2 pb-3 text-white flex w-full z-50">
-          <h1>
-            <div className="inline-block w-4 h-4 text-teal-500 fill-current mr-3 align-middle">
-              <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"></path></svg>
-            </div>
-            <span className="align-middle">　</span>
-          </h1>
-        </div>
-
-        <div className="mt-16 text-center">
-          <div>Loading...</div>
-        </div>
-      </>
-    )
-  }
-
   return (
     <>
       <Head>
@@ -81,38 +60,36 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
 
 
 export async function getStaticProps({params}) {
-  const sourceUrl = `https://docs.google.com/spreadsheets/d/e/${params.gid}/pubhtml`;
-  const data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
-  const title = data["titles"][0];
-  const canonicalUrl = `https://app.the-timeline.jp/${params.gid}`;
+  const jsonString = fs.readFileSync('./tasks/v1.json')
+  const json = JSON.parse(jsonString);
+  const timeline = json[params.gid];
+
+  const sourceUrl = `https://storage.googleapis.com/app.the-timeline.jp/csv/v1/${params.gid}.csv`;
+  const data = await sheetsToJson([sourceUrl]);
+  const canonicalUrl = `https://app.the-timeline.jp/v1/${params.gid}`;
 
   return {
     props: {
-      title: title,
+      title: timeline.title,
       data: data,
       sourceUrl: sourceUrl,
       canonicalUrl: canonicalUrl
     },
-    unstable_revalidate: 60,
   }
 }
 
 export async function getStaticPaths() {
-  // const url = "http://localhost:3001/api/timelines?limit=3";
-  // // const url = "https://the-timeline.vercel.app/api/timelines";
-  // const json = await fetch(url).then(res => res.json());
-  //
-  // const paths = json.items.map(item => {
-  //   return {
-  //     params: {
-  //       gid: item.gid,
-  //     }
-  //   }
-  // });
-  const paths = [];
+  const jsonString = fs.readFileSync('./tasks/v1.json')
+  const json = JSON.parse(jsonString);
+  const paths = Object.keys(json).map(gid => {
+    return {
+      params: {
+        gid: gid,
+      }
+    }
+  });
 
   return {
     paths: paths,
-    fallback: true
   }
 }
