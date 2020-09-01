@@ -7,6 +7,7 @@ firebase-debug.log
 cert*.json
 node_modules
 .firebase
+public/tasks/csv/*.csv
 
 # Icon must ends with two \r.
 Icon

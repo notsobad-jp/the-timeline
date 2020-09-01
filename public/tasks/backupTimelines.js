@@ -38,7 +38,7 @@ const importMetaToJson = () => {
       }
       console.log(doc.id);
     });
-    fs.writeFileSync("./tasks/timelines_v1.json", JSON.stringify(resultJson));
+    fs.writeFileSync("./tasks/v1.json", JSON.stringify(resultJson));
   }).catch(error => {
     console.error(error);
   });
@@ -76,7 +76,7 @@ const exportCsv = async (id) => {
   });
 }
 const exportAllCsv = async () => {
-  const jsonString = fs.readFileSync('./tasks/timelines_v1.json')
+  const jsonString = fs.readFileSync('./tasks/v1.json')
   const timelines = JSON.parse(jsonString);
   for(let id of Object.keys(timelines)) {
     if(!timelines[id]) { continue; }
