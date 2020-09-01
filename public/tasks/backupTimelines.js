@@ -26,7 +26,7 @@ firestore.settings(settings);
 // firebaseから全データ取得して、jsonとして保存
 const importMetaToJson = () => {
   const resultJson = {};
-  firestore.collection('timelines').limit(3).get().then(snapshot => {
+  firestore.collection('timelines').get().then(snapshot => {
     snapshot.forEach(doc => {
       const data = doc.data();
       if(data.version == 'v2') { return; }
@@ -54,6 +54,22 @@ const exportCsv = async (id) => {
     prettyColumnNames: false,
     simpleSheet: true,
     callback: (data, tabletop) => {
+      if(!data || !data[0]) { return; }
+      data[0]["end_year"] = data[0]["endyear"];
+      data[0]["end_month"] = data[0]["endmonth"];
+      data[0]["end_day"] = data[0]["endday"];
+      data[0]["end_time"] = data[0]["endtime"];
+      data[0]["display_date"] = data[0]["displaydate"];
+      data[0]["image_url"] = data[0]["imageurl"];
+      data[0]["image_credit"] = data[0]["imagecredit"];
+      delete data[0]["endyear"];
+      delete data[0]["endmonth"];
+      delete data[0]["endday"];
+      delete data[0]["endtime"];
+      delete data[0]["displaydate"];
+      delete data[0]["imageurl"];
+      delete data[0]["imagecredit"];
+
       const csvData = stringify(data, { header: true });
       fs.writeFileSync(`./tasks/csv/${id}.csv`, csvData);
     }
@@ -63,6 +79,7 @@ const exportAllCsv = async () => {
   const jsonString = fs.readFileSync('./tasks/timelines_v1.json')
   const timelines = JSON.parse(jsonString);
   for(let id of Object.keys(timelines)) {
+    if(!timelines[id]) { continue; }
     console.log(timelines[id].title);
     await exportCsv(id);
   }
