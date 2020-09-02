@@ -2,7 +2,6 @@ import React, { useState, useEffect, createContext } from 'react';
 import { useRouter } from 'next/router'
 import theme from '../src/theme';
 import { firebase } from '../lib/firebase.js'
-import * as gtag from '../lib/gtag'
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -28,13 +27,6 @@ export default function MyApp(props) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
-
-    // Google Analytcs
-    const handleRouteChange = (url) => { gtag.pageview(url); }
-    router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
   }, []);
 
   firebase.auth().onAuthStateChanged((u) => {
