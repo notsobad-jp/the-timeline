@@ -77,11 +77,7 @@ export default function Login() {
         break;
     }
 
-    if(user && user.isAnonymous) {
-      user.linkWithRedirect(provider)
-    }else {
-      firebase.auth().signInWithRedirect(provider)
-    }
+    firebase.auth().signInWithRedirect(provider)
   }
 
   const magicAuth = (e) => {
@@ -90,15 +86,7 @@ export default function Login() {
     const email = emailField.value;
     const newPassword = Math.random().toString(36).slice(-12)
 
-    let credential, userPromise;
-    if(user && user.isAnonymous) {
-      credential = firebase.auth.EmailAuthProvider.credential(email, newPassword);
-      userPromise = firebase.auth().currentUser.linkWithCredential(credential)
-    }else {
-      userPromise = firebase.auth().createUserWithEmailAndPassword(email, newPassword)
-    }
-
-    userPromise.then(function(){
+    firebase.auth().createUserWithEmailAndPassword(email, newPassword).then(function(){
       //新規ユーザーの場合
       firebase.auth().sendPasswordResetEmail(email)
       setSnackbar({open: true, message: 'ログイン用のメールを送信しました。メール内のリンクをクリックしてログインしてください。'});
