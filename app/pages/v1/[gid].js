@@ -89,7 +89,7 @@ export async function getStaticPaths() {
         params: { gid: gid }
       });
     } catch(err) {
-      console.log(err);
+      console.log(`No file: ${gid}`);
     }
   });
 
