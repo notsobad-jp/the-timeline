@@ -1,15 +1,16 @@
-import React, { useState, createContext } from 'react';
-import PropTypes from 'prop-types';
-import Head from 'next/head';
-import Container from '@material-ui/core/Container';
-import { ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import React, { useState, useEffect, createContext } from 'react';
+import { useRouter } from 'next/router'
 import theme from '../src/theme';
 import { firebase } from '../lib/firebase.js'
+import * as gtag from '../lib/gtag'
+import Head from 'next/head';
+import PropTypes from 'prop-types';
+import { ThemeProvider } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Header from "../components/header.js"
 import Footer from "../components/footer.js"
 import Snackbar from "../components/snackbar.js"
-import { useRouter } from 'next/router'
 
 
 export const UserContext = createContext(["", () => {}]);
@@ -17,18 +18,24 @@ export const SnackbarContext = createContext(["", () => {}]);
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
+  const router = useRouter()
+  const [user, setUser] = useState();
+  const [snackbar, setSnackbar] = useState({ open: false, message: '' });
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
-  }, []);
 
-  const router = useRouter()
-  const [user, setUser] = useState();
-  const [snackbar, setSnackbar] = useState({ open: false, message: '' });
+    // Google Analytcs
+    const handleRouteChange = (url) => { gtag.pageview(url); }
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, []);
 
   firebase.auth().onAuthStateChanged((u) => {
     setUser(u);
