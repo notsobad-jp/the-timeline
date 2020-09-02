@@ -193,6 +193,7 @@
 .tippy-box {
   padding-top: 10px;
   padding-bottom: 10px;
+  word-break: break-all;
 }
 .tippy-box img {
   max-width: 100%;
