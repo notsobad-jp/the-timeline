@@ -322,6 +322,20 @@ export default function Index({examples, tiers}) {
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               Googleスプレッドシートで元データを編集すれば、THE TIMELINEの年表も自動で最新の内容に更新されます。
+              更新には最大で5分程度のタイムラグがありますのでご注意ください。
+            </Typography>
+          </Box>
+          <Box component="li" mb={3}>
+            <Typography className={classes.bold} gutterBottom>
+              シートを更新しても年表に反映されないのですが
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              スプレッドシートを更新後、シートの公開ページに反映されるまでに5分程度のタイムラグがあります。
+              年表表示画面の右上にあるアイコンをクリックしてシートの公開ページを確認し、変更が反映されているか確認してみてください。
+              <br />
+              シートの公開ページが更新されたあと年表表示画面をリロードすると、年表にも変更が反映されるはずです。
+              <br />
+              また公開ページ更新後、年表に反映されるまでにも最大1分程度のタイムラグがあります。どうしてもリアルタイム性が必要な方は有料版の利用をご検討ください。
             </Typography>
           </Box>
           <Box component="li" mb={3}>

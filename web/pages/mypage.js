@@ -5,6 +5,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { UserContext } from './_app';
 import TimelineList from '../components/TimelineList';
 import Head from 'next/head';
+import Alert from '@material-ui/lab/Alert';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -60,7 +61,12 @@ export default function Mypage() {
         </Typography>
 
         { user && items.length > 0 &&
-          <TimelineList result={items} limit={limit} userId={user.uid} />
+          <>
+            <Alert severity="info">
+              旧バージョンで作成した年表は今後更新が反映されません。更新が必要な場合は、お手数ですがURLを登録し直してください。
+            </Alert>
+            <TimelineList result={items} limit={limit} userId={user.uid} />
+          </>
         }
         { user && items.length == 0 &&
           <>

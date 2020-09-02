@@ -63,7 +63,7 @@ export default function Header(){
           <Button href="https://twitter.com/intent/tweet?hashtags=the_timeline&text=%E5%B9%B4%E8%A1%A8%E4%BD%9C%E6%88%90%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%80%8CTHE%20TIMELINE%EF%BC%88%E3%82%B6%E3%83%BB%E3%82%BF%E3%82%A4%E3%83%A0%E3%83%A9%E3%82%A4%E3%83%B3%EF%BC%89%E3%80%8D&url=https%3A%2F%2Fthe-timeline.jp" component="a" target="_blank" variant="contained" color="primary" className={classes.twitterButton} size="small" startIcon={<TwitterIcon />}>ツイートする</Button>
           <Button href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthe-timeline.jp" component="a" target="_blank" variant="contained" color="primary" className={classes.facebookButton} size="small" startIcon={<FacebookIcon />}>シェアする</Button>
         </Box>
-        <Box className={[classes.footerLinks, classes.menu]} mt={4}>
+        <Box className={[classes.footerLinks, classes.menu].join(" ")} mt={4}>
           <a href="https://app.the-tournament.jp/pages/terms.html" target="_blank" rel="noopener" color="inherit">利用規約</a>
           <a href="https://app.the-tournament.jp/pages/privacy.html" target="_blank" rel="noopener" color="inherit">プライバシーポリシー</a>
           <a href="https://notsobad.jp" target="_blank" rel="noopener" color="inherit">運営会社</a>

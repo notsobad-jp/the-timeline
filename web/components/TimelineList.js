@@ -95,7 +95,7 @@ export default function TimelineList({result, limit, version, userId}) {
                   { item.title }
                   {
                     item.version != 'v2' && userId &&
-                    <Tooltip title="Outdated!" aria-label="outdated">
+                    <Tooltip title="旧バージョンの年表は今後更新が反映されません" aria-label="outdated">
                       <ErrorIcon color="action" className={classes.errorIcon} />
                     </Tooltip>
                   }
