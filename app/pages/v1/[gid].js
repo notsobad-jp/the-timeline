@@ -22,7 +22,7 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
         <link rel="canonical" href={canonicalUrl} />
       </Head>
 
-      <div className="bg-gray-900 px-4 pt-2 pb-3 text-white flex fixed w-full z-50">
+      <div className="bg-black px-4 py-3 text-white flex fixed w-full z-50">
         <h1>
           <a href="/" target="_blank" rel="noopener">
             <div className="inline-block w-4 h-4 text-teal-500 fill-current mr-3 align-middle">
