@@ -42,7 +42,7 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
       </Head>
 
       <div className="bg-black px-4 py-3 text-white flex fixed w-full z-50">
-        <h1>
+        <h1 className="flex-grow truncate">
           <a href="/" target="_blank" rel="noopener">
             <div className="inline-block w-4 h-4 text-teal-500 fill-current mr-3 align-middle">
               <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"></path></svg>
@@ -51,7 +51,7 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
           <span className="align-middle">{ title }</span>
         </h1>
 
-        <div className="flex-grow text-right">
+        <div className="flex text-right">
           <a href={sourceUrl} target="_blank" rel="noopener">
             <div className="inline-block w-4 h-4 fill-current align-middle hover:opacity-75">
               <svg focusable="true" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM8 20H4v-4h4v4zm0-6H4v-4h4v4zm0-6H4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4zm6 12h-4v-4h4v4zm0-6h-4v-4h4v4zm0-6h-4V4h4v4z"></path></svg>
