@@ -9,7 +9,6 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
     <>
       <Head>
         <title>{ title } - 年表作成サービス「THE TIMELINE」</title>
-        <link rel="icon" type="image/x-icon" href="https://app.the-timeline.jp/assets/img/favicon.ico" />
         <meta name="description" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
         <meta name="keywords" content={`${title},年表,時系列,出来事,歴史,まとめ,THE TIMELINE`} />
         <meta property="og:title" content={`${title} | 年表作成サービス「THE TIMELINE」`} />

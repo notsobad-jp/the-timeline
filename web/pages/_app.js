@@ -39,6 +39,7 @@ export default function MyApp(props) {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <link rel="icon" href="/favicon.ico" />
         <title>THE TIMELINE | 無料年表作成サービス</title>
         <meta name="description" content="THE TIMELINE(ザ・タイムライン)は、簡単・便利な無料の年表作成サービスです" />
         <meta name="keywords" content="年表,作成,無料,時系列,歴史,ツール,サービス,フリー,ソフト,アプリ,エクセル,自分史,作り方,タイムライン,THE TIMELINE" />
