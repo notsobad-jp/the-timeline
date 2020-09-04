@@ -14,7 +14,7 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
         <meta property="og:title" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://the-timeline.jp/img/sample.png" />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_WEB_ROOT}/images/top/sample.png`} />
         <meta property="og:site_name" content="THE TIMELINE(ザ・タイムライン)" />
         <meta property="og:description" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
         <meta property="og:locale" content="ja_JP" />
@@ -66,7 +66,7 @@ export async function getStaticProps({params}) {
 
   const sourceUrl = `src/csv/v1/${params.gid}.csv`;
   const data = await sheetsToJson([sourceUrl]);
-  const canonicalUrl = `https://app.the-timeline.jp/v1/${params.gid}`;
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_APP_ROOT}/v1/${params.gid}`;
 
   return {
     props: {

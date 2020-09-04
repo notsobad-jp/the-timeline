@@ -1,7 +1,7 @@
-group,year,month,day,time,title,detail,url,type,color,rowNumber,end_year,end_month,end_day,end_time,display_date,image_url,image_credit
-Baroque,1653,,,,Johann Pachelbel,Germany,https://ja.wikipedia.org/wiki/%E3%83%A8%E3%83%8F%E3%83%B3%E3%83%BB%E3%83%91%E3%83%83%E3%83%98%E3%83%AB%E3%83%99%E3%83%AB,,,1,1706,,,,,,
-Baroque,1659,,,,Henry Purcell,Britain,,,,2,,,,,,,
-Romantic,1810,,,,Fryderyk Franciszek Chopin,Poland,,,,3,,,,,,,
-Modernism,1874,,,,Arnold Schönberg,Austria,,,,4,,,,,,,
-Contemporary classical,1937,,,,Nikolai Girshevich Kapustin,Ukraine,,,,5,,,,,,,
-Contemporary classical,1970,,,,Fazil Say,Turkey,,,,6,,,,,,,
+Group,Year,Month,Day,Time,End Year,End Month,End Day,End Time,Display Date,Title,Detail,URL,Image URL,Image Credit,Type,Color
+Baroque,1653,,,,1706,,,,,Johann Pachelbel,Germany,https://ja.wikipedia.org/wiki/%E3%83%A8%E3%83%8F%E3%83%B3%E3%83%BB%E3%83%91%E3%83%83%E3%83%98%E3%83%AB%E3%83%99%E3%83%AB,,,,
+Baroque,1659,,,,1695,,,,,Henry Purcell,Britain,,,,,
+Romantic,1810,,,,1849,,,,,Fryderyk Franciszek Chopin,Poland,,,,,
+Modernism,1874,,,,1951,,,,,Arnold Schönberg,Austria,,,,,
+Contemporary classical,1937,,,,now,,,,,Nikolai Girshevich Kapustin,Ukraine,,,,,
+Contemporary classical,1970,,,,now,,,,,Fazil Say,Turkey,,,,,

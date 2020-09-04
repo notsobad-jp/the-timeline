@@ -1,0 +1,5 @@
+Group,Year,Month,Day,Time,End Year,End Month,End Day,End Time,Display Date,Title,Detail,URL,Image URL,Image Credit,Type,Color
+小説,1913,9,,,,,,,,テスト1,,,,,point,
+小説,1913,9,,,1920,8,,,,テスト2,,,,,box,
+小説,1913,9,,,1920,8,,,,テスト3,,,,,range,
+小説,1913,9,,,1920,8,,,,テスト4,,,,,background,

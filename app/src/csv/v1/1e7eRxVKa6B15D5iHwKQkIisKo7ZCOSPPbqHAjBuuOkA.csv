@@ -1,0 +1,235 @@
+Group,Year,Month,Day,Time,End Year,End Month,End Day,End Time,Display Date,Title,Detail,URL,Image URL,Image Credit,Type,Color
+西暦,2001,1,1,0:00,2099,12,31,23:59,21世紀,,,,,,background,orange
+西暦,2101,1,1,0:00,2199,12,31,23:59,22世紀,,,,,,background,orange
+西暦,2201,1,1,0:00,2299,12,31,23:59,23世紀,,,,,,background,orange
+西暦,2301,1,1,0:00,2399,12,31,23:59,24世紀,,,,,,background,orange
+西暦,2401,1,1,0:00,2499,12,31,23:59,25世紀,,,,,,background,orange
+西暦,2501,1,1,0:00,2599,12,31,23:59,26世紀,,,,,,background,orange
+西暦,2601,1,1,0:00,2699,12,31,23:59,27世紀,,,,,,background,orange
+西暦,2701,1,1,0:00,2799,12,31,23:59,28世紀,,,,,,background,orange
+西暦,2801,1,1,0:00,2899,12,31,23:59,29世紀,,,,,,background,orange
+西暦,2901,1,1,0:00,2999,12,31,23:59,30世紀,,,,,,background,orange
+西暦,3001,1,1,0:00,3099,12,31,23:59,31世紀,,,,,,background,orange
+西暦,3101,1,1,0:00,3199,12,31,23:59,32世紀,,,,,,background,orange
+西暦,3201,1,1,0:00,3299,12,31,23:59,33世紀,,,,,,background,orange
+西暦,3301,1,1,0:00,3399,12,31,23:59,34世紀,,,,,,background,orange
+西暦,3401,1,1,0:00,3499,12,31,23:59,35世紀,,,,,,background,orange
+皇帝,2292,,,,2296,,,,,Marlin Duval,正確には帝国になる前の「Republic of Achenar」の指導者。在位4年。,,,,,blue
+皇帝,2320,,,,2402,,,,,Henson Duval,初代皇帝。在位82年。,,,,,blue
+皇帝,2402,,,,2483,,,,〜2483,Saik Duval,第2代皇帝。在位81年。,,,,,blue
+皇帝,2483,,,,2541,,,,〜2541,Trasken Duval,第3代皇帝。在位58年。,,,,,blue
+皇帝,2541,,,,2604,,,,〜2604,Hennick Duval,第4代皇帝。在位63年。,,,,,blue
+皇帝,2604,,,,2684,,,,〜2684,Lucius Duval,第5代皇帝。在位80年。,,,,,blue
+皇帝,2684,,,,2739,,,,〜2739,Anders Duval,第6代皇帝。在位55年。,,,,,blue
+皇帝,2739,,,,2799,,,,〜2799,Hender Duval,第7代皇帝。在位60年。,,,,,blue
+皇帝,2799,,,,2858,,,,〜2858,Trasken Duval 2世,第8代皇帝。在位59年。,,,,,blue
+皇帝,2858,,,,2943,,,,〜2943,Trasken Duval 3世,第9代皇帝。在位85年。,,,,,blue
+皇帝,2943,,,,2991,,,,〜2991,Olban Hensard Duval,第10代皇帝。在位48年。,,,,,blue
+皇帝,2991,,,,3061,,,,〜3061,Gaylen Trasken Duval,第11代皇帝。在位70年。,,,,,blue
+皇帝,3061,,,,3132,,,,〜3132,Atticus Obellan Duval,第12代皇帝。在位71年。,,,,,blue
+皇帝,3132,,,,3182,,,,～3182,Gaylen Trasken Duval,第13代皇帝。在位50年。,,,,,blue
+皇帝,3182,,,,3233,,,,～3233,Hesketh Duval,第14代皇帝。在位51年。,,,,,blue
+連邦大統領,2599,,,,2607,,,,〜2607,Sadiq Kessler,,,,,,red
+出来事,2001,,,,2055,,,,〜2055頃,World War IIIの勃発,World War IIIが起こり、宇宙開発が十数年後に始まる。,,,,,black
+出来事,2055,,,,2100,,,,21世紀,連邦（Federation）の創設,"戦後、最も有力だったのはアメリカ合衆国であり、他国はこれに数十年加わることになった。 全ての国が傘下になった時、アメリカ合衆国は名称を「合衆国連邦（Federation of the United States）」または単に「連邦（Federation）」と変えた。
+ そしてFederationは「地球政府」としての役割を担うことになる。",,,,,red
+出来事,2101,,,,2200,,,,22世紀,Hyperdriveの誕生,Li Qin Jaoと彼女のチームによりHyperdriveが発明される。 これにより人類の外宇宙への進出に拍車がかかった。,,,,,black
+出来事,2101,,,,2200,,,,22世紀,太陽系外への移住,Tau Ceti 星系の第2惑星にコロニーが作られた。 現在では「Taylor Colony」と呼ばれている。,https://www.edsm.net/ja/system/stations/id/14683/name/Trigeno/details/idS/45692/nameS/Taylor+Colony,https://www.edsm.net/img/stations/5.png,,,black
+出来事,2160,,,,2169,,,,2160年代,地球外生命体の発見,最初の地球外生命体がTau Ceti星系のTaylor Colonyで発見される。,https://www.edsm.net/ja/system/stations/id/14683/name/Trigeno/details/idS/45692/nameS/Taylor+Colony,https://www.edsm.net/img/stations/5.png,,,black
+出来事,2324,,,,2325,,,,,Battle of Achenar,,,,,,purple
+出来事,2325,,,,2381,,,,,冷戦,連邦と帝国間の冷戦,,,,,purple
+出来事,2097,,,,,,,,,最初のGeneration Ship,最初のGeneration shipが太陽系を発った。 続けて7万隻以上の船が千年の旅をするため太陽系を出た。,,,,,black
+出来事,2242,,,,,,,,,連邦協定（Federation Accord）制定,連邦協定（Federation Accord）の制定。これにより連邦は地球上の国同士の同盟ではなく宇宙規模での惑星間の繋がりとなる。,,,,,red
+出来事,2280,,,,,,,,,Martian Relicの発見,Martian Relicとして知られる小さな物体が火星で発見される。 これは異星人の文書で火星の地表から発掘された。  しかし、Federationがこれを押収したため、その存在はリークされたFederal recordsで確かめられるだけで数世紀もの間、秘密裏にあった。  その物体についてわかっているのは、人工物でありほんの2〜3cmの大きさしかない正方形ということである。（Tourist Beacon 0175）,,,,,black
+出来事,2288,,,,,,,,,Eotienses A 3のテラフォーミング開始,独立系コロニスト（入植者）達がEotienses星系のEotienses A 3のテラフォーミングを始める。,https://www.edsm.net/ja/system/bodies/id/5797/name/Eotienses/details/idB/8139670/nameB/Eotienses+A+2,https://www.edsm.net/img/bodies/planets/2.png,,,black
+出来事,2290,,,,,,,,,火星のテラフォーミング完了,火星のテラフォーミングが完了する。翌年から地球にあった多くの企業や政府組織が火星へと拠点を移した。,https://www.edsm.net/ja/system/bodies/id/27/name/Sol/details/idB/1828/nameB/Mars,https://www.edsm.net/img/bodies/planets/31.png,,,black
+出来事,2292,,,,,,,,,Republic of Achenarの創設,"地球で生まれた裕福な反連邦活動家であるMarlin Duvalは、Achenar星系でAchenar 6dの植民地化の先頭に立った。
+彼女は平和な理想に基づく民主国「Republic of Achenar」を興した。",https://www.edsm.net/ja/system/bodies/id/12523/name/Achenar/details/idB/7259558/nameB/Capitol,https://www.edsm.net/img/bodies/planets/31.png,,,blue
+出来事,2296,,,00:00,,,,,,Marlin Duvalの死,Marlin Duvalは、彼女のパートナー、そして子供たちと一緒にシャトル事故で非業の死を遂げる。 後の歴史家達はMarlinの死の背景には兄弟のHenson Duvalの影があったのではと考えている。,,,,,blue
+出来事,2296,,,00:01,,,,,,Republic of Achenar議会の解散と帝国（Empire）の創設,Marlin Duvalの死後、自らが後継人であると考えた兄弟のHenson DuvalはRepublic of Achenarの議会を解散し、帝国（Empire）とした。 平和主義を愛国主義に、平等主義を権威主義に塗り替え、国民の反連邦感情を煽ることで支持率を上げた。,https://www.edsm.net/ja/system/bodies/id/12523/name/Achenar/details/idB/7259558/nameB/Capitol,https://www.edsm.net/img/bodies/planets/31.png,,,blue
+出来事,2296,,,00:02,,,,,,Achenar 6dの断種,Achenar 6dの知的生命体はMarlin Duvalにより保護され、同等と扱われていたにも関わらず、Hensonによる植民地化によって2、3年の短さで絶滅させられた。 連邦は「Henson Duvalの指示によるテラフォーミング前の意図的な断種である」と糾弾したが、帝国の学者達は「入植者達によって持ち込まれたバクテリアなどによってこの悲劇がもたらされた」と主張した。,https://www.edsm.net/ja/system/bodies/id/12523/name/Achenar/details/idB/7259558/nameB/Capitol,https://www.edsm.net/img/bodies/planets/31.png,,,blue
+出来事,2312,12,21,,,,,,,Planetfallの日,"植物学者でありPatreu Dentonの先祖であるIsabelle DentonはEotienses A 3にて最初の定住を行った。この日は「holiday of Planetfall」として毎年祝われている。
+（テラフォーミングの完了まで2288年から24年かかった）",https://www.edsm.net/ja/system/bodies/id/5797/name/Eotienses/details/idB/8139664/nameB/Eotienses+A+3,https://www.edsm.net/img/bodies/planets/31.png,,,black
+出来事,2314,,,,,,,,,Eotienses星系が帝国の傘下へ,独立系コロニーだったEotienses星系は、帝国傘下に入るかを問うため国民投票を行った。,https://www.edsm.net/ja/system/id/5797/name/Eotienses,https://vignette.wikia.nocookie.net/elite-dangerous/images/9/91/Eotienses_System_Map_1.jpg/revision/latest/scale-to-width-down/1000?cb=20160825104705,,,blue
+出来事,2320,,,,,,,,,Henson Duvalが最初の皇帝に,Henson Duvalが自らを最初の皇帝として正式に戴冠。,https://www.edsm.net/ja/system/bodies/id/12523/name/Achenar/details/idB/7259558/nameB/Capitol,https://www.edsm.net/img/bodies/planets/31.png,,,blue
+出来事,2323,,,,,,,,2323年の終わり頃,Federal Fleet（連邦艦隊）の侵攻開始,Richard Morgan提督の指揮の下、Federal FleetがBeta Hydri星系に集結し、Achenar星系へ進軍を開始する。,,,,,red
+出来事,2324,,,,,,,,,Battle of Achenarが勃発,「解放の大決戦（Great Battle of Liberation）」として知られるBattle of Achenarが勃発。これは初めての星間紛争として注目される。 連邦のAchenarへの侵攻であり『Achenar 6dの先住民に対して虐殺を行う政府を排除する』という口実の下、強制的に星系を取り込むことを目的としていた。侵攻の主な理由は、平和裏に連邦に加わることを長年に渡って帝国が拒絶してきたためであったが、異星人文化や生命体の保護もまた連邦創設の重要な信条であった。到着時、連邦艦隊（Federal Fleet）は帝国の多くの市民を含んだ「人民艦隊（People's Fleet）」とも言える強烈な抵抗に遭い驚かされた。,https://www.edsm.net/ja/system/id/12523/name/Achenar,,,,purple
+出来事,2325,,,,,,,,,Battle of Achenarが終わる,Battle of Achenarが終わる。連邦艦隊（Federal Fleet）は壊滅的な補給路によって不利な立場にある中、帝国軍（Empire military）に押され、疲弊し、後退を余儀なくされた。連邦艦隊（Federal Fleet）が屈辱をうけた結果、多くの独立系コロニーが帝国の旗下に集まり始め、Empireは人類の第二の巨大勢力になる。しかし連邦は帝国の正当性を認めようとはしなかった。,,,,,purple
+出来事,2325,,,,,,,,,冷戦の始まり,連邦艦隊（Federal Fleet）は、補給路が改善されたことによって強化されたBeta Hydri星系で戦力を立て直した。Beta Hydri星系での長引く摩擦と増大する意見の対立は連邦・帝国間に冷戦をもたらした。,https://www.edsm.net/ja/system/id/15573/name/Beta+Hydri,https://vignette.wikia.nocookie.net/elite-dangerous/images/d/db/Beta_Hydri.jpg,,,purple
+Sirius Corporation,2339,,,,,,,,,Sirius Corporationの台頭,Sirius CorporationはSirius星系で人類初めてとなる企業によるコロニー化を進め、宇宙における人々への随一の燃料供給元へと急成長し恒星間の代表的な複合企業となった。,http://elite-dangerous.wikia.com/wiki/Sirius_Corporation,https://vignette.wikia.nocookie.net/elite-dangerous/images/8/84/Sirius-Corporation-Logo.png,,,brown
+出来事,2379,,,,,,,,,Sirius Corpが調停役に,Sirius Corporationは、連邦と帝国間の冷戦を終わらせるため調停役となった。,,https://vignette.wikia.nocookie.net/elite-dangerous/images/8/84/Sirius-Corporation-Logo.png,,,brown
+出来事,2381,,,00:01,,,,,,冷戦の終結,"連邦と帝国間の交渉により正式な平和条約が結ばれ50年以上続いていた冷戦が終わった。
+条約の一部として、連邦はAchenarとそのコロニーに対し完全なる自治権を許諾することに同意し、皇帝の血統による継承をも認めた。",,,,,purple
+出来事,2381,,,00:02,,,,,,Hall of Martyrsの建設,"Henson Duval皇帝は、Battle of Achenarで亡くなったAchenarの市民16,032人に手向ける建造物としてHall of Martyrs（殉職者達のホール）の建設を命じた。",,,,,blue
+出来事,2398,,,,,,,,,Alioth星系の発見,"新規リソースを見つけるため、連邦は複数のコロニー化ミッションを開始。
+その中の一つで、Alioth星系が発見される。",https://www.edsm.net/ja/system/id/8218/name/Alioth,,,,red
+出来事,2402,,,,,,,,,Saik Duvalが皇帝となる。,Henson Duval皇帝が亡くなり、Saik Duvalが後継となる。,,,,,blue
+出来事,2412,,,,,,,,,Lave星系のコロニー化,"後にOld Worlds（旧世界）と呼ばれる宙域は、探索後にコロニー化された。
+Colonial Deep Space Cruisers Herschel（深宇宙植民船Herschel）とOberonはL-453星系に到着し、Lave星系と改名した。",,,,,black
+出来事,2413,,,,,,,,,Leesti星系のコロニー化,First colony fleet（最初の植民地艦隊）はLeesti星系に到着し、鉱山施設と処理工場を建てた。,,,,,black
+出来事,2416,,,,,,,,,自治を宣言する3星系,Lave星系、Leesti星系、そしてZaonce星系は自給自足が可能になると供給ルートからの自治を宣言した。,,,,,black
+出来事,2422,,,,,,,,,Diso星系の調査,"Laveからの探索隊は、Diso星系を調査した。
+惑星Birminghamは10年以内のコロニー化、そして農業もできそうなことがわかった。",,,,,black
+出来事,2452,,,,,,,,,Alioth星系のコロニー化,Alioth星系のコロニー化で最初に定住が決まったAlioth 5bは「Fruitcake」と呼ばれる柔らかく潤いのある土壌と豊富な鉱物ポケットがある惑星だった。,,,,,red
+出来事,2483,,,,,,,,,Trasken Duvalが皇帝となる。,Saik Duval皇帝が亡くなり、Trasken Duvalが後継となる。,,,,,blue
+出来事,2498,,,,,,,,,帝国がOld Worlds Coalition（旧世界連合）に侵攻,帝国はMorten-Marte星系のリスニング・ポストが破壊後、Old Worlds Coalition（旧世界連合）に対して攻撃を開始。この侵攻は連合軍の防衛能力を奪うものであり、商人の予備海軍を解散させ、帝国の要求である「艦隊の活動を貿易と探索に限定する」ことに応じざるを得なくさせた。,,,,,blue
+出来事,2541,,,,,,,,,Hennick Duvalが皇帝となる。,Trasken Duval皇帝が亡くなり、Hennick Duvalが後継となる。,,,,,blue
+出来事,2599,,,,2607,,,,,Sadiq Kesslerが大統領に,Sadiq Kesslerが連邦大統領に選出される。,,,,,red
+出来事,2600,,,,,,,,,連邦がAlioth星系を構成員に,連邦のSadiq Kessler大統領はAlioth星系のFederal Membership基準から全ての憲章要件を削除し、連邦の事実上完全な構成員とした。 Kesslerは、星系の支配のために続く闘争の中で帝国に対抗するため、Alioth星系から十分な支援を得ることを期待した。これはAlioth星系のレジスタンスCakersをpro-Federation（同盟派）とpro-independence（独立派）の派閥に分けた。,,,,,red
+出来事,2603,,,,,,,,,Alioth星系が自由貿易港に,Alioth星系では、Cakersの内戦が起きpro-independence（独立派）がpro-Federation（同盟派）に勝利する。 Quentin DevisesはCakersと惑星Fruitcakeの支配権を確保し、Aliothは自由貿易の港になると宣言した。,,,,,red
+出来事,2604,,,,,,,,,Lucius Duvalが皇帝となる。,Hennick Duval皇帝が亡くなり、Lucius Duvalが後継となる。,,,,,blue
+出来事,2606,,,,,,,,,Alioth星系は連邦加盟を拒否,Alioth星系で連邦の外交官がCakerの指導者Quentin Devisesと3年間の請願の後に非公式に会見しSadiq Kessler大統領からの連邦加盟を提案したがAlioth星系はこれを拒否した。,,,,,black
+出来事,2618,,,,,,,,,Alioth星系で反乱が起き、連邦と帝国が協力して鎮圧。,"Alioth星系で、軍用品労働者のTom Quatersonが貧しい人々に食物配給切符を売却した罪で、裁判にかけられ処刑されたことが引き金となり、Cakersや他の反乱グループの支援を受けて反乱が起こった。Fruitcakeの知事の住居が襲われ、労働者はガスプラットフォームの管理を奪い、Alioth星系の独立を要求。 前例のない事態に連邦と帝国は協力して星系を取り戻した。Quentin Devisesは、即座に捕えられ処刑された。
+両勢力はAlioth星系の資産を分割することに同意し、Fruitcakeは連邦保護総局（Federal Protectorate）になり、後に連邦将軍（Federal General）のCharles C. GordonによりGordonworldに改名され、Alioth星系のローカル宇宙施設は帝国の支配下になった。",,,,,purple
+出来事,2621,,,,,,,,,Birthright Wars勃発,Birthright Warsは、企業が入植者から土地継承権と資源権を奪うために扇動した一連の紛争であり、連邦領域から始まった。（Tourist Beacon 0181）,,,,,black
+出来事,2621,,,,,,,,,New Californiaのテラフォーミング完了と移住,Aliothでは、帝国は実験的な高速テラフォーミング技術を使って、惑星New Californiaをテラフォーミングした。 Gordonworldの多くの住民は、「新しい人生」という帝国の約束を信じてNew Californiaに移住した。,,,,,blue
+出来事,2684,,,,,,,,,Anders Duvalが皇帝となる。,Lucius Duval皇帝が亡くなり、Anders Duvalが後継となる。,,,,,blue
+出来事,2690,,,,,,,,,Riedquatで9月の反乱（The September Uprisings）が起きる,"9月の反乱（The September Uprisings）はRiedquatで起こった。
+植民地政府（The colony's government）が設立され、旧世界連合（Old Worlds Coalition）によって運営されていたが、政権の大部分は外界にあったため、Riedquatの人々の支持を失った。
+政府は暴力的な革命の中で打倒され、元職員たちは処刑され、首都の宇宙港は死体が山積みとなった。
+Riedquatは以降5世紀の間、無血の無政府状態になり、連合当局者は彼らの政策を評価することになった。",,,,,black
+出来事,2696,,,,,,,,,The Galactic Cooperative of Worlds（GalCop）が設立,"The Galactic Cooperative of Worlds（GalCop）が設立された。 旧世界連合（Old Worlds Coalition's）がRiedquat統治に失敗した後、加盟星系は経済自立、相互防衛、政治的独立の原則を強調する新しい貿易組織に再編成された。 GalCopが結果的に連邦・帝国との貿易から手を引いたことは両勢力の怒りを買った。
+",,,,,black
+出来事,2696,,,,,,,,,Achenarのテラフォーミングが完了,Achenarのテラフォーミングが完了する。,,,,,blue
+複数企業,2700,,,,,,,,,Pythonがリリース,GalCopのWhattとPritney Constructionsによって製造されたPythonの最初の型番がデビューした。 Pythonの革新的なモジュール設計は、宇宙旅行を新しい時代に繋げ・開拓し、独立系パイロットの誕生を促した。,,,,,brown
+出来事,2702,,,,,,,,,連邦で軍隊の再編成が行われる。,Birthright Warsが続く中、連邦は軍隊の再編成を開始。 それまで連邦艦隊は加盟の星系から直接人材などを募集することで編成されていたが、星間企業の台頭により、連邦は中央に集められた艦隊の編成と維持に専念することができるようになった。 この最新の艦隊は当初Anlave星系に委託され、訓練された。（Tourist Beacon 0183）,,,,,red
+出来事,2708,,,,,,,,,Birthright Warsが最終段階に,Birthright Warsが最終段階に入る。 追放された植民者（元々、企業活動によってAnlave星系に移住した）の子孫たちは、Andertonの連邦海軍士官学校（Federal Naval Academy）を攻撃した。私掠船の艦隊がすぐに追撃したがGhenkis B'nami提督によって撃退された。（Tourist Beacon 0183）,,,,,red
+出来事,2735,,,,,,,,,Birthright Warsの終結,114年続いたBirthright Warsは、連邦の企業が多数の植民地から土地と資源権を首尾よく獲得し、終結した。（Tourist Beacon 0181）,,,,,red
+出来事,2739,,,,,,,,,Hender Duvalが皇帝となる。,Anders Duval皇帝が亡くなり、Hender Duvalが後継となる。,,,,,blue
+Faulcon Manspace,2762,,,,,,,,,Viper Defence Craft、Viper MkIII、Viper MkIVがデビュー,Faulcon Manspaceから、Viper IIの前身であるViper Defence Craft、Viper MkIII、Viper MkIVがデビュー。,,,,,brown
+出来事,2799,,,,,,,,,Trasken Duval 2世が皇帝となる。,Hender Duval皇帝が亡くなり、Trasken Duval 2世が後継となる。,,,,,blue
+出来事,2810,,,,2849,,,,,Pleiades Nebulaに近い宙域で多数の宇宙船失踪,2810年代から2840年代にかけて、GalCopはPleiades Nebulaに近い宙域で多数の宇宙船失踪を記録。 調査の結果、違法行為の証拠は見つからなかったが、失踪やその他の奇妙な現象は断続的に続き、パイロットの不安を掻き立てていた。,,,,,olive
+出来事,2849,,,,,,,,,メディアによってThargoidsと名前が付けられる,"2849年に、これら初期の「遭遇」のうちの1つに荒い映像が残されているのが見つかった。その中には不鮮明ながらエイリアン船が映っており、船体には「THARG」と読める文字列がプリントされていた。メディアはすぐに宇宙人に ""Thargoid""とい名付ける。 しかし、Thargoidsの存在の決定的な証拠は得られず、民間伝承として忘れられていった。",,,,,olive
+出来事,2854,,,,,,,,,Aliothでクーデター、連邦も介入し帝国は手を引くことになる。,帝国軍はAliothのNew Californiaに戒厳令を敷き、惑星に遺伝子修正プログラムを強要しようとした。 しかし、それは軍守備隊に対抗する新たなCaker派によるクーデターによって阻止される。Caker派は連邦議会に援助を求めた。帝国軍の軌道砲撃による激しい戦闘が続き、Kracer提督（Admiral）が率いる連邦軍艦隊が到着し戦闘は更に激化。やがて帝国軍は撤退することになる。Kracer提督は海兵隊員と一緒に首都の群衆を支援した。（Tourist Beacon 0119）,,,,,purple
+"Paynou, Prossett and Salem",2855,,,,,,,,,Cobra MkIがデビュー,PaynouとProssett、そしてSalemの3人によって、Cobra MkI多目的船の最初の型番がデビュー。,,,,,brown
+RimLiner Galactic,2856,,,,,,,,,Anacondaがデビュー,RimLiner GalacticによってAnacondaの最初の型番がデビュー,,,,,brown
+出来事,2858,,,,,,,,,Trasken Duval 3世が皇帝となる。,Trasken Duval 2世皇帝が亡くなり、Trasken Duval 3世が後継となる。,,,,,blue
+Faulcon Manspace,2858,,,,,,,,,Aspがデビュー,Faulcon Manspaceから、重戦闘機の宇宙船Asp MkIIの前身であるAspがデビュー。 AspはGalCopのGalactic Navyで主力となった。,,,,,brown
+出来事,2862,,,,2866,,,,,Isaac Gellanが大統領に,Isaac Gellanが連邦大統領に選出される。,,,,,red
+出来事,2864,,,,,,,,,連邦軍がAckwada星系へ侵攻。,"Isaac Gellan大統領は、連邦海軍を動員してAckwada星系を侵攻した。 非公開だが侵攻の目的は、Gellanが選挙キャンペーンに使った不法な借金をRockforth Corporationを解体して帳消しにするためであった。（Tourist Spot Beacon 0185, Ackwada system）",,,,,red
+出来事,2865,,,,,,,,,Rockforth Corporationが帝国に援助要請。,Rockforth Corporationは、Ackwada星系で連邦に対抗するために帝国のTrasken3世へ援助要請を送り、相当な額を支払った。 Traken3世は、連邦艦隊を撃退したSamuel Lannerの私略船を中心とする戦闘グループを編成。Rockforth Corporationは、Trasken3世へ助力を請い、Lannerの私掠船を治安部隊として雇った。,,,,,blue
+出来事,2866,,,,,,,,,Isaac Gellan大統領の失脚。,信頼を失ったIsaac Gellan大統領が辞任。 Gellan Scandalとして知られる彼の腐敗の程が明らかにされ、数名の連邦議会議員も関与していたのがわかった。更なる調査の結果、企業は連邦政府と距離を置いた。,,,,,red
+出来事,2866,,,,2874,,,,,Olaf Smithが大統領に,Olaf Smithが連邦大統領に選出される。,,,,,red
+出来事,2867,,,,,,,,,連邦領で行方不明事件が頻発、対エイリアンのため連邦軍が強化される。,"数人の商人がZeldaの近くで行方不明になり、Olaf Smith大統領は連邦艦隊を調査のため送り込んだ。
+更にQuquveとAymiayで商人が姿を消し、連邦はLaedla星系を「エイリアンの脅威」に対して防衛する主要な軍事拠点へと強化した。
+Thargoidまたは他のエイリアンの活動が失踪の背後にある確証はなかったが、「エイリアンの脅威を追い払っている」というSmithの主張は彼の人気を大きく後押しした。
+Smithの行動は連邦軍の強化をもたらし、腐敗したGellan政権の後釜である大統領への公衆の信用を回復させる効果があった。（Tourist Spot Beacon 0187, Zelada星系）
+数十年後 「The Black Prince」として知られる海賊が自分の指示での事件であり、自分と彼の仲間が引退したため攻撃は終わったと主張した。
+彼の主張は大きな議論を呼び、中には「おおかた真実ではあるが、ただの誇大表現にすぎない」とする論者もいた。（Tourist Spot Beacon 0188, Zelada星系）",,,,,red
+出来事,2872,,,,,,,,,Gellan前大統領が出所し、傭兵艦隊にRockforth Corpを襲わせるが撃退される。,"Isaac Gellan前大統領は、財産をほぼ失うことなく刑務所を出所した。彼はRockforth Corporationへの借金を帳消しにするため、傭兵艦隊を雇ったが、Samuel Lannerは最新鋭の私掠船の艦隊を率いてGellanの傭兵を簡単に圧倒した。Gellanは屈辱的な敗北により財産も減らすことになった。（Tourist Spot Beacon 0189, Ackwada星系）",,,,,red
+出来事,2874,,,,2882,,,,,Isaac Gellanが大統領に,Jeremy Tannが連邦大統領に選出される。,,,,,red
+出来事,2876,,,,,,,,,連邦は混乱していたPhekda星系に軍事総督を置き星系の資産を連邦に送りはじめた。,"Jeremy Tann大統領は経済の不安定さと内戦のせいで混乱していたPhekda星系に攻撃を開始した。
+軍事総督が就任し、星系の資産を連邦に送る試みがなされた。（Tourist Spot Beacon 0190, Phekda星系）",,,,,red
+Lakon Spaceways,2878,,,,,,,,,Asp MkIIがデビュー,軍用のAsp Explorerの前身であるAsp MkIIがデビュー。,,,,,brown
+出来事,2897,,,,,,,,,連邦は反乱が起きたPhekda星系を放棄。,"Phekdaで反乱が起き、連邦への資産送還が失敗、連邦は星系を放棄した。（Tourist Spot Beacon 0190, Phekda星系）",,,,,red
+Outworld Workshops,2914,,,,,,,,,Adderがデビュー,Outworld WorkshopsによってAdderの最初の型番がデビュー,,,,,brown
+出来事,2924,,,,,,,,,企業が帝国軍の力を借りてAlioth星系から連邦軍を追放する,"Durn and Resner Corporationは、Alioth星系で彼らの採掘権を行使する際に、帝国の援助を要請した。
+小規模な帝国艦隊が送られ、星系から連邦軍を追放した。（Tourist Spot Beacon 0135, Alioth星系）",,,,,purple
+出来事,2925,,,,,,,,,Aliothの帝国軍が消え、同時に皇帝がDurn and Resner Corporationの全資産を占有。,"Aliothの帝国軍が消え去り、同時に皇帝Trasken3世はDurn and Resner Corporationに属するすべての資産を占有した。 この事件の背後は決して公表されなかったが、後に連邦諜報機関は、特殊歩兵部隊を創るためのクローニング計画を実施したとDuval家を非難した。（Tourist Spot Beacon 0135, Alioth星系）",,,,,blue
+出来事,2943,,,,,,,,,Olban Hensard Duvalが新皇帝となる。,Trasken Duval 3世皇帝が亡くなり、Olban Hensard Duvalが後継となる。,,,,,blue
+出来事,2945,,,,,,,,,帝国は星系への関与を弱める,Olban Hensard Duval皇帝は、Liaedin星系の紛争に帝国が巻き込まれた際、絶妙な交渉をした。,,,,,blue
+出来事,2951,,,,,,,,,帝国は連邦との採掘権に関する紛争において代理人に公的権限を与えた。,"Olban Hensard Duval皇帝は、（Mastopolos Mining社の）ErronsaとFrancis Ashfieldに、連邦のGrambourne Cambridgeとの採掘権に関する紛争において、Zeaex星系の帝国の代理人として公的権限を与えた。（Tourist Spot Beacon 0139, Zeaex星系）",,,,,purple
+出来事,2956,,,,2960,,,,,Verity Campbellが大統領に,Verity Campbellが連邦大統領に選出される。,,,,,red
+出来事,2959,,,,,,,,,帝国軍が「Lightning Thursday」で連邦駐屯軍を圧倒,"Olban Hensard Duval皇帝は、Emperor's Ownによって編成された帝国攻撃軍（Imperial strike force）をLaedla星系に展開した。帝国艦隊は「Lightning Thursday」として知られる戦闘で、Mansfieldの連邦駐屯軍を圧倒した。（Tourist Spot Beacon 0140, Laedla星系）",,,,,purple
+出来事,2968,,,,2976,,,,,Ulrich Valeが大統領に,Ulrich Valeが連邦大統領に選出される。,,,,,red
+出来事,2976,,,,2984,,,,,Grant Kellerが大統領に,Grant Kellerが連邦大統領に選出される。,,,,,red
+出来事,2976,,,,,,,,,Zeaex星系での戦闘が入植者の嘆願書により避けられ、不安定ながら停戦が成立。,"連邦捜査官の調査では、Olban Hensard Duval皇帝は、Francis Ashfield暗殺の報復として帝国艦隊を編成したとのことだった。しかしNewtownの入植者が連邦と帝国の双方に嘆願書を送り、Zeaexでの争いは避けられた。採掘権問題が解決され、不安定ながら停戦が成立した。（Tourist Spot Beacon 0142, Zeaex星系）",,,,,purple
+出来事,2978,,,,,,,,,帝国・GalCop間の資源交渉は決裂。,Olban Hensard Duval皇帝は（新興勢力である）GalCopに対しついにしびれを切らし、帝国・GalCop間の資源交渉は決裂。 以後2年間ZeladaとQuquveの2星系で、外交マークが付いた帝国主力艦はGalCopの船から厳重に監視された。,,,,,blue
+出来事,2981,,,,,,,,,帝国はテラフォーミング失敗を調査させるためExioce星系に研究チームを送った。,帝国は、不適切な地成形に加え大気をアンモニアで飽和させて明らかにテラフォーミングに失敗した件を調査させるため、Exioce星系に科学チームを送った。,,,,,blue
+Faulcon Manspace,2982,,,,,,,,,Sidewinder MkIがデビュー,Faulcon Manspaceから、Sidewinder MkIの最初の型番がデビュー。,,,,,brown
+出来事,2983,,,,,,,,,連邦軍は本部をEta Cassiopeiaeに移転させた。,連邦軍はEta Cassiopeiae星系の3惑星のテラフォーミングが完了した後、本部をAnlaveからEta Cassiopeiaeに移転した。,,,,,red
+出来事,2991,,,,,,,,,Gaylen Trasken Duvalが皇帝となる。,Olban Hensard Duval皇帝が亡くなり、Gaylen Trasken Duvalが新皇帝となる。,,,,,blue
+出来事,2994,,,,,,,,,Alioth星系で帝国・連邦の戦闘が再開。,"Gaylen Tasken Duval皇帝がAlioth星系で連邦との戦闘を再開させた。（Tourist Spot Beacon 0142, Quince星系）",,,,,purple
+出来事,2996,,,,,,,,,Ackwada星系でクーデターが起きるが鎮圧される,"Gaylen Trasken Duval皇帝は、Ackwada星系で連邦に支援されたクーデターを鎮圧した。（Tourist Spot Beacon 0142, Quince星系）",,,,,purple
+出来事,3008,,,,3016,,,,,Tyrell Biggsが大統領に,Tyrell Biggsが連邦大統領に選出される。,,,,,red
+出来事,3008,,,,,,,,,Biggs大統領がAchener星系を取り込もうとして失敗。,Alioth星系での連邦・帝国の紛争が小康状態な時期に、Tyrell Biggs大統領はAchenar星系と内部星系を正式な一員として連邦に加わることを提案するため、連邦外交官を帝国にひそかに向かわせた。これは以前にも試みられたことであり、帝国の嘲笑の的になっていた。 結果的に、提案している文書が連邦のスパイによって他の帝国星系に漏洩、そして連邦と帝国の間では広範囲にわたる不安とさらなる疑念が引き起こされた。この結果はBiggsが本当の狙いだったのかもしれない。,,,,,purple
+出来事,3022,,,,,,,,,連邦の政治家が地方星系のTau Cetiの提督に就任。,"Raul ""Proxmire"" SantoriniはTau Ceti星系の提督（Governor）に就任した。絶大な人気と、連邦の地方政治家としては稀な、重要職拝命という偉業の両方を手に入れた。（Tourist Spot Beacon 0194, Cemiess星系）",,,,,red
+Faulcon DeLacy,3034,,,,,,,,,Faulcon DeLacyが銀河で最大の独立系企業となる,造船企業のFaulcon ManspaceがDeLacy Shipworksと合併。 新設されたFaulcon DeLacyは、当時、銀河で最大の独立系企業だったSirius Corporationからその称号を奪った。,,,,,brown
+出来事,3055,,,,,,,,,帝国植民地憲章が作成される。,"帝国植民地憲章（Imperial colonial charter）がCemiess星系のために作成された。（Tourist Spot Beacon 0145, Cemiess星系）",,,,,blue
+出来事,3061,,,,,,,,,Atticus Obellan Duvalが皇帝となる。,Gaylen Trasken Duval皇帝が亡くなり、Atticus Obellan Duvalが新皇帝となる。,,,,,blue
+出来事,3080,,,,,,,,,Cemiess 2のテラフォーミングが開始。,帝国は何年もの遅れをとっていたCemiess 2のテラフォーミングを開始し、星系への連邦の野心を排した。Cemiess星系に対する植民地計画承認は、19年前に死去したGaylen Trasken Duvalの最後の公務だった。,,,,,blue
+出来事,3082,,,,,,,,,帝国はExioce星系のテラフォーミングのために第二の派遣団を送る。,Atticus Obellan Duval皇帝はExioce星系にテラフォームの試みのため第二の派遣団を送り、連邦の野心を排した。,,,,,blue
+出来事,3098,,,,,,,,,Tau Cetiの提督が暗殺される。,"Tau CetiのRaul Santorini提督が暗殺される。
+Santoriniが反帝国主義者であったため、連邦報道（Federal press）は帝国を避難した。しかし珍しくAtticus皇帝はこの告発に個人的に反駁している。(Tourist Spot Beacon 0148, Tau Ceti星系）",,,,,purple
+出来事,3100,,,,,,,,,パイロット連盟ができる。,"パイロット連盟（Pilots Federation）は、独立系パイロットのランキングシステムを公式に制定。CMDR Peter Jamesonは、羨望の的である""Elite""ランクを最初に取得した人物である。",,,,,brown
+Cowell & McGrath Shipyards,3100,,,,,,,,,Cobra MkIIIがデビュー。,Lave星系のCowell & McGrath ShipyardsからCobra MkIIIがデビュー。,,,,,brown
+Zorgon Peterson,3100,,,,,,,,,Fer-de-Lanceがデビュー。,Zorgon PetersonからFer-de-Lanceがデビュー。,,,,,brown
+出来事,3101,,,,,,,,,Tau Ceti星系で連邦と帝国の戦争が始まる。,帝国艦隊がTau Ceti星系に侵攻し、帝国の入植者たちをCemiess星系の惑星Emeraldに移した。連邦はO'Brien提督（Admiral）の下に艦隊を送り、以後30年続く激しい惑星間戦争が始まった。,,,,,purple
+出来事,3104,,,,,,,,,Facece Military Academyが設立され、帝国軍の再編が続く。,Hender Saik Duval皇帝は、Facece Military Academy（Facece士官学校）を設立し、帝国軍の大規模な再編を続けた。,,,,,blue
+出来事,3123,,,,,,,,,GalCopの宙域で人類より強力な兵器で破壊された船が見つかる。,3120年代前半に「八角形の船」の目撃例とハイパードライブの誤動作の報告があった。3123年にはGalCopの宙域で2隻の船の残骸が発見され、それには当時の人類文明より強力なレーザー兵器の損傷が見られた。,,,,,olive
+出来事,3125,,,00:01,,,,,,新たな知的生命体と遭遇したパイロットたちからの報告があり「Thagoid」と命名される。,"新たな知的生命体と遭遇したパイロットから報告があった。
+この種と遭遇し生き残った者たちによって「Thargoid」と命名され、それは2849年（276年前）の原因不明だった事件を思い起こさせるものだった。全ての遭遇におきエイリアン船は即座に攻撃してきていた。
+一部の者はVeliaze星系の入植者が同型の宇宙船へ発砲したことが人類への攻撃のきっかけだと主張した。
+（GALNET NEWS: Thargoidと呼ばれる存在）",https://wikiwiki.jp/elitejp/GalnetNews3302%E5%B9%B48%E6%9C%88#cb4a7303,,,,olive
+出来事,3125,,,00:02,,,,,,対ThargoidとしてINRAが秘密裏に設立。,"連邦と帝国による共同運営としてIntergalactic Naval Reserve Arm（銀河間海軍予備隊：略称INRA）が、秘密裏に設立。
+INRAはThargoidに勝利するため、必要とされるあらゆる手段を用い、弱点を研究・開発することを課された。",,,,,purple
+出来事,3132,,,,,,,,,Hender Saik Duvalが皇帝となる。,Atticus Obellan Duval皇帝が亡くなり、Hender Saik Duvalが新皇帝となる。,,,,,blue
+出来事,3140,,,,3149,,,,3140年代,Varian Scottが大統領になり、連邦軍を拡大・近代化した。,"Varian Scottは、この10年の間の連邦大統領に選出された。
+Scottは連邦軍を拡大し、近代化するために連邦軍の予算規制を廃止し、今後の紛争へいち早く対応するため議会を軍の意思決定プロセスから排除した。",,,,,red
+Gutamaya,3145,,,,,,,,,帝国が資金提供しGutamayaからImperial Courierがデビュー。,"Gutamayaが製造したImperial Courierがデビュー。 数世紀ぶりに帝国が資金提供し設計させた船であり、Hender Saik Duval皇帝の帝国軍の再編と拡大の努力の頂点でもあります。（Tourist Spot Beacon 0150, Facece星系）",,,,,brown
+出来事,3145,,,,,,,,,GalCopがThargoidと戦うGalactic Navyに過剰に出資し経済が停滞。,Galactic Cooperative（GalCop）は経済が滞っていた、Thargoidsとの戦いの中Galactic Navyの軍事任務の貿易に対し、過剰な出資を行ったからだった。,,,,,black
+出来事,3149,,,,,,,,,GalCopのCEOが暗殺され、新たなCEOにSimmone Hendryが就任。,Galactic Cooperative（通称GalCop）のCEOであるNaris Ellisonは、稀有な変性疾患に罹り死亡した。彼女の代理人William Henderickが次のCEOに就任し、GalCopの躍進のためEllisonの努力を引き継ぐと約束したが、Ellisonの死に関係していたことが分かり、Simmone Hendryが新たなCEOになった。,,,,,black
+出来事,3151,,,,,,,,,Thargoidとの戦いが人類の勝利で終わる。再侵攻に備えたモニタリングアウトポスト設置の計画にGalCopが資金提供した。,"人類とThargoidの対立は、Mycoid生物兵器の展開が成功し終わった。
+Thargoidsの再侵攻に備え、監視するGCS Sarasvatiのような複数の深部宇宙モニタリングアウトポストを設置する計画「Project Equinox」にGalactic Cooperative（通称GalCop）は資金を供給した。",https://imgur.com/a/M3udT,,,,olive
+出来事,3153,,,,,,,,,CEO代理のSimmone Hendryの姿勢は政権への不満をもたらした。,GalCop CEO代理のSimmone Hendryの姿勢は、物価の急騰したGalCopの政権に対する不満を恒久的なものにした。,,,,,black
+出来事,3155,12,27,,,,,,,Project Equinoxの博士がThargoidの存在が確認されていないことを記録。,Project EquinoxのCassandra Lockhart博士は、プロジェクトが4年前に始まって以降、Thargoidの存在は確認されていないと記録している。,,,,,olive
+出来事,3162,,,,,,,,,GalCop領域での不正行為や違法行為の調査が始まる。,Nance Lightollerは、GalCop領域での不正行為や違法行為を調査するよう命じられた。 その後5年間、彼女は無数の脅迫と暗殺から生き延びた。,,,,,black
+出来事,3167,,,,,,,,,Nance Lightollerが担当した不正行為捜査が終了,5年前に開始され、Nance Lightollerが担当した不正行為捜査が終了。William Henderick元CEOと共犯の5人はNaris Ellison前CEOの殺害に関与しており、他にも、GalCopの安定性や植民地管理体制に関し虚報を流し、加盟星系の市民を隔離し欺瞞する政策を取っていたことが明らかになった。,,,,,black
+出来事,3170,,,,,,,,,GalCopが衰退し加盟惑星が11に。,この時期までの数十年間の衰退と、連邦と帝国により既存の、または将来の加盟惑星が引き抜きにあった後、GalCopはわずか11惑星に縮小していた。そのすべてがOld Worlds（旧世界）領域に位置しており、GalCopは設立された何世紀も前に利用していた貿易ルートにまで縮小されていた。CEOのSimmone Hendry氏は、GalCopの資産の大部分を他の2つの大勢力に売却せざるを得なかった。,,,,,black
+出来事,3172,8,16,,,,,,,Project Equinoxが終了。,GalCopが衰退し不安定になり、Cassandra Lockhart博士が「Thargoidは再侵攻ために準備している」と警告したが、21年前から始まったProject Equinoxは終了した。,,,,,black
+出来事,3174,8,19,,,,,,,GalCopが正式に解散。,GalCopのCEO：Simmone Hendryは組織の憲章を破棄。GalCopが正式に解散。,,,,,black
+出来事,3177,,,,,,,,,Zemina Torvalが誕生。,Zemina Torvalが誕生。,,,,,blue
+出来事,3182,,,,,,,,,Hesketh Duvalが皇帝となる。,Gaylen Trasken Duval皇帝が亡くなり、Hesketh Duvalが新皇帝となる。,,,,,blue
+出来事,3184,,,,3192,,,,,Loric Tranderが大統領に,Loric Tranderが連邦大統領に選出される。,,,,,red
+出来事,3184,,,,,,,,,Alioth星系で連邦と帝国の紛争が再発。,"Loric Trander大統領は、ガス採掘許可量をめぐる不正の調査担当者Riley Dainの殺害後、Aliothに私掠船団を配備した。これに対し、Hesketh Duval皇帝は帝国のXV艦隊をAliothに派遣し、新たな紛争を引き起こした。（Tourist Spot Beacon 0120, Alioth星系）",,,,,purple
+出来事,3187,,,,,,,,,Edmund Mahonが誕生。,Edmund Mahonが誕生。,,,,,green
+出来事,3198,,,,,,,,,Alioth星系での連邦と帝国の紛争が終了。,"3184年（14年前）に始まったAliothでの連邦と帝国の紛争は終わりを告げた、どちらも特筆すべきことは何も成し遂げていない。（Tourist Spot Beacon 0120, Alioth星系）",,,,,purple
+出来事,3198,,,,,,,,,Li Yong-Ruiが誕生。,Li Yong-Ruiが誕生。,,,,,orange
+出来事,3199,,,,,,,,,連邦にEagle MkII、帝国にImperial Eagleがそれぞれ導入される。,連邦軍がEagle MkIIを導入したのに続き、帝国軍がImperial Eagleを導入したことから、連邦の技術者が帝国のプロジェクトに横流ししたと噂された。,,,,,purple
+出来事,3218,,,,,,,,,Zachary Hudsonが誕生。,Zachary Hudsonが誕生。,,,,,red
+出来事,3225,,,,,,,,,Pranav Antalが誕生。,Pranav Antalが誕生。,,,,,orange
+出来事,3228,,,,,,,,,Alioth星系で反乱が起き、連邦と帝国から鎮圧のために軍が送られるが、激しい抵抗に合い撤退。,Alioth星系の居住区で連邦企業が物価を引き上げたため、反乱が起きた。連邦と帝国は反乱鎮圧のために軍を派遣したが、近隣の独立系戦闘員で強化された激しい抵抗に直面した。先に帝国が領土から遠く離れたところでの長期化した紛争に関与することを望まず撤退し、連邦はその戦争が連邦市民の間で不評を買っているのを顧みて、撤退した。,,,,,purple
+出来事,3229,,,,,,,,,Felicia Wintersが誕生。,Felicia Wintersが誕生。,,,,,red
+出来事,3230,,,,,,,,,Alioth星系で同盟が設立。,Mic TurnerとMeredith ArgentによってAlioth星系で同盟（Alliance）が設立された。それは連邦や帝国から独立したままでいたい人々を保護し支援するという原則に基づいている。,,,,,green
+出来事,3230,,,,,,,,,Alioth 5bをTurner's Worldと改名,かつてFruitcakeとして知られていたAlioth星系のAlioth 5の第2惑星Gordonworldは、Mic Turnerによる同盟設立の功績を認めて、Turner's Worldと改名された。,,https://pbs.twimg.com/media/Do4sjXmU8AAdH5U.png,,,green
+出来事,3233,,,,,,,,,Hengist Duvalが皇帝となる。,Hesketh Duval皇帝が亡くなり、Hengist Duvalが新皇帝となる。,,,,,blue
+出来事,3243,,,,,,,,,Arissa Lavigny-Duvalが誕生。,Arissa Lavigny-Duvalが誕生。,,,,,blue
+出来事,3247,,,,,,,,,HolliacanとVequexの2星系が同盟に参加。,HolliacanとVequexの2星系が同盟に参加。,,,,,green
+出来事,3249,,,,,,,,,Archon Delaineが誕生。,Archon Delaineが誕生。,,,,,orange
+出来事,3250,,,,,,,,,同盟の加盟星系が20を超える。,同盟はこの時までに20以上の星系に拡大され、第三の超勢力として確固たる地位を築いた。,,,,,green
+出来事,3251,,,,,,,,,新型ハイパースペースドライブのテスト中に事故。,Sirius Corporationの実験的な旅客機Highliner Antaresが3251年の処女航海中に行方不明になった。新型のハイパースペースドライブのテスト中だった。,,,,,brown
+出来事,3252,,,,,,,,,同盟の設立者Mic Turnerが事故死。,Mic TurnerとMeredith ArgentがThargoidを探し始める。特別に設計された探査船Turner's Questの駆動力のテスト中、Turnerが操縦していた船はPleione星系からジャンプした後、消えた。Argentはその年の後半に彼のための追悼式を行った。,,,,,green
+出来事,3252,,,,,,,,,Thargoidの船を鹵獲したが、INRAからの連絡後に行方不明に。,Meredith ArgentはArgent's Questという2隻目の探査船を出港させた。この船は匿名の人物が操縦していた。流出した文書によると、パイロットはThargoidのアウトポストを発見、鹵獲したThargoidの船をAliothに持ち帰った。その後、パイロットはINRAから連絡を受け、Thargoid船はその日Aliothを出発したらしい、目的地は不明。,,,,,olive
+出来事,3253,,,01,,,,,,前年のThargoid船の事件関与を追求されINRAは解散になった。,INRAは解散した。昨年のThargoid船の事件後、Meredith Argentは、Thargoid根絶を任務とするINRAの侵入者の仕業だと主張した。同盟の指導者達による活動と相まって、世論と政府の見解は急速に悪化し、解散を余儀なくされた。,,,,,green
+出来事,3253,,,02,,,,,,Jotun星系のコロニーがThargoidの攻撃により全滅。,Jotun星系のFafnerの農耕コロニーはThargoidによって攻撃され、制圧された。何の前触れもなく、ほとんどすべての入植者が虐殺された。,,,,,olive
+出来事,3253,,,03,,,,,,Denton Patreusが誕生。,Denton Patreusが誕生。,,,,,blue
+出来事,3256,,,,,,,,,Yuri Gromが誕生。,Yuri Gromが誕生。,,,,,orange
+出来事,3260,,,,3264,,,,,Eugene Cooperが大統領に,Eugene Cooperが連邦大統領に選出される。,,,,,red
+出来事,3264,,,,3272,,,,,Antonia Madisonが大統領に,Antonia Madisonが連邦大統領に選出される。,,,,,red
+出来事,3270,,,,,,,,,Project Dynastyにより秘密裏にコアシステムの彼方へ探索に行った遠征隊は戻ってこなかった。,Project Dynastyは、The Clubが出資して設立したベンチャー企業で、コアシステムの彼方のForidine Rift、Hawking's Gap、Scutum-Sagittali Confluxの3星系に居住可能な星を探すために秘密裏に遠征を開始した。遠征隊は任務を終えても帰ってこなかった。,,,,,black
+出来事,3270,,,,,,,,,Jordan Rochesterが誕生。,著名なRochester家の連邦下院議員Isolde Rochesterの次男、Jordan Rochesterが生まれた。,,,,,red
+出来事,3276,,,,,,,,,Aisling Duvalが誕生。,Aisling Duvalが誕生。,,,,,blue
+出来事,3278,,,,,,,,,軍拡競争防止のため、三勢力の間で主力艦の総重量を制限するロンドン条約が結ばれた。,ロンドン条約は、3278年に地球上のロンドンで調印されたもので、連邦、帝国、同盟の間で正式に調印された。この条約は各軍主力艦の総重量を制限することで、革命的なFSD導入による軍拡競争の防止を目的としていた。これは3302年10月21日まで続いた。,,,,,black
+出来事,3283,,,,,,,,,Anders Blaineが帝国首相に任命される。,Hengist Duval皇帝はAnders Blaine上院議員を帝国首相に任命した。,,,,,blue
+出来事,3289,,,,,,,,,Rochester家の長男が結婚。,巨大企業Core Dynamicsの幹部で、Rochester家の連邦下院議員Isolde Rochesterの長男であるJupiter Rochester氏は俳優のTomas Turai氏と結婚する。,,,,,red
+Lakon Spaceways,2856,,,,,,,,,Type-7 Transporterがデビュー,RimLiner GalacticによってType-7 Transporterがデビュー,,,,,brown
+Sirius Corporation,3297,,,,,,,,,Sirius Corprationがスーパークルーズモードが可能になる新しいFSDをリリース。,Sirius Corporationは革新的な新しいハイパードライブ、Frame Shift Driveをリリース。FSDは、より小型で効率的、ハイパースペースでの移動時間を数時間から数秒に短縮し、星系内での高速移動のための「スーパークルーズ」モードを含み、ジャンプ後に星系周辺ではなく星系の主星近くに改善。3300年までに、すべての登録船がこの新技術でアップグレードされた。,,,,,brown
+出来事,3300,9,,,,,,,,Eranin 周辺が内戦に。,帝国上院議員 Denton Patreus は、Eranin 周辺の状況を 「内戦」と表現した。,,,,,blue
+出来事,3300,9,,,,,,,,Eranin 30周年記念酒が連邦で禁止される。,Eranin 30周年記念酒は広範囲に普及したため、連邦は禁止する措置をとった。,,,,,black
+出来事,3300,9,26,,,,,,,Eranin 政府と連邦派反乱軍との戦争が宣言された。,Eranin 政府と連邦派反乱軍との和平交渉は混乱に陥り、戦争が宣言された。,,,,,red
+出来事,3300,9,,,,,,,,Eranin で内戦が激化。,Eranin で内戦が激化。,,,,,black
+出来事,3300,10,,,,,,,,DiscoveryモジュールがSidewinderの標準装備に。,パイロット連合は、Universal Cartographics社の Discoveryモジュールを出荷される全 Sidewinder の標準装備にした。,,,,,black
+出来事,3300,10,,,,,,,,新型FSD Interdictor に対する法的議論が再開。,新型FSD Interdictor に対する法的議論が再開された。,,,,,black
+出来事,3300,12,,,,,,,,Hengist Duval皇帝が病気になる。,Hengist Duval皇帝が病気になる。,,,,,blue
+出来事,3300,12,,,,,,,,Lugh星系の Crimson State Group が台頭。,Lugh星系の Crimson State Group が台頭。,,,,,brown
+出来事,3300,12,,,,,,,,Imperial Palaceが皇帝の病状は重いものではないと発表。,Imperial Palace は、皇帝が病気であるにもかかわらず「多くの評論家が示唆しているほど深刻ではないと」いう声明を発表しました。,,,,,blue
+出来事,3300,12,,,,,,,,連邦では麻薬「Onionhead 」は違法であると宣言。,連邦大統領 Jasmina Halsey は、新たに発見された希少な麻薬「Onionhead 」は連邦の全領域で違法であると宣言。,,,,,red
+出来事,3300,12,,,,,,,,Sorbagoの反乱鎮圧のためZemina Torvalは私兵を送った。,"Zemina Torval は、Sorbago での反乱を鎮圧するために、2人の私兵、Majestic Class Interdictors を送った
+",,,,,red
+出来事,3300,12,,,,,,,,連邦軍、Onionhead 麻薬農場を爆破。,連邦軍、Onionhead 麻薬農場を爆破。,,,,,red
+出来事,3300,12,,,,,,,,Aisling Duval は、奴隷制度を批判。,後継者である有名な Aisling Duval は、奴隷制度は不名誉であると宣言。,,,,,blue
+出来事,3300,12,,,,,,,,Onionhead の拡大を防ぐため、Kappa Fornacis星系が封鎖される。,連邦の Vincent提督は、麻薬の Onionhead の拡大を防ぐために、Kappa Fornacis星系 の封鎖を宣言した,,,,,red
+出来事,3300,12,,,,,,,,Arissa Lavigny は、自分が Hengist皇帝の私生児であると告白した。,Arissa Lavigny は、自分が Hengist皇帝の私生児であると告白した。,,,,,blue
+出来事,3300,12,,,,,,,,Denton Patreus 上院議員は皇帝の相続は血ではなく能力にすべきと宣言。,Denton Patreus 上院議員は皇帝の相続は血縁ではなく能力にすべきと宣言。,,,,,blue
+出来事,3300,12,,,,,,,,Torval Speaks元老院議員は Aisling Duval と彼女の奴隷制廃止運動を非難。,Torval Speaks元老院議員は Aisling Duval と彼女の奴隷制廃止運動を非難。,,,,,blue
+出来事,3300,12,,,,,,,,Hengist Duval は息子に皇位継承権を与えなかった。,Hengist Duval皇帝は息子Haroldは健全な精神を持っておらず、皇位継承には不適当であると述べた。,,,,,blue

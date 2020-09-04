@@ -1,0 +1,154 @@
+Group,Year,Month,Day,Time,End Year,End Month,End Day,End Time,Display Date,Title,Detail,URL,Image URL,Image Credit,Type,Color
+IBM,1960,,,,,,,,,IBM会長 Thomas J. Watson Jr.暗号化リサーチ・グループを結成,"ニューヨーク州ヨークタウン・ハイツの研究所
+暗号研究者のホルスト・フェイステル（Horst Feistel）を責任者に任命",,,,,
+IBM,1968,4,5,,,,,,,"IBM 米国規格基準局（US National Bureau of Standards, NBS）共同調査開始","「私は、業界は、電子システムに格納されている情報へのアクセスを制限する既存の技術的な予防手段を継続的に向上させていかなければならないと考えています。同時に、必要に応じて新しい予防手段を考案しなければなりません。業界は、私たちの機械を使用しているユーザー、それぞれ独自の目標を定められている方々に対し、進歩とプライバシーの両方の確保に役立てるという決意を持って私たちが持っているあらゆる専門知識を共有することを提案しなければならないと思います」
+ 
+ トーマス・J・ワトソン Jr.（Thomas J. Watson Jr.）
+ IBM会長兼CEO
+ コモンウェルス・クラブ・オブ・カリフォルニアでのスピーチ
+ 
+ 1968年4月5日",,,,,
+IBM,1971,4,,,,,,,,IBM Lucifer 開発 DESの基盤になる,,https://ja.wikipedia.org/wiki/Lucifer_(%E6%9A%97%E5%8F%B7),,,,
+IBM,1971,,,,,,,,,ロイズ銀行がLuciferを採用(ロイズ銀行はロスチャイルドのパートナー銀行),,,,,,
+NBS,1973,5,,,,,,,,NBS (米国規格基準局)暗号アルゴリズム募集,,,,,,
+NBS,1973,8,,,,,,,,NBS (米国規格基準局)暗号アルゴリズム募集,,,,,,
+TCP,1974,,,,,,,,, Vinton Cerf & Robert Kahn Publish TCP: A Protocol for Packet Network Communication TCP/IP 5/5,,,,,,
+Diffie-Hellman鍵共有,1976,,,,,,,,,"Diffie-Hellman鍵共有発表
+Bailey Whitfield Diffie 「New Directions in Cryptography」",,,,,,
+NBS,1977,,,,,,,,,"NBSはIBMの暗号化アルゴリズムを米国初のデータ暗号化標準（Data Encryption Standard, DES、）として採用",,,,,,
+RSA,1978,,,,,,,,,RSA Public Key CryptoSystem発表　RSA暗号 ロナルド・リベスト、アディ・シャミア、レオナルド・エーデルマンの頭文字から命名,,,,,,
+David Lee Chaum ,1981,,,,,,,,,"ミックスネットワーク　提案
+David Lee Chaum 匿名通信ネットワーク 　",,,,,,
+David Lee Chaum ,1982,,,,,,,,,"David Lee Chaum 「Blind signature」盲目の署名
+Blind RSA signatures
+Blind ECDSA signatures",,,,,,
+David Lee Chaum ,1983,7,,,,,,,,1983/07 David Lee Chaum『ブラインド署名システム』提唱,,,,,,
+David Lee Chaum ,1985,7,,,,,,,,1985/07 David Chaum 暗号識別、金融取引および認証に関する装置』認可,,,,,,
+David Lee Chaum ,1988,,,,,,,,,1988/07 David Chaum『ブラインド署名システム』認可,,,,,,
+出来事,1990,,,,,,,,,Magic Money,,,,,,
+出来事,1993,,,,,,,,,"Blowfish（ブローフィッシュ）はブロック暗号で開発はブルース・シュナイアー 
+ アリスとボブの誕生",,,,,,
+NSA ,1993,,,,,,,,,NSA (米国家安全保障局) SHA-0発行,,,,,,
+出来事,1993,,,,,,,,,"サイファーパンク宣言 発表
+Eric Hughes「 A Cypherpunk's Manifesto」",,,,,,
+出来事,1994,,,,,,,,,SSL 2.0 1994年にNetScape社が発表,,,,,,
+出来事,1995,,,,,,,,,"Proof of Work 概念誕生
+ Proof of Work スパムメールを防ぐための手法として発明されて、すぐに、『これを使ってお金が作れるかもね』というコメントが付いた。",,,,,,
+NSA ,1995,,,,,,,,,NSA SHA-1 発行,,,,,,
+NSA ,1996,,,,,,,,,NSA暗号通貨論文発表 http://groups.csail.mit.edu/mac/classes/6.805/articles/money/nsamint/nsamint.htm,,,,,,
+出来事,1996,,,,,,,,,ルーベンカトリック大学、Hans Dobbertin、Antoon Bosselaers、Bart PreneelにてオープンコミュニティーによってRIPEMDを発行,,,,,,
+出来事,1997,,,,,,,,,Paul Le Roux  E4M（Encryption for the Masses）開発開始,,,,,,
+出来事,1997,,,,,,,,,Adam Back proof-of-work system 「Hashcash」提案 http://www.hashcash.org/電子メールのスパムやサービス拒否攻撃を制限するために使用される作業検証システム 論文http://www.wisdom.weizmann.ac.il/~naor/PAPERS/pvp.pdf,,,,,,
+出来事,,,,,,,,,,・B-money Wei Dai 匿名の分散型電子現金システム発表,,,,,,
+出来事,1998,,,,,,,,,・Twofish 発表 Blowfishの発展型,,,,,,
+出来事,,,,,,,,,,Nick Szabo 「Bit gold」 分散型デジタル通貨の仕組みを設計,,,,,,
+出来事,1999,,,,,,,,,TLS 1.0 1999年制定、RFC2246 T. Dierks Certicom C. Allen Certicom The Internet Society,,,,,,
+出来事,2000,,,,,,,,,・SHA-2 設計,,,,,,
+出来事,2000,,,,,,,,,・Jed McCaleb P2Pファイル共有ソフト eDonkey開発 MetaMachine Inc.を設立,,,,,,
+出来事,2000,,,,,,,,,MojoNation,,,,,,
+出来事,2001,,,,,,,,,・SHA-256 NSAが考案しNIST米国標準技術局によってSHA-2の一部として定義。,,,,,,
+出来事,2001,,,,,,,,,"2001/05/28・RSA-OAEP暗号アルゴリズム評価報告書 日本電信電話株式会社 藤崎 英一郎 Eiichiro Fujisaki ＆ TATSUAKI OKAMOTOによって発行、RSAにエンコード法を適用したもの。
+https://eprint.iacr.org/2000/061.pdf
+http://www.cryptrec.go.jp/exreport/cryptrec-ex-0006-2001.pdf",,,,,,
+出来事,2004,,,,,,,,,"Hal Finney「reusable proof of work」発表 
+https://nakamotoinstitute.org/finney/rpow/index.html
+(Adam Back「Hashcash」、Wei Dai「ｂ-money」の組み合わせ)",,,,,,
+出来事,2007,,,,,,,,,・Jed McCaleb Mtgox.comドメインを購入,,,,,,
+出来事,,,,,,,,,,Adam Back Tor 発表,,,,,,
+出来事,2008,,,,,,,,,Craig S Wright　「P2Pで分散される元帳」弁護士と相談,,,,,,
+出来事,,,,,,,,,,"京都大学、Yusuke Okada, Yoshifumi Manabe, Tatsuaki Okamotoによって発行
+ An optimistic fair exchange protocol and its security in the universal composability framework
+ 普遍的な構成可能枠組みにおける楽観的公正交換プロトコルとそのセキュリティ",,,,,,
+出来事,2009,,,,,,,,,Jed McCaleb ＭｔＧｏｘ トレーディングカードの交換所として設立,,,,,,
+出来事,2010,,,,,,,,,Jed McCaleb ＭｔＧｏｘ ビットコイン事業に転換,,,,,,
+出来事,2010,,,,,,,,,東京ＪＰＹ設立・リップルゲートウェイ,,,,,,
+出来事,2013,,,,,,,,,2013.11 Ethereum Whitepaper 発表 Vitalik Buterin,,,,,,
+出来事,2014,,,,,,,,,2014/07/02 東京ＪＰＹ設立,,,,,,
+出来事,2014,7,,,,,,,,2014.07 Ethereum ICO 実施,,,,,,
+出来事,2014,,,,,,,,,2014/07/31  Jed McCale Stellar Development Foundation」をJoyce Kimと共同設立,,,,,,
+出来事,2014,,,,,,,,,※ Jed McCale The Machine Intelligence Research Institute（MIRI）」のアドバイザーとなる,,,,,,
+出来事,2015,,,,,,,,, ・Jed McCale Satoshi Studios のアドバイザーとなる,,,,,,
+出来事,2015,5,,,,,,,,2015.05 Ethereum テスト環境リリース,,,,,,
+出来事,2015,5,,,,,,,,2015.05 Ethereum [Frontier],,,,,,
+出来事,2016,3,,,,,,,,2016.03 Ethereum [Homestead],,,,,,
+出来事,2016,4,,,,,,,,2016.4 Ethereum TheDAOのICO,,,,,,
+出来事,2016,6,,,,,,,,2016.6 Ethereum TheDAO事件 !,,,,,,
+出来事,2016,12,28,,,,,,,2016/12/28 東京ＪＰＹ業務終了,,,,,,
+出来事,2017,4,,,,,,,,2017.4 Ethereum ( Metropolis ) ビザンチウムアップデート,,,,,,
+出来事,2018,8,29,,,,,,,2018/08/29 Jed McCalebのアカウントr9kkWNia8PmpR44L7mWZn33Hpff3CCzLjAから4668132964 XRP移動する。 https://coperu-100.com/kasotsuka/ripple/68billion-xrp-transferred/,,,,,,
+Bitcoin,2008,8,18,,,,,,,ドメイン登録,,,,,,
+Bitcoin,2008,10,31,,,,,,,論文「Bitcoin : A Peer-to-Peer Electronic Cash System」,metzdowd.com内の暗号理論に関するメーリングリストに掲載,,,,,
+Bitcoin,2009,,,,,,,,,"ビットコインのソフトウェア オープンソースをネット上に発表
+2009/01/03 終値 ¥0 ビットコインの最初のブロック、ブロックチェーンの""最初のブロック""(genesis block)が誕生。",,,,,,
+Bitcoin,2009,,,,,,,,,"2009/01/09 終値 ¥0 バージョン0.1がリリース
+ビットコインのバージョン0.1がSourceForgeにてリリース。
+Bitcoin v0.1 released",,,,,,
+Bitcoin,2009,,,,,,,,,"2009/1/10 土曜日 Hal FinneyへSatoshi nakamotoからメール受信
+プログラムをダウンロードその際ログを確認したところSatoshiはTorを使用していた。",,,,,,
+Bitcoin,2009,,,,,,,,,2009/1/12 Hal FinneyへBitcoin初めての送金 10BTC,,,,,,
+Bitcoin,2009,,,,,,,,,"2009/10/05 New Liberty Standardにて交換レート提示される。
+（Mining時の電気料金から計算された金額）",,,,,,
+Bitcoin,2009,,,,,,,,,"2009/10/12 法定通貨間の交換開始
+（5,050BTCを5.02ドルで購入）",,,,,,
+Bitcoin,2010,,,,,,,,,"Bitocoin 取引所誕生
+5月18日、Bitcoin Forumにてラズロ ハニエツによって投稿される。
+5月22日、1万BTCとピザ２枚が交換される。
+出典 https://moblock.jp/articles/18589
+",,,,,,
+Bitcoin,2010,,,,,,,,,2010.07.11 Slashdotに取り上げられる。,,,,,,
+Bitcoin,2010,,,,,,,,,7月18日 Mt.Goxがサービス開始,,,,,,
+Bitcoin,2010,,,,,,,,,"2010/08/ 1,840 BTCの偽造事件。迅速な対応で影響はほとんどなし",,,,,,
+Bitcoin,2010,,,,,,,,,2010/09/18 Slush's poolがMining成功,,,,,,
+Bitcoin,2010,,,,,,,,,Silk Road（シルクロード）始まる,,,,,,
+Bitcoin,2011,,,,,,,,,03月06日 Mt.Gox ・Jed McCaleb辞任、マルク・カルプレスのTibanne社に売却,,,,,,
+Bitcoin,2011,,,,,,,,,2011/04/16 TIME誌がBitcoinを特集,,,,,,
+Bitcoin,2011,,,,,,,,,Bitcoin 急騰 一時31.91ドルに。,,,,,,
+Bitcoin,2011,,,,,,,,,2011/06/19 ＭｔＧｏｘ 不正侵入者によるハッキング行為,,,,,,
+Bitcoin,2012,,,,,,,,,2012/05/09 FBI Bitcoinに関するレポート流出,,,,,,
+Bitcoin,2012,,,,,,,,,2012/11/15 Wordpressがビットコイン決済を受付開始,,,,,,
+Bitcoin,2012,,,,,,,,,初の半減期 Mining報酬が50BTCから25へ,,,,,,
+Bitcoin,2013,,,,,,,,,03月11日　バグによる分岐　すぐに修正,,,,,,
+Bitcoin,2013,,,,,,,,,03月16日 キプロス危機,,,,,,
+Bitcoin,2013,,,,,,,,,03月19日 ATMサービス開始,,,,,,
+Bitcoin,2013,,,,,,,,,10月01日 Silk Road（シルクロード）運営者逮捕,,,,,,
+Bitcoin,2013,,,,,,,,,2013/12/04 NHKでBitocoin特集,,,,,,
+Bitcoin,2013,,,,,,,,,2013/12/05　Bitocoin最高値,,,,,,
+Bitcoin,2013,,,,,,,,,2013/12/05　中国政府 Bitocoin取引禁止,,,,,,
+Bitcoin,2014,,,,,,,,,2014/02/24 Mt.Gox 閉鎖,,,,,,
+Bitcoin,2014,,,,,,,,,2014/04/01　etwings サービス開始（後Zaifが買収）,,,,,,
+Bitcoin,2014,,,,,,,,,2014/04/09　BtcBox サービス開始,,,,,,
+Bitcoin,2014,,,,,,,,,2014/05/26 bitflyer サービス開始,,,,,,
+Bitcoin,2014,,,,,,,,,2014/06/13 マイニングプールのGhash.ioのハッシュレートが51%に到達,,,,,,
+Bitcoin,2014,,,,,,,,,2014/06/18 bitbankがサービス開始,,,,,,
+Bitcoin,2014,,,,,,,,,2014/06/30 Quoineがサービス開始,,,,,,
+Bitcoin,2014,,,,,,,,,2014/07/18 米Dell社がビットコイン決済を受付開始,,,,,,
+Bitcoin,2014,,,,,,,,,2014/09/19 coincheckがサービス開始,,,,,,
+Bitcoin,2014,,,,,,,,,2014/10/30 Krakenが日本円でのサービス開始,,,,,,
+Bitcoin,2014,,,,,,,,,2014/12/11 米Microsoft社がビットコイン決済を受付開始,,,,,,
+Bitcoin,2015,,,,,,,,,2015/01/04 Bitstampがハッキング被害を受ける,,,,,,
+Bitcoin,2015,,,,,,,,,2015/06/03 ニューヨーク州のビットコイン規制「BitLicense」が正式発表,,,,,,
+Bitcoin,2015,,,,,,,,,2015/08/01 Mt.Goxの経営者Mark Karpelesが逮捕,,,,,,
+Bitcoin,2015,,,,,,,,,2015/08/15 ビットコインのフォーク版であるBitcoin XTがリリース,,,,,,
+Bitcoin,2015,,,,,,,,,2015/10/22 欧州司法裁判所がビットコインはVATの課税対象外との判決を下す,,,,,,
+Bitcoin,2015,,,,,,,,,2015/12/23ビットコインのフォーク版であるBitcoin Unlimitedがリリース,,,,,,
+Bitcoin,2016,,,,,,,,,2016/02/10 ビットコインのフォーク版であるBitcoin Classicがリリース,,,,,,
+Bitcoin,2016,,,,,,,,,2016/03/01 DMM.comでビットコイン決済を受付開始,,,,,,
+Bitcoin,2016,,,,,,,,,2016/04/27 PCゲームのDL販売プラットフォームSteamでビットコイン決済を受付開始,,,,,,
+Bitcoin,2016,,,,,,,,,2016/07/09 2回目の半減期(25BTC→12.5BTC),,,,,,
+Bitcoin,2016,,,,,,,,,2016/08/02 Bitfinexがハッキング被害を受ける,,,,,,
+Bitcoin,2017,,,,,,,,,2017/01/5 ビットコインが2013年以来の史上最高価格をつける,,,,,,
+Bitcoin,2017,,,,,,,,,2017/01/05 中国人民銀行が中国国内の取引所と会合、調査,,,,,,
+Bitcoin,2017,,,,,,,,,2017/03/10 ビットコインがドルベースで2013年以来の史上最高価格をつける,,,,,,
+Bitcoin,2017,,,,,,,,,2017/04/01 ビットコインを初めて法律内で規定する改正資金決済法等が施行,,,,,,
+Bitcoin,2017,,,,,,,,,2017/05/31 GMOコインがサービス開始,,,,,,
+Bitcoin,2017,,,,,,,,,2017/06/20 ビットコインの記号BがUnicodeに追加される,,,,,,
+Bitcoin,2017,,,,,,,,,2017/08/01 ビットコインのブロックチェーンが分裂し新たにBitcoin Cashが誕生,,,,,,
+Bitcoin,2017,,,,,,,,,2017/08/27 SegWitが有効化,,,,,,
+Bitcoin,2017,,,,,,,,,2017/12/08 ビットコインが一時史上最高価格をつける,,,,,,
+Bitcoin,2017,,,,,,,,,"2017/12/17 MEでビットコイン先物取引がスタート
+同日には日本円-ビットコイン取引で終値としては史上最高価格を記録",,,,,,
+Bitcoin,2018,,,,,,,,,2018/01/11 DMM Bitcoinがサービス開始,,,,,,
+Bitcoin,2018,,,,,,,,,2018/01/15 Lightning Networkを利用した初めての物品購入が行われる,,,,,,
+Bitcoin,2018,,,,,,,,,2018/01/26 Coincheckがハッキング被害を受ける,,,,,,
+Bitcoin,2018,,,,,,,,,2018/01/30 韓国で仮想通貨取引規制が導入,,,,,,
+,2018,,,,,,,,,,,,,,,

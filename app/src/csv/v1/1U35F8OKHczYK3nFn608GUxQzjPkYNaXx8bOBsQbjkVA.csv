@@ -1,0 +1,132 @@
+Group,Year,Month,Day,Time,End Year,End Month,End Day,End Time,Display Date,Title,Detail,URL,Image URL,Image Credit,Type,Color
+2,2012,8,1,,2013,9,16,,,2,,https://drive.google.com/file/d/1cGEcBfgY9UUSvluqf1AjHjQHT6gUU7p4/view?usp=sharing,https://zeetle-history-image.s3-ap-northeast-1.amazonaws.com/2.png,,,
+3,2013,9,17,,2014,3,30,,,3,,https://drive.google.com/drive/folders/0B9aIqg6DpwQVeHpEZWtTRGJ3bkE?usp=sharing,https://zeetle-history-image.s3-ap-northeast-1.amazonaws.com/3.png,,,
+4,2014,3,31,,2018,10,30,,,4,,,https://zeetle-history-image.s3-ap-northeast-1.amazonaws.com/4.png,,,
+5,2018,10,31,,2019,12,31,,,5,,https://docs.google.com/presentation/d/14wzvpesOsiPqwnYIyk_lpN_YnvUGDL95UdAszLLuHvg/edit?usp=sharing,https://zeetle-history-image.s3-ap-northeast-1.amazonaws.com/5.png,,,
+2.0,2012,8,1,,,,,,,2.2  Zeetleリリース,"Zeetleリリース
+カード機能追加",https://drive.google.com/file/d/1cGEcBfgY9UUSvluqf1AjHjQHT6gUU7p4/view?usp=sharing,,,,
+2.0,2012,9,5,,,,,,,2.3  Welcomeクーポン/ご意見番クーポン/紹介クーポン,"Welcomeクーポン
+ご意見番クーポン
+紹介クーポン",,,,,
+2.0,2012,10,1,,,,,,,2.4  ランク,"外部連携URL
+ランク",,,,,
+2.0,2012,11,5,,,,,,,2.5  位置連動通知,"位置連動通知
+受信履歴",,,,,
+2.0,2012,12,10,,,,,,,2.6  地図/バッジ/ファンランキング,"地図
+バッジ
+ファンランキング",https://drive.google.com/file/d/1YP71OixwnUz0M8-tmKW4o9LuP4llYx1R/view?usp=sharing,,,,
+2.0,2013,3,4,,,,,,,2.7  会員バーコード,会員バーコード,,,,,
+2.0,2013,4,11,,,,,,,2.8 ホーム画面に追加,ホーム画面に追加,,,,,
+2.0,2013,6,28,,,,,,,2.9,カテゴリ変更(「旅行」削除・「ファッション」追加),,,,,
+3.0,2013,9,17,,,,,,,3.0  UI変更 3タブ形式,"UI変更
+3タブ形式(データを受け取る・データを送る・Zeetleカード)
+広げて表示
+カードを上にスワイプして紹介
+写真や連絡先をまとめて送信",https://drive.google.com/drive/folders/0B9aIqg6DpwQVeHpEZWtTRGJ3bkE?usp=sharing,,,,
+3.0,2013,12,21,,,,,,,3.1 カレンダー/ポイント使用/クーポンの見た目変更,"カレンダー
+ポイント使用
+店舗写真
+プラチナアップグレード
+直前キャンセル
+カード取得時にWelcomeクーポンへのリンクを表示
+地図からテキスト検索
+タッチ時に獲得スタンプ数やランクアップの情報表示
+送信中画面にイラストと説明追加
+お店ダイアログ下部に紹介方法の説明追加
+クーポンの見た目変更 背景に色が付いた
+Welcome・ご意見番・紹介クーポンをクーポン一覧に表示
+クーポン利用時にイラストと説明を追加・フロー改善
+音を出した/受けたときにアニメーション追加",https://drive.google.com/a/bug-sst.co.jp/file/d/0B9aIqg6DpwQVT3lEaWFKVmY2RzQ/edit?usp=sharing,,,,
+4.0,2014,3,31,,,,,,,4.0  デザインテーマ変更/並べて表示追加,"デザインテーマ変更
+並べて表示追加",,,,,
+4.0,2014,5,13,,,,,,,4.1 引き継ぎ登録を促すダイアログ,"引き継ぎを促すダイアログを表示(2回ポイントを貯めたとき)
+地図のカテゴリ選択を横スクロールするバーに変更",https://drive.google.com/a/bug-sst.co.jp/file/d/0B9aIqg6DpwQVc0ttUFJxM1lkaWs/edit?usp=sharing,,,,
+4.0,2014,7,24,,,,,,,4.2  マイカード,マイカード,https://drive.google.com/file/d/0B1-B-cQYCNlWMEhRaVUwcEhNcVZHVDlPMVZWWmVRcHN0aDhn/view?usp=sharing,,,,
+4.0,2014,9,4,,,,,,,"4.3  評価→お店にコメントする
+","評価→お店にコメントする
+クーポン数のバッジ
+カード一覧のカードにメッセージとクーポンの数を表示
+メッセージをコピー
+メッセージ本文中のリンクを開けるように",https://drive.google.com/a/bug-sst.co.jp/file/d/0B9aIqg6DpwQVRU1CaElGX214ZG8/edit?usp=sharing,,,,
+4.0,2015,6,25,,,,,,,4.4  見せるクーポン,"見せるクーポン
+取得してからn日有効なクーポン
+「リンガーハット」で絞り込み",https://drive.google.com/a/bug-sst.co.jp/file/d/0B9aIqg6DpwQVWFpMMEhwVXRtb0k/view?usp=sharing,,,,
+4.0,2016,1,21,,,,,,,4.5  店舗コード,"持っていないカードの情報表示
+店舗コード
+クーポン一覧から利用する
+メッセージの遷移ボタン
+紹介時の音量チェック
+Universal Links (iOSのみ)",https://drive.google.com/a/bug-sst.co.jp/file/d/0B9aIqg6DpwQVSWQ5YXp5c1E4Mk0/view?usp=sharing,,,,
+4.0,2016,3,23,,,,,,,4.6 音の一部を聞き取れなかった場合にメッセージを表示,"音を聞ける画面追加
+音の一部を聞き取れなかった場合にメッセージを表示",https://drive.google.com/a/bug-sst.co.jp/file/d/0B9aIqg6DpwQVNHhtSWNnb2N1YVk/view?usp=sharing,,,,
+4.0,2016,7,11,,,,,,,4.7  業務アプリ対応,"業務アプリ対応
+iBeacon対応",https://drive.google.com/a/bug-sst.co.jp/file/d/0B9aIqg6DpwQVZGN1VTY0enVZVXM/view?usp=sharing,,,,
+4.0,2016,7,27,,,,,,,4.8 新紹介クーポン対応(紹介しただけでもらえる),新紹介クーポン対応(紹介しただけでもらえる),,,,,
+4.0,2016,12,8,,,,,,,4.9 ミッション/グループクーポン/セルフチェック,"ミッション
+グループメッセージ・グループクーポン
+スタンプ履歴
+セルフチェック",https://drive.google.com/a/sstinc.co.jp/file/d/0B9aIqg6DpwQVWUNHRnFlek9qdUk/view?usp=sharing,,,,
+4.0,2016,12,19,,,,,,,4.10 特別リンク,特別リンク,https://drive.google.com/a/sstinc.co.jp/file/d/0B9aIqg6DpwQVWHFiUDVhTzVIYlk/view?usp=sharing,,,,
+4.0,2018,1,23,,,,,,,4.11 ソーシャルログイン ,ソーシャルログイン,https://drive.google.com/file/d/11DtF2u7amfeuvDT0zCPzJy4d3u0mP4vE/view?usp=sharing,,,,
+4.0,2018,4,3,,,,,,,4.12,累計スタンプ数表示(にぎりの徳兵衛対応),,,,,
+4.0,2018,5,30,,,,,,,"4.13  ポイントクーポンの利用方法変更
+","ポイントクーポンの利用方法変更
+(交換してから使う → ポイントを消費して使う)",,,,,
+4.0,2018,7,24,,,,,,,4.14 交換後の広告/サポートID,"交換後の広告
+サポートID",https://docs.google.com/presentation/d/1HQknzG32hPZLGXlO4qjxn93Bnu9eFxCSZ4LT1YM2-No/edit?usp=sharing,,,,
+4.0,2018,9,13,,,,,,,4.15,地図に「伝説のすた丼屋」アイコン追加,,,,,
+5.0,2018,10,31,,,,,,,5.0 UI変更 カード一覧が最初の画面に,"UI変更
+カード一覧を最初の画面に
+バナー追加
+お知らせ追加
+近くのカード・おすすめ追加",https://docs.google.com/presentation/d/14wzvpesOsiPqwnYIyk_lpN_YnvUGDL95UdAszLLuHvg/edit?usp=sharing,,,,
+5.0,2018,12,17,,,,,,,5.1,"カード画像をタップして拡大
+マイクのアクセス権がない場合の表示を大きく
+クーポンを二重に使ってしまう問題対策
+すべてのメッセージを既読にする
+スタンプマスをタップして詳細表示
+サポートIDを大きく表示",https://docs.google.com/presentation/d/1ED4zjMUrAPhbihQvwt9BIho_oLQIqLO_L0XERc_kAXw/edit?usp=sharing,,,,
+5.0,2019,1,22,,,,,,,5.2 音の認識率改善,音の認識率改善,,,,,
+5.0,2019,2,25,,,,,,,5.3 抽選,抽選,https://docs.google.com/presentation/d/17VgByMjWj5oysMpEMT1lJPow4ha06kly4XfzWbWdP7Y/edit?usp=sharing,,,,
+5.0,2019,5,15,,,,,,,5.4 閉店・サービス終了対応,閉店・サービス終了対応,https://docs.google.com/presentation/d/11c1g1ghj4ykVEjOmNTVCrl6LdgaZB8FqjI97kabYKac/edit?usp=sharing,,,,
+サーバ,2012,7,,,,,,,,1.1,,,,,,
+サーバ,2012,8,,,,,,,,1.3,,,,,,
+サーバ,2012,9,,,,,,,,1.4,,,,,,
+サーバ,2012,10,,,,,,,,1.5,,,,,,
+サーバ,2012,11,,,,,,,,1.6,,,,,,
+サーバ,2012,12,,,,,,,,1.7,,,,,,
+サーバ,2013,1,,,,,,,,1.8,,,,,,
+サーバ,2013,3,,,,,,,,1.9,,,,,,
+サーバ,2013,4,,,,,,,,1.10,,,,,,
+サーバ,2013,5,,,,,,,,1.11,,,,,,
+サーバ,2013,6,,,,,,,,1.12,,,,,,
+サーバ,2013,7,,,,,,,,1.13,,,,,,
+サーバ,2013,9,,,,,,,,1.14,,,,,,
+サーバ,2013,10,,,,,,,,1.15,,,,,,
+サーバ,2013,12,,,,,,,,1.16,,,,,,
+サーバ,2014,1,,,,,,,,1.17,,,,,,
+サーバ,2014,4,,,,,,,,1.18,,,,,,
+サーバ,2014,5,,,,,,,,1.19,,,,,,
+サーバ,2014,7,,,,,,,,2.0,,,,,,
+サーバ,2014,8,,,,,,,,2.1,,,,,,
+サーバ,2015,5,,,,,,,,2.2,,,,,,
+サーバ,2015,8,,,,,,,,2.3,,,,,,
+サーバ,2015,12,,,,,,,,2.4,,,,,,
+サーバ,2016,7,,,,,,,,2.7,,,,,,
+サーバ,2016,10,,,,,,,,2.8,,,,,,
+サーバ,2016,12,,,,,,,,3.0,,,,,,
+サーバ,2017,8,,,,,,,,3.1,,,,,,
+サーバ,2017,11,,,,,,,,3.2,,,,,,
+サーバ,2018,3,,,,,,,,3.3,,,,,,
+サーバ,2018,4,,,,,,,,3.3.1,,,,,,
+サーバ,2018,5,,,,,,,,3.3.3,,,,,,
+サーバ,2018,7,,,,,,,,3.3.4,,,,,,
+サーバ,2018,10,,,,,,,,4.0,,,,,,
+サーバ,2019,2,,,,,,,,4.2,,,,,,
+サーバ,2019,5,,,,,,,,4.3,,,,,,
+その他,2013,4,29,,,,,,,スマホピットタッチ ,,,,,,
+その他,2014,6,4,,,,,,,店舗用カード紹介アプリ,,,,,,
+その他,2015,6,1,,,,,,,ZeetleEx,,,,,,
+その他,2015,12,15,,,,,,,Zeetle(世界版),,,,,,
+その他,2016,7,4,,,,,,,店舗用カード管理アプリ,,,,,,
+その他,2016,7,6,,,,,,,店舗用カード業務アプリ,,,,,,

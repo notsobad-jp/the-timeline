@@ -1,0 +1,11 @@
+Group,Year,Month,Day,Time,End Year,End Month,End Day,End Time,Display Date,Title,Detail,URL,Image URL,Image Credit,Type,Color
+日本の年号,1989,,,,now,,,,,平成,,,,,,
+日本の年号,1926,,,,1988,,,,,昭和,,,,,,
+年齢,1982,2,27,,1988,3,31,,,幼少期,,,,,range,
+年齢,1988,4,1,,1994,3,31,,,小学校,,,,,range,
+年齢,1994,4,1,,1997,3,31,,,中学校,,,,,range,
+年齢,1997,4,1,,2000,3,31,,,高校,,,,,range,
+年齢,2000,4,1,,2002,3,31,,,大学,,,,,range,
+年齢,2002,4,1,,2004,3,31,,,沖縄,,,,,range,
+年齢,2004,4,1,,2019,3,31,,,社会人,,,,,range,
+アクション,1988,,,,,,,,,スーパーマリオブラザーズ,,,http://dic.nicovideo.jp/oekaki/362564.png,,box,

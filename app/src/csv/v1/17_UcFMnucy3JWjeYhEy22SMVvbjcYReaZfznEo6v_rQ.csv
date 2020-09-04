@@ -1,0 +1,21 @@
+Group,Year,Month,Day,Time,End Year,End Month,End Day,End Time,Display Date,Title,Detail,URL,Image URL,Image Credit,Type,Color
+RDBMS,1979,11,,,now,,,,,Oracle Database,,,,,point,
+RDBMS,1989,,,,now,,,,,Microsoft SQL Server,,,,,point,
+RDBMS,1995,,,,now,,,,,MySQL,,,,,point,
+RDBMS,1996,,,,now,,,,,PostgreSQL,,,,,point,
+RDBMS,2009,10,22,,now,,,,,Amazon Relational Database Service,,,,,point,orange
+RDBMS,2014,10,,,now,,,,,Amazon Aurora,,,,,point,orange
+NoSQL,2005,2,,,now,,,,,Google BigTable,,,,,point,blue
+NoSQL,2007,,,,,,,,,Amazon SimpleDB,,,,,point,orange
+NoSQL,2008,,,,now,,,,,Apache Cassandra,,,,,point,green
+NoSQL,2009,,,,now,,,,,MongoDB,,,,,point,green
+NoSQL,2012,1,18,,now,,,,,Amazon DynamoDB,,,,,point,orange
+NoSQL,2013,,,,,,,,,Google Cloud Datastore,,,,,point,blue
+NewSQL,2017,,,,now,,,,,Google Cloud Spanner,,,,,point,blue
+important,1986,,,,,,,,,SQLが標準規格化,,,,,point,red
+important,2004,,,,now,,,,,AWSサービス開始,,,,,point,red
+important,2006,,,,now,,,,,JSONが規格化,,,,,point,red
+important,2008,,,,now,,,,,GCPサービス開始,,,,,point,red
+important,2010,5,19,,now,,,,,Google BigQuery,,,,,point,blue
+important,2000,,,,,,,,,CAPの定理が発表される,,,,,point,red
+important,2015,,,,,,,,,gRPCが開発される,,,,,point,red

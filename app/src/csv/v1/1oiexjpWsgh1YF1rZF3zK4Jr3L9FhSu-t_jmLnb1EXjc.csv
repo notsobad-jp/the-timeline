@@ -1,0 +1,12 @@
+Group,Year,Month,Day,Time,End Year,End Month,End Day,End Time,Display Date,Title,Detail,URL,Image URL,Image Credit,Type,Color
+出来事,1998,,,,2012,,,,,LeNet,,,,,,
+出来事,1999,,,,2012,,,,,CNN,,,,,,
+出来事,2012,,,,2014,,,,,AlexNet,,,,,,
+出来事,2013,,,,2014,,,,,ZFNet,,,,,,
+出来事,2014,,,,now,,,,,VGGNet,,,,,,
+出来事,2015,,,,now,,,,,ResNet,,,,,,
+出来事,2016,,,,now,,,,,DenseNet,,,,,,
+出来事,2016,,,,now,,,,,WideResNet,,,,,,
+出来事,2017,,,,now,,,,,SENet,,,,,,
+出来事,2017,,,,now,,,,,PyramidNet,,,,,,
+出来事,2017,,,,now,,,,,MobileNet,,,,,,

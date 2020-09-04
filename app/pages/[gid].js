@@ -34,7 +34,7 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
         <meta property="og:title" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://the-timeline.jp/img/sample.png" />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_WEB_ROOT}/images/top/sample.png`} />
         <meta property="og:site_name" content="THE TIMELINE(ザ・タイムライン)" />
         <meta property="og:description" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
         <meta property="og:locale" content="ja_JP" />
@@ -43,7 +43,7 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
 
       <div className="bg-black px-4 py-3 text-white flex fixed w-full z-50">
         <h1 className="flex-grow truncate">
-          <a href="/" target="_blank" rel="noopener">
+          <a href={`${process.env.NEXT_PUBLIC_WEB_ROOT}`} target="_blank" rel="noopener">
             <div className="inline-block w-4 h-4 text-teal-500 fill-current mr-3 align-middle">
               <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"></path></svg>
             </div>
@@ -83,7 +83,7 @@ export async function getStaticProps({params}) {
   const sourceUrl = `https://docs.google.com/spreadsheets/d/e/${params.gid}/pubhtml`;
   const data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
   const title = data["titles"][0];
-  const canonicalUrl = `https://app.the-timeline.jp/${params.gid}`;
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_APP_ROOT}/${params.gid}`;
 
   return {
     props: {
@@ -97,18 +97,16 @@ export async function getStaticProps({params}) {
 }
 
 export async function getStaticPaths() {
-  // const url = "http://localhost:3001/api/timelines?limit=3";
-  // // const url = "https://the-timeline.vercel.app/api/timelines";
-  // const json = await fetch(url).then(res => res.json());
-  //
-  // const paths = json.items.map(item => {
-  //   return {
-  //     params: {
-  //       gid: item.gid,
-  //     }
-  //   }
-  // });
-  const paths = [];
+  const url = `${process.env.NEXT_PUBLIC_WEB_ROOT}/api/timelines?limit=100`;
+  const json = await fetch(url).then(res => res.json());
+
+  const paths = json.items.map(item => {
+    return {
+      params: {
+        gid: item.gid,
+      }
+    }
+  });
 
   return {
     paths: paths,

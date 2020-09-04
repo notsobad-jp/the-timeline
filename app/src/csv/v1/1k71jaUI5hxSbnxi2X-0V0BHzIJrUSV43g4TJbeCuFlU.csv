@@ -1,7 +1,7 @@
-group,year,month,day,time,title,detail,url,type,color,rowNumber,end_year,end_month,end_day,end_time,display_date,image_url,image_credit
-メーカー,2016,8,,,インターンシップ,,,,,1,2017,3,,,,,
-メーカー,2017,4,,,企業説明会,,,,,2,,,,,,,
-メーカー,2017,5,,,面談,,,,,3,,,,,,,
-金融,2016,8,,,インターンシップ,,,,,4,,,,,,,
-金融,2017,4,,,企業企画イベント,,,,,5,,,,,,,
-公務員,2016,8,,,勉強、講座,,,,,6,,,,,,,
+Group,Year,Month,Day,Time,End Year,End Month,End Day,End Time,Display Date,Title,Detail,URL,Image URL,Image Credit,Type,Color
+メーカー,2016,8,,,2017,3,,,,インターンシップ,,,,,,
+メーカー,2017,4,,,2017,5,,,,企業説明会,,,,,,
+メーカー,2017,5,,,2017,6,,,,面談,,,,,,
+金融,2016,8,,,2017,3,,,,インターンシップ,,,,,,
+金融,2017,4,,,2017,6,,,,企業企画イベント,,,,,,
+公務員,2016,8,,,2017,8,,,,勉強、講座,,,,,,
