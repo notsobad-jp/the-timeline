@@ -64,8 +64,8 @@ export async function getStaticProps({params}) {
   const json = JSON.parse(jsonString);
   const timeline = json[params.gid];
 
-  const sourceUrl = `src/csv/v1/${params.gid}.csv`;
-  const data = await sheetsToJson([sourceUrl]);
+  const sourceUrl = `https://docs.google.com/spreadsheets/d/${params.gid}/edit?usp=sharing`;
+  const data = await sheetsToJson([`src/csv/v1/${params.gid}.csv`]);
   const canonicalUrl = `${process.env.NEXT_PUBLIC_APP_ROOT}/v1/${params.gid}`;
 
   return {
