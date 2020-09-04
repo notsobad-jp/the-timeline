@@ -35,7 +35,7 @@ export default function Index({result}) {
       <Head>
         <title>Search - THE TIMELINE</title>
         <meta name="description" content="作成年表一覧 - THE TIMELINE" />
-        <link rel="canonical" href="https://the-timeline.jp/search" />
+        <link rel="canonical" href={`${process.env.NEXT_PUBLIC_WEB_ROOT}/search`} />
       </Head>
 
       <div>

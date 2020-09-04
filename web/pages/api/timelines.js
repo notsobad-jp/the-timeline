@@ -3,6 +3,7 @@ import { auth, firestore, firebase } from '../../lib/firebase.js'
 export default async (req, res) => {
   const result = await new Promise((resolve, reject) => {
     let docRef = firestore.collection('timelines');
+    docRef = docRef.where('version', '==', 'v2');
     const order = req.query.endBefore ? 'asc' : 'desc';
     docRef = docRef.orderBy('createdAt', order);
 

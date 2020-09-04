@@ -122,9 +122,8 @@ export default function Index({examples, tiers}) {
   return (
     <Box mt={-4}>
       <Alert className={classes.fullWidth} severity="warning">
-        こちらは近日一般公開予定の新バージョンのベータ版です。
-        ひととおりの機能は使えますが、安定した利用をご希望の場合は現行バージョンをお使いください。
-        <a href="https://the-timeline.jp" target="_blank">https://the-timeline.jp</a>
+        新バージョンをリリースしました🎉
+        もし不具合など見つけましたら info[at]notsobad.jp までご連絡ください。
       </Alert>
 
       <Box className={[classes.top, classes.fullWidth].join(" ")} py={8} px={2} align="center">
@@ -142,7 +141,7 @@ export default function Index({examples, tiers}) {
           <p><small>（ログインなしでも利用できます）</small></p>
         </Box>
         <Box my={4}>
-          <iframe className={classes.iframe} seamless="" frameBorder="0" src="https://app.the-timeline.jp/?key=1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0&amp;start=19950226064037&amp;end=20200822005476"></iframe>
+          <iframe className={classes.iframe} seamless="" frameBorder="0" src={`${process.env.NEXT_PUBLIC_APP_ROOT}/1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0&amp;start=19950226064037&amp;end=20200822005476`}></iframe>
         </Box>
       </Box>
 
@@ -384,7 +383,7 @@ export async function getStaticProps(context) {
     {
       title: '村上春樹「1973年のピンボール」',
       image: 'pingball.jpg',
-      url: 'https://app.the-timeline.jp/v1/1Qv7_Up3aYyBalMcZQin242nCIRl4EKpzy7nyFXNf8Q0',
+      url: `${process.env.NEXT_PUBLIC_APP_ROOT}/v1/1Qv7_Up3aYyBalMcZQin242nCIRl4EKpzy7nyFXNf8Q0`,
       sourceUrl: 'https://docs.google.com/spreadsheets/d/1Qv7_Up3aYyBalMcZQin242nCIRl4EKpzy7nyFXNf8Q0',
       tags: ['小説', '村上春樹'],
       description: '村上春樹の初期の名作「1973年のピンボール」。時系列がややこしいこの作品を、年表で整理してみました。「僕」と「鼠」の物語をわかりやすく色分けしています。',
@@ -392,7 +391,7 @@ export async function getStaticProps(context) {
     {
       title: '週刊少年ジャンプで現在連載中のマンガ',
       image: 'jump.png',
-      url: 'https://app.the-timeline.jp/v1/1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0',
+      url: `${process.env.NEXT_PUBLIC_APP_ROOT}/v1/1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0`,
       sourceUrl: 'https://docs.google.com/spreadsheets/d/1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0',
       tags: ['マンガ', '少年ジャンプ'],
       description: '現在連載中の作品に加えて、少し前に連載終了した人気作品も合わせて年表化。こち亀のすごさも浮き彫りになります。',
@@ -400,7 +399,7 @@ export async function getStaticProps(context) {
     {
       title: 'かっぴー「左ききのエレン」',
       image: 'ellen.jpg',
-      url: 'https://app.the-timeline.jp/v1/1PSEBmMVfu_y1fqZ8KcKrTZllBvFhDaOIZm35i7HNqas',
+      url: `${process.env.NEXT_PUBLIC_APP_ROOT}/v1/1PSEBmMVfu_y1fqZ8KcKrTZllBvFhDaOIZm35i7HNqas`,
       sourceUrl: 'https://docs.google.com/spreadsheets/d/1PSEBmMVfu_y1fqZ8KcKrTZllBvFhDaOIZm35i7HNqas',
       tags: ['マンガ', '左ききのエレン'],
       description: 'かっぴーさん初の長編作品、Webで人気の「左ききのエレン」の出来事を年表で整理。天才になれなかったすべての人へーー。',
@@ -408,7 +407,7 @@ export async function getStaticProps(context) {
     {
       title: '電気の歴史',
       image: 'electricity.jpg',
-      url: 'https://app.the-timeline.jp/v1/1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg',
+      url: `${process.env.NEXT_PUBLIC_APP_ROOT}/v1/1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg`,
       sourceUrl: 'https://docs.google.com/spreadsheets/d/1F8ypsB2FVq_uFeTe5OutFWHRe4Fsw8DtqwQ5Jq0aClg',
       tags: ['科学', '歴史'],
       description: '17世紀後半から、科学者たちが少しずつ電磁気の秘密を解き明かしていった歴史。 主にヨーロッパの出来事が中心ですが、日本の年号を並べて表示すると時代背景の比較ができておもしろいですね。',
@@ -416,7 +415,7 @@ export async function getStaticProps(context) {
     {
       title: 'レイ・ブラッドベリ『火星年代記』',
       image: 'mars.png',
-      url: 'https://app.the-timeline.jp/v1/1uZmRGsLz2A2N6OuTYi78woovscQXUcz7Gf4EyLAdXYY',
+      url: `${process.env.NEXT_PUBLIC_APP_ROOT}/v1/1uZmRGsLz2A2N6OuTYi78woovscQXUcz7Gf4EyLAdXYY`,
       sourceUrl: 'https://docs.google.com/spreadsheets/d/1uZmRGsLz2A2N6OuTYi78woovscQXUcz7Gf4EyLAdXYY',
       tags: ['小説', '歴史'],
       description: 'レイ・ブラッドベリの名作SF「火星年代記」の出来事を年表で整理。実在の歴史だけでなく、小説や映画のストーリーを年表にして楽しむこともできます。',
@@ -424,7 +423,7 @@ export async function getStaticProps(context) {
     {
       title: 'クエンティン・タランティーノ',
       image: 'tarantino.png',
-      url: 'https://app.the-timeline.jp/v1/1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc',
+      url: `${process.env.NEXT_PUBLIC_APP_ROOT}/v1/1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc`,
       sourceUrl: 'https://docs.google.com/spreadsheets/d/1hoMJYRvyXF8b3OyCiIsEDeGMk1DuAtuLbcY0oNAKWEc',
       tags: ['映画', '人物史'],
       description: '映画監督タランティーノの半生を、作品リスト・受賞歴とともに紹介。年表には画像を表示することもできます。自分史作成にも活用してください。',
