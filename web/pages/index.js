@@ -121,7 +121,7 @@ export default function Index({examples, tiers}) {
 
   return (
     <Box mt={-4}>
-      <Alert className={classes.fullWidth} severity="warning">
+      <Alert className={classes.fullWidth} severity="success">
         新バージョンをリリースしました🎉
         もし不具合など見つけましたら info[at]notsobad.jp までご連絡ください。
       </Alert>
@@ -141,7 +141,7 @@ export default function Index({examples, tiers}) {
           <p><small>（ログインなしでも利用できます）</small></p>
         </Box>
         <Box my={4}>
-          <iframe className={classes.iframe} seamless="" frameBorder="0" src={`${process.env.NEXT_PUBLIC_APP_ROOT}/1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0&amp;start=19950226064037&amp;end=20200822005476`}></iframe>
+          <iframe className={classes.iframe} seamless="" frameBorder="0" src={`${process.env.NEXT_PUBLIC_APP_ROOT}/v1/1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0?start=19950226064037&end=20200822005476`}></iframe>
         </Box>
       </Box>
 
