@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/timelines/:id*", "destination": "https://app.the-timeline.jp/v1/:id*" }
+  ]
+}
+
