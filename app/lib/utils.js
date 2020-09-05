@@ -3,12 +3,6 @@ import csv from 'csvtojson'
 
 const colors = ['red', 'blue', 'green', 'orange', 'yellow', 'olive', 'teal', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'];
 
-export async function getTitleFromSheet(gid) {
-  const contentDisposition = await fetch(url).then(res => res.headers.get('content-disposition'));
-  const match = contentDisposition.match(/filename\*=UTF-8''(.*)%20-%20.*\.csv/)
-  return match ? decodeURI(match[1]) : '';
-}
-
 export async function sheetsToJson(urls) {
   let result = { titles: [], items: [], groups: [] };
 

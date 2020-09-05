@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { SnackbarContext } from '../pages/_app';
-import { getTimelines, deleteTimeline } from '../lib/firebase.js'
+import { getTimelines, updateTitle, deleteTimeline } from '../lib/firebase.js'
 import { getTitleFromSheet } from '../lib/utils.js';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -41,15 +41,27 @@ export default function TimelineList({result, limit, version, userId}) {
 
 
   const remove = (id) => {
-    const confirmed = confirm('Are you sure to delete this?');
+    const confirmed = confirm('年表を削除します。よろしいですか？');
     if(!confirmed){ return; }
 
-    deleteTimeline(id).then(()=> {
+    deleteTimeline(id).then(() => {
       setItems(items.filter(i => i.id != id));
-      setSnackbar({open: true, message: 'The item was deleted.'});
+      setSnackbar({open: true, message: '年表が削除されました'});
     }).catch(function(error) {
       console.error("Error removing document: ", error);
-      setSnackbar({open: true, message: 'Failed to delete the item... Please try again later.'});
+      setSnackbar({open: true, message: 'データ削除に失敗しました。。しばらく経っても解決しない場合、運営までお問い合わせください。'});
+    });
+  }
+
+  const syncTitle = async (id) => {
+    const title = await getTitleFromSheet(id);
+    updateTitle(id, title).then(() => {
+      items.find(i => i.id == id).title = title;
+      setItems([...items]); // 配列の中身を更新しても再描画されないので、新しい配列として渡す
+      setSnackbar({open: true, message: 'タイトルを更新しました'});
+    }).catch(function(error) {
+      console.error("Error syncing title: ", error);
+      setSnackbar({open: true, message: 'タイトル更新に失敗しました。。。しばらく経っても解決しない場合、運営までお問い合わせください。'});
     });
   }
 
@@ -104,7 +116,14 @@ export default function TimelineList({result, limit, version, userId}) {
             <ListItemSecondaryAction>
               { userId &&
                 <>
-                  <Tooltip title="Delete" aria-label="Delete">
+                  { item.version == 'v2' &&
+                    <Tooltip title="タイトルを更新する" aria-label="syncTitle">
+                      <IconButton edge="end" aria-label="syncTitle" onClick={()=>{syncTitle(item.id)}}>
+                        <SyncIcon />
+                      </IconButton>
+                    </Tooltip>
+                  }
+                  <Tooltip title="年表を削除する" aria-label="Delete">
                     <IconButton edge="end" aria-label="delete" onClick={()=>{remove(item.id)}}>
                       <DeleteIcon />
                     </IconButton>
