@@ -62,6 +62,6 @@ export async function getStaticProps(context) {
     props: {
       result: res,
     },
-    unstable_revalidate: 60 * 60 * 24, // 1日1回更新
+    unstable_revalidate: 60 * 60, // 1時間ごとに更新
   }
 }
