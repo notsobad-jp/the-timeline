@@ -18,7 +18,7 @@ export default function Index({data}) {
       zoomable: false,
       orientation: {axis: 'both'},
       showTooltips: false,
-      dataAttributes: ['tippy-content'],
+      dataAttributes: ['tippy-content', 'type'],
       onInitialDrawComplete: () => {
         tippy('[data-tippy-content]', {
           allowHTML: true,

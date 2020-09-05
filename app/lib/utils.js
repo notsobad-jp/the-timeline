@@ -54,6 +54,8 @@ async function sheetToJson(url) {
       if(groupNames.indexOf(json.group) < 0) {
         groupNames.push(json.group);
       }
+      // endがないときのデフォルトを box -> point に変更 （endがあるときはデフォルトrangeなのでそのまま）
+      if(!json.type && !json.end) { json.type = 'point'; }
       json.group = `sub_${json.group}`; // 実際にはsub_groupに所属させる
       json['tippy-content'] = tippyContent(json);
     })
