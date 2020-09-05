@@ -126,15 +126,10 @@ export default function Login() {
 
         <Box my={8}>
           <Typography variant="h5" component="h1" gutterBottom>SNSログイン</Typography>
-          <Button variant="contained" color="primary" className={classes.twitterButton} fullWidth={ isMobile } disabled={true} size="large" startIcon={<TwitterIcon />} onClick={()=>{snsLogin('twitter');}}>Twitterログイン</Button>
+          <Button variant="contained" color="primary" className={classes.twitterButton} fullWidth={ isMobile } size="large" startIcon={<TwitterIcon />} onClick={()=>{snsLogin('twitter');}}>Twitterログイン</Button>
           <Button variant="contained" color="primary" className={classes.googleButton} fullWidth={ isMobile } size="large" onClick={()=>{snsLogin('google');}}>Googleログイン</Button>
           <Box mt={2}>
             もちろん勝手に投稿したりしませんのでご安心ください。
-          </Box>
-          <Box mt={2}>
-            <Alert severity="warning">
-              ベータ期間中はTwitterログインが使えません。すみませんが本リリースまでお待ちください。。
-            </Alert>
           </Box>
         </Box>
       </Container>
