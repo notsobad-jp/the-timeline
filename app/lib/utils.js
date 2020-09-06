@@ -102,6 +102,7 @@ function parseDate(year, month, date, time) {
     return dateString;
   } catch(e) {
     console.log(e);
+    return null;
   }
 }
 

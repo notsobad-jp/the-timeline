@@ -25,7 +25,14 @@ const App = ({ Component, pageProps }) => {
       <div style={{paddingBottom: '80px'}}>
         <Component {...pageProps} />
       </div>
-      <div className="fixed bottom-0 w-full z-50 border-t bg-white" style={{height: '50px'}}>
+      <div className="fixed bottom-0 w-full z-50 border-t bg-gray-100 flex items-center" style={{height: '50px'}}>
+        <p className="text-xs mx-2">
+          Published by
+          <a href={`${process.env.NEXT_PUBLIC_WEB_ROOT}`} target="_blank" rel="noopener" className="px-1 text-blue-600 hover:text-blue-500 hover:underline">
+            THE TIMELINE
+          </a>
+          - 5分ごとに自動更新
+        </p>
       </div>
     </>
   );
