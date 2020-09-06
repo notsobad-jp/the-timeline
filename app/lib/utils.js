@@ -92,22 +92,22 @@ function parseDate(year, month, date, time) {
       yyyy = year.length > 4 ? year : ("0000" + year).slice(-4);
     }else {
       // 紀元前はマイナス+6桁表示
-      yyyy = ("-000000" + Math.abs(year)).slice(7);
+      yyyy = "-" + ("000000" + Math.abs(year)).slice(-6);
     }
-    const mm = (month) ? month - 1 : 0;
-    const dd = (date) ? date : 1;
+    const mm = (month) ? ("00" + month).slice(-2) : "01";
+    const dd = (date) ? ("00" + date).slice(-2) : "01";
 
-    let [hh, ii] = [0, 0];
+    let [hh, ii] = ["00", "00"];
     if(time) {
       const timeMatch = time.match(/(\d{2}):(\d{2})/);
       hh = timeMatch[1];
       ii = timeMatch[2];
     }
-    const d = new Date(yyyy, mm, dd, hh, ii)
-    if(isNaN(d.getDate())){ throw new Error("invalid date"); }
-    return d.toString();
-  } catch {
-    return null;
+    const dateString = `${yyyy}-${mm}-${dd}T${hh}:${ii}`;
+    if(isNaN(new Date(dateString).getDate())){ throw new Error("invalid date"); }
+    return dateString;
+  } catch(e) {
+    console.log(e);
   }
 }
 
