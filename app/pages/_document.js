@@ -24,6 +24,9 @@ export default class MyDocument extends Document {
           `,
             }}
           />
+          
+          {/* Google Adsense */}
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         </Head>
         <body className="text-sm">
           <Main />

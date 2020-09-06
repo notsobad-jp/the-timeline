@@ -15,6 +15,14 @@ const App = ({ Component, pageProps }) => {
       gtag.pageview(url)
     }
     router.events.on('routeChangeComplete', handleRouteChange)
+
+    // Google Adsense
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (err) {
+      console.log(err);
+    }
+
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
@@ -26,6 +34,14 @@ const App = ({ Component, pageProps }) => {
         <Component {...pageProps} />
       </div>
       <div className="fixed bottom-0 w-full z-50 border-t bg-gray-100 flex items-center" style={{height: '50px'}}>
+        <ins className="adsbygoogle"
+          style={{display: "block"}}
+          data-ad-client="ca-pub-7840479109197513"
+          data-ad-slot="3362221472"
+          data-ad-format="auto"
+          data-full-width-responsive="true">
+        </ins>
+
         <p className="text-xs mx-2">
           Published by
           <a href={`${process.env.NEXT_PUBLIC_WEB_ROOT}`} target="_blank" rel="noopener" className="px-1 text-blue-600 hover:text-blue-500 hover:underline">

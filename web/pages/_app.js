@@ -34,6 +34,14 @@ export default function MyApp(props) {
       gtag.pageview(url)
     }
     router.events.on('routeChangeComplete', handleRouteChange)
+
+    // Google Adsense
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (err) {
+      console.log(err);
+    }
+
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
