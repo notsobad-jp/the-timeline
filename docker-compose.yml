@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    build:
+      context: ./web
+    command: yarn dev -p 5000
+    env_file:
+      - ./web/.env
+    tty: true
+    stdin_open: true
+    ports:
+      - "5000:5000"
+  app:
+    build:
+      context: ./app
+    command: yarn dev -p 5001
+    env_file:
+      - ./app/.env
+    tty: true
+    stdin_open: true
+    ports:
+      - "5001:5001"
