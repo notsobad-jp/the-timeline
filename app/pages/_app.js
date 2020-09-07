@@ -34,8 +34,8 @@ const App = ({ Component, pageProps }) => {
         <Component {...pageProps} />
       </div>
       <div className="fixed bottom-0 w-full z-50 border-t bg-gray-100 flex items-center" style={{height: '50px'}}>
-        <ins class="adsbygoogle"
-          style="display:block"
+        <ins className="adsbygoogle"
+          style={{display: "block"}}
           data-ad-client="ca-pub-7840479109197513"
           data-ad-slot="1043481215"
           data-ad-format="auto"
