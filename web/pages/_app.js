@@ -7,6 +7,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Header from "../components/header.js"
 import Footer from "../components/footer.js"
@@ -77,6 +78,16 @@ export default function MyApp(props) {
             <Header />
             <Container maxWidth="md" style={{minHeight: 500, paddingTop: theme.spacing(4), paddingBottom: theme.spacing(16)}}>
               <Component {...pageProps} />
+
+              <Box mt={2}>
+                <ins className="adsbygoogle"
+                  style={{display: "block"}}
+                  data-ad-client="ca-pub-7840479109197513"
+                  data-ad-slot="3362221472"
+                  data-ad-format="auto"
+                  data-full-width-responsive="true">
+                </ins>
+              </Box>
             </Container>
             <Footer />
             <Snackbar />
