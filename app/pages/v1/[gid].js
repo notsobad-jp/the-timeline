@@ -23,7 +23,7 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
 
       <div className="bg-black px-4 py-3 text-white flex fixed w-full z-50">
         <h1 className="flex-grow truncate">
-          <a href="/" target="_blank" rel="noopener">
+          <a href={`${process.env.NEXT_PUBLIC_WEB_ROOT}`} target="_blank" rel="noopener">
             <div className="inline-block w-4 h-4 text-teal-500 fill-current mr-3 align-middle">
               <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"></path></svg>
             </div>

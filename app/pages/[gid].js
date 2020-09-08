@@ -97,16 +97,20 @@ export async function getStaticProps({params}) {
 }
 
 export async function getStaticPaths() {
-  const url = `${process.env.NEXT_PUBLIC_WEB_ROOT}/api/timelines?limit=100`;
-  const json = await fetch(url).then(res => res.json());
-
-  const paths = json.items.map(item => {
-    return {
-      params: {
-        gid: item.gid,
+  let paths = [];
+  try {
+    const url = `${process.env.NEXT_PUBLIC_WEB_ROOT}/api/timelines?limit=100`;
+    const json = await fetch(url).then(res => res.json());
+    paths = json.items.map(item => {
+      return {
+        params: {
+          gid: item.gid,
+        }
       }
-    }
-  });
+    });
+  } catch(e) {
+    console.log(e);
+  }
 
   return {
     paths: paths,
