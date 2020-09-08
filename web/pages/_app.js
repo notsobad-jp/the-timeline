@@ -76,10 +76,10 @@ export default function MyApp(props) {
           <SnackbarContext.Provider value={[snackbar, setSnackbar]}>
             <CssBaseline />
             <Header />
-            <Container maxWidth="md" style={{minHeight: 500, paddingTop: theme.spacing(4), paddingBottom: theme.spacing(16)}}>
+            <Container maxWidth="md" style={{minHeight: 500, paddingTop: theme.spacing(4)}}>
               <Component {...pageProps} />
 
-              <Box mt={2}>
+              <Box my={8}>
                 <ins className="adsbygoogle"
                   style={{display: "block"}}
                   data-ad-client="ca-pub-7840479109197513"
