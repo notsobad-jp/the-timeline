@@ -34,6 +34,7 @@ async function sheetToJson(url) {
   }
 
 
+  let itemIndex = 0;
   return csv()
     .fromString(csvString)
     .preFileLine((fileLine,lineNumber)=>{
@@ -41,6 +42,8 @@ async function sheetToJson(url) {
       return (lineNumber==0) ? fileLine.toLowerCase().replace(/ /g, "_") : fileLine;
     })
     .subscribe((json)=>{
+      json.index = itemIndex;
+      itemIndex += 1;
       json.display_date = displayDate(json);
       json.content = `${json["title"]}&nbsp;<small>(${json.display_date})</small>`;
       if(json["year"]){

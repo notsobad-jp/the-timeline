@@ -14,7 +14,7 @@ export default function Index({data}) {
     // Configuration for the Timeline
     const options = {
       minHeight: 300,
-      order: function(a,b){ return b.start - a.start; },
+      order: function(a,b){ return b.index - a.index; },
       zoomable: false,
       orientation: {axis: 'both'},
       showTooltips: false,
