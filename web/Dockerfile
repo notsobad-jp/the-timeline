@@ -1,17 +1,13 @@
 FROM node:10
 
 # Setting working directory. All the path will be relative to WORKDIR
+RUN mkdir /web
 WORKDIR /web
 
 # Installing dependencies
-COPY package*.json ./
+COPY ./package.json /web/
+COPY ./yarn.lock /web/
 RUN yarn install
 
 # Copying source files
-COPY . .
-
-# Building app
-# RUN npm run build
-
-# Running the app
-# CMD [ "npm", "start" ]
+COPY . /web/

@@ -6,8 +6,13 @@ services:
     command: yarn dev -p 5000
     env_file:
       - ./web/.env
-    tty: true
-    stdin_open: true
+    volumes:
+      # Required to sync file changes.
+      - ./web:/web
+      # Required to not break node modules.
+      - /web/node_modules
+      # Required for next to do it's thing.
+      - /web/.next
     ports:
       - "5000:5000"
   app:
@@ -16,7 +21,12 @@ services:
     command: yarn dev -p 5001
     env_file:
       - ./app/.env
-    tty: true
-    stdin_open: true
+    volumes:
+      # Required to sync file changes.
+      - ./app:/app
+      # Required to not break node modules.
+      - /app/node_modules
+      # Required for next to do it's thing.
+      - /app/.next
     ports:
       - "5001:5001"
