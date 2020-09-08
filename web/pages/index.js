@@ -122,8 +122,10 @@ export default function Index({examples, tiers}) {
   return (
     <Box mt={-4}>
       <Alert className={classes.fullWidth} severity="success">
-        新バージョンをリリースしました🎉
-        もし不具合など見つけましたら info[at]notsobad.jp までご連絡ください。
+        <a href="https://blog.notsobad.jp/entry/the-timeline-v2" target="_blank" rel="noopener">
+          新バージョンをリリースしました🎉
+        </a>
+        &nbsp;もし不具合など見つけましたら info[at]notsobad.jp までご連絡ください。
       </Alert>
 
       <Box className={[classes.top, classes.fullWidth].join(" ")} py={8} px={2} align="center">
