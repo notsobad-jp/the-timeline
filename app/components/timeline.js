@@ -94,7 +94,7 @@ export default function Index({data}) {
     <>
       <div id="timeline" style={{top: "41px", backgroundColor: '#fff'}}></div>
 
-      <div className="fixed top-0 right-0">
+      <div className="fixed top-0 right-0 z-10">
         <div className="flex flex-col bg-black text-white w-10 mt-32 mr-6 rounded divide-y divide-gray-800 z-50">
           <div onClick={() => zoom(0.7) } className="w-full cursor-pointer">
             <div className="p-2 fill-current">
