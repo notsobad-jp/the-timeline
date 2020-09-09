@@ -7,6 +7,7 @@
     "@material-ui/core": "latest",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
+    "chrome-aws-lambda": "^5.2.1",
     "clsx": "latest",
     "dotenv": "^8.2.0",
     "firebase": "^7.15.4",
@@ -16,7 +17,7 @@
     "next-transpile-modules": "^3.3.0",
     "prop-types": "latest",
     "propagating-hammerjs": "^1.4.7",
-    "puppeteer": "^5.2.1",
+    "puppeteer-core": "^5.2.1",
     "react": "latest",
     "react-dom": "latest",
     "react-firebase-hooks": "^2.2.0",
@@ -30,5 +31,8 @@
   },
   "browser": {
     "fs": false
+  },
+  "devDependencies": {
+    "puppeteer": "^5.2.1"
   }
 }

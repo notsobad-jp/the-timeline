@@ -1,5 +1,13 @@
-import puppeteer from 'puppeteer'
-import path from 'path';
+let chrome = {};
+let puppeteer = {};
+if(process.env.AWS_LAMBDA_FUNCTION_VERSION){
+  //Vercel
+  chrome = require('chrome-aws-lambda');
+  puppeteer = require('puppeteer-core');
+}else{
+  //Local Test
+  puppeteer = require('puppeteer');
+}
 
 export default async (req, res) => {
   const gid = req.query.gid;
@@ -8,8 +16,10 @@ export default async (req, res) => {
   const URL = `${process.env.NEXT_PUBLIC_APP_ROOT}/${gid}`;
 
   const browser = await puppeteer.launch({
-    headless: false,
     slowMo: 150,
+    args: chrome.args,
+    executablePath: await chrome.executablePath,
+    headless: chrome.headless,
   });
   const page = await browser.newPage();
 
