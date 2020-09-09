@@ -27,8 +27,18 @@ export default async (req, res) => {
     width: 1200,
     height: 800,
   });
-
   await page.goto(URL);
+
+  await page.evaluate(() => {
+    let style = document.createElement('style');
+    style.textContent = `
+      @import url('//fonts.googleapis.com/css?family=Source+Code+Pro');
+      @import url('//fonts.googleapis.com/earlyaccess/notosansjp.css');
+    `;
+    document.head.appendChild(style);
+    document.body.style.fontFamily = "'Noto Sans JP', sans-serif";
+  });
+
   const imgBinary = await page.screenshot({
     encoding: 'binary',
     // fullPage: true,
