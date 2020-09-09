@@ -36,7 +36,7 @@ export default function Index({title, data, sourceUrl, gid}) {
         <meta property="og:title" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_WEB_ROOT}/api/screenshot?gid=${gid}`} />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_WEB_ROOT}/images/top/sample.png`} />
         <meta property="og:site_name" content="THE TIMELINE(ザ・タイムライン)" />
         <meta property="og:description" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
         <meta property="og:locale" content="ja_JP" />
