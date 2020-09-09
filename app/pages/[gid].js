@@ -4,8 +4,10 @@ import Timeline from '../components/timeline';
 import { sheetsToJson } from '../lib/utils';
 
 
-export default function Index({title, data, sourceUrl, canonicalUrl}) {
-  const router = useRouter()
+export default function Index({title, data, sourceUrl, gid}) {
+  const router = useRouter();
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_APP_ROOT}/${gid}`;
+
   if (router.isFallback) {
     return(
       <>
@@ -34,7 +36,7 @@ export default function Index({title, data, sourceUrl, canonicalUrl}) {
         <meta property="og:title" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_WEB_ROOT}/images/top/sample.png`} />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_WEB_ROOT}/api/screenshot?gid=${gid}`} />
         <meta property="og:site_name" content="THE TIMELINE(ザ・タイムライン)" />
         <meta property="og:description" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
         <meta property="og:locale" content="ja_JP" />
@@ -83,14 +85,13 @@ export async function getStaticProps({params}) {
   const sourceUrl = `https://docs.google.com/spreadsheets/d/e/${params.gid}/pubhtml`;
   const data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
   const title = data["titles"][0];
-  const canonicalUrl = `${process.env.NEXT_PUBLIC_APP_ROOT}/${params.gid}`;
 
   return {
     props: {
+      gid: params.gid,
       title: title,
       data: data,
       sourceUrl: sourceUrl,
-      canonicalUrl: canonicalUrl
     },
     unstable_revalidate: 60,
   }
