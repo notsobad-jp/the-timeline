@@ -42,7 +42,6 @@ export default function Index({title, data, sourceUrl, gid}) {
         <meta property="og:locale" content="ja_JP" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:description" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
-        <meta name="twitter:image:src" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
         <meta name="twitter:image:src" content={`${process.env.NEXT_PUBLIC_WEB_ROOT}/api/screenshot?gid=${gid}`} />
         <link rel="canonical" href={canonicalUrl} />
       </Head>

@@ -69,6 +69,9 @@ export default function MyApp(props) {
         <meta property="og:site_name" content="簡単・便利な無料の年表作成サービス | THE TIMELINE(ザ・タイムライン)" />
         <meta property="og:description" content="THE TIMELINE(ザ・タイムライン)は、簡単・便利な無料の年表作成サービスです" />
         <meta property="og:locale" content="ja_JP" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:description" content="THE TIMELINE(ザ・タイムライン)は、簡単・便利な無料の年表作成サービスです" />
+        <meta name="twitter:image:src" content={`${process.env.NEXT_PUBLIC_WEB_ROOT}/images/top/sample.png`} />
       </Head>
 
       <ThemeProvider theme={theme}>

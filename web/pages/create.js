@@ -113,7 +113,6 @@ export default function NewTimeline() {
       .then(docRef => {
         setSnackbar({open: true, message: "年表の作成が完了しました！"});
         window.open(`${process.env.NEXT_PUBLIC_APP_ROOT}/${gid}`, '_blank');
-        setTimeout(()=>{ fetch(`/api/screenshot?gid=${gid}`); }, 5000); // 5秒後くらいにスクリーンショット生成しとく
         router.push('/mypage');
       })
       .catch(error => {
