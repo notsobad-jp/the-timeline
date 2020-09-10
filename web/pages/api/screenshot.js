@@ -15,6 +15,10 @@ export default async (req, res) => {
 
   const URL = `${process.env.NEXT_PUBLIC_APP_ROOT}/${gid}`;
 
+  if(process.env.AWS_LAMBDA_FUNCTION_VERSION){
+    await chrome.font('https://fonts.gstatic.com/s/notosansjp/v27/-F62fjtqLzI2JPCgQBnw7HFowwII2lcnk-AFfrgQrvWXpdFg3KXxAMsKMbdN.0.woff2');
+  }
+
   const browser = await puppeteer.launch({
     slowMo: 150,
     args: chrome.args,
