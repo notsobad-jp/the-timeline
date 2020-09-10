@@ -49,6 +49,6 @@ export default async (req, res) => {
 
   res.setHeader('Content-Type', 'image/png');
   res.setHeader('Content-Length', imgBinary.length);
-  res.setHeader('Cache-Control', `public, s-maxage=${60*60}, stale-while-revalidate`);  // とりあえず1時間キャッシュ
+  // res.setHeader('Cache-Control', `public, s-maxage=${60*60}, stale-while-revalidate`);  // とりあえず1時間キャッシュ
   res.end(imgBinary, "binary");
 }
