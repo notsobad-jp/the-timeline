@@ -56,7 +56,7 @@ async function sheetToJson(url) {
       }
       // ユニークなGroup一覧を作成
       if(!json.group) { json.group = '　　　'; } // 折りたたみできなくなるので、groupなしの場合は空白文字列に置き換え
-      if(groupNames.indexOf(json.group) < 0) {
+      if(groupNames.indexOf(json.group) < 0 && json.year) {
         groupNames.push(json.group);
       }
       // endがないときのデフォルトを box -> point に変更 （endがあるときはデフォルトrangeなのでそのまま）
@@ -68,7 +68,7 @@ async function sheetToJson(url) {
     })
     .then((json) => {
       const groups = [];
-      let items = json.filter(j => j.start);
+      let items = json.filter(j => j.start); // startがないデータは無視
 
       groupNames.forEach((groupName, index) => {
         const color = colors[index % colors.length];
