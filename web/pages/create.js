@@ -116,8 +116,11 @@ export default function NewTimeline() {
         router.push('/mypage');
       })
       .catch(error => {
-        console.log(error);
-        alert("[Error] データの保存に失敗しました。しばらくしてから再度お試しください。");
+        if(error.code == 'permission-denied') {
+          alert('[Error] このシートはすでに登録されているようです。コピーして新しいシートを作成するか、ログインアカウントを確認してください。');
+        }else {
+          alert("[Error] データの保存に失敗しました。しばらくしても解決しない場合、運営までお問い合わせください。");
+        }
       });
     }).catch(error => {
       console.log(error);
