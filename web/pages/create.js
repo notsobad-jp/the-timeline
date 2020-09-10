@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/router'
 import { UserContext, SnackbarContext } from './_app';
 import { auth, firestore, firebase } from '../lib/firebase.js'
+import { parseTitleFromSheet } from '../lib/utils.js';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Head from 'next/head';
@@ -100,7 +101,7 @@ export default function NewTimeline() {
     fetch(url).then(res => {
       return res.text();
     }).then(body => {
-      const title = body.match(/<title>(.*)<\/title>/)[1].replace(/ - Google (ドライブ|Drive)/, "");
+      const title = parseTitleFromSheet(body);
       // 公開されていればFirestoreに保存
       firestore.collection("timelines").doc(gid).set({
         title: title,

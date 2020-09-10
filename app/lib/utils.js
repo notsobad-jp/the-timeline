@@ -26,10 +26,12 @@ async function sheetToJson(url) {
 
     // headerからtitle取得
     const contentDisposition = res.headers.get('content-disposition');
-    const titleMatch = contentDisposition.match(/filename\*=UTF-8''(.*)%20-%20.*\.csv/)
-    title = titleMatch ? decodeURI(titleMatch[1]) : '';
+    if(contentDisposition) {
+      const titleMatch = decodeURIComponent(contentDisposition).match(/filename\*=UTF-8''(.*)\s-\s.*\.csv/)
+      title = titleMatch ? decodeURI(titleMatch[1]) : '';
+    }
   } else {
-    // v1はローカルのcsvファイルから読み込む
+    // v1はローカルのcsvファイルから読み込む (titleはjsonから読むのでここでは空文字で返す)
     csvString = fs.readFileSync(url, 'utf8');
   }
 

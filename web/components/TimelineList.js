@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { SnackbarContext } from '../pages/_app';
 import { getTimelines, updateTitle, deleteTimeline } from '../lib/firebase.js'
-import { getTitleFromSheet } from '../lib/utils.js';
+import { parseTitleFromSheet } from '../lib/utils.js';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -54,7 +54,9 @@ export default function TimelineList({result, limit, version, userId}) {
   }
 
   const syncTitle = async (id) => {
-    const title = await getTitleFromSheet(id);
+    const url = `https://docs.google.com/spreadsheets/d/e/${id}/pubhtml`;
+    const body = await fetch(url).then(res => res.text());
+    const title = parseTitleFromSheet(body);
     updateTitle(id, title).then(() => {
       items.find(i => i.id == id).title = title;
       setItems([...items]); // 配列の中身を更新しても再描画されないので、新しい配列として渡す
