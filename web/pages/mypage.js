@@ -4,6 +4,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { UserContext } from './_app';
 import TimelineList from '../components/TimelineList';
+import Link from '../src/Link';
 import Head from 'next/head';
 import Alert from '@material-ui/lab/Alert';
 import Box from '@material-ui/core/Box';
