@@ -71,7 +71,7 @@ export default function Mypage() {
         { user && items.length == 0 &&
           <>
             <Box my={2}>※まだ作成済みの年表がありません。</Box>
-            <Button variant="contained" color="secondary" fullWidth={ isMobile }>年表を作る</Button>
+            <Button component={Link} href="/create" variant="contained" color="secondary" fullWidth={ isMobile }>年表を作る</Button>
           </>
         }
 
