@@ -132,11 +132,11 @@ export default function TimelineList({result, limit, version, userId}) {
                   </Tooltip>
                 </>
               }
-              <Tooltip title="Show" aria-label="Show">
-                <IconButton edge="end" aria-label="show">
+              { !userId &&
+                <IconButton edge="end" aria-label="show" component="a" href={appUrl(item)} target='_blank'>
                   <ChevronRightIcon />
                 </IconButton>
-              </Tooltip>
+              }
             </ListItemSecondaryAction>
           </ListItem>
         ))}
