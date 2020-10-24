@@ -81,7 +81,6 @@ export default function Header(){
               <FormatAlignLeftIcon color="primary" className={classes.logoIcon} />
               THE TIMELINE
             </Link>
-            <Chip className={classes.chip} label="Ver.2" size="small" />
           </Typography>
 
           <Hidden smDown>

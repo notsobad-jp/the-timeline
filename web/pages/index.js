@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
   },
   iframe: {
-    width: 700,
+    width: 1000,
     maxWidth: '100%',
     height: 500,
   },
@@ -121,20 +121,13 @@ export default function Index({examples, tiers}) {
 
   return (
     <Box mt={-4}>
-      <Alert className={classes.fullWidth} severity="success">
-        <a href="https://blog.notsobad.jp/entry/the-timeline-v2" target="_blank" rel="noopener">
-          新バージョンをリリースしました🎉
-        </a>
-        &nbsp;もし不具合など見つけましたら info[at]notsobad.jp までご連絡ください。
-      </Alert>
-
       <Box className={[classes.top, classes.fullWidth].join(" ")} py={8} px={2} align="center">
         <Typography variant="h3" component="h1" gutterBottom>
           年表でないと、伝えられないことがある。
         </Typography>
         <Typography gutterBottom>
           THE TIMELINE（ザ・タイムライン）は、
-          簡単・便利な無料の年表作成サービスです。
+          Googleスプレッドシートのデータから自動でいい感じに年表を作成してくれるサービスです。
         </Typography>
         <Box my={4}>
           <Button className={classes.createButton} component={Link} href="/create" variant="contained" color="secondary" size="large" fullWidth={ isMobile } endIcon={<ChevronRightIcon />}>
@@ -143,13 +136,13 @@ export default function Index({examples, tiers}) {
           <p><small>（ログインなしでも利用できます）</small></p>
         </Box>
         <Box my={4}>
-          <iframe className={classes.iframe} seamless="" frameBorder="0" src={`${process.env.NEXT_PUBLIC_APP_ROOT}/v1/1j4-SgB0Iw3RI-jR_4bQWpfMKzkdi9FbxALW8eqNwAI0?start=19950226064037&end=20200822005476`}></iframe>
+          <iframe className={classes.iframe} seamless="" frameBorder="0" src={`${process.env.NEXT_PUBLIC_APP_ROOT}/2PACX-1vQ_7vm57UBWcGqiiXsftl-ijNfOmBofW_WRqx1SWsXHUXKG3H4S8j55ZHRL9Cr8zmbIjYUgALvKy_wT`}></iframe>
         </Box>
       </Box>
 
       <Box mb={16} mt={8}>
         <Box align="center">
-          <p>THE TIMELINEは、Googleスプレッドシートに入力したデータをもとに年表を作成するサービスです。</p>
+          <p>THE TIMELINE（ザ・タイムライン）は、Googleスプレッドシートのデータから年表を作成してくれるNoCode（ノーコード）サービスです。</p>
           <p>テンプレートに沿ってデータを登録するだけで、THE TIMELINEが自動でデータを読み取り、きれいな年表を作成してくれます。</p>
         </Box>
 
