@@ -1,5 +1,6 @@
 Group,Year,Month,Day,Time,End Year,End Month,End Day,End Time,Display Date,Title,Detail,URL,Image URL,(未実装) Image Credit,Type,(未実装) Color
-日本の年号,1989,,,,now,,,,,平成,,,,,,
+日本の年号,2019,,,,now,,,,,令和,,,,,,
+日本の年号,1989,,,,2019,,,,,平成,,,,,,
 日本の年号,1926,,,,1988,,,,,昭和,,,,,,
 日本の年号,1912,,,,1926,,,,,大正,,,,,,
 日本の年号,1868,,,,1912,,,,,明治,,,,,,

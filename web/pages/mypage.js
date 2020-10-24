@@ -4,6 +4,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { UserContext } from './_app';
 import TimelineList from '../components/TimelineList';
+import Link from '../src/Link';
 import Head from 'next/head';
 import Alert from '@material-ui/lab/Alert';
 import Box from '@material-ui/core/Box';
@@ -71,7 +72,7 @@ export default function Mypage() {
         { user && items.length == 0 &&
           <>
             <Box my={2}>※まだ作成済みの年表がありません。</Box>
-            <Button variant="contained" color="secondary" fullWidth={ isMobile }>年表を作る</Button>
+            <Button component={Link} href="/create" variant="contained" color="secondary" fullWidth={ isMobile }>年表を作る</Button>
           </>
         }
 
