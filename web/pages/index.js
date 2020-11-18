@@ -121,7 +121,9 @@ export default function Index({examples, tiers}) {
 
   return (
     <Box mt={-4}>
+      <Alert className={classes.fullWidth} severity="error">現在スプレッドシートの仕様が変更された影響で、年表が表示されない状態が続いています。申し訳ありませんが修正対応が完了するまでいましばらくお待ちください。</Alert>
       <Box className={[classes.top, classes.fullWidth].join(" ")} py={8} px={2} align="center">
+
         <Typography variant="h3" component="h1" gutterBottom>
           年表でないと、伝えられないことがある。
         </Typography>
