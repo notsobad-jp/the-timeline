@@ -3,6 +3,8 @@
 ## How to use
 
 ```
+docker-compose run --rm web yarn install
+docker-compose run --rm app yarn install
 docker-compose up
 ```
 

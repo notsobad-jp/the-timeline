@@ -7,7 +7,6 @@ WORKDIR /web
 # Installing dependencies
 COPY ./package.json /web/
 COPY ./yarn.lock /web/
-RUN PUPPETEER_PRODUCT=chrome yarn install
 
 # Copying source files
 COPY . /web/
