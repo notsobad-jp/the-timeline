@@ -28,6 +28,7 @@ export default function Index({title, data, sourceUrl, gid}) {
     )
   }
 
+  const scaasUrl = `https://scaas.vercel.app/api/?url=${process.env.NEXT_PUBLIC_WEB_ROOT}/${gid}?slowMo=500&maxAge=3600`;
   return (
     <>
       <Head>
@@ -37,13 +38,13 @@ export default function Index({title, data, sourceUrl, gid}) {
         <meta property="og:title" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_WEB_ROOT}/api/screenshot?gid=${gid}`} />
+        <meta property="og:image" content={`${scaasUrl}`} />
         <meta property="og:site_name" content="THE TIMELINE(ザ・タイムライン)" />
         <meta property="og:description" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
         <meta property="og:locale" content="ja_JP" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:description" content={`${title} | 年表作成サービス「THE TIMELINE」`} />
-        <meta name="twitter:image:src" content={`${process.env.NEXT_PUBLIC_WEB_ROOT}/api/screenshot?gid=${gid}`} />
+        <meta name="twitter:image:src" content={`${scaasUrl}`} />
         <link rel="canonical" href={canonicalUrl} />
       </Head>
 
