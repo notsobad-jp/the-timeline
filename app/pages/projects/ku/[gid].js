@@ -9,6 +9,18 @@ export default function Index({title, data, sourceUrl, gid}) {
   const router = useRouter();
   const canonicalUrl = `${process.env.NEXT_PUBLIC_APP_ROOT}/${gid}`;
 
+  const actorCategories = [
+    "政府行政機関",
+    "国際機関",
+    "研究機関",
+    "企業",
+    "学会",
+    "新聞雑誌メディア",
+    "市民",
+    "病院",
+    "教育機関"
+  ]
+
   const categories = [
     "政策対応",
     "医療",
@@ -42,6 +54,76 @@ export default function Index({title, data, sourceUrl, gid}) {
     "アフターコロナ(オピニオン)",
     "差別(オピニオン)",
     "文化(オピニオン)"
+  ]
+
+  const countries = [
+    "アイルランド",
+    "アフリカ",
+    "アメリカ",
+    "イギリス",
+    "イスラエル",
+    "イタリア",
+    "インド",
+    "インドネシア",
+    "ウクライナ",
+    "エジプト",
+    "エストニア",
+    "エチオピア",
+    "オーストラリア",
+    "オーストリア",
+    "オランダ",
+    "カザフスタン",
+    "カナダ",
+    "キプロス",
+    "ギリシャ",
+    "世界",
+    "サウジアラビア",
+    "シンガポール",
+    "スイス",
+    "スウェーデン",
+    "スウェーデン",
+    "スコットランド",
+    "スペイン",
+    "スロバキア",
+    "セルビア",
+    "タイ",
+    "チェコ",
+    "デンマーク",
+    "ドイツ",
+    "トルクメニスタン",
+    "ニュージーランド",
+    "ノルウェー",
+    "パキスタン",
+    "ハンガリー",
+    "フィリピン",
+    "フィンランド",
+    "ブラジル",
+    "ブラジル",
+    "フランス",
+    "ベトナム",
+    "ベルギー",
+    "ポーランド",
+    "マルタ",
+    "マレーシア",
+    "メキシコ",
+    "ヨーロッパ",
+    "ラテンアメリカ",
+    "ラトビア",
+    "リトアニア",
+    "ロシア",
+    "欧州",
+    "韓国",
+    "香港",
+    "日本",
+    "国際機関",
+    "南アフリカ共和国",
+    "台湾",
+    "中国",
+    "南アフリカ",
+    "ケニア",
+    "リベリア",
+    "ブータン",
+    "アジア"
   ]
 
   if (router.isFallback) {
@@ -85,13 +167,45 @@ export default function Index({title, data, sourceUrl, gid}) {
 
       <Header title={title} sourceUrl={sourceUrl} canonicalUrl={canonicalUrl} />
 
-      <div style={{ position: 'absolute', left: 0, top: 41, width: 250, height: 'max-content', minHeight: '100vh', padding: 20, zIndex: 1, backgroundColor: '#eee' }}>
-        <div>
+      <div className='bg-gray-200 px-4 pt-8 pb-32 fixed left-0 h-full overflow-y-scroll z-10' style={{ top: 41, width: 250 }}>
+        <div className='mb-4'>
+          <h5 className="font-bold mb-2">アクターカテゴリ</h5>
+          <ul>
+            { actorCategories.map((category) => (
+              <li>
+                <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
+                  <input type="checkbox" name="categories[]" value={ category } className="mr-1" />
+                  <span className="text-xs">
+                    { category }
+                  </span>
+                </label>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className='mb-4'>
           <h5 className="font-bold mb-2">カテゴリ</h5>
-          <ul className="space-y-1">
+          <ul>
             { categories.map((category) => (
               <li>
-                <label className="flex items-center">
+                <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
+                  <input type="checkbox" name="categories[]" value={ category } className="mr-1" />
+                  <span className="text-xs">
+                    { category }
+                  </span>
+                </label>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className='mb-4'>
+          <h5 className="font-bold mb-2">国</h5>
+          <ul>
+            { countries.map((category) => (
+              <li>
+                <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
                   <input type="checkbox" name="categories[]" value={ category } className="mr-1" />
                   <span className="text-xs">
                     { category }
