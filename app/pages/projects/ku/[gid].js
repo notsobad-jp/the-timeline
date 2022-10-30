@@ -9,7 +9,6 @@ import { useState, useEffect } from 'react';
 export default function Index({title, data, sourceUrl, gid}) {
   const router = useRouter();
   const canonicalUrl = `${process.env.NEXT_PUBLIC_APP_ROOT}/${gid}`;
-  const [filteredData, setFilteredData] = useState(Object.assign(data));
 
   const actorCategories = [
     "政府行政機関",
@@ -128,7 +127,17 @@ export default function Index({title, data, sourceUrl, gid}) {
     "アジア"
   ]
 
-  const [selectedCategories, setSelectedCategories] = useState([...categories, ...actorCategories, '日本']);
+  // const [selectedCategories, setSelectedCategories] = useState([...actorCategories, ...(categories.filter((c) => !c.includes('オピニオン'))), '日本']);
+  const [selectedCategories, setSelectedCategories] = useState(['市民', '日本']);
+
+  const [filteredData, setFilteredData] = useState(
+                                            Object.assign({...data,
+                                              items: data.items.filter(item => item.title != '' && item.category.split(',').filter(x => selectedCategories.includes(x)).length > 0)
+                                              // items: data.items.filter(item => selectedCategories.filter(x => item.category.split(',').includes(x)).length == selectedCategories.length)
+                                              // items: data.items.slice(0,10)
+                                            })
+                                          );
+
 
   const handleCategoryChange = e => {
     if (e.target.checked) {
@@ -138,9 +147,10 @@ export default function Index({title, data, sourceUrl, gid}) {
     } else {
       setSelectedCategories(selectedCategories.filter(n => n != e.target.value))
     }
-    const filteredItems = filteredData.items.filter((d, index) => index != filteredData.items.length - 1)
-    setFilteredData({...filteredData, items: filteredItems})
-    console.log('---')
+    setFilteredData({
+      ...filteredData,
+      items: filteredData.items.filter(item => item.title != '' && item.category.split(',').filter(x => x != '' && selectedCategories.includes(x)).length > 0)
+    })
     console.log(filteredData.items.length)
   }
 
@@ -208,7 +218,7 @@ export default function Index({title, data, sourceUrl, gid}) {
             { categories.map((category, index) => (
               <li>
                 <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                  <input id={`category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } className="mr-1" />
+                  <input id={`category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } onChange={ handleCategoryChange } className="mr-1" />
                   <span className="text-xs">
                     { category }
                   </span>
@@ -224,7 +234,7 @@ export default function Index({title, data, sourceUrl, gid}) {
             { countries.map((category, index) => (
               <li>
                 <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                  <input id={`country_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } className="mr-1" />
+                  <input id={`country_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } onChange={ handleCategoryChange } className="mr-1" />
                   <span className="text-xs">
                     { category }
                   </span>
