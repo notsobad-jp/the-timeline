@@ -9,8 +9,6 @@ export default function Index({data}) {
   let firstRangeChanged = true;
 
   useEffect(() => {
-    if(timeline) { return; }  // 複数回レンダリングを防ぐ
-
     // Configuration for the Timeline
     const options = {
       minHeight: 300,
@@ -35,6 +33,7 @@ export default function Index({data}) {
     if(end) { options["end"] = end; }
 
     // Create a Timeline
+    document.getElementById('timeline').innerHTML = ''; // 2回目以降のレンダリング用にコンテナdomを空にする
     const items = new DataSet(data.items);  // subGroupで折りたたみできるようにDataSetを使う
     const groups = new DataSet(data.groups);
     const tl = new Timeline(document.getElementById('timeline'), items, groups, options);
@@ -43,7 +42,7 @@ export default function Index({data}) {
 
     // TODO: unmount時にtimelineを削除する
     return;
-  }, [])
+  }, [data])
 
   function zoom(percentage) {
     if(percentage > 0) {

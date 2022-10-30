@@ -3,11 +3,13 @@ import Head from 'next/head'
 import Header from '../../../components/header';
 import Timeline from '../../../components/timeline';
 import { sheetsToJson } from '../../../lib/utils';
+import { useState, useEffect } from 'react';
 
 
 export default function Index({title, data, sourceUrl, gid}) {
   const router = useRouter();
   const canonicalUrl = `${process.env.NEXT_PUBLIC_APP_ROOT}/${gid}`;
+  const [filteredData, setFilteredData] = useState(Object.assign(data));
 
   const actorCategories = [
     "政府行政機関",
@@ -126,7 +128,23 @@ export default function Index({title, data, sourceUrl, gid}) {
     "アジア"
   ]
 
-  if (router.isFallback) {
+  const [selectedCategories, setSelectedCategories] = useState([...categories, ...actorCategories, '日本']);
+
+  const handleCategoryChange = e => {
+    if (e.target.checked) {
+      const newData = new Set(selectedCategories)
+      newData.add(e.target.value)
+      setSelectedCategories([...newData])
+    } else {
+      setSelectedCategories(selectedCategories.filter(n => n != e.target.value))
+    }
+    const filteredItems = filteredData.items.filter((d, index) => index != filteredData.items.length - 1)
+    setFilteredData({...filteredData, items: filteredItems})
+    console.log('---')
+    console.log(filteredData.items.length)
+  }
+
+  if (!filteredData) {
     return(
       <>
         <div className="bg-black px-4 py-3 text-white flex w-full z-50">
@@ -171,10 +189,10 @@ export default function Index({title, data, sourceUrl, gid}) {
         <div className='mb-4'>
           <h5 className="font-bold mb-2">アクターカテゴリ</h5>
           <ul>
-            { actorCategories.map((category) => (
+            { actorCategories.map((category, index) => (
               <li>
                 <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                  <input type="checkbox" name="categories[]" value={ category } className="mr-1" />
+                  <input id={`actor_category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } onChange={ handleCategoryChange } className="mr-1" />
                   <span className="text-xs">
                     { category }
                   </span>
@@ -187,10 +205,10 @@ export default function Index({title, data, sourceUrl, gid}) {
         <div className='mb-4'>
           <h5 className="font-bold mb-2">カテゴリ</h5>
           <ul>
-            { categories.map((category) => (
+            { categories.map((category, index) => (
               <li>
                 <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                  <input type="checkbox" name="categories[]" value={ category } className="mr-1" />
+                  <input id={`category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } className="mr-1" />
                   <span className="text-xs">
                     { category }
                   </span>
@@ -203,10 +221,10 @@ export default function Index({title, data, sourceUrl, gid}) {
         <div className='mb-4'>
           <h5 className="font-bold mb-2">国</h5>
           <ul>
-            { countries.map((category) => (
+            { countries.map((category, index) => (
               <li>
                 <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                  <input type="checkbox" name="categories[]" value={ category } className="mr-1" />
+                  <input id={`country_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } className="mr-1" />
                   <span className="text-xs">
                     { category }
                   </span>
@@ -218,7 +236,7 @@ export default function Index({title, data, sourceUrl, gid}) {
       </div>
 
       <div style={{ position: 'relative', left: 250 }}>
-        <Timeline data={data} />
+        <Timeline data={filteredData} />
       </div>
 
       { data.items.length == 0 &&
@@ -233,7 +251,7 @@ export default function Index({title, data, sourceUrl, gid}) {
 }
 
 
-export async function getStaticProps({params}) {
+export async function getServerSideProps({params}) {
   const sourceUrl = `https://docs.google.com/spreadsheets/d/e/${params.gid}/pubhtml`;
   const data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
   const title = data["titles"][0];
@@ -245,28 +263,5 @@ export async function getStaticProps({params}) {
       data: data,
       sourceUrl: sourceUrl,
     },
-    unstable_revalidate: 60,
-  }
-}
-
-export async function getStaticPaths() {
-  let paths = [];
-  try {
-    const url = `${process.env.NEXT_PUBLIC_WEB_ROOT}/api/timelines?limit=100`;
-    const json = await fetch(url).then(res => res.json());
-    paths = json.items.map(item => {
-      return {
-        params: {
-          gid: item.gid,
-        }
-      }
-    });
-  } catch(e) {
-    console.log(e);
-  }
-
-  return {
-    paths: paths,
-    fallback: true
   }
 }
