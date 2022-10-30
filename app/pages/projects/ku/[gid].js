@@ -127,29 +127,54 @@ export default function Index({title, data, sourceUrl, gid}) {
     "アジア"
   ]
 
-  // const [selectedCategories, setSelectedCategories] = useState([...actorCategories, ...(categories.filter((c) => !c.includes('オピニオン'))), '日本']);
-  const [selectedCategories, setSelectedCategories] = useState(['市民', '日本']);
+  const [selectedCategories, setSelectedCategories] = useState(['政策対応']);
+  const [selectedActorCategories, setSelectedActorCategories] = useState(['政府行政機関']);
+  const [selectedCountries, setSelectedCountries] = useState(['日本']);
 
   const [filteredData, setFilteredData] = useState(
                                             Object.assign({...data,
-                                              items: data.items.filter(item => item.title != '' && item.category.split(',').filter(x => selectedCategories.includes(x)).length > 0)
-                                              // items: data.items.filter(item => selectedCategories.filter(x => item.category.split(',').includes(x)).length == selectedCategories.length)
-                                              // items: data.items.slice(0,10)
+                                              items: data.items.filter(item =>
+                                                item.title != '' &&
+                                                selectedCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
+                                                selectedActorCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
+                                                selectedCountries.filter(x => item.category.split(',').includes(x)).length > 0
+                                              )
                                             })
                                           );
 
-
-  const handleCategoryChange = e => {
-    if (e.target.checked) {
-      const newData = new Set(selectedCategories)
-      newData.add(e.target.value)
-      setSelectedCategories([...newData])
-    } else {
-      setSelectedCategories(selectedCategories.filter(n => n != e.target.value))
+  const handleCategoryChange = (e, categoryType) => {
+    if (categoryType == 'category') {
+      if (e.target.checked) {
+        setSelectedCategories([...(new Set(selectedCategories).add(e.target.value))])
+      } else {
+        setSelectedCategories([...(selectedCategories.filter(n => n != e.target.value))])
+      }
+    } else if (categoryType == 'actorCategory') {
+      if (e.target.checked) {
+        setSelectedActorCategories([...(new Set(selectedActorCategories).add(e.target.value))])
+      } else {
+        setSelectedActorCategories([...(selectedActorCategories.filter(n => n != e.target.value))])
+      }
+    } else if (categoryType == 'country') {
+      if (e.target.checked) {
+        setSelectedCountries([...(new Set(selectedCountries).add(e.target.value))])
+      } else {
+        setSelectedCountries([...(selectedCountries.filter(n => n != e.target.value))])
+      }
     }
+    console.log('---')
+    console.log(selectedCategories)
+    console.log(selectedActorCategories)
+    console.log(selectedCountries)
+
     setFilteredData({
       ...filteredData,
-      items: filteredData.items.filter(item => item.title != '' && item.category.split(',').filter(x => x != '' && selectedCategories.includes(x)).length > 0)
+      items: filteredData.items.filter(item =>
+        item.title != '' &&
+        selectedCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
+        selectedActorCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
+        selectedCountries.filter(x => item.category.split(',').includes(x)).length > 0
+      )
     })
     console.log(filteredData.items.length)
   }
@@ -202,7 +227,7 @@ export default function Index({title, data, sourceUrl, gid}) {
             { actorCategories.map((category, index) => (
               <li>
                 <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                  <input id={`actor_category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } onChange={ handleCategoryChange } className="mr-1" />
+                  <input id={`actor_category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedActorCategories.includes(category) } onChange={ (e) => handleCategoryChange(e, 'actorCategory') } className="mr-1" />
                   <span className="text-xs">
                     { category }
                   </span>
@@ -218,7 +243,7 @@ export default function Index({title, data, sourceUrl, gid}) {
             { categories.map((category, index) => (
               <li>
                 <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                  <input id={`category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } onChange={ handleCategoryChange } className="mr-1" />
+                  <input id={`category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } onChange={ (e) => handleCategoryChange(e, 'category') } className="mr-1" />
                   <span className="text-xs">
                     { category }
                   </span>
@@ -234,7 +259,7 @@ export default function Index({title, data, sourceUrl, gid}) {
             { countries.map((category, index) => (
               <li>
                 <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                  <input id={`country_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } onChange={ handleCategoryChange } className="mr-1" />
+                  <input id={`country_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCountries.includes(category) } onChange={ (e) => handleCategoryChange(e, 'country') } className="mr-1" />
                   <span className="text-xs">
                     { category }
                   </span>
