@@ -272,9 +272,7 @@ export default function Index({title, data, sourceUrl, gid}) {
         </div>
       </div>
 
-      <div style={{ position: 'relative', left: 250 }}>
-        <Timeline data={filteredData} />
-      </div>
+      <Timeline data={filteredData} />
 
       { data.items.length == 0 &&
         <div className="absolute top-0 mt-12 w-full">
@@ -283,6 +281,13 @@ export default function Index({title, data, sourceUrl, gid}) {
           </div>
         </div>
       }
+
+      <style global jsx>{`
+        .vis-labelset {
+          left: 250px;
+        }
+      `}</style>
+
     </>
   );
 }
