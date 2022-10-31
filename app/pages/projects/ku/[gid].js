@@ -4,6 +4,8 @@ import Header from '../../../components/header';
 import Timeline from '../../../components/timeline';
 import { sheetsToJson } from '../../../lib/utils';
 import { useState, useEffect } from 'react';
+const fs = require("fs");
+const sheetsJSON = require('../../../lib/ku.json');
 
 
 export default function Index({title, data, sourceUrl, gid}) {
@@ -288,7 +290,9 @@ export default function Index({title, data, sourceUrl, gid}) {
 
 export async function getServerSideProps({params}) {
   const sourceUrl = `https://docs.google.com/spreadsheets/d/e/${params.gid}/pubhtml`;
-  const data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
+  // const data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
+  // const data = JSON.parse(sheetsJSON)
+  const data = sheetsJSON
   const title = data["titles"][0];
 
   return {
