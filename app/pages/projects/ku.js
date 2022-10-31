@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import Header from '../../../components/header';
-import Timeline from '../../../components/timeline';
-import { sheetsToJson } from '../../../lib/utils';
+import Header from '../../components/header';
+import Timeline from '../../components/timeline';
+import { sheetsToJson } from '../../lib/utils';
 import { useState, useEffect } from 'react';
 const fs = require("fs");
-const sheetsJSON = require('../../../lib/ku.json');
+const sheetsJSON = require('../../lib/ku.json');
 
 
 export default function Index({title, data, sourceUrl, gid}) {
@@ -288,8 +288,9 @@ export default function Index({title, data, sourceUrl, gid}) {
 }
 
 
-export async function getServerSideProps({params}) {
-  const sourceUrl = `https://docs.google.com/spreadsheets/d/e/${params.gid}/pubhtml`;
+export async function getStaticProps({params}) {
+  const gid = '2PACX-1vRFkyzY8T2XW9N1eI4LpMuaTXinoFpYeVmQdwwbbx_5POAFFStXu7fVXlgJo9Gvm2GLiqELS-c9Ux-O'
+  const sourceUrl = `https://docs.google.com/spreadsheets/d/e/${gid}/pubhtml`;
   // const data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
   // const data = JSON.parse(sheetsJSON)
   const data = sheetsJSON
@@ -297,7 +298,7 @@ export async function getServerSideProps({params}) {
 
   return {
     props: {
-      gid: params.gid,
+      gid: gid,
       title: title,
       data: data,
       sourceUrl: sourceUrl,
