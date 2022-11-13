@@ -229,6 +229,19 @@ export default function Index({title, data, sourceUrl, gid}) {
       <Header title={title} sourceUrl={sourceUrl} canonicalUrl={canonicalUrl} />
 
       <div className='bg-gray-200 px-4 pt-8 pb-32 fixed left-0 h-full overflow-y-scroll z-10' style={{ top: 41, width: 250 }}>
+        <div className='pb-4 mb-4 border-b border-gray-500'>
+          <div>
+            <span className='text-2xl'>{ filteredData.items.length }</span>
+            件
+            <span className='ml-1'>選択中</span>
+          </div>
+          { filteredData.items.length > 300 &&
+            <div className='text-xs text-red-700 mt-1'>
+              ※選択件数が多いため最初の300件のみ表示されています。すべて表示したい場合は300件以下になるように検索条件を変更してください。
+            </div>
+          }
+        </div>
+
         <div className='mb-4'>
           <h5 className="font-bold mb-2">アクターカテゴリ</h5>
           <ul>
