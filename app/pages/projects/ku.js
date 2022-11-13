@@ -313,6 +313,7 @@ export async function getStaticProps({params}) {
       title: title,
       data: data,
       sourceUrl: sourceUrl,
+      noAds: true,
     },
   }
 }
