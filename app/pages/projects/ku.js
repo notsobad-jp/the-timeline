@@ -145,39 +145,45 @@ export default function Index({title, data, sourceUrl, gid}) {
                                           );
 
   const handleCategoryChange = (e, categoryType) => {
+    let newCategories = selectedCategories
+    let newActorCategories = selectedActorCategories
+    let newCountries = selectedCountries
+
     if (categoryType == 'category') {
       if (e.target.checked) {
-        setSelectedCategories([...(new Set(selectedCategories).add(e.target.value))])
+        setSelectedCategories([...selectedCategories, e.target.value])
+        newCategories = [...selectedCategories, e.target.value]
       } else {
-        setSelectedCategories([...(selectedCategories.filter(n => n != e.target.value))])
+        setSelectedCategories(selectedCategories.filter(n => n != e.target.value))
+        newCategories = selectedCategories.filter(n => n != e.target.value)
       }
     } else if (categoryType == 'actorCategory') {
       if (e.target.checked) {
-        setSelectedActorCategories([...(new Set(selectedActorCategories).add(e.target.value))])
+        setSelectedActorCategories([...selectedActorCategories, e.target.value])
+        newActorCategories = [...selectedActorCategories, e.target.value]
       } else {
-        setSelectedActorCategories([...(selectedActorCategories.filter(n => n != e.target.value))])
+        setSelectedActorCategories(selectedActorCategories.filter(n => n != e.target.value))
+        newActorCategories = selectedActorCategories.filter(n => n != e.target.value)
       }
     } else if (categoryType == 'country') {
       if (e.target.checked) {
-        setSelectedCountries([...(new Set(selectedCountries).add(e.target.value))])
+        setSelectedCountries([...selectedCountries, e.target.value])
+        newCountries = [...selectedCountries, e.target.value]
       } else {
-        setSelectedCountries([...(selectedCountries.filter(n => n != e.target.value))])
+        setSelectedCountries(selectedCountries.filter(n => n != e.target.value))
+        newCountries = selectedCountries.filter(n => n != e.target.value)
       }
     }
-    console.log('---')
-    console.log(selectedCategories)
-    console.log(selectedActorCategories)
-    console.log(selectedCountries)
 
-    setFilteredData({
+    setFilteredData(Object.assign({
       ...filteredData,
-      items: filteredData.items.filter(item =>
+      items: data.items.filter(item =>
         item.title != '' &&
-        selectedCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
-        selectedActorCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
-        selectedCountries.filter(x => item.category.split(',').includes(x)).length > 0
+        newCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
+        newActorCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
+        newCountries.filter(x => item.category.split(',').includes(x)).length > 0
       )
-    })
+    }))
     console.log(filteredData.items.length)
   }
 
