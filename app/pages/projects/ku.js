@@ -228,8 +228,8 @@ export default function Index({title, data, sourceUrl, gid}) {
 
       <Header title={title} sourceUrl={sourceUrl} canonicalUrl={canonicalUrl} />
 
-      <div className='bg-gray-200 px-4 pt-8 pb-32 fixed left-0 h-full overflow-y-scroll z-10' style={{ top: 41, width: 250 }}>
-        <div className='pb-4 mb-4 border-b border-gray-500'>
+      <div className='bg-gray-200 px-4 pb-32 fixed left-0 h-full overflow-y-scroll z-10' style={{ top: 41, width: 250 }}>
+        <div className='bg-gray-200 fixed -mx-4 px-4 py-4 mb-4 border-b border-gray-500 z-30' style={{ width: 250 }}>
           <div>
             <span className='text-2xl'>{ filteredData.items.length }</span>
             件
@@ -242,52 +242,54 @@ export default function Index({title, data, sourceUrl, gid}) {
           }
         </div>
 
-        <div className='mb-4'>
-          <h5 className="font-bold mb-2">アクターカテゴリ</h5>
-          <ul>
-            { actorCategories.map((category, index) => (
-              <li>
-                <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                  <input id={`actor_category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedActorCategories.includes(category) } onChange={ (e) => handleCategoryChange(e, 'actorCategory') } className="mr-1" />
-                  <span className="text-xs">
-                    { category }
-                  </span>
-                </label>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <div className={ filteredData.items.length > 300 ? 'pt-40' : 'pt-24'}>
+          <div className='mb-4'>
+            <h5 className="font-bold mb-2">アクターカテゴリ</h5>
+            <ul>
+              { actorCategories.map((category, index) => (
+                <li>
+                  <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
+                    <input id={`actor_category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedActorCategories.includes(category) } onChange={ (e) => handleCategoryChange(e, 'actorCategory') } className="mr-1" />
+                    <span className="text-xs">
+                      { category }
+                    </span>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <div className='mb-4'>
-          <h5 className="font-bold mb-2">カテゴリ</h5>
-          <ul>
-            { categories.map((category, index) => (
-              <li>
-                <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                  <input id={`category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } onChange={ (e) => handleCategoryChange(e, 'category') } className="mr-1" />
-                  <span className="text-xs">
-                    { category }
-                  </span>
-                </label>
-              </li>
-            ))}
-          </ul>
-        </div>
+          <div className='mb-4'>
+            <h5 className="font-bold mb-2">カテゴリ</h5>
+            <ul>
+              { categories.map((category, index) => (
+                <li>
+                  <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
+                    <input id={`category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } onChange={ (e) => handleCategoryChange(e, 'category') } className="mr-1" />
+                    <span className="text-xs">
+                      { category }
+                    </span>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <div className='mb-4'>
-          <h5 className="font-bold mb-2">国</h5>
-          <ul>
-            { countries.map((category, index) => (
-              <li>
-                <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                  <input id={`country_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCountries.includes(category) } onChange={ (e) => handleCategoryChange(e, 'country') } className="mr-1" />
-                  <span className="text-xs">
-                    { category }
-                  </span>
-                </label>
-              </li>
-            ))}
-          </ul>
+          <div className='mb-4'>
+            <h5 className="font-bold mb-2">国</h5>
+            <ul>
+              { countries.map((category, index) => (
+                <li>
+                  <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
+                    <input id={`country_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCountries.includes(category) } onChange={ (e) => handleCategoryChange(e, 'country') } className="mr-1" />
+                    <span className="text-xs">
+                      { category }
+                    </span>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
