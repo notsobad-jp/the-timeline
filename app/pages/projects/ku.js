@@ -319,21 +319,21 @@ export async function getStaticProps({params}) {
   const sourceUrl = `https://docs.google.com/spreadsheets/d/e/${gid}/pubhtml`;
 
   // シートから読み込んでjson書き出し
-  // let data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
-  // const columns = ["group", "year", "month", "day", "time", "end_year", "end_month", "end_day", "end_time", "display_date", "url", "image_url", "image_credit", "type", "color", "category", "title", "index", "content", "start", "tippy-content"]
-  // data.items = data.items.map((item) => {
-  //   let newItem = {}
-  //   Object.keys(item).forEach((key) => {
-  //     if(columns.includes(key)) {
-  //       newItem[key] = item[key]
-  //     }
-  //   })
-  //   return newItem
-  // })
-  // fs.writeFileSync('src/json/ku2.json', JSON.stringify(data))
+  let data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
+  const columns = ["group", "year", "month", "day", "time", "end_year", "end_month", "end_day", "end_time", "display_date", "url", "image_url", "image_credit", "type", "color", "category", "title", "index", "content", "start", "tippy-content"]
+  data.items = data.items.map((item) => {
+    let newItem = {}
+    Object.keys(item).forEach((key) => {
+      if(columns.includes(key)) {
+        newItem[key] = item[key]
+      }
+    })
+    return newItem
+  })
+  fs.writeFileSync('src/json/ku.json', JSON.stringify(data))
 
   // 保存済みのjsonから読み込み
-  const data = sheetsJSON
+  // const data = sheetsJSON
 
   const title = data["titles"][0];
 
