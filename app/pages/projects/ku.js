@@ -5,7 +5,7 @@ import Timeline from '../../components/timeline';
 import { sheetsToJson } from '../../lib/utils';
 import { useState, useEffect } from 'react';
 const fs = require("fs");
-const sheetsJSON = require('../../lib/ku.json');
+const sheetsJSON = require('../../src/json/ku.json');
 
 
 export default function Index({title, data, sourceUrl, gid}) {
@@ -317,9 +317,24 @@ export default function Index({title, data, sourceUrl, gid}) {
 export async function getStaticProps({params}) {
   const gid = '2PACX-1vRFkyzY8T2XW9N1eI4LpMuaTXinoFpYeVmQdwwbbx_5POAFFStXu7fVXlgJo9Gvm2GLiqELS-c9Ux-O'
   const sourceUrl = `https://docs.google.com/spreadsheets/d/e/${gid}/pubhtml`;
-  // const data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
-  // const data = JSON.parse(sheetsJSON)
+
+  // シートから読み込んでjson書き出し
+  // let data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
+  // const columns = ["group", "year", "month", "day", "time", "end_year", "end_month", "end_day", "end_time", "display_date", "url", "image_url", "image_credit", "type", "color", "category", "title", "index", "content", "start", "tippy-content"]
+  // data.items = data.items.map((item) => {
+  //   let newItem = {}
+  //   Object.keys(item).forEach((key) => {
+  //     if(columns.includes(key)) {
+  //       newItem[key] = item[key]
+  //     }
+  //   })
+  //   return newItem
+  // })
+  // fs.writeFileSync('src/json/ku2.json', JSON.stringify(data))
+
+  // 保存済みのjsonから読み込み
   const data = sheetsJSON
+
   const title = data["titles"][0];
 
   return {
