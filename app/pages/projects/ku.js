@@ -315,10 +315,10 @@ export default function Index({title, data, sourceUrl, gid}) {
 
 
 export async function getStaticProps({params}) {
-  const gid = '2PACX-1vRFkyzY8T2XW9N1eI4LpMuaTXinoFpYeVmQdwwbbx_5POAFFStXu7fVXlgJo9Gvm2GLiqELS-c9Ux-O'
+  const gid = '2PACX-1vRARwi177UycmBpwbR1TsKNHh9PSkgmI012uAg-NsV-QmcE5rUKXHQoR8HN1P8RoabgDZsGKeEHRpu0'
   const sourceUrl = `https://docs.google.com/spreadsheets/d/e/${gid}/pubhtml`;
 
-  // シートから読み込んでjson書き出し
+  // シートから直接読み込み
   let data = await sheetsToJson([sourceUrl.replace(/pubhtml/, "pub?output=csv")]);
   const columns = ["group", "year", "month", "day", "time", "end_year", "end_month", "end_day", "end_time", "display_date", "url", "image_url", "image_credit", "type", "color", "category", "title", "index", "content", "start", "tippy-content"]
   data.items = data.items.map((item) => {
@@ -330,7 +330,9 @@ export async function getStaticProps({params}) {
     })
     return newItem
   })
-  fs.writeFileSync('src/json/ku.json', JSON.stringify(data))
+
+  // jsonファイルに書き出し
+  // fs.writeFileSync('src/json/ku.json', JSON.stringify(data))
 
   // 保存済みのjsonから読み込み
   // const data = sheetsJSON
