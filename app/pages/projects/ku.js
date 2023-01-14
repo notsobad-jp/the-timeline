@@ -59,6 +59,18 @@ export default function Index({title, data, sourceUrl, gid}) {
     "文化(オピニオン)"
   ]
 
+  const years = [
+    "2019年以前",
+    "2020年上半期",
+    "2020年下半期",
+    "2021年上半期",
+    "2021年下半期",
+    "2022年上半期",
+    "2022年下半期",
+    "2023年以降",
+  ]
+
+
   const countries = [
     "アイルランド",
     "アフリカ",
@@ -132,6 +144,7 @@ export default function Index({title, data, sourceUrl, gid}) {
   const [selectedCategories, setSelectedCategories] = useState(['政策対応']);
   const [selectedActorCategories, setSelectedActorCategories] = useState(['政府行政機関']);
   const [selectedCountries, setSelectedCountries] = useState(['日本']);
+  const [selectedYears, setSelectedYears] = useState(['2020年上半期','2020年下半期','2021年上半期','2021年下半期','2022年上半期','2022年下半期']);
 
   const [filteredData, setFilteredData] = useState(
                                             Object.assign({...data,
@@ -139,6 +152,7 @@ export default function Index({title, data, sourceUrl, gid}) {
                                                 item.title != '' &&
                                                 selectedCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
                                                 selectedActorCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
+                                                selectedYears.filter(x => item.category.split(',').includes(x)).length > 0 &&
                                                 selectedCountries.filter(x => item.category.split(',').includes(x)).length > 0
                                               )
                                             })
@@ -148,6 +162,7 @@ export default function Index({title, data, sourceUrl, gid}) {
     let newCategories = selectedCategories
     let newActorCategories = selectedActorCategories
     let newCountries = selectedCountries
+    let newYears = selectedYears
 
     if (categoryType == 'category') {
       if (e.target.checked) {
@@ -165,6 +180,14 @@ export default function Index({title, data, sourceUrl, gid}) {
         setSelectedActorCategories(selectedActorCategories.filter(n => n != e.target.value))
         newActorCategories = selectedActorCategories.filter(n => n != e.target.value)
       }
+    } else if (categoryType == 'year') {
+      if (e.target.checked) {
+        setSelectedYears([...selectedYears, e.target.value])
+        newYears = [...selectedYears, e.target.value]
+      } else {
+        setSelectedYears(selectedYears.filter(n => n != e.target.value))
+        newYears = selectedYears.filter(n => n != e.target.value)
+      }
     } else if (categoryType == 'country') {
       if (e.target.checked) {
         setSelectedCountries([...selectedCountries, e.target.value])
@@ -181,6 +204,7 @@ export default function Index({title, data, sourceUrl, gid}) {
         item.title != '' &&
         newCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
         newActorCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
+        newYears.filter(x => item.category.split(',').includes(x)).length > 0 &&
         newCountries.filter(x => item.category.split(',').includes(x)).length > 0
       )
     }))
@@ -266,6 +290,22 @@ export default function Index({title, data, sourceUrl, gid}) {
                 <li>
                   <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
                     <input id={`category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } onChange={ (e) => handleCategoryChange(e, 'category') } className="mr-1" />
+                    <span className="text-xs">
+                      { category }
+                    </span>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className='mb-4'>
+            <h5 className="font-bold mb-2">年代</h5>
+            <ul>
+              { years.map((category, index) => (
+                <li>
+                  <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
+                    <input id={`year_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedYears.includes(category) } onChange={ (e) => handleCategoryChange(e, 'year') } className="mr-1" />
                     <span className="text-xs">
                       { category }
                     </span>
