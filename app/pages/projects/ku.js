@@ -148,6 +148,9 @@ export default function Index({title, data, sourceUrl, gid}) {
 
   const [filteredData, setFilteredData] = useState(
                                             Object.assign({...data,
+                                              groups: data.groups.filter(group =>
+                                                selectedCategories.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
+                                              ),
                                               items: data.items.filter(item =>
                                                 item.title != '' &&
                                                 selectedCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
@@ -200,6 +203,9 @@ export default function Index({title, data, sourceUrl, gid}) {
 
     setFilteredData(Object.assign({
       ...filteredData,
+      groups: data.groups.filter(group =>
+        newCategories.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
+      ),
       items: data.items.filter(item =>
         item.title != '' &&
         newCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
@@ -208,7 +214,6 @@ export default function Index({title, data, sourceUrl, gid}) {
         newCountries.filter(x => item.category.split(',').includes(x)).length > 0
       )
     }))
-    console.log(filteredData.items.length)
   }
 
   if (!filteredData) {
@@ -271,7 +276,7 @@ export default function Index({title, data, sourceUrl, gid}) {
             <h5 className="font-bold mb-2">アクターカテゴリ</h5>
             <ul>
               { actorCategories.map((category, index) => (
-                <li>
+                <li key={index}>
                   <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
                     <input id={`actor_category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedActorCategories.includes(category) } onChange={ (e) => handleCategoryChange(e, 'actorCategory') } className="mr-1" />
                     <span className="text-xs">
@@ -287,7 +292,7 @@ export default function Index({title, data, sourceUrl, gid}) {
             <h5 className="font-bold mb-2">カテゴリ</h5>
             <ul>
               { categories.map((category, index) => (
-                <li>
+                <li key={index}>
                   <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
                     <input id={`category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } onChange={ (e) => handleCategoryChange(e, 'category') } className="mr-1" />
                     <span className="text-xs">
@@ -303,7 +308,7 @@ export default function Index({title, data, sourceUrl, gid}) {
             <h5 className="font-bold mb-2">年代</h5>
             <ul>
               { years.map((category, index) => (
-                <li>
+                <li key={index}>
                   <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
                     <input id={`year_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedYears.includes(category) } onChange={ (e) => handleCategoryChange(e, 'year') } className="mr-1" />
                     <span className="text-xs">
@@ -319,7 +324,7 @@ export default function Index({title, data, sourceUrl, gid}) {
             <h5 className="font-bold mb-2">国</h5>
             <ul>
               { countries.map((category, index) => (
-                <li>
+                <li key={index}>
                   <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
                     <input id={`country_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCountries.includes(category) } onChange={ (e) => handleCategoryChange(e, 'country') } className="mr-1" />
                     <span className="text-xs">
