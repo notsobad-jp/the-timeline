@@ -12,6 +12,8 @@ export default function Index({title, data, sourceUrl, gid}) {
   const router = useRouter();
   const canonicalUrl = `${process.env.NEXT_PUBLIC_APP_ROOT}/${gid}`;
 
+  const [searchColumnOpened, setSearchColumnOpened] = useState(true);
+
   const actorCategories = [
     "政府行政機関",
     "国際機関",
@@ -216,6 +218,10 @@ export default function Index({title, data, sourceUrl, gid}) {
     }))
   }
 
+  const toggleSearchColumn = () => {
+    setSearchColumnOpened(!searchColumnOpened);
+  }
+
   if (!filteredData) {
     return(
       <>
@@ -257,18 +263,30 @@ export default function Index({title, data, sourceUrl, gid}) {
 
       <Header title={title} sourceUrl={sourceUrl} canonicalUrl={canonicalUrl} />
 
-      <div className='bg-gray-200 px-4 pb-32 fixed left-0 h-full overflow-y-scroll z-10' style={{ top: 41, width: 250 }}>
-        <div className='bg-gray-200 fixed -mx-4 px-4 py-4 mb-4 border-b border-gray-500 z-30' style={{ width: 250 }}>
+      <div className='bg-gray-200 px-4 pb-32 fixed h-full overflow-y-scroll z-10' style={{ top: 41, width: 250, left: searchColumnOpened ? 0 : -200 }}>
+        <div className='bg-gray-200 flex items-center justify-between fixed -mx-4 px-4 py-4 mb-4 border-b border-gray-500 z-30' style={{ width: 250 }}>
           <div>
-            <span className='text-2xl'>{ filteredData.items.length }</span>
-            件
-            <span className='ml-1'>選択中</span>
-          </div>
-          { filteredData.items.length > 300 &&
-            <div className='text-xs text-red-700 mt-1'>
-              ※選択件数が多いため最初の300件のみ表示されています。すべて表示したい場合は300件以下になるように検索条件を変更してください。
+            <div>
+              <span className='text-2xl'>{ filteredData.items.length }</span>
+              件
+              <span className='ml-1'>選択中</span>
             </div>
-          }
+            { filteredData.items.length > 300 &&
+              <div className='text-xs text-red-700 mt-1'>
+                ※選択件数が多いため最初の300件のみ表示されています。すべて表示したい場合は300件以下になるように検索条件を変更してください。
+              </div>
+            }
+          </div>
+
+          <div className="hover:bg-gray-300 cursor-pointer rounded p-1" onClick={ toggleSearchColumn }>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              { searchColumnOpened ?
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                :
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              }
+            </svg>
+          </div>
         </div>
 
         <div className={ filteredData.items.length > 300 ? 'pt-40' : 'pt-24'}>
