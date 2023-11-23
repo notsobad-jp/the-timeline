@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:18
 
 # Setting working directory. All the path will be relative to WORKDIR
 RUN mkdir /web
