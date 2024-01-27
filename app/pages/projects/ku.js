@@ -64,6 +64,12 @@ export default function Index({title, data, sourceUrl, gid}) {
     "文化(オピニオン)",
   ]
 
+  const sources = [
+    "新聞雑誌",
+    "ガイドライン",
+    "提言",
+  ]
+
   const years = [
     "2019年以前",
     "2020年上半期",
@@ -146,10 +152,11 @@ export default function Index({title, data, sourceUrl, gid}) {
     "アジア"
   ]
 
-  const [selectedCategories, setSelectedCategories] = useState(['政策対応']);
   const [selectedActorCategories, setSelectedActorCategories] = useState(['政府行政機関']);
-  const [selectedCountries, setSelectedCountries] = useState(['日本']);
+  const [selectedCategories, setSelectedCategories] = useState(['政策対応']);
+  const [selectedSources, setSelectedSources] = useState(['新聞雑誌']);
   const [selectedYears, setSelectedYears] = useState(['2020年上半期','2020年下半期','2021年上半期','2021年下半期','2022年上半期','2022年下半期']);
+  const [selectedCountries, setSelectedCountries] = useState(['日本']);
 
   const [filteredData, setFilteredData] = useState(
                                             Object.assign({...data,
@@ -158,8 +165,9 @@ export default function Index({title, data, sourceUrl, gid}) {
                                               ),
                                               items: data.items.filter(item =>
                                                 item.title != '' &&
-                                                selectedCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
                                                 selectedActorCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
+                                                selectedCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
+                                                selectedSources.filter(x => item.category.split(',').includes(x)).length > 0 &&
                                                 selectedYears.filter(x => item.category.split(',').includes(x)).length > 0 &&
                                                 selectedCountries.filter(x => item.category.split(',').includes(x)).length > 0
                                               )
@@ -167,10 +175,11 @@ export default function Index({title, data, sourceUrl, gid}) {
                                           );
 
   const handleCategoryChange = (e, categoryType) => {
-    let newCategories = selectedCategories
     let newActorCategories = selectedActorCategories
-    let newCountries = selectedCountries
+    let newCategories = selectedCategories
+    let newSources = selectedSources
     let newYears = selectedYears
+    let newCountries = selectedCountries
 
     if (categoryType == 'category') {
       if (e.target.checked) {
@@ -187,6 +196,14 @@ export default function Index({title, data, sourceUrl, gid}) {
       } else {
         setSelectedActorCategories(selectedActorCategories.filter(n => n != e.target.value))
         newActorCategories = selectedActorCategories.filter(n => n != e.target.value)
+      }
+    } else if (categoryType == 'source') {
+      if (e.target.checked) {
+        setSelectedSources([...selectedSources, e.target.value])
+        newSources = [...selectedSources, e.target.value]
+      } else {
+        setSelectedSources(selectedSources.filter(n => n != e.target.value))
+        newSources = selectedSources.filter(n => n != e.target.value)
       }
     } else if (categoryType == 'year') {
       if (e.target.checked) {
@@ -213,8 +230,9 @@ export default function Index({title, data, sourceUrl, gid}) {
       ),
       items: data.items.filter(item =>
         item.title != '' &&
-        newCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
         newActorCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
+        newCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
+        newSources.filter(x => item.category.split(',').includes(x)).length > 0 &&
         newYears.filter(x => item.category.split(',').includes(x)).length > 0 &&
         newCountries.filter(x => item.category.split(',').includes(x)).length > 0
       )
@@ -299,7 +317,7 @@ export default function Index({title, data, sourceUrl, gid}) {
               { actorCategories.map((category, index) => (
                 <li key={index}>
                   <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                    <input id={`actor_category_${index}`} type="checkbox" name="facts[]" defaultValue={ category } checked={ selectedActorCategories.includes(category) } onChange={ (e) => handleCategoryChange(e, 'actorCategory') } className="mr-1" />
+                    <input id={`actor_category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedActorCategories.includes(category) } onChange={ (e) => handleCategoryChange(e, 'actorCategory') } className="mr-1" />
                     <span className="text-xs">
                       { category }
                     </span>
@@ -310,7 +328,7 @@ export default function Index({title, data, sourceUrl, gid}) {
           </div>
 
           <div className='mb-4'>
-            <h5 className="font-bold mb-2">ファクト</h5>
+            <h5 className="font-bold mb-2">カテゴリ(ファクト)</h5>
             <ul>
               { factCategories.map((category, index) => (
                 <li key={index}>
@@ -326,7 +344,7 @@ export default function Index({title, data, sourceUrl, gid}) {
           </div>
 
           <div className='mb-4'>
-            <h5 className="font-bold mb-2">オピニオン</h5>
+            <h5 className="font-bold mb-2">カテゴリ(オピニオン)</h5>
             <ul>
               { opinionCategories.map((category, index) => (
                 <li key={index}>
@@ -342,12 +360,28 @@ export default function Index({title, data, sourceUrl, gid}) {
           </div>
 
           <div className='mb-4'>
+            <h5 className="font-bold mb-2">情報源</h5>
+            <ul>
+              { sources.map((category, index) => (
+                <li key={index}>
+                  <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
+                    <input id={`year_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedSources.includes(category) } onChange={ (e) => handleCategoryChange(e, 'source') } className="mr-1" />
+                    <span className="text-xs">
+                      { category }
+                    </span>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className='mb-4'>
             <h5 className="font-bold mb-2">年代</h5>
             <ul>
               { years.map((category, index) => (
                 <li key={index}>
                   <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                    <input id={`year_${index}`} type="checkbox" name="facts[]" defaultValue={ category } checked={ selectedYears.includes(category) } onChange={ (e) => handleCategoryChange(e, 'year') } className="mr-1" />
+                    <input id={`year_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedYears.includes(category) } onChange={ (e) => handleCategoryChange(e, 'year') } className="mr-1" />
                     <span className="text-xs">
                       { category }
                     </span>
@@ -363,7 +397,7 @@ export default function Index({title, data, sourceUrl, gid}) {
               { countries.map((category, index) => (
                 <li key={index}>
                   <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                    <input id={`country_${index}`} type="checkbox" name="facts[]" defaultValue={ category } checked={ selectedCountries.includes(category) } onChange={ (e) => handleCategoryChange(e, 'country') } className="mr-1" />
+                    <input id={`country_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCountries.includes(category) } onChange={ (e) => handleCategoryChange(e, 'country') } className="mr-1" />
                     <span className="text-xs">
                       { category }
                     </span>
