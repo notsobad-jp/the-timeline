@@ -46,22 +46,22 @@ export default function Index({title, data, sourceUrl, gid}) {
   ]
 
   const opinions = [
-    "政策対応",
-    "医療",
-    "ワクチン",
-    "情報発信",
-    "情報技術",
-    "パンデミック",
-    "看取り",
-    "支援",
-    "介護",
-    "教育",
-    "メンタルヘルス",
-    "倫理",
-    "国際関係",
-    "アフターコロナ",
-    "差別",
-    "文化",
+    "政策対応(オピニオン)",
+    "医療(オピニオン)",
+    "ワクチン(オピニオン)",
+    "情報発信(オピニオン)",
+    "情報技術(オピニオン)",
+    "パンデミック(オピニオン)",
+    "看取り(オピニオン)",
+    "支援(オピニオン)",
+    "介護(オピニオン)",
+    "教育(オピニオン)",
+    "メンタルヘルス(オピニオン)",
+    "倫理(オピニオン)",
+    "国際関係(オピニオン)",
+    "アフターコロナ(オピニオン)",
+    "差別(オピニオン)",
+    "文化(オピニオン)",
   ]
 
   const years = [
@@ -147,7 +147,7 @@ export default function Index({title, data, sourceUrl, gid}) {
   ]
 
   const [selectedFacts, setSelectedFacts] = useState(['政策対応']);
-  const [selectedOpinions, setSelectedOpinions] = useState(['政策対応']);
+  const [selectedOpinions, setSelectedOpinions] = useState(['政策対応(オピニオン)']);
   const [selectedActorCategories, setSelectedActorCategories] = useState(['政府行政機関']);
   const [selectedCountries, setSelectedCountries] = useState(['日本']);
   const [selectedYears, setSelectedYears] = useState(['2020年上半期','2020年下半期','2021年上半期','2021年下半期','2022年上半期','2022年下半期']);
@@ -156,6 +156,8 @@ export default function Index({title, data, sourceUrl, gid}) {
                                             Object.assign({...data,
                                               groups: data.groups.filter(group =>
                                                 selectedFacts.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
+                                                ||
+                                                selectedOpinions.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
                                               ),
                                               items: data.items.filter(item =>
                                                 item.title != '' &&
@@ -221,6 +223,8 @@ export default function Index({title, data, sourceUrl, gid}) {
       ...filteredData,
       groups: data.groups.filter(group =>
         newFacts.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
+        ||
+        newOpinions.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
       ),
       items: data.items.filter(item =>
         item.title != '' &&
@@ -343,7 +347,7 @@ export default function Index({title, data, sourceUrl, gid}) {
               { opinions.map((category, index) => (
                 <li key={index}>
                   <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                    <input id={`category_${index}`} type="checkbox" name="facts[]" defaultValue={ category } checked={ selectedFacts.includes(category) } onChange={ (e) => handleCategoryChange(e, 'opinion') } className="mr-1" />
+                    <input id={`category_${index}`} type="checkbox" name="opinions[]" defaultValue={ category } checked={ selectedOpinions.includes(category) } onChange={ (e) => handleCategoryChange(e, 'opinion') } className="mr-1" />
                     <span className="text-xs">
                       { category }
                     </span>
