@@ -26,7 +26,7 @@ export default function Index({title, data, sourceUrl, gid}) {
     "教育機関"
   ]
 
-  const facts = [
+  const factCategories = [
     "政策対応",
     "医療",
     "ワクチン",
@@ -45,7 +45,7 @@ export default function Index({title, data, sourceUrl, gid}) {
     "文化",
   ]
 
-  const opinions = [
+  const opinionCategories = [
     "政策対応(オピニオン)",
     "医療(オピニオン)",
     "ワクチン(オピニオン)",
@@ -146,8 +146,7 @@ export default function Index({title, data, sourceUrl, gid}) {
     "アジア"
   ]
 
-  const [selectedFacts, setSelectedFacts] = useState(['政策対応']);
-  const [selectedOpinions, setSelectedOpinions] = useState(['政策対応(オピニオン)']);
+  const [selectedCategories, setSelectedCategories] = useState(['政策対応']);
   const [selectedActorCategories, setSelectedActorCategories] = useState(['政府行政機関']);
   const [selectedCountries, setSelectedCountries] = useState(['日本']);
   const [selectedYears, setSelectedYears] = useState(['2020年上半期','2020年下半期','2021年上半期','2021年下半期','2022年上半期','2022年下半期']);
@@ -155,14 +154,11 @@ export default function Index({title, data, sourceUrl, gid}) {
   const [filteredData, setFilteredData] = useState(
                                             Object.assign({...data,
                                               groups: data.groups.filter(group =>
-                                                selectedFacts.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
-                                                ||
-                                                selectedOpinions.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
+                                                selectedCategories.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
                                               ),
                                               items: data.items.filter(item =>
                                                 item.title != '' &&
-                                                selectedFacts.filter(x => item.category.split(',').includes(x)).length > 0 &&
-                                                selectedOpinions.filter(x => item.category.split(',').includes(x)).length > 0 &&
+                                                selectedCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
                                                 selectedActorCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
                                                 selectedYears.filter(x => item.category.split(',').includes(x)).length > 0 &&
                                                 selectedCountries.filter(x => item.category.split(',').includes(x)).length > 0
@@ -171,27 +167,18 @@ export default function Index({title, data, sourceUrl, gid}) {
                                           );
 
   const handleCategoryChange = (e, categoryType) => {
-    let newFacts = selectedFacts
-    let newOpinions = selectedOpinions
+    let newCategories = selectedCategories
     let newActorCategories = selectedActorCategories
     let newCountries = selectedCountries
     let newYears = selectedYears
 
-    if (categoryType == 'fact') {
+    if (categoryType == 'category') {
       if (e.target.checked) {
-        setSelectedFacts([...selectedFacts, e.target.value])
-        newFacts = [...selectedFacts, e.target.value]
+        setSelectedCategories([...selectedCategories, e.target.value])
+        newCategories = [...selectedCategories, e.target.value]
       } else {
-        setSelectedFacts(selectedFacts.filter(n => n != e.target.value))
-        newFacts = selectedFacts.filter(n => n != e.target.value)
-      }
-    } else if (categoryType == 'opinion') {
-      if (e.target.checked) {
-        setSelectedOpinions([...selectedOpinions, e.target.value])
-        newOpinions = [...selectedOpinions, e.target.value]
-      } else {
-        setSelectedOpinions(selectedOpinions.filter(n => n != e.target.value))
-        newOpinions = selectedOpinions.filter(n => n != e.target.value)
+        setSelectedCategories(selectedCategories.filter(n => n != e.target.value))
+        newCategories = selectedCategories.filter(n => n != e.target.value)
       }
     } else if (categoryType == 'actorCategory') {
       if (e.target.checked) {
@@ -222,14 +209,11 @@ export default function Index({title, data, sourceUrl, gid}) {
     setFilteredData(Object.assign({
       ...filteredData,
       groups: data.groups.filter(group =>
-        newFacts.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
-        ||
-        newOpinions.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
+        newCategories.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
       ),
       items: data.items.filter(item =>
         item.title != '' &&
-        newFacts.filter(x => item.category.split(',').includes(x)).length > 0 &&
-        newOpinions.filter(x => item.category.split(',').includes(x)).length > 0 &&
+        newCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
         newActorCategories.filter(x => item.category.split(',').includes(x)).length > 0 &&
         newYears.filter(x => item.category.split(',').includes(x)).length > 0 &&
         newCountries.filter(x => item.category.split(',').includes(x)).length > 0
@@ -328,10 +312,10 @@ export default function Index({title, data, sourceUrl, gid}) {
           <div className='mb-4'>
             <h5 className="font-bold mb-2">ファクト</h5>
             <ul>
-              { facts.map((category, index) => (
+              { factCategories.map((category, index) => (
                 <li key={index}>
                   <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                    <input id={`category_${index}`} type="checkbox" name="facts[]" defaultValue={ category } checked={ selectedFacts.includes(category) } onChange={ (e) => handleCategoryChange(e, 'fact') } className="mr-1" />
+                    <input id={`category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } onChange={ (e) => handleCategoryChange(e, 'category') } className="mr-1" />
                     <span className="text-xs">
                       { category }
                     </span>
@@ -344,12 +328,12 @@ export default function Index({title, data, sourceUrl, gid}) {
           <div className='mb-4'>
             <h5 className="font-bold mb-2">オピニオン</h5>
             <ul>
-              { opinions.map((category, index) => (
+              { opinionCategories.map((category, index) => (
                 <li key={index}>
                   <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
-                    <input id={`category_${index}`} type="checkbox" name="opinions[]" defaultValue={ category } checked={ selectedOpinions.includes(category) } onChange={ (e) => handleCategoryChange(e, 'opinion') } className="mr-1" />
+                    <input id={`category_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedCategories.includes(category) } onChange={ (e) => handleCategoryChange(e, 'category') } className="mr-1" />
                     <span className="text-xs">
-                      { category }
+                      { category.replace("(オピニオン)", "") }
                     </span>
                   </label>
                 </li>
