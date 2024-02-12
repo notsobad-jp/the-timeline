@@ -136,14 +136,15 @@ export default function Index({title, data, sourceUrl, gid}) {
 
   const [selectedActorCategories, setSelectedActorCategories] = useState(['政府行政機関']);
   const [selectedCategories, setSelectedCategories] = useState(['政策対応']);
-  const [selectedSources, setSelectedSources] = useState(['新聞雑誌']);
+  const [selectedSources, setSelectedSources] = useState(['ファクト']);
+  const [selectedCategoryWithSources, setSelectedCategoryWithSources] = useState(['政策対応(ファクト)']);
   const [selectedYears, setSelectedYears] = useState(['2020年上半期','2020年下半期','2021年上半期','2021年下半期','2022年上半期','2022年下半期']);
   const [selectedCountries, setSelectedCountries] = useState(['日本']);
 
   const [filteredData, setFilteredData] = useState(
                                             Object.assign({...data,
                                               groups: data.groups.filter(group =>
-                                                selectedCategories.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
+                                                selectedCategoryWithSources.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
                                               ),
                                               items: data.items.filter(item =>
                                                 item.title != '' &&
@@ -205,10 +206,12 @@ export default function Index({title, data, sourceUrl, gid}) {
       }
     }
 
+    const newCategoryWithSources = calcNewCategoryWithSources(newCategories, newSources);
+
     setFilteredData(Object.assign({
       ...filteredData,
       groups: data.groups.filter(group =>
-        newCategories.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
+        newCategoryWithSources.filter(x => group.id == x || group.id == `sub_${x}`).length > 0
       ),
       items: data.items.filter(item =>
         item.title != '' &&
@@ -219,6 +222,17 @@ export default function Index({title, data, sourceUrl, gid}) {
         newCountries.filter(x => item.category.split(',').includes(x)).length > 0
       )
     }))
+  }
+
+  const calcNewCategoryWithSources = (newCategories, newSources) => {
+    let newCategoryWithSources = []
+    newCategories.map((category) => {
+      newSources.map((source) => {
+        newCategoryWithSources.push(`${category}(${source})`)
+      })
+    })
+    setSelectedCategoryWithSources(newCategoryWithSources)
+    return newCategoryWithSources
   }
 
   const toggleSearchColumn = () => {
