@@ -28,7 +28,7 @@ export default function Index({title, data, sourceUrl, gid}) {
     )
   }
 
-  const scaasUrl = `https://scaas.vercel.app/api/?url=${process.env.NEXT_PUBLIC_WEB_ROOT}/${gid}?slowMo=500&maxAge=3600`;
+  const scaasUrl = `https://scaas.vercel.app/api/?url=${process.env.NEXT_PUBLIC_APP_ROOT}/${gid}?slowMo=500&maxAge=3600`;
   return (
     <>
       <Head>
