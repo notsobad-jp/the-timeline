@@ -15,8 +15,8 @@
     "vis-util": "^4.3.2"
   },
   "devDependencies": {
-    "autoprefixer": "^9.8.0",
-    "tailwindcss": "^1.4.6"
+    "autoprefixer": "latest",
+    "tailwindcss": "latest"
   },
   "scripts": {
     "dev": "NODE_OPTIONS='--openssl-legacy-provider' next",

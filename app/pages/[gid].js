@@ -76,7 +76,7 @@ export async function getStaticProps({params}) {
       data: data,
       sourceUrl: sourceUrl,
     },
-    unstable_revalidate: 60,
+    revalidate: 60,
   }
 }
 
