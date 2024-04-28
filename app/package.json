@@ -19,7 +19,7 @@
     "tailwindcss": "^1.4.6"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "NODE_OPTIONS='--openssl-legacy-provider' next",
     "build": "next build",
     "start": "next start",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
