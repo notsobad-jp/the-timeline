@@ -5,7 +5,6 @@
   "dependencies": {
     "csvtojson": "^2.0.10",
     "next": "latest",
-    "next-transpile-modules": "^3.3.0",
     "react": "latest",
     "react-dom": "latest",
     "react-visjs-timeline": "^1.6.0",
