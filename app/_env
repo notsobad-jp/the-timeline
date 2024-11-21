@@ -1,0 +1,2 @@
+NEXT_PUBLIC_WEB_ROOT=http://localhost:5000
+NEXT_PUBLIC_APP_ROOT=http://localhost:5001
