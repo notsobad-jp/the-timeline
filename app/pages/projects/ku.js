@@ -23,10 +23,11 @@ export default function Index({title, data, sourceUrl, gid}) {
     "新聞雑誌メディア",
     "市民",
     "病院",
-    "教育機関"
+    "教育機関",
   ]
 
   const categories = [
+    "ガイドライン・提言",
     "政策対応",
     "医療",
     "ワクチン",
@@ -43,13 +44,12 @@ export default function Index({title, data, sourceUrl, gid}) {
     "アフターコロナ",
     "差別",
     "文化",
+    "市民の声",
   ]
 
   const sources = [
     "ファクト",
     "オピニオン",
-    "ガイドライン",
-    "提言",
   ]
 
   const years = [
@@ -340,22 +340,9 @@ export default function Index({title, data, sourceUrl, gid}) {
           </div>
 
           <div className='mb-4'>
-            <h5 className="font-bold mb-2">情報源</h5>
-            <p className="text-xs">新聞雑誌</p>
+            <h5 className="font-bold mb-2">情報種別</h5>
             <ul>
               { ["ファクト", "オピニオン"].map((category, index) => (
-                <li key={index}>
-                  <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0 0.125rem 1rem' }}>
-                    <input id={`source_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedSources.includes(category) } onChange={ (e) => handleCategoryChange(e, 'source') } className="mr-1" />
-                    <span className="text-xs">
-                      { category }
-                    </span>
-                  </label>
-                </li>
-              ))}
-            </ul>
-            <ul>
-              { ["ガイドライン", "提言"].map((category, index) => (
                 <li key={index}>
                   <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
                     <input id={`source_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedSources.includes(category) } onChange={ (e) => handleCategoryChange(e, 'source') } className="mr-1" />
