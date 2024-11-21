@@ -170,7 +170,7 @@ export default function Index({title, data, sourceUrl, gid}) {
         newCategories = [...selectedCategories, e.target.value]
       } else {
         if(selectedCategories.length == 1) {
-          alert("カテゴリ内のすべてのチェックを外すことはできません。最低1つは項目を選択してください。");
+          alert("カテゴリ内のチェックをすべて外すことはできません。最低1つは項目を選択してください。");
           return;
         }
         setSelectedCategories(selectedCategories.filter(n => n != e.target.value))
@@ -182,7 +182,7 @@ export default function Index({title, data, sourceUrl, gid}) {
         newActorCategories = [...selectedActorCategories, e.target.value]
       } else {
         if(selectedActorCategories.length == 1) {
-          alert("カテゴリ内のすべてのチェックを外すことはできません。最低1つは項目を選択してください。");
+          alert("カテゴリ内のチェックをすべて外すことはできません。最低1つは項目を選択してください。");
           return;
         }
         setSelectedActorCategories(selectedActorCategories.filter(n => n != e.target.value))
@@ -194,7 +194,7 @@ export default function Index({title, data, sourceUrl, gid}) {
         newSources = [...selectedSources, e.target.value]
       } else {
         if(selectedSources.length == 1) {
-          alert("カテゴリ内のすべてのチェックを外すことはできません。最低1つは項目を選択してください。");
+          alert("カテゴリ内のチェックをすべて外すことはできません。最低1つは項目を選択してください。");
           return;
         }
         setSelectedSources(selectedSources.filter(n => n != e.target.value))
@@ -206,7 +206,7 @@ export default function Index({title, data, sourceUrl, gid}) {
         newYears = [...selectedYears, e.target.value]
       } else {
         if(selectedYears.length == 1) {
-          alert("カテゴリ内のすべてのチェックを外すことはできません。最低1つは項目を選択してください。");
+          alert("カテゴリ内のチェックをすべて外すことはできません。最低1つは項目を選択してください。");
           return;
         }
         setSelectedYears(selectedYears.filter(n => n != e.target.value))
@@ -218,7 +218,7 @@ export default function Index({title, data, sourceUrl, gid}) {
         newCountries = [...selectedCountries, e.target.value]
       } else {
         if(selectedCountries.length == 1) {
-          alert("カテゴリ内のすべてのチェックを外すことはできません。最低1つは項目を選択してください。");
+          alert("カテゴリ内のチェックをすべて外すことはできません。最低1つは項目を選択してください。");
           return;
         }
         setSelectedCountries(selectedCountries.filter(n => n != e.target.value))
