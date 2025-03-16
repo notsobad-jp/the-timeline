@@ -44,12 +44,12 @@ export default function Index({title, data, sourceUrl, gid}) {
     "アフターコロナ",
     "差別",
     "文化",
-    "市民の声",
   ]
 
   const sources = [
     "ファクト",
     "オピニオン",
+    "市民の声",
   ]
 
   const years = [
@@ -362,7 +362,7 @@ export default function Index({title, data, sourceUrl, gid}) {
           <div className='mb-4'>
             <h5 className="font-bold mb-2">情報種別</h5>
             <ul>
-              { ["ファクト", "オピニオン"].map((category, index) => (
+              { sources.map((category, index) => (
                 <li key={index}>
                   <label className="flex items-center hover:bg-gray-400" style={{ padding: '0.125rem 0' }}>
                     <input id={`source_${index}`} type="checkbox" name="categories[]" defaultValue={ category } checked={ selectedSources.includes(category) } onChange={ (e) => handleCategoryChange(e, 'source') } className="mr-1" />
