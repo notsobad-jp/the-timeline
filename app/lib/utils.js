@@ -21,7 +21,7 @@ async function sheetToJson(url) {
   let title = '';
 
   if(url.includes("http")) {
-    const res = await fetch(url);
+    const res = await fetch(url, { next: { revalidate: 3600 } }); // 1時間キャッシュ
     csvString = await res.text();
 
     // headerからtitle取得
