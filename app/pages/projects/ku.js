@@ -430,7 +430,7 @@ export default function Index({title, data, sourceUrl, gid}) {
 }
 
 
-export async function getStaticProps({params}) {
+export async function getServerSideProps({params}) {
   const gid = '2PACX-1vRARwi177UycmBpwbR1TsKNHh9PSkgmI012uAg-NsV-QmcE5rUKXHQoR8HN1P8RoabgDZsGKeEHRpu0'
   const sourceUrl = `https://docs.google.com/spreadsheets/d/e/${gid}/pubhtml`;
 
